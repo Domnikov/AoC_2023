@@ -19,6 +19,7 @@ std::string ReplaceAll(std::string str, const std::string& from, const std::stri
 }
 
 auto transform(S str) {
+    auto copy = str;
     ReplaceAll(str, "one", "1");
     ReplaceAll(str, "two", "2");
     ReplaceAll(str, "three", "3");
@@ -28,7 +29,7 @@ auto transform(S str) {
     ReplaceAll(str, "seven", "7");
     ReplaceAll(str, "eight", "8");
     ReplaceAll(str, "nine", "9");
-    P(str);
+    P(copy, str);
     return str;
 }
 
