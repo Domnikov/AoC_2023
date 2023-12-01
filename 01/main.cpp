@@ -28,6 +28,7 @@ auto transform(S str) {
     ReplaceAll(str, "seven", "7");
     ReplaceAll(str, "eight", "8");
     ReplaceAll(str, "nine", "9");
+    P(str);
     return str;
 }
 
