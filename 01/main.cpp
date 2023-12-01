@@ -9,6 +9,10 @@
 
 auto in = getInput();
 
+auto transform(S str) {
+    VECSS templ = {{}};
+}
+
 auto count() {
     LL result = 0;
     for(auto a: in) {
