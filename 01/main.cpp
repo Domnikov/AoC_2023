@@ -14,10 +14,10 @@ auto transform(S str) {
     return str;
 }
 
-auto count() {
+auto count(bool use_words) {
     LL result = 0;
     for(auto aa: in) {
-        S a = transform(aa);
+        S a = use_words ? transform(aa) : aa;
         for(auto c:a){
             if (c >= 0x30 && c <= 0x39){
                 result += 10*(c - 0x30);
@@ -38,11 +38,11 @@ auto count() {
 int main(int argc, char** argv)
 {
     LL score = 0;
-    score = count();
+    score = count(false);
     P_RR("Part1: %lld\n", score);
     //========================================================
-    score = 0;
 
+    score = count(true);
     P_RR("Part2: %lld\n", score);
     return 0;
 }
