@@ -19,6 +19,7 @@ void ReplaceAll(std::string& str, const std::string& from, const std::string& to
 
 auto transform(S str) {
     auto copy = str;
+    ReplaceAll(str, "twone", "2no");
     ReplaceAll(str, "one", "1");
     ReplaceAll(str, "eightwo", "8wo");
     ReplaceAll(str, "eighthree", "8hree");
