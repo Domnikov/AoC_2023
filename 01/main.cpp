@@ -10,7 +10,23 @@
 auto in = getInput();
 
 auto count() {
-    LL result = in.size();
+    LL result = 0;
+    for(auto a: in) {
+        for(auto c:a){
+            if (c >= 0x30 && c <= 0x39){
+                result = 10*(c - 0x30);
+                break;
+            }
+        }
+        FOR(i, a.size()) {
+            LL c = a[a.size()- 1 - i];
+            if (c >= 0x30 && c <= 0x39){
+                result += c - 0x30;
+                break;
+            }
+        }
+        P(result);
+    }
     return result;
 }
 
