@@ -10,13 +10,12 @@
 auto in = getInput();
 
 auto count() {
-    LL result = 0;
+    LL result = in.size();
     return result;
 }
 
 int main(int argc, char** argv)
 {
-#ifdef TEST
     LL score = 0;
     score = count();
     P_RR("Part1: %lld\n", score);
@@ -24,6 +23,5 @@ int main(int argc, char** argv)
     score = 0;
 
     P_RR("Part2: %lld\n", score);
-#endif
     return 0;
 }
