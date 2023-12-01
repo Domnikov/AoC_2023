@@ -9,8 +9,25 @@
 
 auto in = getInput();
 
+std::string ReplaceAll(std::string str, const std::string& from, const std::string& to) {
+    size_t start_pos = 0;
+    while((start_pos = str.find(from, start_pos)) != std::string::npos) {
+        str.replace(start_pos, from.length(), to);
+        start_pos += to.length();
+    }
+    return str;
+}
+
 auto transform(S str) {
-    VECSS templ = {{}};
+    ReplaceAll(str, "one", "1");
+    ReplaceAll(str, "two", "2");
+    ReplaceAll(str, "three", "3");
+    ReplaceAll(str, "four", "4");
+    ReplaceAll(str, "five", "5");
+    ReplaceAll(str, "six", "6");
+    ReplaceAll(str, "seven", "7");
+    ReplaceAll(str, "eight", "8");
+    ReplaceAll(str, "nine", "9");
     return str;
 }
 
