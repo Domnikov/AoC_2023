@@ -11,11 +11,13 @@ auto in = getInput();
 
 auto transform(S str) {
     VECSS templ = {{}};
+    return str;
 }
 
 auto count() {
     LL result = 0;
-    for(auto a: in) {
+    for(auto aa: in) {
+        S a = transform(aa);
         for(auto c:a){
             if (c >= 0x30 && c <= 0x39){
                 result += 10*(c - 0x30);
