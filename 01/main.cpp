@@ -54,12 +54,12 @@ LL getFirst(S str, std::vector<slpair> pattern) {
 
 LL getLast(S str, std::vector<slpair> pattern) {
     LL sel;
-    size_t min = str.size();
+    size_t max = 0;
     for(auto p : pattern){
         auto pos = str.rfind(p.first, 0);
         if(pos == std::string::npos) continue;
-        if(pos < min) {
-            min = pos;
+        if(pos > max) {
+            max = pos;
             sel = p.second;
         }
     }
