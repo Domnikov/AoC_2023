@@ -72,7 +72,7 @@ auto count(std::vector<slpair> pattern) {
     for(auto s:in){
         auto first = getFirst(s, pattern);
         auto last = getLast(s, pattern);
-        // P(first, last, s);
+        P(first, last, s);
         result+= first*10+last;
     }
     return result;
