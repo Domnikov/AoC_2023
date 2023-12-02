@@ -8,51 +8,68 @@
 #include <list>
 
 auto in = getInput();
+using slpair = std::pair<S, LL>;
+std::vector<slpair> pattern1 = {{"1", 1},
+                                {"2", 2},
+                                {"3", 3},
+                                {"4", 4},
+                                {"5", 5},
+                                {"6", 6},
+                                {"7", 7},
+                                {"8", 8},
+                                {"9", 9}};
 
-void ReplaceAll(std::string& str, const std::string& from, const std::string& to) {
-    size_t start_pos = 0;
-    while((start_pos = str.find(from, start_pos)) != std::string::npos) {
-        str.replace(start_pos, from.length(), to);
-        start_pos += to.length();
+std::vector<slpair> pattern2 = {{"1", 1},
+                                {"2", 2},
+                                {"3", 3},
+                                {"4", 4},
+                                {"5", 5},
+                                {"6", 6},
+                                {"7", 7},
+                                {"8", 8},
+                                {"9", 9},
+                                {"one", 1},
+                                {"two", 2},
+                                {"three", 3},
+                                {"four", 4},
+                                {"five", 5},
+                                {"six", 6},
+                                {"seven", 7},
+                                {"eight", 8},
+                                {"nine", 9}};
+
+LL getFirst(S str, std::vector<slpair> pattern) {
+    LL sel;
+    size_t min = str.size();
+    for(auto p : pattern){
+        auto pos = str.find(p.first, 0);
+        if(pos == std::string::npos) continue;
+        if(pos < min) {
+            min = pos;
+            sel = p.second;
+        }
     }
+    return sel;
 }
 
-auto transform(S str) {
-    auto copy = str;
-    ReplaceAll(str, "eightwone", "8w1");
-    ReplaceAll(str, "twone", "2no");
-    ReplaceAll(str, "one", "1");
-    ReplaceAll(str, "eightwo", "8wo");
-    ReplaceAll(str, "eighthree", "8hree");
-    ReplaceAll(str, "two", "2");
-    ReplaceAll(str, "three", "3");
-    ReplaceAll(str, "four", "4");
-    ReplaceAll(str, "five", "5");
-    ReplaceAll(str, "six", "6");
-    ReplaceAll(str, "seven", "7");
-    ReplaceAll(str, "eight", "8");
-    ReplaceAll(str, "nine", "9");
-    P(copy, str);
-    return str;
+LL getLast(S str, std::vector<slpair> pattern) {
+    LL sel;
+    size_t min = str.size();
+    for(auto p : pattern){
+        auto pos = str.rfind(p.first, 0);
+        if(pos == std::string::npos) continue;
+        if(pos < min) {
+            min = pos;
+            sel = p.second;
+        }
+    }
+    return sel;
 }
 
-auto count(bool use_words) {
+auto count(std::vector<slpair> pattern) {
     LL result = 0;
-    for(auto aa: in) {
-        S a = use_words ? transform(aa) : aa;
-        for(auto c:a){
-            if (c >= 0x30 && c <= 0x39){
-                result += 10*(c - 0x30);
-                break;
-            }
-        }
-        FOR(i, a.size()) {
-            LL c = a[a.size()- 1 - i];
-            if (c >= 0x30 && c <= 0x39){
-                result += c - 0x30;
-                break;
-            }
-        }
+    for(auto s:in){
+        result+= getFirst(s, pattern)*10+getLast(s, pattern);
     }
     return result;
 }
@@ -60,11 +77,11 @@ auto count(bool use_words) {
 int main(int argc, char** argv)
 {
     LL score = 0;
-    score = count(false);
+    score = count(pattern1);
     P_RR("Part1: %lld\n", score);
     //========================================================
 
-    score = count(true);
+    score = count(pattern2);
     P_RR("Part2: %lld\n", score);
     return 0;
 }
