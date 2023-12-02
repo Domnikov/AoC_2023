@@ -44,11 +44,11 @@ LL getFirst(S str, std::vector<slpair> pattern) {
     for(auto p : pattern){
         auto pos = str.find(p.first, 0);
         if(pos == std::string::npos) continue;
-        P(pos, p.first, min, sel);
         if(pos < min) {
             min = pos;
             sel = p.second;
         }
+        P(pos, p.first, min, sel);
     }
     return sel;
 }
