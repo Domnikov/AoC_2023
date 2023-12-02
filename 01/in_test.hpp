@@ -4,7 +4,7 @@
 inline auto getInput()
 {
     VECS input {
-#if 1
+#if 0
 "1abc2",
 "pqr3stu8vwx",
 "a1b2c3d4e5f",
