@@ -58,7 +58,7 @@ LL getLast(S str, std::vector<slpair> pattern) {
     for(auto p : pattern){
         auto pos = str.rfind(p.first);
         if(pos == std::string::npos) continue;
-        if(pos > max) {
+        if(pos >= max) {
             max = pos;
             sel = p.second;
         }
