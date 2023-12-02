@@ -48,7 +48,6 @@ LL getFirst(S str, std::vector<slpair> pattern) {
             min = pos;
             sel = p.second;
         }
-        P(pos, p.first, min, sel);
     }
     return sel;
 }
@@ -63,6 +62,7 @@ LL getLast(S str, std::vector<slpair> pattern) {
             max = pos;
             sel = p.second;
         }
+        P(pos, p.first, max, sel);
     }
     return sel;
 }
