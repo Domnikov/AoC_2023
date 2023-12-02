@@ -69,7 +69,10 @@ LL getLast(S str, std::vector<slpair> pattern) {
 auto count(std::vector<slpair> pattern) {
     LL result = 0;
     for(auto s:in){
-        result+= getFirst(s, pattern)*10+getLast(s, pattern);
+        auto first = getFirst(s, pattern);
+        auto last = getLast(s, pattern);
+        P(first, last, s);
+        result+= first*10+last;
     }
     return result;
 }
