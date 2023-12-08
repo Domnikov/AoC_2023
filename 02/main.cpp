@@ -24,6 +24,7 @@ auto count() {
         auto l1 = splitStr(l[0], ' ');
         P("Game: ", l1[1]);
         auto l2 = splitStr(l[1], ';');
+        bool correct = true;
         for(auto set: l2){
             std::map<S, LL> balls;
             auto balls_set = splitStr(set, ',');
@@ -38,13 +39,23 @@ auto count() {
             }
             P_MAP(balls);
             if((balls.count("red") + balls.count("green") + balls.count("blue")) != balls.size()) {
+                correct = false;
                 break;
             }
-            if(balls.count("red") && balls["red"] > red_total) break;
-            if(balls.count("green") && balls["green"] > green_total) break;
-            if(balls.count("blue") && balls["blue"] > blue_total) break;
+            if(balls.count("red") && balls["red"] > red_total) {
+                correct = false;
+                break;
+            }
+            if(balls.count("green") && balls["green"] > green_total) {
+                correct = false;
+                break;
+            }
+            if(balls.count("blue") && balls["blue"] > blue_total) {
+                correct = false;
+                break;
+            }
         }
-        result++;
+        result += correct ? 1 : 0;
         P(s);
     }
     return result;
