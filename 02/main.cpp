@@ -15,7 +15,7 @@ auto count() {
         auto l = splitStr(s, ':');
         auto l1 = splitStr(l[0], ' ');
         P("Game: ", l1[1]);
-        auto l2 = splitStr(l[0], ',');
+        auto l2 = splitStr(l[1], ',');
         for(auto color: l2){
             auto l3 = splitStr(color, ' ');
             P(l3[0], l3[1]);
