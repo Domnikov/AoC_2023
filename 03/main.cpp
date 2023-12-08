@@ -55,7 +55,7 @@ auto count() {
                 num = 10*num+(in[y][x]-0x30);
             }
             else if(num != nan){
-                if(!is_adj){
+                if(is_adj){
                     not_adj.push_back(num);
                 }
                 num = nan;
