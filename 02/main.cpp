@@ -57,9 +57,9 @@ auto count_2() {
 
 auto count_1() {
     LL result = 0;
-    LL red_min = 12;
-    LL green_min = 13;
-    LL blue_min = 14;
+    LL red_min = 99999;
+    LL green_min = 99999;
+    LL blue_min = 99999;
     for(auto s : in){
         auto l = splitStr(s, ':');
         auto game = stoi(splitStr(l[0], ' ')[1]);
