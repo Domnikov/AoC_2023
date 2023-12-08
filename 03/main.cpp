@@ -57,7 +57,7 @@ auto count() {
                 is_adj |= is_adjacent(x,y);
             }
             else if(num != nan){
-                if(!is_adj){
+                if(is_adj){
                     adj.push_back(num);
                 }
                 num = nan;
@@ -65,7 +65,7 @@ auto count() {
             }
         }
         if(num != nan){
-            if(!is_adj){
+            if(is_adj){
                 adj.push_back(num);
             }
             num = nan;
