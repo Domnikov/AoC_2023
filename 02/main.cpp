@@ -89,6 +89,7 @@ auto count_1() {
                 break;
             }
         }
+        P(s, red_min, green_min, blue_min);
         result += red_min*green_min*blue_min;
     }
     return result;
