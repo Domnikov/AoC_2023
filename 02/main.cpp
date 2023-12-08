@@ -10,7 +10,13 @@
 auto in = getInput();
 
 auto count() {
-    LL result = 1;
+    LL result = 0;
+    for(auto s : in){
+        auto l1 = splitStr(s, ':');
+        auto l11 = splitStr(l1[0], ' ');
+
+        P(s, l11[1]);
+    }
     return result;
 }
 
