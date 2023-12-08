@@ -28,8 +28,8 @@ bool if_simbol(LL x, LL y){
         return false;
     }
     auto c = get(x,y);
-    P(x, y, c, is_numer(x,y), (!is_numer(x,y) || c != '.'));
-    return !is_numer(x,y) || c != '.';
+    P(x, y, c, is_numer(x,y), (!is_numer(x,y) && c != '.'));
+    return !is_numer(x,y) && c != '.';
 
 }
 
