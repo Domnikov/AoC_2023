@@ -63,7 +63,7 @@ auto count() {
                     not_adj.push_back(num);
                 }
                 num = nan;
-                is_adj=true;
+                is_adj=false;
             }
         }
         if(num != nan){
