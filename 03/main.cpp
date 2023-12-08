@@ -28,6 +28,7 @@ bool if_simbol(LL x, LL y){
         return false;
     }
     auto c = get(x,y);
+    P(c, is_numer(x,y));
     return !is_numer(x,y) || c != '.';
 
 }
@@ -55,6 +56,7 @@ auto count() {
                 if(num == nan) num = 0;
                 num = 10*num+(in[y][x]-0x30);
                 is_adj &= is_adjacent(x,y);
+                P(num);
             }
             else if(num != nan){
                 if(!is_adj){
