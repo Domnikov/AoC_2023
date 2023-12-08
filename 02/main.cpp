@@ -9,13 +9,11 @@
 
 auto in = getInput();
 
-auto count() {
+auto count_2() {
     LL result = 0;
-// #ifdef TEST
     LL red_total = 12;
     LL green_total = 13;
     LL blue_total = 14;
-// #endif
     for(auto s : in){
         auto l = splitStr(s, ':');
         auto game = stoi(splitStr(l[0], ' ')[1]);
@@ -57,14 +55,55 @@ auto count() {
     return result;
 }
 
+auto count_1() {
+    LL result = 0;
+    LL red_min = 12;
+    LL green_min = 13;
+    LL blue_min = 14;
+    for(auto s : in){
+        auto l = splitStr(s, ':');
+        auto game = stoi(splitStr(l[0], ' ')[1]);
+        auto l2 = splitStr(l[1], ';');
+        bool correct = true;
+        for(auto set: l2){
+            std::map<S, LL> balls;
+            auto balls_set = splitStr(set, ',');
+            for(auto ball: balls_set) {
+                auto l3 = splitStr(ball, ' ');
+                auto num = stoi(l3[0]);
+                auto color = l3[1];
+                if(!balls.count(color)){
+                    balls[color] = 0;
+                }
+                balls[color] += num;
+            }
+            if(balls.count("red") && balls["red"] < red_min) {
+                red_min = balls["red"];
+                break;
+            }
+            if(balls.count("green") && balls["green"] < green_min) {
+                green_min = balls["green"];
+                break;
+            }
+            if(balls.count("blue") && balls["blue"] < blue_min) {
+                blue_min = balls["blue"];
+                break;
+            }
+        }
+        result += correct ? game : 0;
+        if(correct)P(s);
+    }
+    return result;
+}
+
 int main(int argc, char** argv)
 {
     LL score = 0;
-    score = count();
+    score = count_1();
     P_RR("Part1: %lld\n", score);
     //========================================================
 
-    // score = count();
+    score = count_2();
     P_RR("Part2: %lld\n", score);
     return 0;
 }
