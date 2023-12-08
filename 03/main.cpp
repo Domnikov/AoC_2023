@@ -52,6 +52,7 @@ auto count() {
         bool is_adj = true;
         FOR(x, in[y].size()){
             if(is_numer(x, y)){
+                if(num == nan) num = 0;
                 num = 10*num+(in[y][x]-0x30);
             }
             else if(num != nan){
