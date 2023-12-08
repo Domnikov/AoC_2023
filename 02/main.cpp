@@ -56,9 +56,9 @@ auto count_2() {
 
 auto count_1() {
     LL result = 0;
-    LL red_min = 99999;
-    LL green_min = 99999;
-    LL blue_min = 99999;
+    LL red_max = 0;
+    LL green_max = 0;
+    LL blue_max = 0;
     for(auto s : in){
         auto l = splitStr(s, ':');
         auto game = stoi(splitStr(l[0], ' ')[1]);
@@ -75,18 +75,18 @@ auto count_1() {
                 }
                 balls[color] += num;
             }
-            if(balls.count("red") && balls["red"] < red_min) {
-                red_min = balls["red"];
+            if(balls.count("red") && balls["red"] > red_max) {
+                red_max = balls["red"];
             }
-            if(balls.count("green") && balls["green"] < green_min) {
-                green_min = balls["green"];
+            if(balls.count("green") && balls["green"] > green_max) {
+                green_max = balls["green"];
             }
-            if(balls.count("blue") && balls["blue"] < blue_min) {
-                blue_min = balls["blue"];
+            if(balls.count("blue") && balls["blue"] > blue_max) {
+                blue_max = balls["blue"];
             }
         }
-        P(s, red_min, green_min, blue_min);
-        result += red_min*green_min*blue_min;
+        P(s, red_max, green_max, blue_max);
+        result += red_max*green_max*blue_max;
     }
     return result;
 }
