@@ -16,7 +16,7 @@ auto count() {
 
 int main(int argc, char** argv)
 {
-    LL score = 0;
+    LL score = 1;
     score = count();
     P_RR("Part1: %lld\n", score);
     //========================================================
