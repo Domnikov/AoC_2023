@@ -11,6 +11,10 @@ auto in = getInput();
 
 auto count() {
     LL result = 0;
+    for(auto s : in){
+        auto card = stoi(splitStr(splitStr(s,':')[0], ' ')[1]);
+        P(card);
+    }
     return result;
 }
 
@@ -20,7 +24,7 @@ int main(int argc, char** argv)
     score = count();
     P_RR("Part1: %lld\n", score);
     //========================================================
-
+return 0;
     score = count();
     P_RR("Part2: %lld\n", score);
     return 0;
