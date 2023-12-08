@@ -15,7 +15,11 @@ auto count() {
         auto card = stoi(splitStr(splitStr(s,':')[0], ' ')[1]);
         auto swins = splitStr(splitStr(splitStr(s, ':')[1], '|')[0], ' ');
         auto smy = splitStr(splitStr(splitStr(s, ':')[1], '|')[1], ' ');
-        P_VEC(smy);
+        VECI wins, my;
+        VECSTOA(swins, wins);
+        VECSTOA(smy, my);
+        P_VEC(wins);
+        P_VEC(my);
 
     }
     return result;
