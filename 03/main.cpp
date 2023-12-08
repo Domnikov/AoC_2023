@@ -45,7 +45,7 @@ bool is_adjacent(LL x, LL y) {
 
 auto count() {
     LL result = 0;
-    VECI not_adj;
+    VECI adj;
     LL nan = -666;
     FOR(y, in.size()){
         LL num = nan;
@@ -58,7 +58,7 @@ auto count() {
             }
             else if(num != nan){
                 if(!is_adj){
-                    not_adj.push_back(num);
+                    adj.push_back(num);
                 }
                 num = nan;
                 is_adj=false;
@@ -66,13 +66,15 @@ auto count() {
         }
         if(num != nan){
             if(!is_adj){
-                not_adj.push_back(num);
+                adj.push_back(num);
             }
             num = nan;
             is_adj=true;
         }
     }
-    P_VEC(not_adj);
+    for(auto n : adj){
+        result += n;
+    }
     return result;
 }
 
