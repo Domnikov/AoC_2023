@@ -16,8 +16,15 @@ auto count() {
         auto l1 = splitStr(l[0], ' ');
         P("Game: ", l1[1]);
         auto l2 = splitStr(l[1], ',');
-        for(auto color: l2){
-            auto l3 = splitStr(color, ' ');
+        std::map<S, LL> balls;
+        for(auto set: l2){
+            auto l3 = splitStr(set, ' ');
+            auto num = stoi(l3[0]);
+            auto color = l3[1];
+            if(!balls.count(color)){
+                balls[color] = 0;
+            }
+            balls[color] += num;
             P(l3[0], l3[1]);
         }
 
