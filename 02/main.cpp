@@ -50,7 +50,6 @@ auto count_2() {
             }
         }
         result += correct ? game : 0;
-        if(correct)P(s);
     }
     return result;
 }
