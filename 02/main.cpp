@@ -12,10 +12,15 @@ auto in = getInput();
 auto count() {
     LL result = 0;
     for(auto s : in){
-        auto l1 = splitStr(s, ':');
-        auto l11 = splitStr(l1[0], ' ');
+        auto l = splitStr(s, ':');
+        auto l1 = splitStr(l[0], ' ');
+        P("Game: ", l1[1]);
+        auto l2 = splitStr(l[0], ',');
+        for(auto color: l2){
+            auto l3 = splitStr(color, ' ');
+            P(l3[0], l3[1]);
+        }
 
-        P("Game: ", l11[1]);
     }
     return result;
 }
