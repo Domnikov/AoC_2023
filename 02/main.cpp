@@ -12,12 +12,9 @@ auto in = getInput();
 auto count() {
     LL result = 0;
 #ifdef TEST
-    LL red_total = 3;
-    LL green_total = 5;
-    LL blue_total = 4;
-    // LL red_total = 12;
-    // LL green_total = 13;
-    // LL blue_total = 14;
+    LL red_total = 12;
+    LL green_total = 13;
+    LL blue_total = 14;
 #endif
     for(auto s : in){
         auto l = splitStr(s, ':');
