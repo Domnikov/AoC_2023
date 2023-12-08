@@ -9,6 +9,19 @@
 
 auto in = getInput();
 
+VECI getHaveWins(VECI wins, VECI my) {
+    VECI have;
+    std::set<LL> win_list;
+    TRANSFORM(wins, win_list, [](auto n){return n;});
+    for(auto n : my) {
+        if(win_list.count(n))
+        {
+            have.push_back(n);
+        }
+    }
+    return have;
+}
+
 auto count() {
     LL result = 0;
     for(auto s : in){
@@ -18,9 +31,7 @@ auto count() {
         VECI wins, my;
         VECSTOA(swins, wins);
         VECSTOA(smy, my);
-        P_VEC(wins);
-        P_VEC(my);
-
+        P(getHaveWins(wins, my).size());
     }
     return result;
 }
