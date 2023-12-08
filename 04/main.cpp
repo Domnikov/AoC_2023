@@ -22,6 +22,16 @@ VECI getHaveWins(VECI wins, VECI my) {
     return have;
 }
 
+LL getScore(LL N)
+{
+    if(N == 0){return 0;}
+    LL score = 1;
+    FOR(n, N-1){
+        score *= 2;
+    }
+    return score;
+}
+
 auto count() {
     LL result = 0;
     for(auto s : in){
