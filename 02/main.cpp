@@ -23,24 +23,27 @@ auto count() {
         auto l = splitStr(s, ':');
         auto l1 = splitStr(l[0], ' ');
         P("Game: ", l1[1]);
-        auto l2 = splitStr(l[1], ',');
-        std::map<S, LL> balls;
+        auto l2 = splitStr(l[1], ';');
         for(auto set: l2){
-            auto l3 = splitStr(set, ' ');
-            auto num = stoi(l3[0]);
-            auto color = l3[1];
-            if(!balls.count(color)){
-                balls[color] = 0;
+            std::map<S, LL> balls;
+            auto balls_set = splitStr(set, ',');
+            for(auto ball: balls_set) {
+                auto l3 = splitStr(ball, ' ');
+                auto num = stoi(l3[0]);
+                auto color = l3[1];
+                if(!balls.count(color)){
+                    balls[color] = 0;
+                }
+                balls[color] += num;
             }
-            balls[color] += num;
+            P_MAP(balls);
+            if((balls.count("red") + balls.count("green") + balls.count("blue")) != balls.size()) {
+                break;
+            }
+            if(balls.count("red") && balls["red"] > red_total) break;
+            if(balls.count("green") && balls["green"] > green_total) break;
+            if(balls.count("blue") && balls["blue"] > blue_total) break;
         }
-        P_MAP(balls);
-        if((balls.count("red") + balls.count("green") + balls.count("blue")) != balls.size()) {
-            continue;
-        }
-        if(balls.count("red") && balls["red"] > red_total) continue;
-        if(balls.count("green") && balls["green"] > green_total) continue;
-        if(balls.count("blue") && balls["blue"] > blue_total) continue;
         result++;
         P(s);
     }
