@@ -34,7 +34,7 @@ auto count() {
                 }
                 balls[color] += num;
             }
-            P_MAP(balls);
+            // P_MAP(balls);
             if((balls.count("red") + balls.count("green") + balls.count("blue")) != balls.size()) {
                 correct = false;
                 break;
@@ -53,7 +53,7 @@ auto count() {
             }
         }
         result += correct ? 1 : 0;
-        P(s);
+        if(correct)P(s);
     }
     return result;
 }
