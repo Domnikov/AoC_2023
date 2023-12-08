@@ -72,6 +72,7 @@ auto count() {
             is_adj=true;
         }
     }
+    P_VEC(adj);
     for(auto n : adj){
         result += n;
     }
