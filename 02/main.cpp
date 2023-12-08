@@ -15,9 +15,8 @@ auto count() {
         auto l1 = splitStr(s, ':');
         auto l11 = splitStr(l1[0], ' ');
 
-        P(s, l11[1]);
+        P("Game: ", l11[1]);
     }
-    P_VEC(in);
     return result;
 }
 
