@@ -63,6 +63,13 @@ auto count() {
                 is_adj=true;
             }
         }
+        if(num != nan){
+            if(is_adj){
+                not_adj.push_back(num);
+            }
+            num = nan;
+            is_adj=true;
+        }
     }
     P_VEC(not_adj);
     return result;
