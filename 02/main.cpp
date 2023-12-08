@@ -18,8 +18,7 @@ auto count() {
 #endif
     for(auto s : in){
         auto l = splitStr(s, ':');
-        auto l1 = splitStr(l[0], ' ');
-        P("Game: ", l1[1]);
+        auto game = stoi(splitStr(l[0], ' ')[1]);
         auto l2 = splitStr(l[1], ';');
         bool correct = true;
         for(auto set: l2){
@@ -52,7 +51,7 @@ auto count() {
                 break;
             }
         }
-        result += correct ? 1 : 0;
+        result += correct ? game : 0;
         if(correct)P(s);
     }
     return result;
