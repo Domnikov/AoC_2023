@@ -17,6 +17,7 @@ auto count() {
 
         P(s, l11[1]);
     }
+    P_VEC(in);
     return result;
 }
 
