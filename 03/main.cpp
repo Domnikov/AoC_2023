@@ -84,7 +84,7 @@ int main(int argc, char** argv)
     score = count();
     P_RR("Part1: %lld\n", score);
     //========================================================
-
+return 0;
     score = count();
     P_RR("Part2: %lld\n", score);
     return 0;
