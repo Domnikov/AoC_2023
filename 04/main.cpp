@@ -13,7 +13,8 @@ auto count() {
     LL result = 0;
     for(auto s : in){
         auto card = stoi(splitStr(splitStr(s,':')[0], ' ')[1]);
-        P(card);
+        auto swins = splitStr(splitStr(splitStr(s, ':')[1], '|')[0], ' ');
+        P_VEC(swins);
     }
     return result;
 }
