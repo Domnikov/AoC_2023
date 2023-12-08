@@ -54,7 +54,7 @@ auto count() {
             if(is_numer(x, y)){
                 if(num == nan) num = 0;
                 num = 10*num+(in[y][x]-0x30);
-                is_adj &= if_simbol(x,y);
+                is_adj &= is_adjacent(x,y);
             }
             else if(num != nan){
                 if(!is_adj){
