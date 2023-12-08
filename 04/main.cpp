@@ -41,7 +41,8 @@ auto count() {
         VECI wins, my;
         VECSTOA(swins, wins);
         VECSTOA(smy, my);
-        P(getScore(getHaveWins(wins, my).size()));
+        // P(getScore(getHaveWins(wins, my).size()));
+        result += getScore(getHaveWins(wins, my).size());
     }
     return result;
 }
