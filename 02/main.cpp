@@ -9,7 +9,7 @@
 
 auto in = getInput();
 
-auto count_2() {
+auto count_1() {
     LL result = 0;
     LL red_total = 12;
     LL green_total = 13;
@@ -54,7 +54,7 @@ auto count_2() {
     return result;
 }
 
-auto count_1() {
+auto count_2() {
     LL result = 0;
     LL red_max = 0;
     LL green_max = 0;
