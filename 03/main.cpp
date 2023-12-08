@@ -54,9 +54,10 @@ auto count() {
             if(is_numer(x, y)){
                 if(num == nan) num = 0;
                 num = 10*num+(in[y][x]-0x30);
+                is_adj &= if_simbol(x,y);
             }
             else if(num != nan){
-                if(is_adj){
+                if(!is_adj){
                     not_adj.push_back(num);
                 }
                 num = nan;
@@ -64,7 +65,7 @@ auto count() {
             }
         }
         if(num != nan){
-            if(is_adj){
+            if(!is_adj){
                 not_adj.push_back(num);
             }
             num = nan;
