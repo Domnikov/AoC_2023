@@ -34,10 +34,10 @@ auto count() {
             }
             balls[color] += num;
         }
+        P_MAP(balls);
         if((balls.count("red") + balls.count("green") + balls.count("blue")) != balls.size()) {
             continue;
         }
-        P_MAP(balls);
         if(balls.count("red") && balls["red"] > red_total) continue;
         if(balls.count("green") && balls["green"] > green_total) continue;
         if(balls.count("blue") && balls["blue"] > blue_total) continue;
