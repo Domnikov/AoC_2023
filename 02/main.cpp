@@ -64,7 +64,6 @@ auto count_1() {
         auto l = splitStr(s, ':');
         auto game = stoi(splitStr(l[0], ' ')[1]);
         auto l2 = splitStr(l[1], ';');
-        bool correct = true;
         for(auto set: l2){
             std::map<S, LL> balls;
             auto balls_set = splitStr(set, ',');
@@ -90,8 +89,7 @@ auto count_1() {
                 break;
             }
         }
-        result += correct ? game : 0;
-        if(correct)P(s);
+        result += red_min*green_min*blue_min;
     }
     return result;
 }
