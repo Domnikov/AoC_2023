@@ -42,6 +42,7 @@ auto count() {
         if(balls.count("green") && balls["green"] > green_total) continue;
         if(balls.count("blue") && balls["blue"] > blue_total) continue;
         result++;
+        P(s);
     }
     return result;
 }
