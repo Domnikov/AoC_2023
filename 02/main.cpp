@@ -11,9 +11,11 @@ auto in = getInput();
 
 auto count() {
     LL result = 0;
+#ifdef TEST
     LL red_total = 12;
     LL green_total = 13;
     LL blue_total = 14;
+#endif
     for(auto s : in){
         auto l = splitStr(s, ':');
         auto l1 = splitStr(l[0], ' ');
