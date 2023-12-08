@@ -56,10 +56,10 @@ auto count_1() {
 
 auto count_2() {
     LL result = 0;
-    LL red_max = 0;
-    LL green_max = 0;
-    LL blue_max = 0;
     for(auto s : in){
+        LL red_max = 0;
+        LL green_max = 0;
+        LL blue_max = 0;
         auto l = splitStr(s, ':');
         auto game = stoi(splitStr(l[0], ' ')[1]);
         auto l2 = splitStr(l[1], ';');
