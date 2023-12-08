@@ -78,15 +78,12 @@ auto count_1() {
             }
             if(balls.count("red") && balls["red"] < red_min) {
                 red_min = balls["red"];
-                break;
             }
             if(balls.count("green") && balls["green"] < green_min) {
                 green_min = balls["green"];
-                break;
             }
             if(balls.count("blue") && balls["blue"] < blue_min) {
                 blue_min = balls["blue"];
-                break;
             }
         }
         P(s, red_min, green_min, blue_min);
