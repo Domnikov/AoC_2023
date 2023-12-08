@@ -12,7 +12,7 @@ auto in = getInput();
 VECI getHaveWins(VECI wins, VECI my) {
     VECI have;
     std::set<LL> win_list;
-    std::copy(BE(wins), win_list.begin());
+    std::copy(BE(wins), std::inserter(win_list, win_list.begin()));
     for(auto n : my) {
         if(win_list.count(n))
         {
