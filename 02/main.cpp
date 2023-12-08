@@ -10,13 +10,13 @@
 auto in = getInput();
 
 auto count() {
-    LL result = 0;
+    LL result = 1;
     return result;
 }
 
 int main(int argc, char** argv)
 {
-    LL score = 1;
+    LL score = 0;
     score = count();
     P_RR("Part1: %lld\n", score);
     //========================================================
