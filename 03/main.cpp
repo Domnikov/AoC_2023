@@ -72,15 +72,69 @@ auto count() {
             is_adj=true;
         }
     }
-    P_VEC(adj);
     for(auto n : adj){
         result += n;
     }
     return result;
 }
 
-LL count_gears(){
-    return 3;
+auto get_num(LL x, LL y){
+    std::pair<bool,std::pair<std::pair<LL,LL>,LL>> result {false, {{x, y}, 0}};
+    if(is_numer(x, y)){
+        LL begin = x;
+        while(is_numer(x, y)){
+            if(is_numer(x-1, y)){
+                --x;
+            }
+        }
+        LL num = 0;
+        while(is_numer(x, y)) {
+            num = num * 10 + (in[y][x]-0x30);
+            ++x;
+        }
+        --x;
+        result.second.first = std::make_pair(x, y);
+        result.second.second = num;
+    }
+    return result;
+}
+
+auto get_nums(LL x, LL y) {
+    std::map<std::pair<LL, LL>, LL> nums;
+
+    auto num = get_num(x-1, y-1);
+    if(num.first){
+        nums[num.second.first] = num.second.second;
+    }
+
+    VECI result;
+    TRANSFORM(nums, result, [](auto n){return n.second;});
+    return result;
+}
+
+auto get_gears(){
+    std::map<std::pair<LL, LL>, VECI> gears;
+    FOR(y, in.size()){
+        FOR(x, in[y].size()){
+            if(in[y][x] == '*'){
+                auto nums = get_nums(x, y);
+                gears[std::make_pair(x, y)] = nums;
+            }
+        }
+    }
+    return gears;
+}
+
+LL count_gears() {
+    LL result = 0;
+    auto gears = get_gears();
+    for(auto g : gears){
+
+        if(g.second.size() == 2){
+            result += g.second[0]*g.second[1];
+        }
+    }
+    return result;
 }
 
 int main(int argc, char** argv)
