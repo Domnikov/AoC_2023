@@ -54,7 +54,7 @@ bool is_adjacent(LL x, LL y) {
            if_simbol(x + 1, y + 1);
 }
 
-bool is_gear(LL x, LL y) {
+bool isGear(LL x, LL y) {
     return if_star(x - 1, y - 1) ||
            if_star(x - 0, y - 1) ||
            if_star(x + 1, y - 1) ||
@@ -78,7 +78,7 @@ auto count() {
                 if(num == nan) num = 0;
                 num = 10*num+(in[y][x]-0x30);
                 is_adj |= is_adjacent(x,y);
-                is_gear |= is_gear(x,y);
+                is_gear |= isGear(x,y);
             }
             else if(num != nan){
                 if(is_adj){
