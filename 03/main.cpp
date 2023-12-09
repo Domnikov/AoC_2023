@@ -80,15 +80,18 @@ auto count() {
 
 auto get_num(LL x, LL y){
     std::pair<bool,std::pair<std::pair<LL,LL>,LL>> result {false, {{x, y}, 0}};
+    P(__LINE__);
     if(is_numer(x, y)){
         LL begin = x;
         while(is_numer(x, y)){
+    P(__LINE__);
             if(is_numer(x-1, y)){
                 --x;
             }
         }
         LL num = 0;
         while(is_numer(x, y)) {
+    P(__LINE__);
             num = num * 10 + (in[y][x]-0x30);
             ++x;
         }
