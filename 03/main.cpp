@@ -92,6 +92,7 @@ auto get_num(LL x, LL y){
             ++x;
         }
         --x;
+        result.first = true;
         result.second.first = std::make_pair(x, y);
         result.second.second = num;
     }
