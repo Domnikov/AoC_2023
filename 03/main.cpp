@@ -81,6 +81,9 @@ auto count() {
                 is_gear |= isGear(x,y);
             }
             else if(num != nan){
+                if(is_gear){
+                    gears[std::make_pair(x,y)].push_back(num);
+                }
                 if(is_adj){
                     adj.push_back(num);
                 }
@@ -90,6 +93,9 @@ auto count() {
             }
         }
         if(num != nan){
+            if(is_gear){
+                gears[std::make_pair(x,y)].push_back(num);
+            }
             if(is_adj){
                 adj.push_back(num);
             }
