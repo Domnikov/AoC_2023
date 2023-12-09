@@ -83,13 +83,13 @@ auto get_num(LL x, LL y){
     if(is_numer(x, y)){
         LL begin = x;
         while(is_numer(x, y)){
-            P(x, y, in[y][x]);
             --x;
         }
         ++x;
         LL num = 0;
         while(is_numer(x, y)) {
             num = num * 10 + (in[y][x]-0x30);
+            P(x, y, in[y][x], num);
             ++x;
         }
         --x;
