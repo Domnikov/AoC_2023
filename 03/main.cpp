@@ -102,18 +102,18 @@ auto get_num(LL x, LL y){
 auto get_nums(LL x, LL y) {
     std::map<std::pair<LL, LL>, LL> nums;
 
-    auto num = get_num(x-1, y-1); if(num.first){ nums[num.second.first] = num.second.second; P(x-1, y-1, num.second.second);}
-         num = get_num(x-1, y  ); if(num.first){ nums[num.second.first] = num.second.second; P(x-1, y  , num.second.second);}
-         num = get_num(x-1, y+1); if(num.first){ nums[num.second.first] = num.second.second; P(x-1, y+1, num.second.second);}
-         num = get_num(x  , y-1); if(num.first){ nums[num.second.first] = num.second.second; P(x  , y-1, num.second.second);}
-         num = get_num(x  , y+1); if(num.first){ nums[num.second.first] = num.second.second; P(x  , y+1, num.second.second);}
-         num = get_num(x+1, y-1); if(num.first){ nums[num.second.first] = num.second.second; P(x+1, y-1, num.second.second);}
-         num = get_num(x+1, y  ); if(num.first){ nums[num.second.first] = num.second.second; P(x+1, y  , num.second.second);}
-         num = get_num(x+1, y+1); if(num.first){ nums[num.second.first] = num.second.second; P(x+1, y+1, num.second.second);}
+    auto num = get_num(x-1, y-1); if(num.first){ nums[num.second.first] = num.second.second; /*P(x-1, y-1, num.second.second);*/}
+         num = get_num(x-1, y  ); if(num.first){ nums[num.second.first] = num.second.second; /*P(x-1, y  , num.second.second);*/}
+         num = get_num(x-1, y+1); if(num.first){ nums[num.second.first] = num.second.second; /*P(x-1, y+1, num.second.second);*/}
+         num = get_num(x  , y-1); if(num.first){ nums[num.second.first] = num.second.second; /*P(x  , y-1, num.second.second);*/}
+         num = get_num(x  , y+1); if(num.first){ nums[num.second.first] = num.second.second; /*P(x  , y+1, num.second.second);*/}
+         num = get_num(x+1, y-1); if(num.first){ nums[num.second.first] = num.second.second; /*P(x+1, y-1, num.second.second);*/}
+         num = get_num(x+1, y  ); if(num.first){ nums[num.second.first] = num.second.second; /*P(x+1, y  , num.second.second);*/}
+         num = get_num(x+1, y+1); if(num.first){ nums[num.second.first] = num.second.second; /*P(x+1, y+1, num.second.second);*/}
 
     VECI result;
     TRANSFORM(nums, result, [](auto n){return n.second;});
-    P_VEC(result);
+    // P_VEC(result);
     return result;
 }
 
