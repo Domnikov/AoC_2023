@@ -10,6 +10,8 @@
 
 auto in = getInput();
 
+std::map<std::pair<LL,LL>,VECI> gears;
+
 char get(LL x, LL y) {
     return in[y][x];
 }
