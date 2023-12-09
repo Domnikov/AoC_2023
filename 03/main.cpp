@@ -111,8 +111,8 @@ auto get_nums(LL x, LL y) {
          num = get_num(x+1, y+1); if(num.first){ nums[num.second.first] = num.second.second; }
 
     VECI result;
-    P_MAP(nums);
     TRANSFORM(nums, result, [](auto n){return n.second;});
+    P_VEC(result);
     return result;
 }
 
