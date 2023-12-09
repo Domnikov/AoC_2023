@@ -34,6 +34,15 @@ bool if_simbol(LL x, LL y){
 
 }
 
+bool if_star(LL x, LL y){
+    if(x < 0 || y < 0 || y >= in.size() || x >= in[y].size()) {
+        return false;
+    }
+    auto c = get(x,y);
+    return c == '*';
+
+}
+
 bool is_adjacent(LL x, LL y) {
     return if_simbol(x - 1, y - 1) ||
            if_simbol(x - 0, y - 1) ||
@@ -45,6 +54,17 @@ bool is_adjacent(LL x, LL y) {
            if_simbol(x + 1, y + 1);
 }
 
+bool is_gear(LL x, LL y) {
+    return if_star(x - 1, y - 1) ||
+           if_star(x - 0, y - 1) ||
+           if_star(x + 1, y - 1) ||
+           if_star(x - 1, y - 0) ||
+           if_star(x + 1, y - 0) ||
+           if_star(x - 1, y + 1) ||
+           if_star(x - 0, y + 1) ||
+           if_star(x + 1, y + 1);
+}
+
 auto count() {
     LL result = 0;
     VECI adj;
@@ -52,11 +72,13 @@ auto count() {
     FOR(y, in.size()){
         LL num = nan;
         bool is_adj = false;
+        bool is_gear = false;
         FOR(x, in[y].size()){
             if(is_numer(x, y)){
                 if(num == nan) num = 0;
                 num = 10*num+(in[y][x]-0x30);
                 is_adj |= is_adjacent(x,y);
+                is_gear |= is_gear(x,y);
             }
             else if(num != nan){
                 if(is_adj){
@@ -64,6 +86,7 @@ auto count() {
                 }
                 num = nan;
                 is_adj=false;
+                is_gear = false;
             }
         }
         if(num != nan){
@@ -72,6 +95,7 @@ auto count() {
             }
             num = nan;
             is_adj=true;
+            is_gear = false;
         }
     }
     for(auto n : adj){
