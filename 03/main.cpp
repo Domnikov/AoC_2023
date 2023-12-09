@@ -74,7 +74,6 @@ auto count() {
             is_adj=true;
         }
     }
-    P_VEC(adj);
     for(auto n : adj){
         result += n;
     }
@@ -88,7 +87,16 @@ int main(int argc, char** argv)
     P_RR("Part1: %lld\n", score);
     //========================================================
 
-    score = count();
+    score = 0;
+
+    for(auto gear : gears)
+    {
+        auto v = gear.second;
+        if(v.size() == 2){
+            score += v[0]*v[1];
+        }
+    }
+
     P_RR("Part2: %lld\n", score);
     return 0;
 }
