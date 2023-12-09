@@ -89,7 +89,6 @@ auto get_num(LL x, LL y){
         LL num = 0;
         while(is_numer(x, y)) {
             num = num * 10 + (in[y][x]-0x30);
-            P(x, y, in[y][x], num);
             ++x;
         }
         --x;
@@ -112,6 +111,7 @@ auto get_nums(LL x, LL y) {
          num = get_num(x+1, y+1); if(num.first){ nums[num.second.first] = num.second.second; }
 
     VECI result;
+    P_MAP(nums);
     TRANSFORM(nums, result, [](auto n){return n.second;});
     return result;
 }
