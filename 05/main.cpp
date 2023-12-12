@@ -9,7 +9,7 @@
 
 auto in = getInput();
 
-VECII map;
+VECII seeds;
 
 VECI GetInitialSeeds() {
     auto vecS = splitStr(in[0], ' ');
@@ -21,11 +21,32 @@ VECI GetInitialSeeds() {
     return result;
 }
 
+size_t FindNext(size_t idx) {
+    while(in[++idx].find("map:") == -1){
+        if(idx == in.size()-1) {
+            return -1;
+        }
+    }
+    return ++idx;
+}
+
 auto count() {
     LL result = 0;
-    map.push_back(GetInitialSeeds());
-
-    P_VEC(map);
+    seeds.push_back(GetInitialSeeds());
+    size_t idx = 1;
+    while((idx = FindNext(idx)) != -1) {
+        std::map<LL, LL> map;
+        while(!in[++idx].empty()){
+            auto vec = vecsToVeci(splitStr(in[idx], ' '));
+            LL src = vec[1];
+            LL dst = vec[0];
+            LL sz = vec[2];
+            for(LL i = 0; i < sz; ++i) {
+                map[src+i] = dst+i;
+            }
+        }
+        P_MAP(map);
+    }
     return result;
 }
 
