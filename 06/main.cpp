@@ -40,7 +40,6 @@ auto count() {
     }
     auto t2 = stoll(time2);
     auto d2 = stoll(dist2);
-    P(time2, dist2, t2, d2);
     result2 = play1(t2, d2);
 
     return std::pair<LL,LL> {result1, result2};
