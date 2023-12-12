@@ -63,7 +63,7 @@ auto count_2() {
         // LL win = win_orig * (1+cards);
         P(card, cards, win_orig, in.size());
         for(LL i = 0; i < win_orig && (i+card) < in.size(); ++i) {
-            win_cards[card+i] += (1+cards)*win_orig;
+            win_cards[card+i] += (1+cards);
         }
         P_VEC(win_cards);
     }
