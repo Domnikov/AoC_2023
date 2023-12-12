@@ -44,8 +44,9 @@ auto count() {
             LL sz = vec[2];
             for(auto& s:seeds) {
                 if(s >= src && s <= src+sz){
+                    auto ss = s;
                     s = dst + src - s;
-                    P(s,dst, src, src - s,s);
+                    P(ss,dst, src, src - s,s);
                 }
             }
         }
