@@ -63,12 +63,13 @@ auto count(VECI seeds) {
 
 int main(int argc, char** argv) {
     LL score = 0;
-    auto seeds = GetInitialSeeds();
-    score = count(seeds);
+    auto seeds1 = GetInitialSeeds();
+    score = count(seeds1);
     P_RR("Part1: %lld\n", score);
     //========================================================
 
-    score = count(seeds);
+    auto seeds2 = GetInitialSeeds();
+    score = count(seeds2);
     P_RR("Part2: %lld\n", score);
     return 0;
 }
