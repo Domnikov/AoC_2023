@@ -9,30 +9,42 @@
 
 auto in = getInput();
 
-LL play (LL t, LL d) {
-    return 10;
+LL play1(LL T, LL D, LL spd = 0, LL d = 0) {
+    if(d > D) {
+        return 1;
+    }
+    if(!T) {
+        return 0;
+    }
+    auto res = 0;
+    if(!d) {
+        play1(T-1, D, spd+1, d);
+    }
+    res += play1(T-1, D, spd, d+spd);
+    return res;
 }
 
 auto count() {
-    LL result = 0;
+    LL result1 = 0;
+    LL result2 = 0;
     auto vecSTime = splitStr(in[0], ' ');
     auto vecSDist = splitStr(in[1], ' ');
     P_VEC(vecSTime);
     P_VEC(vecSDist);
     for(size_t i = 1; i < vecSTime.size(); ++i) {
-        result += play(stoll(vecSTime[i]), stoll(vecSDist[i]));
+        auto wins = play1(stoll(vecSTime[i]), stoll(vecSDist[i]));
+        P(wins);
+        result1 += wins;
     }
-    return result;
+    return std::pair<LL,LL> {result1, result2};
 }
 
 int main(int argc, char** argv)
 {
-    LL score = 0;
-    score = count();
-    P_RR("Part1: %lld\n", score);
+    auto scores = count();
+    P_RR("Part1: %lld\n", scores.first);
     //========================================================
 
-    score = count();
-    P_RR("Part2: %lld\n", score);
+    P_RR("Part2: %lld\n", scores.second);
     return 0;
 }
