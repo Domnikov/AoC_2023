@@ -56,12 +56,19 @@ auto count_2() {
         auto card = stoi(splitStr(splitStr(s,':')[0], ' ')[1]);
         auto swins = splitStr(splitStr(splitStr(s, ':')[1], '|')[0], ' ');
         auto smy = splitStr(splitStr(splitStr(s, ':')[1], '|')[1], ' ');
+        P(__LINE__);
         VECI wins, my;
+        P(__LINE__);
         VECSTOA(swins, wins);
+        P(__LINE__);
         VECSTOA(smy, my);
+        P(__LINE__);
         auto win = getScore(getHaveWins(wins, my).size()) * win_cards[card];
+        P(__LINE__);
         for(LL i = 0; i < win && (i+card) < in.size(); ++i) {
+        P(__LINE__);
             ++win_cards[card+i];
+        P(__LINE__);
         }
         P_VEC(win_cards);
     }
