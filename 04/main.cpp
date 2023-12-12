@@ -60,7 +60,7 @@ auto count_2() {
         VECSTOA(smy, my);
         auto win = getHaveWins(wins, my).size();
         auto cards = win_cards[card];
-        win *= cards;
+        win *= (1+cards);
         P(card, cards, win, in.size());
         for(LL i = 0; i < win && (i+card) < in.size(); ++i) {
         P(__LINE__);
