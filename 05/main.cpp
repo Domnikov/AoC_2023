@@ -80,9 +80,11 @@ auto count(VECPLL seeds) {
             for(auto& s:seeds) {
                 auto new_diaposons = GetCross(s, src, dst, sz);
                 for(auto d : new_diaposons.second) {
+                    P("orig", d.first, d.second);
                     seeds.push_back(d);
                 }
                 for(auto d : new_diaposons.first) {
+                    P("new", d.first, d.second);
                     converted.push_back(d);
                 }
             }
