@@ -36,7 +36,8 @@ inline auto getInput()
 "",
 "humidity-to-location map:",
 "60 56 37",
-"56 93 4"
+"56 93 4",
+"",
 };
 
     return input;
