@@ -31,7 +31,6 @@ size_t FindNext(size_t idx) {
 }
 
 auto count() {
-    LL result = 0;
     seeds.push_back(GetInitialSeeds());
     size_t idx = 1;
     while((idx = FindNext(idx)) != -1) {
@@ -57,8 +56,16 @@ auto count() {
                 new_seeds.push_back(s);
             }
         }
+        seeds.push_back(new_seeds);
     }
-    return result;
+    auto locations = seeds[seeds.size()-1];
+    LL min = 999999999999;
+    for(auto n : locations){
+        if(min > n) {
+            min = n;
+        }
+    }
+    return min;
 }
 
 int main(int argc, char** argv)
