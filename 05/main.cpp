@@ -37,7 +37,7 @@ auto count() {
     while((idx = FindNext(idx)) != -1) {
         P(in[idx]);
         while(!in[++idx].empty()){
-            // P(in[idx]);
+            P(in[idx]);
             auto vec = vecsToVeci(splitStr(in[idx], ' '));
             LL src = vec[1];
             LL dst = vec[0];
@@ -46,7 +46,7 @@ auto count() {
                 if(s >= src && s <= src+sz){
                     auto ss = s;
                     s = dst + s - src;
-                    // P(ss,dst, src, s - src, s);
+                    P(ss,dst, src, s - src, s);
                 }
             }
         }
