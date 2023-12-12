@@ -34,7 +34,7 @@ auto count() {
     auto vecSDist = splitStr(in[1], ' ');
     P_VEC(vecSTime);
     P_VEC(vecSDist);
-    for(size_t i = 1; i < 2/*vecSTime.size()*/; ++i) {
+    for(size_t i = 1; i < vecSTime.size(); ++i) {
         auto wins = play1(stoll(vecSTime[i]), stoll(vecSDist[i]));
         P(i, wins);
         result1 *= wins;
