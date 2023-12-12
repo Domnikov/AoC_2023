@@ -59,9 +59,7 @@ auto count_2() {
         VECSTOA(swins, wins);
         VECSTOA(smy, my);
         auto win = getHaveWins(wins, my).size();
-        P(__LINE__, win);
         auto cards = win_cards[card];
-        P(cards);
         win *= cards;
         P(card, cards, win, in.size());
         for(LL i = 0; i < win && (i+card) < in.size(); ++i) {
