@@ -31,22 +31,17 @@ size_t FindNext(size_t idx) {
     return idx;
 }
 
-auto count() {
-    auto seeds = GetInitialSeeds();
+auto count(VECI seeds) {
     size_t idx = 1;
     while((idx = FindNext(idx)) != -1) {
-        // P(in[idx]);
         while(!in[++idx].empty()){
-            // P(in[idx]);
             auto vec = vecsToVeci(splitStr(in[idx], ' '));
             LL src = vec[1];
             LL dst = vec[0];
             LL sz = vec[2];
             for(auto& s:seeds) {
                 if(s >= src && s <= src+sz){
-                    // auto ss = s;
                     s = dst + s - src;
-                    // P(ss,dst, src, s - src, s);
                     s *= -1;
                 }
             }
@@ -56,9 +51,7 @@ auto count() {
                 s *= -1;
             }
         }
-        // P_VEC(seeds);
     }
-    // P_VEC(locations);
     LL min = seeds[0];
     for(auto n : seeds){
         if(min > n) {
@@ -68,14 +61,14 @@ auto count() {
     return min;
 }
 
-int main(int argc, char** argv)
-{
+int main(int argc, char** argv) {
     LL score = 0;
-    score = count();
+    auto seeds = GetInitialSeeds();
+    score = count(seeds);
     P_RR("Part1: %lld\n", score);
     //========================================================
 
-    score = count();
+    score = count(seeds);
     P_RR("Part2: %lld\n", score);
     return 0;
 }
