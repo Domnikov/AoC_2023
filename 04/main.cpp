@@ -63,7 +63,7 @@ auto count_2() {
         auto cards = win_cards[card];
         P(cards);
         win *= cards;
-        P(win);
+        P(card, cards, win, in.size());
         for(LL i = 0; i < win && (i+card) < in.size(); ++i) {
         P(__LINE__);
             ++win_cards[card+i];
