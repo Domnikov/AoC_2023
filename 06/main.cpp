@@ -20,7 +20,7 @@ LL play1(LL T, LL D, LL spd = 0, LL d = 0) {
     }
     auto res = 0;
     if(!d) {
-        play1(T-1, D, spd+1, d);
+        res += play1(T-1, D, spd+1, d);
     }
     res += play1(T-1, D, spd, d+spd);
     P("Accum: ", T, D, spd, d, res);
