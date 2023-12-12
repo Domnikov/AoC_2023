@@ -11,11 +11,9 @@ auto in = getInput();
 
 LL play1(LL T, LL D, LL spd = 0, LL d = 0, bool move = false) {
     if(d > D) {
-        // P("ret 1: ", T, D, spd, d);
         return 1;
     }
     if(!T) {
-        // P("Failed: ", T, D, spd, d);
         return 0;
     }
     auto res = 0;
@@ -23,7 +21,6 @@ LL play1(LL T, LL D, LL spd = 0, LL d = 0, bool move = false) {
         res += play1(T-1, D, spd+1, d, false);
     }
     res += play1(T-1, D, spd, d+spd, true);
-    // P("Accum: ", T, D, spd, d, res);
     return res;
 }
 
@@ -39,6 +36,14 @@ auto count() {
         P(i, wins);
         result1 *= wins;
     }
+    S time2;
+    S dist2;
+    for(size_t i = 1; i < vecSTime.size(); ++i) {
+        time2 += vecSTime[i];
+        dist2 += vecSDist[i];
+    }
+    P(time2, dist2);
+
     return std::pair<LL,LL> {result1, result2};
 }
 
