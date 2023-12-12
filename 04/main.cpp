@@ -60,10 +60,10 @@ auto count_2() {
         VECSTOA(smy, my);
         auto win_orig = getHaveWins(wins, my).size();
         auto cards = win_cards[card];
-        LL win = win_orig * (1+cards);
-        P(card, cards, win, win_orig, in.size());
-        for(LL i = 0; i < win && (i+card) < in.size(); ++i) {
-            ++win_cards[card+i];
+        // LL win = win_orig * (1+cards);
+        P(card, cards, win_orig, in.size());
+        for(LL i = 0; i < win_orig && (i+card) < in.size(); ++i) {
+            win_cards[card+i] += cards*win_orig;
         }
         P_VEC(win_cards);
     }
