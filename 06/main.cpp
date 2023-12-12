@@ -32,7 +32,6 @@ auto count() {
         auto wins = play1(stoll(vecSTime[i]), stoll(vecSDist[i]));
         result1 *= wins;
     }
-    return std::pair<LL,LL> {result1, result2};
     S time2;
     S dist2;
     for(size_t i = 1; i < vecSTime.size(); ++i) {
