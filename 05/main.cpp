@@ -27,7 +27,7 @@ size_t FindNext(size_t idx) {
             return -1;
         }
     }
-    return ++idx;
+    return idx;
 }
 
 auto count() {
@@ -35,7 +35,7 @@ auto count() {
     seeds.push_back(GetInitialSeeds());
     size_t idx = 1;
     while((idx = FindNext(idx)) != -1) {
-        P(in[idx-1]);
+        P(in[idx]);
         std::map<LL, LL> map;
         while(!in[++idx].empty()){
             P(in[idx]);
