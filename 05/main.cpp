@@ -9,7 +9,17 @@
 
 auto in = getInput();
 
-VECI GetInitialSeeds() {
+VECI GetInitialSeeds1() {
+    auto vecS = splitStr(in[0], ' ');
+
+    VECI result;
+    for(size_t i = 1; i < vecS.size(); ++i) {
+        result.push_back(stoll(vecS[i]));
+    }
+    return result;
+}
+
+VECI GetInitialSeeds2() {
     auto vecS = splitStr(in[0], ' ');
 
     VECI result;
@@ -63,12 +73,12 @@ auto count(VECI seeds) {
 
 int main(int argc, char** argv) {
     LL score = 0;
-    auto seeds1 = GetInitialSeeds();
+    auto seeds1 = GetInitialSeeds1();
     score = count(seeds1);
     P_RR("Part1: %lld\n", score);
     //========================================================
 
-    auto seeds2 = GetInitialSeeds();
+    auto seeds2 = GetInitialSeeds2();
     score = count(seeds2);
     P_RR("Part2: %lld\n", score);
     return 0;
