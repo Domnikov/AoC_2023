@@ -47,6 +47,8 @@ auto count() {
     return result;
 }
 
+VECI win_cards;
+
 auto count_2() {
     LL result = 0;
     for(auto s : in){
@@ -56,8 +58,11 @@ auto count_2() {
         VECI wins, my;
         VECSTOA(swins, wins);
         VECSTOA(smy, my);
-        // P(getScore(getHaveWins(wins, my).size()));
-        result += getScore(getHaveWins(wins, my).size());
+        auto win = getScore(getHaveWins(wins, my).size()) * win_cards[card];
+        for(LL i = 0; i < win && (i+card) < in.size(); ++i) {
+            ++win_cards[card+i];
+        }
+        P_VEC(win_cards);
     }
     return result;
 }
@@ -68,7 +73,7 @@ int main(int argc, char** argv)
     score = count();
     P_RR("Part1: %lld\n", score);
     //========================================================
-
+    win_cards = VECI(0, in.size());
     score = count_2();
     P_RR("Part2: %lld\n", score);
     return 0;
