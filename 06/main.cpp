@@ -28,7 +28,7 @@ LL play1(LL T, LL D, LL spd = 0, LL d = 0) {
 }
 
 auto count() {
-    LL result1 = 0;
+    LL result1 = 1;
     LL result2 = 0;
     auto vecSTime = splitStr(in[0], ' ');
     auto vecSDist = splitStr(in[1], ' ');
