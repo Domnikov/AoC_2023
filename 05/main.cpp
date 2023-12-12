@@ -37,16 +37,16 @@ auto count() {
     while((idx = FindNext(idx)) != -1) {
         P(in[idx]);
         while(!in[++idx].empty()){
-            P(in[idx]);
+            // P(in[idx]);
             auto vec = vecsToVeci(splitStr(in[idx], ' '));
             LL src = vec[1];
             LL dst = vec[0];
             LL sz = vec[2];
             for(auto& s:seeds) {
                 if(s >= src && s <= src+sz){
-                    auto ss = s;
+                    // auto ss = s;
                     s = dst + s - src;
-                    P(ss,dst, src, s - src, s);
+                    // P(ss,dst, src, s - src, s);
                     s *= -1;
                 }
             }
@@ -56,7 +56,7 @@ auto count() {
                 s *= -1;
             }
         }
-        P_VEC(seeds);
+        // P_VEC(seeds);
     }
     // P_VEC(locations);
     LL min = seeds[0];
