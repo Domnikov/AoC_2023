@@ -46,6 +46,7 @@ size_t FindNext(size_t idx) {
 auto count(VECI seeds) {
     size_t idx = 1;
     while((idx = FindNext(idx)) != -1) {
+        P(in[idx]);
         while(!in[++idx].empty()){
             auto vec = vecsToVeci(splitStr(in[idx], ' '));
             LL src = vec[1];
