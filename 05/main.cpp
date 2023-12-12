@@ -26,6 +26,7 @@ VECI GetInitialSeeds2() {
         for(LL j = 0; j < seeds1[i*2+1]; ++j){
             seeds2.push_back(seeds1[i*2]+j);
         }
+        P(i);
     }
 
     return seeds2;
