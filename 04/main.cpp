@@ -52,6 +52,7 @@ VECI win_cards;
 auto count_2() {
     LL result = 0;
     for(auto s : in){
+        P(__LINE__);
         auto card = stoi(splitStr(splitStr(s,':')[0], ' ')[1]);
         auto swins = splitStr(splitStr(splitStr(s, ':')[1], '|')[0], ' ');
         auto smy = splitStr(splitStr(splitStr(s, ':')[1], '|')[1], ' ');
