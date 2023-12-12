@@ -9,7 +9,7 @@
 
 auto in = getInput();
 
-LL play1(LL T, LL D, LL spd = 0, LL d = 0) {
+LL play1(LL T, LL D, LL spd = 0, LL d = 0, bool move = false) {
     if(d > D) {
         P("ret 1: ", T, D, spd, d);
         return 1;
@@ -19,12 +19,10 @@ LL play1(LL T, LL D, LL spd = 0, LL d = 0) {
         return 0;
     }
     auto res = 0;
-    if(!d) {
-        res += play1(T-1, D, spd+1, d);
+    if(!move) {
+        res += play1(T-1, D, spd+1, d, false);
     }
-    else {
-        res += play1(T-1, D, spd, d+spd);
-    }
+    res += play1(T-1, D, spd, d+spd, true);
     // P("Accum: ", T, D, spd, d, res);
     return res;
 }
