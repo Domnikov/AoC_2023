@@ -45,6 +45,7 @@ auto count() {
             for(auto& s:seeds) {
                 if(s >= src && s <= src+sz){
                     s = dst + src - s;
+                    P(s,dst, src, src - s,s);
                 }
             }
         }
