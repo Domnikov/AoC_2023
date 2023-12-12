@@ -35,7 +35,7 @@ auto count() {
     auto seeds = GetInitialSeeds();
     size_t idx = 1;
     while((idx = FindNext(idx)) != -1) {
-        P(in[idx]);
+        // P(in[idx]);
         while(!in[++idx].empty()){
             // P(in[idx]);
             auto vec = vecsToVeci(splitStr(in[idx], ' '));
