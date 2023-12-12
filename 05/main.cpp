@@ -55,7 +55,7 @@ auto count() {
             }
         }
         seeds.push_back(new_seeds);
-        P_VEC(new_seeds);
+        P_VEC(seeds);
     }
     auto locations = seeds[seeds.size()-1];
     P_VEC(locations);
