@@ -27,8 +27,8 @@ auto count() {
     LL result2 = 0;
     auto vecSTime = splitStr(in[0], ' ');
     auto vecSDist = splitStr(in[1], ' ');
-    for(size_t i = 1; i < 2; ++i) {
-    // for(size_t i = 1; i < vecSTime.size(); ++i) {
+    // for(size_t i = 1; i < 2; ++i) {
+    for(size_t i = 1; i < vecSTime.size(); ++i) {
         auto wins = play1(stoll(vecSTime[i]), stoll(vecSDist[i]));
         result1 *= wins;
     }
