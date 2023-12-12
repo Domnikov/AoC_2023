@@ -48,7 +48,9 @@ auto count() {
         }
         // P_MAP(map);
         VECI new_seeds;
-        for(auto s:seeds[seeds.size()-1]) {
+        VECI old_seeds = seeds[seeds.size()-1];
+        P_VEC(old_seeds);
+        for(auto s:old_seeds) {
             if(map.count(s)){
                 new_seeds.push_back(map[s]);
             } else {
