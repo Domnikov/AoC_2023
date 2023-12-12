@@ -37,7 +37,7 @@ auto count() {
     seeds.push_back(GetInitialSeeds());
     size_t idx = 1;
     while((idx = FindNext(idx)) != -1) {
-        P(in[idx]);
+        // P(in[idx]);
         std::map<LL, LL> map;
         while(!in[++idx].empty()){
             auto vec = vecsToVeci(splitStr(in[idx], ' '));
@@ -58,10 +58,10 @@ auto count() {
             }
         }
         seeds.push_back(new_seeds);
-        P_VEC(seeds);
+        // P_VEC(seeds);
     }
     auto locations = seeds[seeds.size()-1];
-    P_VEC(locations);
+    // P_VEC(locations);
     LL min = locations[0];
     for(auto n : locations){
         if(min > n) {
