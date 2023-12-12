@@ -19,6 +19,7 @@ LL play1(LL T, LL D, LL spd = 0, LL d = 0) {
     auto res = 0;
     if(T*spd > D) {
         res += 1;
+        P(res);
     }
     res += play1(T-1, D, spd, d+spd);
     return res;
