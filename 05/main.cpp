@@ -45,10 +45,8 @@ auto count() {
                 map[src+i] = dst+i;
             }
         }
-        // P_MAP(map);
         VECI new_seeds;
         VECI old_seeds = seeds[seeds.size()-1];
-        P_VEC(old_seeds);
         for(auto s:old_seeds) {
             if(map.count(s)){
                 new_seeds.push_back(map[s]);
@@ -57,10 +55,11 @@ auto count() {
             }
         }
         seeds.push_back(new_seeds);
+        P_VEC(new_seeds);
     }
     auto locations = seeds[seeds.size()-1];
     P_VEC(locations);
-    LL min = 999999999999;
+    LL min = locations[0];
     for(auto n : locations){
         if(min > n) {
             min = n;
