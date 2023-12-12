@@ -20,7 +20,6 @@
 
 #define P_RR(...) fprintf(stderr, __VA_ARGS__);
 
-
 #define COLOR_LINE "\033[1;33m"
 #define COLOR_VAR "\033[1;36m"
 #define COLOR_EQ "\033[1;37m"
@@ -220,7 +219,14 @@ void _P_MAPV (const std::map<T, G>& map)
 #define FOR(i,a) for(decltype(a)  i{};  i != a; ++i)
 #define BE(vec) vec.begin(), vec.end()
 #define TRANSFORM(src,dst,func) std::transform(src.begin(), src.end(), std::back_inserter(dst), func);
-#define VECSTOA(src,dst) TRANSFORM(src,dst,[](auto s){return stoi(s);});
+#define VECSTOA(src,dst) TRANSFORM(src,dst,[](auto s){return stoll(s);});
+
+inline VECI vecsToVeci(VECS src)
+{
+    VECI dst;
+    VECSTOA(src, dst);
+    return dst;
+}
 
 inline VECS splitStr(S str, char delim = ',')
 {
