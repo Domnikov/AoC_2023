@@ -11,7 +11,7 @@ auto in = getInput();
 
 LL play1(LL T, LL D, LL spd = 0, LL d = 0) {
     if(d > D) {
-        // P("ret 1: ", T, D, spd, d);
+        P("ret 1: ", T, D, spd, d);
         return 1;
     }
     if(!T) {
