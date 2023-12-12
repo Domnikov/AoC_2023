@@ -40,6 +40,7 @@ auto count() {
         P(in[idx]);
         std::map<LL, LL> map;
         while(!in[++idx].empty()){
+            P(in[idx]);
             auto vec = vecsToVeci(splitStr(in[idx], ' '));
             LL src = vec[1];
             LL dst = vec[0];
