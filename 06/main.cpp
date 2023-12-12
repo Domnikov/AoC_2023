@@ -9,7 +9,7 @@
 
 auto in = getInput();
 
-LL play1(LL T, LL D, LL spd = 0, LL d = 0, bool move = false) {
+LL play1(LL T, LL D, LL spd = 0, LL d = 0) {
     if(d > D) {
         return 1;
     }
@@ -17,10 +17,10 @@ LL play1(LL T, LL D, LL spd = 0, LL d = 0, bool move = false) {
         return 0;
     }
     auto res = 0;
-    if(!move) {
-        res += play1(T-1, D, spd+1, d, false);
+    if(T*spd > D) {
+        res += 1;
     }
-    res += play1(T-1, D, spd, d+spd, true);
+    res += play1(T-1, D, spd, d+spd);
     return res;
 }
 
@@ -44,8 +44,7 @@ auto count() {
     auto t2 = stoll(time2);
     auto d2 = stoll(dist2);
     P(time2, dist2, t2, d2);
-    result2 = play1(stoll(time2), stoll(dist2));
-    result2 = play1(stoll(time2), stoll(dist2));
+    result2 = play1(t2, d2);
 
     return std::pair<LL,LL> {result1, result2};
 }
