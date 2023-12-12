@@ -64,7 +64,7 @@ std::pair<VECPLL, VECPLL> GetCross(std::pair<LL, LL>& seed, LL src, LL dst, LL s
     if(cuted.first > src_a) {
         orig .push_back({src, cuted.first-1});
     }
-    return {{cuted}, orig};
+    return {VECPLL{{cuted.first - src + dst, cuted.second-src+dst}}, orig};
 }
 
 auto count(VECPLL seeds) {
