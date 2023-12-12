@@ -37,7 +37,7 @@ auto count() {
     seeds.push_back(GetInitialSeeds());
     size_t idx = 1;
     while((idx = FindNext(idx)) != -1) {
-        // P(in[idx]);
+        P(in[idx]);
         std::map<LL, LL> map;
         while(!in[++idx].empty()){
             auto vec = vecsToVeci(splitStr(in[idx], ' '));
