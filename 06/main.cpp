@@ -9,10 +9,7 @@
 
 auto in = getInput();
 
-LL play1(LL T, LL D, LL spd = 0, LL d = 0) {
-    if(d > D) {
-        return 1;
-    }
+LL play1(LL T, LL D, LL spd = 0) {
     if(!T) {
         return 0;
     }
@@ -21,7 +18,7 @@ LL play1(LL T, LL D, LL spd = 0, LL d = 0) {
     if(T*spd > D) {
         res += 1;
     }
-    res += play1(T-1, D, spd, d+spd);
+    res += play1(T-1, D, spd+1);
     return res;
 }
 
