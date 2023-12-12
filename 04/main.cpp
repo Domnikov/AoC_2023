@@ -67,9 +67,9 @@ auto count_2() {
         }
         P_VEC(win_cards);
     }
-    for(auto& c: win_cards){
-        ++c;
-    }
+    // for(auto& c: win_cards){
+    //     ++c;
+    // }
     P_VEC(win_cards);
     for(auto c: win_cards){
         result += c;
@@ -83,7 +83,7 @@ int main(int argc, char** argv)
     score = count();
     P_RR("Part1: %lld\n", score);
     //========================================================
-    win_cards = VECI(in.size(), 0);
+    win_cards = VECI(in.size(), 1);
     score = count_2();
     P_RR("Part2: %lld\n", score);
     return 0;
