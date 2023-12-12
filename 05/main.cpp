@@ -20,13 +20,15 @@ VECI GetInitialSeeds1() {
 }
 
 VECI GetInitialSeeds2() {
-    auto vecS = splitStr(in[0], ' ');
-
-    VECI result;
-    for(size_t i = 1; i < vecS.size(); ++i) {
-        result.push_back(stoll(vecS[i]));
+    auto seeds1 = GetInitialSeeds1();
+    VECI seeds2;
+    for(size_t i = 0; i < seeds1.size()/2; ++i){
+        for(LL j = 0; j < seeds1[i*2+1]; ++j){
+            seeds2.push_back(seeds1[i*2]+j);
+        }
     }
-    return result;
+
+    return seeds2;
 }
 
 size_t FindNext(size_t idx) {
