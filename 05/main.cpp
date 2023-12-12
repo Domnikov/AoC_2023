@@ -25,7 +25,7 @@ auto count() {
     LL result = 0;
     map.push_back(GetInitialSeeds());
 
-    P_VECV(map);
+    P_VEC(map);
     return result;
 }
 
