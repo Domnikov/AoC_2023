@@ -61,16 +61,16 @@ auto count_2() {
         auto win_orig = getHaveWins(wins, my).size();
         auto cards = win_cards[card-1] + 0;
         // LL win = win_orig * (1+cards);
-        P(card, cards, win_orig, in.size());
+        // P(card, cards, win_orig, in.size());
         for(LL i = 0; i < win_orig && (i+card) < in.size(); ++i) {
             win_cards[card+i] += cards;
         }
-        P_VEC(win_cards);
+        // P_VEC(win_cards);
     }
     // for(auto& c: win_cards){
     //     ++c;
     // }
-    P_VEC(win_cards);
+    // P_VEC(win_cards);
     for(auto c: win_cards){
         result += c;
     }
