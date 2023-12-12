@@ -22,9 +22,11 @@ VECI GetInitialSeeds() {
 }
 
 size_t FindNext(size_t idx) {
+    if(idx == in.size()-1) {
+        return -1;
+    }
     while(in[++idx].find("map:") == -1){
-        if(idx == in.size()-2) {
-            P(idx);
+        if(idx == in.size()-1) {
             return -1;
         }
     }
