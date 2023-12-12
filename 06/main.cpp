@@ -14,7 +14,7 @@ LL play1(LL T, LL D, LL spd = 0) {
         return 0;
     }
     auto res = 0;
-    P(T, spd, D, T*spd);
+    // P(T, spd, D, T*spd);
     if(T*spd > D) {
         res += 1;
     }
