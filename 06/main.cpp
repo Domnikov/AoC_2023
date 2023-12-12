@@ -43,6 +43,7 @@ auto count() {
         dist2 += vecSDist[i];
     }
     P(time2, dist2);
+    result2 = play1(stoll(time2), stoll(dist2));
 
     return std::pair<LL,LL> {result1, result2};
 }
