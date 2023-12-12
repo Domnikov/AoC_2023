@@ -9,27 +9,31 @@
 
 auto in = getInput();
 
-VECI GetInitialSeeds1() {
+using VECPLL = std::vector<std::pair<LL,LL>>;
+
+VECPLL GetInitialSeeds1() {
     auto vecS = splitStr(in[0], ' ');
 
-    VECI result;
+    VECPLL result;
     for(size_t i = 1; i < vecS.size(); ++i) {
-        result.push_back(stoll(vecS[i]));
+        auto num = stoll(vecS[i]);
+        result.push_back({num, num});
     }
     return result;
 }
 
-VECI GetInitialSeeds2() {
+VECPLL GetInitialSeeds2() {
     auto seeds1 = GetInitialSeeds1();
-    VECI seeds2;
-    for(size_t i = 0; i < seeds1.size()/2; ++i){
-        for(LL j = 0; j < seeds1[i*2+1]; ++j){
-            seeds2.push_back(seeds1[i*2]+j);
-        }
-        P(i);
-    }
-
-    return seeds2;
+    return seeds1;
+    // VECI seeds2;
+    // for(size_t i = 0; i < seeds1.size()/2; ++i){
+    //     for(LL j = 0; j < seeds1[i*2+1]; ++j){
+    //         seeds2.push_back(seeds1[i*2]+j);
+    //     }
+    //     P(i);
+    // }
+    //
+    // return seeds2;
 }
 
 size_t FindNext(size_t idx) {
@@ -44,32 +48,54 @@ size_t FindNext(size_t idx) {
     return idx;
 }
 
-auto count(VECI seeds) {
+std::pair<VECPLL, VECPLL> GetCross(std::pair<LL, LL>& seed, LL src, LL dst, LL sz) {
+    auto src_a = seed.first;
+    auto src_b = seed.second;
+    seed = {0,0};
+
+    if(src_b < src || src_a > src+sz) {
+        return {VECPLL{}, VECPLL{{src_a, src_b}}};
+    }
+    std::pair<LL,LL> cuted {std::max(src_a, src), std::min(src_b, src+sz)};
+    VECPLL orig;
+    if(cuted.second < src_b) {
+        orig .push_back({cuted.second+1, src_b});
+    }
+    if(cuted.first > src_a) {
+        orig .push_back({src, cuted.first-1});
+    }
+    return {{cuted}, orig};
+}
+
+auto count(VECPLL seeds) {
     size_t idx = 1;
     while((idx = FindNext(idx)) != -1) {
         P(in[idx]);
+        VECPLL converted;
         while(!in[++idx].empty()){
             auto vec = vecsToVeci(splitStr(in[idx], ' '));
             LL src = vec[1];
             LL dst = vec[0];
             LL sz = vec[2];
             for(auto& s:seeds) {
-                if(s >= src && s <= src+sz){
-                    s = dst + s - src;
-                    s *= -1;
+                auto new_diaposons = GetCross(s, src, dst, sz);
+                for(auto d : new_diaposons.second) {
+                    seeds.push_back(d);
+                }
+                for(auto d : new_diaposons.first) {
+                    converted.push_back(d);
                 }
             }
         }
         for(auto& s:seeds) {
-            if(s < 0) {
-                s *= -1;
-            }
+            converted.push_back(s);
         }
+        seeds = converted;
     }
-    LL min = seeds[0];
+    LL min = seeds[0].first;
     for(auto n : seeds){
-        if(min > n) {
-            min = n;
+        if(min > n.first) {
+            min = n.first;
         }
     }
     return min;
