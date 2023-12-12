@@ -23,7 +23,7 @@ VECI GetInitialSeeds() {
 
 size_t FindNext(size_t idx) {
     while(in[++idx].find("map:") == -1){
-        if(idx == in.size()-1) {
+        if(idx == in.size()-2) {
             P(idx);
             return -1;
         }
