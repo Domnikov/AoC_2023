@@ -10,6 +10,7 @@
 auto in = getInput();
 
 LL play1(LL T, LL D, LL spd = 0, LL d = 0) {
+    P(T, D, spd, d);
     if(d > D) {
         return 1;
     }
