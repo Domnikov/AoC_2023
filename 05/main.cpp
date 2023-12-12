@@ -59,6 +59,7 @@ auto count() {
         seeds.push_back(new_seeds);
     }
     auto locations = seeds[seeds.size()-1];
+    P_VEC(locations);
     LL min = 999999999999;
     for(auto n : locations){
         if(min > n) {
