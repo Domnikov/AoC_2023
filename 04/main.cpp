@@ -63,9 +63,7 @@ auto count_2() {
         win *= (1+cards);
         P(card, cards, win, in.size());
         for(LL i = 0; i < win && (i+card) < in.size(); ++i) {
-        P(__LINE__);
             ++win_cards[card+i];
-        P(__LINE__);
         }
         P_VEC(win_cards);
     }
