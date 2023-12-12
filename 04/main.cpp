@@ -68,7 +68,7 @@ auto count_2() {
         P_VEC(win_cards);
     }
     for(auto c: win_cards){
-        result += c;
+        result += c+1;
     }
     return result;
 }
