@@ -10,15 +10,15 @@
 auto in = getInput();
 
 LL play1(LL T, LL D, LL spd = 0) {
-    if(!T) {
-        return 0;
-    }
     auto res = 0;
-    // P(T, spd, D, T*spd);
-    if(T*spd > D) {
-        res += 1;
+    while(T) {
+        // P(T, spd, D, T*spd);
+        if(T*spd > D) {
+            res += 1;
+        }
+        --T;
+        ++spd;
     }
-    res += play1(T-1, D, spd+1);
     return res;
 }
 
