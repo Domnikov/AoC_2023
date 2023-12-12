@@ -33,7 +33,6 @@ auto count() {
     P_VEC(vecSDist);
     for(size_t i = 1; i < vecSTime.size(); ++i) {
         auto wins = play1(stoll(vecSTime[i]), stoll(vecSDist[i]));
-        P(i, wins);
         result1 *= wins;
     }
     S time2;
@@ -42,7 +41,10 @@ auto count() {
         time2 += vecSTime[i];
         dist2 += vecSDist[i];
     }
-    P(time2, dist2);
+    auto t2 = stoll(time2);
+    auto d2 = stoll(dist2);
+    P(time2, dist2, t2, d2);
+    result2 = play1(stoll(time2), stoll(dist2));
     result2 = play1(stoll(time2), stoll(dist2));
 
     return std::pair<LL,LL> {result1, result2};
