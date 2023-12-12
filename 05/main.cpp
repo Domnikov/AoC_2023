@@ -38,7 +38,6 @@ auto count() {
         P(in[idx]);
         std::map<LL, LL> map;
         while(!in[++idx].empty()){
-            P(in[idx]);
             auto vec = vecsToVeci(splitStr(in[idx], ' '));
             LL src = vec[1];
             LL dst = vec[0];
@@ -47,7 +46,15 @@ auto count() {
                 map[src+i] = dst+i;
             }
         }
-        P_MAP(map);
+        // P_MAP(map);
+        VECI new_seeds;
+        for(auto s:seeds[seeds.size()-1]) {
+            if(map.count(s)){
+                new_seeds.push_back(map[s]);
+            } else {
+                new_seeds.push_back(s);
+            }
+        }
     }
     return result;
 }
