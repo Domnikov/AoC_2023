@@ -47,7 +47,13 @@ auto count() {
                     auto ss = s;
                     s = dst + s - src;
                     P(ss,dst, src, s - src, s);
+                    s *= -1;
                 }
+            }
+        }
+        for(auto& s:seeds) {
+            if(s < 0) {
+                s *= -1;
             }
         }
         P_VEC(seeds);
