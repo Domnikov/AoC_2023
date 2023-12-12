@@ -11,6 +11,10 @@ auto in = getInput();
 
 auto count() {
     LL result = 0;
+    auto vecSTime = splitStr(in[0], ' ');
+    auto vecSDist = splitStr(in[1], ' ');
+    P_VEC(vecSTime);
+    P_VEC(vecSDist);
     return result;
 }
 
