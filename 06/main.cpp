@@ -10,11 +10,12 @@
 auto in = getInput();
 
 LL play1(LL T, LL D, LL spd = 0, LL d = 0) {
-    P(T, D, spd, d);
     if(d > D) {
+        P("ret 1: ", T, D, spd, d);
         return 1;
     }
     if(!T) {
+        P("Failed: ", T, D, spd, d);
         return 0;
     }
     auto res = 0;
@@ -22,6 +23,7 @@ LL play1(LL T, LL D, LL spd = 0, LL d = 0) {
         play1(T-1, D, spd+1, d);
     }
     res += play1(T-1, D, spd, d+spd);
+    P("Accum: ", T, D, spd, d, res);
     return res;
 }
 
