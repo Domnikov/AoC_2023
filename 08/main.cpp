@@ -53,7 +53,7 @@ LL count2() {
                 cur = nextS;
                 // P(cur[2], finds.count({cur, n%N}));
             }
-            return result;
+            P(result);
         }
     }
     return result;
