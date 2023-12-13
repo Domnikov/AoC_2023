@@ -19,7 +19,7 @@ bool IsStable(const VECI& vec) {
     return true;
 }
 
-LL CountOne(VECI& vec){
+LL CountOne1(VECI& vec){
     P_VEC(vec);
     if(IsStable(vec)){
         return vec[0];
@@ -28,14 +28,36 @@ LL CountOne(VECI& vec){
     for(LL i = 1; i < vec.size(); ++i) {
         next_level.push_back(vec[i] - vec[i-1]);
     }
-    return vec[vec.size()-1] + CountOne(next_level);
+    return vec[vec.size()-1] + CountOne1(next_level);
 }
 
-auto count() {
+auto count1() {
     LL result = 0;
     for(const auto& s : in){
         auto vec = vecsToVeci(splitStr(s, ' '));
-        LL n = CountOne(vec);
+        LL n = CountOne1(vec);
+        result += n;
+    }
+    return result;
+}
+
+LL CountOne2(VECI& vec){
+    P_VEC(vec);
+    if(IsStable(vec)){
+        return vec[0];
+    }
+    VECI next_level;
+    for(LL i = 1; i < vec.size(); ++i) {
+        next_level.push_back(vec[i] - vec[i-1]);
+    }
+    return vec[0] - CountOne2(next_level);
+}
+
+auto count2() {
+    LL result = 0;
+    for(const auto& s : in){
+        auto vec = vecsToVeci(splitStr(s, ' '));
+        LL n = CountOne2(vec);
         result += n;
     }
     return result;
@@ -44,11 +66,11 @@ auto count() {
 int main(int argc, char** argv)
 {
     LL score = 0;
-    score = count();
+    score = count1();
     P_RR("Part1: %lld\n", score);
     //========================================================
 
-    score = count();
+    score = count2();
     P_RR("Part2: %lld\n", score);
     return 0;
 }
