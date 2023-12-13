@@ -79,17 +79,19 @@ auto count(VECPLL seeds) {
             LL dst = vec[0];
             LL sz = vec[2];
             P(src, dst,sz);
+            VECPLL new_seeds;
             for(auto& s:seeds) {
                 auto new_diaposons = GetCross(s, src, dst, sz);
                 P_VEC(new_diaposons.first);
                 P_VEC(new_diaposons.second);
                 for(auto d : new_diaposons.second) {
-                    seeds.push_back(d);
+                    new_seeds.push_back(d);
                 }
                 for(auto d : new_diaposons.first) {
                     converted.push_back(d);
                 }
             }
+            seeds = new_seeds;
             P_VEC(seeds);
             P_VEC(converted);
         }
