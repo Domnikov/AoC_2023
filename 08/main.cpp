@@ -45,9 +45,9 @@ LL find_LCM(VECI vec){
     LL counter = 1;
     while(!is_all_div(n)) {
         n += vec[vec.size() - 1];
-        if(counter > n){
-            P(n);
-            n *= 10;
+        if(counter < n){
+            P(counter);
+            counter *= 10;
         }
     }
     return n;
