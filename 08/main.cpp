@@ -32,7 +32,12 @@ auto count1() {
     return result;
 }
 
+LL find_LCM(VECI vec){
+    return 0;
+}
+
 LL count2() {
+    VECI vec;
     LL result = 0;
     for(auto& m : M) {
         if(m.first[2] == 'A') {
@@ -53,9 +58,10 @@ LL count2() {
                 cur = nextS;
                 // P(cur[2], finds.count({cur, n%N}));
             }
-            P(result, finds.size());
+            vec.push_back(result);
         }
     }
+    P_VEC(vec);
     return result;
 }
 
