@@ -43,7 +43,7 @@ LL count2() {
             LL N = in[0].size();
             while(cur[2] != 'Z' || finds.count({cur, n%N}) == 0) {
                 if(cur[2] == 'Z') {
-                    P(cur[2], finds.count({cur, n%N}));
+                    P(cur[2], n%N, finds.count({cur, n%N}));
                     finds.emplace(cur, n%N);
                 }
                 ++result;
