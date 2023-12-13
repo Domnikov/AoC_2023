@@ -88,12 +88,14 @@ auto count(VECPLL seeds) {
                     converted.push_back(d);
                 }
             }
+            P_VEC(seeds);
+            P_VEC(converted);
+            return 0;
         }
         for(auto& s:seeds) {
             converted.push_back(s);
         }
         seeds = converted;
-        P_VEC(seeds);
     }
     LL min = seeds[0].first;
     for(auto n : seeds){
