@@ -54,7 +54,7 @@ auto count2() {
         auto next = GetNext();
         for(auto cur : curs) {
             auto nextS = next ? M[cur].first : M[cur].second;
-            // P(cur, M[cur].first, M[cur].second, nextS, (next ? 'L' : 'R'));
+            P(cur, M[cur].first, M[cur].second, nextS, (next ? 'L' : 'R'));
             if(cur == nextS) return 0LL;
             cur = nextS;
         }
