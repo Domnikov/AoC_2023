@@ -62,6 +62,8 @@ LL count2() {
                 if(cur[2] == 'Z') {
                     P(cur[2], n%N, finds.count({cur, n%N}), result);
                     finds[std::make_pair(cur, n%N)] = finds[std::make_pair(cur, n%N)] + 1;
+                    vec.push_back(result);
+                    break;
                 }
                 ++result;
                 auto next = GetNext();
@@ -71,7 +73,6 @@ LL count2() {
                 // P(cur[2], finds.count({cur, n%N}));
             }
             P_LINE;
-            vec.push_back(result);
         }
     }
     P_VEC(vec);
