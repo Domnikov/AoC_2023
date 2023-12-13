@@ -89,6 +89,13 @@ struct Hand {
     VECI pairs;
 };
 
+std::ostream& operator<<( std::ostream& dest, const Hand& h)
+{
+    dest << "("<< h.cards << " "<<h.bid<<")";
+    return dest;
+}
+
+
 bool IsFive     (const Hand& h){return h.pairs[0] == 5;}
 bool IsFour     (const Hand& h){return h.pairs[0] == 4;}
 bool IsFull     (const Hand& h){return h.pairs[0] == 3 && h.pairs[1] == 2;}
@@ -98,6 +105,7 @@ bool IsOnePair  (const Hand& h){return h.pairs[0] == 2 && h.pairs[1] == 1;}
 bool IsNoPair   (const Hand& h){return h.pairs[0] == 1;}
 
 bool bareComp(const Hand& lhs, const Hand& rhs) {
+    P(lhs, rhs);
     FOR(i, lhs.sc.size()){
         P(lhs.sc[i] , rhs.sc[i]);
         if(lhs.sc[i] < rhs.sc[i]){
@@ -124,12 +132,6 @@ bool operator < (const Hand& lhs, const Hand& rhs) {
         }
     }
     exit(1);
-}
-
-std::ostream& operator<<( std::ostream& dest, Hand h)
-{
-    dest << "("<< h.cards << " "<<h.bid<<")";
-    return dest;
 }
 
 auto count() {
