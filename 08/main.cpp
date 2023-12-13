@@ -43,7 +43,7 @@ int main(int argc, char** argv)
         S left(v2[0].begin()+1, v2[0].end());
         v2[1].pop_back();
         S right(v2[1].begin(), v2[1].end());
-        M[v1[0]] = std::make_pair(right, left);
+        M[v1[0]] = std::make_pair(left, right);
     }
 
     LL score = 0;
