@@ -29,11 +29,11 @@ VECI getPairs(VECI sc) {
 
 struct Hand {
     Hand(S s) {
-        return;
         auto vec = splitStr(s, ' ');
         cards = vec[0];
         bid = stoll(vec[1]);
         sc = VECI(0,5);
+        return;
         for(size_t i = 0; i < 5;++i){
             char c = cards[i];
             switch(c) {
