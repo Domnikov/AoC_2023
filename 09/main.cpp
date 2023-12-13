@@ -9,8 +9,17 @@
 
 auto in = getInput();
 
+LL CountOne(VECI vec){
+    P_VEC(vec);
+    return 0;
+}
+
 auto count() {
     LL result = 0;
+    for(const auto& s : in){
+        auto vec = vecsToVeci(splitStr(s, ' '));
+        CountOne(vec);
+    }
     return result;
 }
 
