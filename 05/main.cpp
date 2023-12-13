@@ -45,7 +45,7 @@ size_t FindNext(size_t idx) {
 }
 
 std::pair<VECPLL, VECPLL> GetCross(std::pair<LL, LL>& seed, LL src, LL dst, LL sz) {
-    P(seed, src, dst, sz);
+    // P(seed, src, dst, sz);
     auto src_a = seed.first;
     auto src_b = seed.second;
     seed = {0,0};
@@ -61,11 +61,10 @@ std::pair<VECPLL, VECPLL> GetCross(std::pair<LL, LL>& seed, LL src, LL dst, LL s
     }
     if(cuted.first > src_a) {
         orig.push_back({src_a, cuted.first-1});
-        P(2);
     }
     std::pair<VECPLL, VECPLL> result{VECPLL{{cuted.first - src + dst, cuted.second-src+dst}}, orig};
-    P_VEC(result.first);
-    P_VEC(result.second);
+    // P_VEC(result.first);
+    // P_VEC(result.second);
     return result;
 }
 
@@ -103,7 +102,7 @@ auto count(VECPLL seeds) {
             converted.push_back(s);
         }
         seeds = converted;
-        P_VEC(seeds);
+        // P_VEC(seeds);
     }
     LL min = seeds[0].first;
     for(auto n : seeds){
@@ -116,7 +115,7 @@ auto count(VECPLL seeds) {
 
 int main(int argc, char** argv) {
     LL score = 0;
-    // auto seeds1 = GetInitialSeeds1();
+    auto seeds1 = GetInitialSeeds1();
     // VECPLL seeds1;
     // seeds1.push_back({79, 79});
     // seeds1.push_back({80, 80});
@@ -145,7 +144,7 @@ int main(int argc, char** argv) {
     // seeds1.push_back({65, 65});
     // seeds1.push_back({66, 66});
     // seeds1.push_back({67, 67});
-    // score = count(seeds1);
+    score = count(seeds1);
     P_RR("Part1: %lld\n", score);
     //========================================================
 
