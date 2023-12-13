@@ -46,7 +46,7 @@ auto count2() {
             auto cur = m.first;
             // std::get<2>(m.second) = 0;
             auto* ptr = &M[cur];
-            while(std::get<2>(*ptr) == -1) {
+            while(!((std::get<2>(*ptr) != -1) && (cur[2] == 'Z'))) {
                 std::get<2>(*ptr) = result;
                 ++result;
                 auto next = GetNext();
