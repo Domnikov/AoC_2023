@@ -116,7 +116,7 @@ int main(int argc, char** argv) {
     //========================================================
 
     auto seeds2 = GetInitialSeeds2();
-    // score = count(seeds2);
+    score = count(seeds2);
     P_RR("Part2: %lld\n", score);
     return 0;
 }
