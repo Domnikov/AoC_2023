@@ -102,7 +102,6 @@ auto count(VECPLL seeds) {
         }
         seeds = converted;
         P_VEC(seeds);
-        return 0LL;
     }
     LL min = seeds[0].first;
     for(auto n : seeds){
