@@ -36,12 +36,12 @@ LL count2() {
     LL result = 0;
     for(auto& m : M) {
         if(m.first[2] == 'A') {
-            std::set<std::pair<S, LL>> finds;
+            std::map<std::pair<S, LL>, LL> finds;
             S cur = m.first;
             result = 0;
             n = 0;
             LL N = in[0].size();
-            while(cur[2] != 'Z' || finds.count({cur, n%N}) == 0) {
+            while(cur[2] != 'Z' || finds[{cur, n%N}] == 0) {
                 if(cur[2] == 'Z') {
                     P(cur[2], n%N, finds.count({cur, n%N}));
                     finds.emplace(cur, n%N);
