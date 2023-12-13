@@ -50,7 +50,7 @@ LL count2() {
                 auto nextS = next ? std::get<0>(M[cur]) : std::get<1>(M[cur]);
                 // if(cur == nextS) return 0LL;
                 cur = nextS;
-                P(cur[2], finds.count({cur, n%N}));
+                // P(cur[2], finds.count({cur, n%N}));
             }
             return finds.size();
         }
