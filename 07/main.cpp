@@ -78,9 +78,6 @@ struct Hand1 {
             }
         }
         pairs = getPairs1(sc);
-        // P(cards);
-        // P_VEC(sc);
-        // P_VEC(pairs);
     }
 
     S cards;
@@ -141,13 +138,10 @@ auto count1() {
     for(const auto& s:in) {
         hands.push_back(Hand1{s});
     }
-    // P_VEC(hands);
     std::sort(BE(hands));
-    // P_VEC(hands);
     FOR(i, hands.size()){
         LL idx = i+1;
         LL score = idx*hands[i].bid;
-        // P(idx, hands[i].bid, score);
         result += score;
     }
     return result;
@@ -223,9 +217,6 @@ struct Hand2 {
             }
         }
         pairs = getPairs2(sc);
-        // P(cards);
-        // P_VEC(sc);
-        // P_VEC(pairs);
     }
 
     S cards;
@@ -287,14 +278,10 @@ auto count2() {
     for(const auto& s:in) {
         hands.push_back(Hand2{s});
     }
-    P_LINE;
-    // P_VEC(hands);
     std::sort(BE(hands));
-    // P_VEC(hands);
     FOR(i, hands.size()){
         LL idx = i+1;
         LL score = idx*hands[i].bid;
-        // P(idx, hands[i].bid, score);
         result += score;
     }
     return result;
