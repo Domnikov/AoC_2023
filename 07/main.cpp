@@ -156,7 +156,7 @@ auto count1() {
 VECI getPairs2(VECI sc) {
     VECI result;
     std::sort(BE(sc));
-    while(!sc.empty()) {
+    while(!sc.empty() && sc.back() != 1) {
         LL cur = sc.back();
         sc.pop_back();
         result.push_back(1);
