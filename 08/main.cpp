@@ -41,9 +41,9 @@ LL find_LCM(VECI vec){
         }
         return true;
     };
-    LL n = vec[0];
+    LL n = vec[vec.size() - 1];
     while(!is_all_div(n)) {
-        n += vec[0];
+        n += vec[vec.size() - 1];
     }
     return n;
 }
