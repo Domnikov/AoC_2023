@@ -45,7 +45,7 @@ size_t FindNext(size_t idx) {
 }
 
 std::pair<VECPLL, VECPLL> GetCross(std::pair<LL, LL>& seed, LL src, LL dst, LL sz) {
-    // P(seed);
+    P(seed, src, dst, sz);
     auto src_a = seed.first;
     auto src_b = seed.second;
     seed = {0,0};
