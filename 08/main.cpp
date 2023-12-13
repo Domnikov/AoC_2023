@@ -26,7 +26,7 @@ auto count() {
         ++result;
         P(cur, M[cur].first, M[cur].second);
         cur = GetNext() ? M[cur].first : M[cur].second;
-        return 0LL;
+        // return 0LL;
     }
     return result;
 }
