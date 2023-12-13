@@ -99,6 +99,7 @@ bool IsNoPair   (const Hand& h){return h.pairs[0] == 1;}
 
 bool bareComp(const Hand& lhs, const Hand& rhs) {
     FOR(i, lhs.sc.size()){
+        P(lhs.sc[i] , rhs.sc[i]);
         if(lhs.sc[i] < rhs.sc[i]){
             return true;
         }
