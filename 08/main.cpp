@@ -29,7 +29,7 @@ int main(int argc, char** argv)
     for(size_t i = 2; i < in.size();++i){
         auto v1 = splitStr(in[i], '=');
         auto v2 = splitStr(v1[1],',');
-        S left(v2[0].begin()+1, v2[0].end());
+        S left(v2[0].begin()+2, v2[0].end());
         v2[1].pop_back();
         S right(v2[1].begin(), v2[1].end());
         M[v1[0]] = std::make_pair(left, right);
