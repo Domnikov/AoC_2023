@@ -15,7 +15,6 @@ LL n = 0;
 
 bool GetNext() {
     LL step = n%in[0].size();
-    P(step);
     ++n;
     return in[0][step] == 'L';
 }
