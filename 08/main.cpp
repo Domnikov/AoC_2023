@@ -34,37 +34,24 @@ auto count1() {
 
 auto count2() {
     LL result = 0;
-    std::vector<std::tuple<S, VECII>> results;
     for(auto& m : M) {
         if(m.first[2] == 'A') {
-            for(auto& mm : M){
-                std::get<2>(mm.second) = -1;
-            }
-            LL counter = 1;
+            std::set<std::pair<S, LL>> finds;
+            S cur = m.first;
             result = 0;
             n = 0;
-            auto cur = m.first;
-            // std::get<2>(m.second) = 0;
-            auto* ptr = &M[cur];
-            results.push_back({m.first, {}});
-            while(!((std::get<2>(*ptr) == 1) && (cur[2] == 'Z'))) {
-                std::get<2>(*ptr)++;
+            LL N = in[0].size();
+            while(cur[2] != 'Z' || finds.count({cur, n%N}) == 0) {
+                if(cur[2] == 'Z') {
+                    finds.emplace(cur, n%N);
+                }
                 ++result;
                 auto next = GetNext();
-                auto& second = M[cur];
-                const auto& nextS = next ? std::get<0>(second) : std::get<1>(second);
-                // P(cur, M[cur].first, M[cur].second, nextS, (next ? 'L' : 'R'));
+                auto nextS = next ? std::get<0>(M[cur]) : std::get<1>(M[cur]);
                 if(cur == nextS) return 0LL;
                 cur = nextS;
-                ptr = &M[cur];
-
-                // if(result > 2) return 0LL;
-                if(counter < result) {
-                    P(counter, cur);
-                    counter *= 10;
-                }
             }
-            P(m.first, std::get<2>(*ptr), result);
+            return 0LL;
         }
     }
     return result;
