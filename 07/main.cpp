@@ -32,7 +32,7 @@ struct Hand {
         auto vec = splitStr(s, ' ');
         cards = vec[0];
         bid = stoll(vec[1]);
-        sc = VECI(0,5);
+        sc = VECI(5,0);
         P_VEC(sc);
         return;
         for(size_t i = 0; i < 5;++i){
