@@ -26,7 +26,7 @@ VECPLL GetInitialSeeds2() {
     auto seeds1 = GetInitialSeeds1();
     VECPLL seeds2;
     for(size_t i = 0; i < seeds1.size()/2; ++i){
-        seeds2.push_back({seeds1[i*2].first, seeds1[i*2].first + seeds1[i*2+1].first});
+        seeds2.push_back({seeds1[i*2].first, seeds1[i*2].first + seeds1[i*2+1].first - 1});
         P(seeds2.back());
     }
     return seeds2;
