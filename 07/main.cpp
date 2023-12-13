@@ -286,9 +286,10 @@ auto count2() {
     for(const auto& s:in) {
         hands.push_back(Hand2{s});
     }
-    P_VEC(hands);
+    P_LINE;
+    // P_VEC(hands);
     std::sort(BE(hands));
-    P_VEC(hands);
+    // P_VEC(hands);
     FOR(i, hands.size()){
         LL idx = i+1;
         LL score = idx*hands[i].bid;
