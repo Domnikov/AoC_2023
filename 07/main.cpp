@@ -78,9 +78,9 @@ struct Hand {
             }
         }
         pairs = getPairs(sc);
-        P(cards);
-        P_VEC(sc);
-        P_VEC(pairs);
+        // P(cards);
+        // P_VEC(sc);
+        // P_VEC(pairs);
     }
 
     S cards;
@@ -132,6 +132,7 @@ auto count() {
     for(const auto& s:in) {
         hands.push_back(Hand{s});
     }
+    std::sort(BE(hands));
     return result;
 }
 
