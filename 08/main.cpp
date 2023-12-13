@@ -34,6 +34,7 @@ int main(int argc, char** argv)
         S right(v2[1].begin(), v2[1].end());
         M[v1[0]] = std::make_pair(left, right);
     }
+    P_MAP(M);
 
     LL score = 0;
     score = count();
