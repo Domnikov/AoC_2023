@@ -9,16 +9,33 @@
 
 auto in = getInput();
 
-LL CountOne(VECI vec){
+bool IsStable(const VECI& vec) {
+    LL n = vec[0];
+    for(const auto& v: vec) {
+        if(n != v) {
+            return false;
+        }
+    }
+    return true;
+}
+
+LL CountOne(VECI& vec){
     P_VEC(vec);
-    return 0;
+    if(IsStable(vec)){
+        return vec[0];
+    }
+    VECI next_level;
+    for(LL i = 1; i < vec.size(); ++i) {
+        next_level.push_back(vec[i] - vec[i-1]);
+    }
+    return vec[vec.size()-1] + CountOne(next_level);
 }
 
 auto count() {
     LL result = 0;
     for(const auto& s : in){
         auto vec = vecsToVeci(splitStr(s, ' '));
-        CountOne(vec);
+        LL n = CountOne(vec);
     }
     return result;
 }
