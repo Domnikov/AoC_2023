@@ -58,7 +58,7 @@ auto count2() {
             if(cur == nextS) return 0LL;
             cur = nextS;
         }
-        return 0LL;
+        if(result > 2) return 0LL;
     }
     return result;
 }
