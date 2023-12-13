@@ -19,7 +19,21 @@ bool GetNext() {
     return in[0][step] == 'L';
 }
 
-auto count() {
+auto count1() {
+    LL result = 0;
+    S cur = "AAA";
+    while(cur != "ZZZ") {
+        ++result;
+        auto next = GetNext();
+        auto nextS = next ? M[cur].first : M[cur].second;
+        // P(cur, M[cur].first, M[cur].second, nextS, (next ? 'L' : 'R'));
+        if(cur == nextS) return 0LL;
+        cur = nextS;
+    }
+    return result;
+}
+
+auto count2() {
     LL result = 0;
     S cur = "AAA";
     while(cur != "ZZZ") {
@@ -46,11 +60,11 @@ int main(int argc, char** argv)
 
     LL score = 0;
     n = 0;
-    score = count();
+    score = count1();
     P_RR("Part1: %lld\n", score);
     //========================================================
 
-    score = count();
+    score = count2();
     P_RR("Part2: %lld\n", score);
     return 0;
 }
