@@ -27,9 +27,8 @@ auto count() {
         auto next = GetNext();
         auto nextS = next ? M[cur].first : M[cur].second;
         P(cur, M[cur].first, M[cur].second, nextS, (next ? 'L' : 'R'));
+        if(cur == nextS) return 0LL;
         cur = nextS;
-        if(cur == "GGG") return 0LL;
-        if(cur == "EEE") return 0LL;
     }
     return result;
 }
