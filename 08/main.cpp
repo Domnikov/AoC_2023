@@ -44,7 +44,7 @@ LL count2() {
             while(cur[2] != 'Z' || finds.count(std::make_pair(cur, n%N)) == 0) {
                 if(cur[2] == 'Z') {
                     P(cur[2], n%N, finds.count({cur, n%N}));
-                    finds.emplace(cur, n%N);
+                    finds.emplace(std::make_pair(cur, n%N), 0);
                 }
                 ++result;
                 auto next = GetNext();
