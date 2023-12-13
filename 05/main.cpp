@@ -24,16 +24,12 @@ VECPLL GetInitialSeeds1() {
 
 VECPLL GetInitialSeeds2() {
     auto seeds1 = GetInitialSeeds1();
-    return seeds1;
-    // VECI seeds2;
-    // for(size_t i = 0; i < seeds1.size()/2; ++i){
-    //     for(LL j = 0; j < seeds1[i*2+1]; ++j){
-    //         seeds2.push_back(seeds1[i*2]+j);
-    //     }
-    //     P(i);
-    // }
-    //
-    // return seeds2;
+    VECPLL seeds2;
+    for(size_t i = 0; i < seeds1.size()/2; ++i){
+        seeds2.push_back({seeds1[i*2].first, seeds1[i*2].first + seeds1[i*2+1].first});
+        P(seeds2.back());
+    }
+    return seeds2;
 }
 
 size_t FindNext(size_t idx) {
@@ -120,7 +116,7 @@ int main(int argc, char** argv) {
     //========================================================
 
     auto seeds2 = GetInitialSeeds2();
-    score = count(seeds2);
+    // score = count(seeds2);
     P_RR("Part2: %lld\n", score);
     return 0;
 }
