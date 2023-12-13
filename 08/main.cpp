@@ -43,6 +43,7 @@ bool AllEnd(const VECS& curs) {
 
 auto count2() {
     LL result = 0;
+    LL counter = 1;
     VECS curs;
     for(auto m : M) {
         if(m.first[2] == 'A') {
@@ -53,12 +54,17 @@ auto count2() {
         ++result;
         auto next = GetNext();
         for(auto& cur : curs) {
-            auto nextS = next ? M[cur].first : M[cur].second;
+            const auto& nextS = next ? M[cur].first : M[cur].second;
             // P(cur, M[cur].first, M[cur].second, nextS, (next ? 'L' : 'R'));
             if(cur == nextS) return 0LL;
             cur = nextS;
         }
         // if(result > 2) return 0LL;
+        if(counter < result) {
+            P_VEC(curs);
+            P(result);
+            counter *= 10;
+        }
     }
     return result;
 }
