@@ -9,8 +9,30 @@
 
 auto in = getInput();
 
+LL Y(LL n){
+    return n/in[0].size();
+}
+
+LL X(LL n){
+    return n%in[0].size();
+}
+
+char Get(LL n){
+    return in[Y(n)][X(n)];
+}
+
+LL findStart(){
+    FOR(i, in.size()*in[0].size()){
+        if(Get(i) == 'S'){
+            return i;
+        }
+    }
+    exit(1);
+}
+
 auto count() {
     LL result = 0;
+    result = findStart();
     return result;
 }
 
