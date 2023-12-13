@@ -27,7 +27,7 @@ VECPLL GetInitialSeeds2() {
     VECPLL seeds2;
     for(size_t i = 0; i < seeds1.size()/2; ++i){
         seeds2.push_back({seeds1[i*2].first, seeds1[i*2].first + seeds1[i*2+1].first - 1});
-        P(seeds2.back());
+        // P(seeds2.back());
     }
     return seeds2;
 }
@@ -67,19 +67,19 @@ std::pair<VECPLL, VECPLL> GetCross(std::pair<LL, LL>& seed, LL src, LL dst, LL s
 auto count(VECPLL seeds) {
     size_t idx = 1;
     while((idx = FindNext(idx)) != -1) {
-        P(in[idx]);
+        // P(in[idx]);
         VECPLL converted;
         while(!in[++idx].empty()){
             auto vec = vecsToVeci(splitStr(in[idx], ' '));
             LL src = vec[1];
             LL dst = vec[0];
             LL sz = vec[2];
-            P(src, dst,sz);
+            // P(src, dst,sz);
             VECPLL new_seeds;
             for(auto& s:seeds) {
                 auto new_diaposons = GetCross(s, src, dst, sz);
-                P_VEC(new_diaposons.first);
-                P_VEC(new_diaposons.second);
+                // P_VEC(new_diaposons.first);
+                // P_VEC(new_diaposons.second);
                 for(auto d : new_diaposons.second) {
                     new_seeds.push_back(d);
                 }
@@ -88,16 +88,16 @@ auto count(VECPLL seeds) {
                 }
             }
             seeds = new_seeds;
-            P_VEC(seeds);
-            P_VEC(converted);
+            // P_VEC(seeds);
+            // P_VEC(converted);
         }
-        P_VEC(seeds);
-        P_VEC(converted);
+        // P_VEC(seeds);
+        // P_VEC(converted);
         for(auto& s:seeds) {
             converted.push_back(s);
         }
         seeds = converted;
-        P_VEC(seeds);
+        // P_VEC(seeds);
     }
     LL min = seeds[0].first;
     for(auto n : seeds){
