@@ -78,6 +78,7 @@ struct Hand {
             }
         }
         pairs = getPairs(sc);
+        P(cards);
         P_VEC(sc);
         P_VEC(pairs);
     }
