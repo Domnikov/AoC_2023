@@ -120,15 +120,6 @@ bool operator < (const Hand& lhs, const Hand& rhs) {
     exit(1);
 }
 
-bool operator == (const Hand& lhs, const Hand& rhs) {
-    return !(lhs < rhs) && !(rhs < lhs);
-
-}
-
-bool operator > (const Hand& lhs, const Hand& rhs) {
-    return rhs < lhs && !(lhs == rhs);
-}
-
 std::ostream& operator<<( std::ostream& dest, Hand h)
 {
     dest << "("<< h.cards << " "<<h.bid<<")";
@@ -141,7 +132,9 @@ auto count() {
     for(const auto& s:in) {
         hands.push_back(Hand{s});
     }
-    std::sort(BE(hands), [](const auto& lhs, const auto& rhs){return lhs>rhs;});
+    P_VEC(hands);
+    std::sort(BE(hands));
+    P_VEC(hands);
     FOR(i, hands.size()){
         LL idx = i+1;
         LL score = idx*hands[i].bid;
