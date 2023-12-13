@@ -61,8 +61,8 @@ auto count2() {
         }
         // if(result > 2) return 0LL;
         if(counter < result) {
+            P_RR("%lld\t", counter);
             P_VEC(curs);
-            P(result);
             counter *= 10;
         }
     }
