@@ -143,6 +143,24 @@ int main(int argc, char** argv) {
     seeds1.push_back({67, 67});
     score = count(seeds1);
     P_RR("Part1: %lld\n", score);
+    P_RR("Part1: %lld\n", score);
+    P_RR("Part1: %lld\n", score);
+    P_RR("Part1: %lld\n", score);
+    P_RR("Part1: %lld\n", score);
+    P_RR("Part1: %lld\n", score);
+    P_RR("Part1: %lld\n", score);
+    P_RR("Part1: %lld\n", score);
+    P_RR("Part1: %lld\n", score);
+    P_RR("Part1: %lld\n", score);
+    P_RR("Part1: %lld\n", score);
+    P_RR("Part1: %lld\n", score);
+    P_RR("Part1: %lld\n", score);
+    P_RR("Part1: %lld\n", score);
+    P_RR("Part1: %lld\n", score);
+    P_RR("Part1: %lld\n", score);
+    P_RR("Part1: %lld\n", score);
+    P_RR("Part1: %lld\n", score);
+    P_RR("Part1: %lld\n", score);
     //========================================================
 return 0;
     auto seeds2 = GetInitialSeeds2();
