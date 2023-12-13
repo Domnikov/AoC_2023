@@ -284,6 +284,7 @@ auto count2() {
     LL result = 0;
     std::vector<Hand2> hands;
     for(const auto& s:in) {
+        P(s);
         hands.push_back(Hand2{s});
     }
     P_LINE;
