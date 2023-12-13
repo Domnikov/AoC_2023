@@ -49,7 +49,7 @@ auto count2() {
             curs.push_back(m.first);
         }
     }
-    while(AllEnd(curs)) {
+    while(!AllEnd(curs)) {
         ++result;
         auto next = GetNext();
         for(auto cur : curs) {
