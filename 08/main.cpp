@@ -33,7 +33,19 @@ auto count1() {
 }
 
 LL find_LCM(VECI vec){
-    return 0;
+    auto is_all_div = [&vec](LL n){
+        for(auto v : vec){
+            if((n % v) != 0) {
+                return false;
+            }
+        }
+        return true;
+    };
+    LL n = vec[0];
+    while(!is_all_div(n)) {
+        n += vec[0];
+    }
+    return n;
 }
 
 LL count2() {
@@ -62,7 +74,7 @@ LL count2() {
         }
     }
     P_VEC(vec);
-    return result;
+    return find_LCM(vec);
 }
 
 int main(int argc, char** argv)
