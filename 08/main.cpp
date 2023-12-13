@@ -47,6 +47,7 @@ int main(int argc, char** argv)
     }
 
     LL score = 0;
+    n = 0;
     score = count();
     P_RR("Part1: %lld\n", score);
     //========================================================
