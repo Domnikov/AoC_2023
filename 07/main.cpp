@@ -111,6 +111,9 @@ bool bareComp(const Hand& lhs, const Hand& rhs) {
         if(lhs.sc[i] < rhs.sc[i]){
             return true;
         }
+        if(lhs.sc[i] > rhs.sc[i]){
+            return false;
+        }
     }
     exit(1);
 }
