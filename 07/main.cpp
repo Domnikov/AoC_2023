@@ -98,7 +98,12 @@ bool IsOnePair  (const Hand& h){return h.pairs[0] == 2 && h.pairs[1] == 1;}
 bool IsNoPair   (const Hand& h){return h.pairs[0] == 1;}
 
 bool bareComp(const Hand& lhs, const Hand& rhs) {
-    return false;
+    FOR(i, lhs.sc.size()){
+        if(lhs.sc[i] < rhs.sc[i]){
+            return true;
+        }
+    }
+    exit(1);
 }
 
 bool operator < (const Hand& lhs, const Hand& rhs) {
