@@ -51,7 +51,7 @@ std::pair<VECPLL, VECPLL> GetCross(std::pair<LL, LL>& seed, LL src, LL dst, LL s
     seed = {0,0};
 
     if(src_b < src || src_a > src+sz) {
-        P(src_b, src, src_a, src+sz);
+        P(src_b, "<", src, "||", src_a, ">", src+sz);
         return {VECPLL{}, VECPLL{{src_a, src_b}}};
     }
     std::pair<LL,LL> cuted {std::max(src_a, src), std::min(src_b, src+sz)};
