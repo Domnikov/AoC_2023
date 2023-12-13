@@ -33,6 +33,7 @@ struct Hand {
         cards = vec[0];
         bid = stoll(vec[1]);
         sc = VECI(0,5);
+        P_VEC(sc);
         return;
         for(size_t i = 0; i < 5;++i){
             char c = cards[i];
