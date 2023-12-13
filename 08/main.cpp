@@ -32,6 +32,15 @@ auto count1() {
     return result;
 }
 
+bool AllEnd(const VECS& curs) {
+    for(const auto& s : curs) {
+        if(s[2] != 'Z') {
+            return false;
+        }
+    }
+    return true;
+}
+
 auto count2() {
     LL result = 0;
     VECS curs;
@@ -40,15 +49,16 @@ auto count2() {
             curs.push_back(m.first);
         }
     }
-    P_VEC(curs);
-    // while(cur != "ZZZ") {
-    //     ++result;
-    //     auto next = GetNext();
-    //     auto nextS = next ? M[cur].first : M[cur].second;
-    //     // P(cur, M[cur].first, M[cur].second, nextS, (next ? 'L' : 'R'));
-    //     if(cur == nextS) return 0LL;
-    //     cur = nextS;
-    // }
+    while(AllEnd(curs)) {
+        ++result;
+        auto next = GetNext();
+        for(auto cur : curs) {
+            auto nextS = next ? M[cur].first : M[cur].second;
+            // P(cur, M[cur].first, M[cur].second, nextS, (next ? 'L' : 'R'));
+            if(cur == nextS) return 0LL;
+            cur = nextS;
+        }
+    }
     return result;
 }
 
