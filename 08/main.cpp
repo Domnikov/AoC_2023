@@ -11,16 +11,21 @@ auto in = getInput();
 
 std::map<S, std::pair<S,S>> M;
 
-LL cur = 0;
+LL n = 0;
 
 bool GetNext() {
-    LL step = cur%in.size();
-    ++cur;
-    return in[0][step] == 'R';
+    LL step = n%in.size();
+    ++n;
+    return in[0][step] == 'L';
 }
 
 auto count() {
     LL result = 0;
+    S cur = "AAA";
+    while(cur != "ZZZ") {
+        ++result;
+        cur = GetNext() ? M[cur].first : M[cur].second;
+    }
     return result;
 }
 
@@ -34,7 +39,6 @@ int main(int argc, char** argv)
         S right(v2[1].begin(), v2[1].end());
         M[v1[0]] = std::make_pair(left, right);
     }
-    P_MAP(M);
 
     LL score = 0;
     score = count();
