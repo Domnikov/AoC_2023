@@ -90,7 +90,7 @@ auto count(VECPLL seeds) {
             }
             P_VEC(seeds);
             P_VEC(converted);
-            return 0;
+            return 0LL;
         }
         for(auto& s:seeds) {
             converted.push_back(s);
