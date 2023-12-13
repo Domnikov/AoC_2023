@@ -141,13 +141,13 @@ auto count() {
     for(const auto& s:in) {
         hands.push_back(Hand{s});
     }
-    P_VEC(hands);
+    // P_VEC(hands);
     std::sort(BE(hands));
-    P_VEC(hands);
+    // P_VEC(hands);
     FOR(i, hands.size()){
         LL idx = i+1;
         LL score = idx*hands[i].bid;
-        P(idx, hands[i].bid, score);
+        // P(idx, hands[i].bid, score);
         result += score;
     }
     return result;
