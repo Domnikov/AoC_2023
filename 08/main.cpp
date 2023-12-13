@@ -35,9 +35,9 @@ int main(int argc, char** argv)
 {
     for(size_t i = 2; i < in.size();++i){
         auto v1 = splitStr(in[i], '=');
-        P_VEC(v1);
+        // P_VEC(v1);
         auto v2 = splitStr(v1[1],',');
-        P_VEC(v2);
+        // P_VEC(v2);
         S left(v2[0].begin()+2, v2[0].end());
         v2[1].pop_back();
         S right(v2[1].begin(), v2[1].end());
