@@ -24,7 +24,10 @@ auto count() {
     S cur = "AAA";
     while(cur != "ZZZ") {
         ++result;
+        P(cur);
         cur = GetNext() ? M[cur].first : M[cur].second;
+        P(cur, M[cur].first, M[cur].second);
+        return 0LL;
     }
     return result;
 }
