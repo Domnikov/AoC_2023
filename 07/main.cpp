@@ -221,9 +221,9 @@ struct Hand2 {
             }
         }
         pairs = getPairs2(sc);
-        // P(cards);
-        // P_VEC(sc);
-        // P_VEC(pairs);
+        P(cards);
+        P_VEC(sc);
+        P_VEC(pairs);
     }
 
     S cards;
