@@ -29,6 +29,7 @@ auto count() {
         P(cur, M[cur].first, M[cur].second, nextS, (next ? 'L' : 'R'));
         cur = nextS;
         if(cur == "GGG") return 0LL;
+        if(cur == "EEE") return 0LL;
     }
     return result;
 }
