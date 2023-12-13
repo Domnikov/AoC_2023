@@ -150,3 +150,25 @@ return 0;
     P_RR("Part2: %lld\n", score);
     return 0;
 }
+#if 0
+in[idx] = seed-to-soil map:
+seeds = [(81,94);(57,69)]
+
+in[idx] = soil-to-fertilizer map:
+seeds = [(81,94);(57,69)]
+
+in[idx] = fertilizer-to-water map:
+seeds = [(53,57);(81,94);(62,69)]
+
+in[idx] = water-to-light map:
+seeds = [(46,50);(74,87);(55,62)]
+
+in[idx] = light-to-temperature map:
+seeds = [(45,55);(82,86);(91,98);(78,80)]
+
+in[idx] = temperature-to-humidity map:
+seeds = [(46,56);(82,86);(91,98);(78,80)]
+
+in[idx] = humidity-to-location map:
+seeds = [(60,60);(86,90);(95,97);(82,84);(57,60);(46,55);(98,98)]
+#endif
