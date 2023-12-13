@@ -141,7 +141,8 @@ using VECII=std::vector<std::vector<LL>>;
 #define VECS  std::vector<S>
 #define VECSS std::vector<std::vector<S>>
 namespace std{
-inline ostream& operator<<( ostream& dest, pair<LL,LL> value )
+template<typename T>
+inline ostream& operator<<( ostream& dest, pair<T,T> value )
 {
     dest << "("<<value.first<<","<<value.second<<")";
     return dest;
@@ -234,19 +235,6 @@ inline VECI vecsToVeci(VECS src)
     return dst;
 }
 
-inline VECS splitStr(S str, char delim = ',')
-{
-    VECS res;
-    std::stringstream ss(str);
-    while(ss.good())
-    {
-        std::string sub;
-        std::getline(ss, sub, delim);
-        if(!sub.empty())res.push_back(sub);
-    }
-    return res;
-}
-
 inline S trunc(S s)
 {
     while(s[0] == ' ')
@@ -258,6 +246,19 @@ inline S trunc(S s)
         s.erase(s.size()-1, 1);
     }
     return s;
+}
+
+inline VECS splitStr(S str, char delim = ',')
+{
+    VECS res;
+    std::stringstream ss(str);
+    while(ss.good())
+    {
+        std::string sub;
+        std::getline(ss, sub, delim);
+        if(!sub.empty())res.push_back(trunc(sub));
+    }
+    return res;
 }
 
 template <int N>
