@@ -44,7 +44,7 @@ auto count2() {
             result = 0;
             n = 0;
             auto cur = m.first;
-            std::get<2>(m.second) = 0;
+            // std::get<2>(m.second) = 0;
             auto* ptr = &M[cur];
             while(std::get<2>(*ptr) == -1) {
                 std::get<2>(*ptr) = result;
