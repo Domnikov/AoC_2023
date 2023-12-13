@@ -50,7 +50,7 @@ std::pair<VECPLL, VECPLL> GetCross(std::pair<LL, LL>& seed, LL src, LL dst, LL s
     auto src_b = seed.second;
     seed = {0,0};
 
-    if(src_b < src && src_a > src+sz) {
+    if(src_b < src || src_a > src+sz) {
         P(src_b, src, src_a, src+sz);
         return {VECPLL{}, VECPLL{{src_a, src_b}}};
     }
