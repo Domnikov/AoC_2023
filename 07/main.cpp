@@ -125,6 +125,10 @@ std::ostream& operator<<( std::ostream& dest, Hand h)
 
 auto count() {
     LL result = 0;
+    std::vector<Hand> hands;
+    for(const auto& s:in) {
+        hands.push_back(Hand{s});
+    }
     return result;
 }
 
