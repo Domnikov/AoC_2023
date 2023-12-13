@@ -34,7 +34,7 @@ auto count1() {
 
 auto count2() {
     LL result = 0;
-    std::vector<std::tuple<S, LL, LL>> results;
+    std::vector<std::tuple<S, VECII>> results;
     for(auto& m : M) {
         if(m.first[2] == 'A') {
             for(auto& mm : M){
@@ -46,8 +46,9 @@ auto count2() {
             auto cur = m.first;
             // std::get<2>(m.second) = 0;
             auto* ptr = &M[cur];
-            while(!((std::get<2>(*ptr) != -1) && (cur[2] == 'Z'))) {
-                std::get<2>(*ptr) = result;
+            results.push_back({m.first, {}});
+            while(!((std::get<2>(*ptr) == 1) && (cur[2] == 'Z'))) {
+                std::get<2>(*ptr)++;
                 ++result;
                 auto next = GetNext();
                 auto& second = M[cur];
@@ -63,7 +64,6 @@ auto count2() {
                     counter *= 10;
                 }
             }
-            results.push_back({m.first, std::get<2>(*ptr), result});
             P(m.first, std::get<2>(*ptr), result);
         }
     }
