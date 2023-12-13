@@ -43,7 +43,7 @@ LL count2() {
             LL N = in[0].size();
             while(cur[2] != 'Z' || finds[std::make_pair(cur, n%N)] < 5) {
                 if(cur[2] == 'Z') {
-                    P(cur[2], n%N, finds.count({cur, n%N}));
+                    P(cur[2], n%N, finds.count({cur, n%N}), result);
                     finds[std::make_pair(cur, n%N)] = finds[std::make_pair(cur, n%N)] + 1;
                 }
                 ++result;
