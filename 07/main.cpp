@@ -10,7 +10,7 @@
 
 auto in = getInput();
 
-VECI getPairs(VECI sc) {
+VECI getPairs1(VECI sc) {
     VECI result;
     std::sort(BE(sc));
     while(!sc.empty()) {
@@ -27,8 +27,8 @@ VECI getPairs(VECI sc) {
 }
 
 
-struct Hand {
-    Hand(S s) {
+struct Hand1 {
+    Hand1(S s) {
         auto vec = splitStr(s, ' ');
         cards = vec[0];
         bid = stoll(vec[1]);
@@ -77,7 +77,7 @@ struct Hand {
                     break;
             }
         }
-        pairs = getPairs(sc);
+        pairs = getPairs1(sc);
         // P(cards);
         // P_VEC(sc);
         // P_VEC(pairs);
@@ -89,22 +89,22 @@ struct Hand {
     VECI pairs;
 };
 
-std::ostream& operator<<( std::ostream& dest, const Hand& h)
+std::ostream& operator<<( std::ostream& dest, const Hand1& h)
 {
     dest << "("<< h.cards << " "<<h.bid<<")";
     return dest;
 }
 
 
-bool IsFive     (const Hand& h){return h.pairs[0] == 5;}
-bool IsFour     (const Hand& h){return h.pairs[0] == 4;}
-bool IsFull     (const Hand& h){return h.pairs[0] == 3 && h.pairs[1] == 2;}
-bool IsThree    (const Hand& h){return h.pairs[0] == 3 && h.pairs[1] == 1;}
-bool IsTwoPair  (const Hand& h){return h.pairs[0] == 2 && h.pairs[1] == 2;}
-bool IsOnePair  (const Hand& h){return h.pairs[0] == 2 && h.pairs[1] == 1;}
-bool IsNoPair   (const Hand& h){return h.pairs[0] == 1;}
+bool IsFive     (const Hand1& h){return h.pairs[0] == 5;}
+bool IsFour     (const Hand1& h){return h.pairs[0] == 4;}
+bool IsFull     (const Hand1& h){return h.pairs[0] == 3 && h.pairs[1] == 2;}
+bool IsThree    (const Hand1& h){return h.pairs[0] == 3 && h.pairs[1] == 1;}
+bool IsTwoPair  (const Hand1& h){return h.pairs[0] == 2 && h.pairs[1] == 2;}
+bool IsOnePair  (const Hand1& h){return h.pairs[0] == 2 && h.pairs[1] == 1;}
+bool IsNoPair   (const Hand1& h){return h.pairs[0] == 1;}
 
-bool bareComp(const Hand& lhs, const Hand& rhs) {
+bool bareComp(const Hand1& lhs, const Hand1& rhs) {
     FOR(i, lhs.sc.size()){
         if(lhs.sc[i] < rhs.sc[i]){
             return true;
@@ -116,15 +116,15 @@ bool bareComp(const Hand& lhs, const Hand& rhs) {
     exit(1);
 }
 
-bool operator < (const Hand& lhs, const Hand& rhs) {
-    std::vector<std::function<bool(const Hand&)>> cmpFunc{{
-        [](const Hand& h){return IsFive   (h);},
-        [](const Hand& h){return IsFour   (h);},
-        [](const Hand& h){return IsFull   (h);},
-        [](const Hand& h){return IsThree  (h);},
-        [](const Hand& h){return IsTwoPair(h);},
-        [](const Hand& h){return IsOnePair(h);},
-        [](const Hand& h){return IsNoPair (h);},
+bool operator < (const Hand1& lhs, const Hand1& rhs) {
+    std::vector<std::function<bool(const Hand1&)>> cmpFunc{{
+        [](const Hand1& h){return IsFive   (h);},
+        [](const Hand1& h){return IsFour   (h);},
+        [](const Hand1& h){return IsFull   (h);},
+        [](const Hand1& h){return IsThree  (h);},
+        [](const Hand1& h){return IsTwoPair(h);},
+        [](const Hand1& h){return IsOnePair(h);},
+        [](const Hand1& h){return IsNoPair (h);},
     }};
 
     for(const auto& func : cmpFunc) {
@@ -135,11 +135,11 @@ bool operator < (const Hand& lhs, const Hand& rhs) {
     exit(1);
 }
 
-auto count() {
+auto count1() {
     LL result = 0;
-    std::vector<Hand> hands;
+    std::vector<Hand1> hands;
     for(const auto& s:in) {
-        hands.push_back(Hand{s});
+        hands.push_back(Hand1{s});
     }
     // P_VEC(hands);
     std::sort(BE(hands));
@@ -153,14 +153,32 @@ auto count() {
     return result;
 }
 
+auto count2() {
+    LL result = 0;
+    // std::vector<Hand1> hands;
+    // for(const auto& s:in) {
+    //     hands.push_back(Hand1{s});
+    // }
+    // // P_VEC(hands);
+    // std::sort(BE(hands));
+    // // P_VEC(hands);
+    // FOR(i, hands.size()){
+    //     LL idx = i+1;
+    //     LL score = idx*hands[i].bid;
+    //     // P(idx, hands[i].bid, score);
+    //     result += score;
+    // }
+    return result;
+}
+
 int main(int argc, char** argv)
 {
     LL score = 0;
-    score = count();
+    score = count1();
     P_RR("Part1: %lld\n", score);
     //========================================================
 
-    score = count();
+    score = count2();
     P_RR("Part2: %lld\n", score);
     return 0;
 }
