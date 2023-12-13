@@ -65,7 +65,6 @@ auto count2() {
             }
             results.push_back({m.first, std::get<2>(*ptr), result});
             P(m.first, std::get<2>(*ptr), result);
-            return 0LL;
         }
     }
     return result;
