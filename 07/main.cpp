@@ -188,34 +188,34 @@ struct Hand2 {
                 case 'Q':
                     sc[i] = 11;
                     break;
-                case 'J':
+                case 'T':
                     sc[i] = 10;
                     break;
-                case 'T':
+                case '9':
                     sc[i] = 9;
                     break;
-                case '9':
+                case '8':
                     sc[i] = 8;
                     break;
-                case '8':
+                case '7':
                     sc[i] = 7;
                     break;
-                case '7':
+                case '6':
                     sc[i] = 6;
                     break;
-                case '6':
+                case '5':
                     sc[i] = 5;
                     break;
-                case '5':
+                case '4':
                     sc[i] = 4;
                     break;
-                case '4':
+                case '3':
                     sc[i] = 3;
                     break;
-                case '3':
+                case '2':
                     sc[i] = 2;
                     break;
-                case '2':
+                case 'J':
                     sc[i] = 1;
                     break;
             }
