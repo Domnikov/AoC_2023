@@ -32,7 +32,7 @@ auto count1() {
     return result;
 }
 
-auto count2() {
+LL count2() {
     LL result = 0;
     for(auto& m : M) {
         if(m.first[2] == 'A') {
@@ -51,7 +51,7 @@ auto count2() {
                 if(cur == nextS) return 0LL;
                 cur = nextS;
             }
-            return 0LL;
+            return finds.size();
         }
     }
     return result;
