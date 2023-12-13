@@ -33,8 +33,6 @@ struct Hand {
         cards = vec[0];
         bid = stoll(vec[1]);
         sc = VECI(5,0);
-        P_VEC(sc);
-        return;
         for(size_t i = 0; i < 5;++i){
             char c = cards[i];
             switch(c) {
@@ -80,6 +78,8 @@ struct Hand {
             }
         }
         pairs = getPairs(sc);
+        P_VEC(sc);
+        P_VEC(pairs);
     }
 
     S cards;
