@@ -166,6 +166,7 @@ VECI getPairs2(VECI sc) {
         }
     }
     std::sort(BE(result), [](LL a, LL b){return a>b;});
+    if(result.empty()) result.push_back(0);
     result[0] += sc.size();
     return result;
 }
@@ -284,7 +285,6 @@ auto count2() {
     LL result = 0;
     std::vector<Hand2> hands;
     for(const auto& s:in) {
-        P(s);
         hands.push_back(Hand2{s});
     }
     P_LINE;
