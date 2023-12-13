@@ -67,6 +67,7 @@ std::pair<VECPLL, VECPLL> GetCross(std::pair<LL, LL>& seed, LL src, LL dst, LL s
 auto count(VECPLL seeds) {
     size_t idx = 1;
     while((idx = FindNext(idx)) != -1) {
+        P_RR("\n");
         P(in[idx]);
         VECPLL converted;
         while(!in[++idx].empty()){
