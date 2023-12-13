@@ -70,6 +70,7 @@ LL count2() {
                 cur = nextS;
                 // P(cur[2], finds.count({cur, n%N}));
             }
+            P_LINE;
             vec.push_back(result);
         }
     }
