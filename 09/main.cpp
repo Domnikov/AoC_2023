@@ -36,6 +36,7 @@ auto count() {
     for(const auto& s : in){
         auto vec = vecsToVeci(splitStr(s, ' '));
         LL n = CountOne(vec);
+        result += n;
     }
     return result;
 }
