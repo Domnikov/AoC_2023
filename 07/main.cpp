@@ -166,6 +166,7 @@ VECI getPairs2(VECI sc) {
         }
     }
     std::sort(BE(result), [](LL a, LL b){return a>b;});
+    result[0] += sc.size();
     return result;
 }
 
