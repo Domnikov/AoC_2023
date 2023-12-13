@@ -32,39 +32,40 @@ auto count1() {
     return result;
 }
 
-bool AllEnd(const VECS& curs) {
-    for(const auto& s : curs) {
-        if(s[2] != 'Z') {
-            return false;
-        }
-    }
-    return true;
-}
-
 auto count2() {
     LL result = 0;
-    LL counter = 1;
-    VECS curs;
-    for(auto m : M) {
+    std::vector<std::tuple<S, LL, LL>> results;
+    for(auto& m : M) {
         if(m.first[2] == 'A') {
-            curs.push_back(m.first);
+            for(auto& mm : M){
+                std::get<2>(mm.second) = -1;
+            }
+            LL counter = 1;
+            result = 0;
+            n = 0;
+            auto cur = m.first;
             std::get<2>(m.second) = 0;
-        }
-    }
-    while(!AllEnd(curs)) {
-        ++result;
-        auto next = GetNext();
-        for(auto& cur : curs) {
-            const auto& nextS = next ? std::get<0>(M[cur]) : std::get<1>(M[cur]);
-            // P(cur, M[cur].first, M[cur].second, nextS, (next ? 'L' : 'R'));
-            if(cur == nextS) return 0LL;
-            cur = nextS;
-        }
-        // if(result > 2) return 0LL;
-        if(counter < result) {
-            P_RR("%lld\t", counter);
-            P_VEC(curs);
-            counter *= 10;
+            auto* ptr = &M[cur];
+            while(std::get<2>(*ptr) != -1) {
+                std::get<2>(*ptr) = result;
+                ++result;
+                auto next = GetNext();
+                auto& second = M[cur];
+                const auto& nextS = next ? std::get<0>(second) : std::get<1>(second);
+                // P(cur, M[cur].first, M[cur].second, nextS, (next ? 'L' : 'R'));
+                if(cur == nextS) return 0LL;
+                cur = nextS;
+                ptr = &M[cur];
+
+                // if(result > 2) return 0LL;
+                if(counter < result) {
+                    P(counter, cur);
+                    counter *= 10;
+                }
+            }
+            results.push_back({m.first, std::get<2>(*ptr), result});
+            P(m.first, std::get<2>(*ptr), result);
+            return 0LL;
         }
     }
     return result;
