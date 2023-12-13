@@ -26,7 +26,6 @@ auto count1() {
         ++result;
         auto next = GetNext();
         auto nextS = next ? M[cur].first : M[cur].second;
-        // P(cur, M[cur].first, M[cur].second, nextS, (next ? 'L' : 'R'));
         if(cur == nextS) return 0LL;
         cur = nextS;
     }
@@ -35,15 +34,21 @@ auto count1() {
 
 auto count2() {
     LL result = 0;
-    S cur = "AAA";
-    while(cur != "ZZZ") {
-        ++result;
-        auto next = GetNext();
-        auto nextS = next ? M[cur].first : M[cur].second;
-        // P(cur, M[cur].first, M[cur].second, nextS, (next ? 'L' : 'R'));
-        if(cur == nextS) return 0LL;
-        cur = nextS;
+    VECS curs;
+    for(auto m : M) {
+        if(m.first[2] == 'A') {
+            curs.push_back(m.first);
+        }
     }
+    P_VEC(curs);
+    // while(cur != "ZZZ") {
+    //     ++result;
+    //     auto next = GetNext();
+    //     auto nextS = next ? M[cur].first : M[cur].second;
+    //     // P(cur, M[cur].first, M[cur].second, nextS, (next ? 'L' : 'R'));
+    //     if(cur == nextS) return 0LL;
+    //     cur = nextS;
+    // }
     return result;
 }
 
