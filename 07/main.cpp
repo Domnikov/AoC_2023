@@ -132,7 +132,13 @@ auto count() {
     for(const auto& s:in) {
         hands.push_back(Hand{s});
     }
-    std::sort(BE(hands));
+    std::sort(BE(hands), [](const auto& lhs, const auto& rhs){return lhs>rhs;});
+    FOR(i, hands.size()){
+        LL idx = i+1;
+        LL score = idx*hands[i].bid;
+        P(idx, hands[i].bid, score);
+        result += score;
+    }
     return result;
 }
 
