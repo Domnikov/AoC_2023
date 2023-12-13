@@ -45,13 +45,13 @@ size_t FindNext(size_t idx) {
 }
 
 std::pair<VECPLL, VECPLL> GetCross(std::pair<LL, LL>& seed, LL src, LL dst, LL sz) {
-    P(seed);
+    // P(seed);
     auto src_a = seed.first;
     auto src_b = seed.second;
     seed = {0,0};
 
     if(src_b < src || src_a > src+sz) {
-        P(src_b, "<", src, "||", src_a, ">", src+sz);
+        // P(src_b, "<", src, "||", src_a, ">", src+sz);
         return {VECPLL{}, VECPLL{{src_a, src_b}}};
     }
     std::pair<LL,LL> cuted {std::max(src_a, src), std::min(src_b, src+sz)};
@@ -76,12 +76,12 @@ auto count(VECPLL seeds) {
             LL src = vec[1];
             LL dst = vec[0];
             LL sz = vec[2];
-            P(src, dst,sz);
+            // P(src, dst,sz);
             VECPLL new_seeds;
             for(auto& s:seeds) {
                 auto new_diaposons = GetCross(s, src, dst, sz);
-                P_VEC(new_diaposons.first);
-                P_VEC(new_diaposons.second);
+                // P_VEC(new_diaposons.first);
+                // P_VEC(new_diaposons.second);
                 for(auto d : new_diaposons.second) {
                     new_seeds.push_back(d);
                 }
@@ -90,11 +90,11 @@ auto count(VECPLL seeds) {
                 }
             }
             seeds = new_seeds;
-            P_VEC(seeds);
-            P_VEC(converted);
+            // P_VEC(seeds);
+            // P_VEC(converted);
         }
-        P_VEC(seeds);
-        P_VEC(converted);
+        // P_VEC(seeds);
+        // P_VEC(converted);
         for(auto& s:seeds) {
             converted.push_back(s);
         }
@@ -142,24 +142,6 @@ int main(int argc, char** argv) {
     seeds1.push_back({66, 66});
     seeds1.push_back({67, 67});
     score = count(seeds1);
-    P_RR("Part1: %lld\n", score);
-    P_RR("Part1: %lld\n", score);
-    P_RR("Part1: %lld\n", score);
-    P_RR("Part1: %lld\n", score);
-    P_RR("Part1: %lld\n", score);
-    P_RR("Part1: %lld\n", score);
-    P_RR("Part1: %lld\n", score);
-    P_RR("Part1: %lld\n", score);
-    P_RR("Part1: %lld\n", score);
-    P_RR("Part1: %lld\n", score);
-    P_RR("Part1: %lld\n", score);
-    P_RR("Part1: %lld\n", score);
-    P_RR("Part1: %lld\n", score);
-    P_RR("Part1: %lld\n", score);
-    P_RR("Part1: %lld\n", score);
-    P_RR("Part1: %lld\n", score);
-    P_RR("Part1: %lld\n", score);
-    P_RR("Part1: %lld\n", score);
     P_RR("Part1: %lld\n", score);
     //========================================================
 return 0;
