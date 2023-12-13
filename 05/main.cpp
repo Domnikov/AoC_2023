@@ -67,19 +67,19 @@ std::pair<VECPLL, VECPLL> GetCross(std::pair<LL, LL>& seed, LL src, LL dst, LL s
 auto count(VECPLL seeds) {
     size_t idx = 1;
     while((idx = FindNext(idx)) != -1) {
-        // P(in[idx]);
+        P(in[idx]);
         VECPLL converted;
         while(!in[++idx].empty()){
             auto vec = vecsToVeci(splitStr(in[idx], ' '));
             LL src = vec[1];
             LL dst = vec[0];
             LL sz = vec[2];
-            // P(src, dst,sz);
+            P(src, dst,sz);
             VECPLL new_seeds;
             for(auto& s:seeds) {
                 auto new_diaposons = GetCross(s, src, dst, sz);
-                // P_VEC(new_diaposons.first);
-                // P_VEC(new_diaposons.second);
+                P_VEC(new_diaposons.first);
+                P_VEC(new_diaposons.second);
                 for(auto d : new_diaposons.second) {
                     new_seeds.push_back(d);
                 }
@@ -88,11 +88,11 @@ auto count(VECPLL seeds) {
                 }
             }
             seeds = new_seeds;
-            // P_VEC(seeds);
-            // P_VEC(converted);
+            P_VEC(seeds);
+            P_VEC(converted);
         }
-        // P_VEC(seeds);
-        // P_VEC(converted);
+        P_VEC(seeds);
+        P_VEC(converted);
         for(auto& s:seeds) {
             converted.push_back(s);
         }
