@@ -140,6 +140,12 @@ using VECII=std::vector<std::vector<LL>>;
 #define VECF  std::vector<double>
 #define VECS  std::vector<S>
 #define VECSS std::vector<std::vector<S>>
+namespace std{
+inline ostream& operator<<( ostream& dest, pair<LL,LL> value )
+{
+    dest << "("<<value.first<<","<<value.second<<")";
+    return dest;
+}}
 
 template<typename T>
 void _P_VEC (const std::vector<T>& vec)
