@@ -9,7 +9,7 @@
 
 auto in = getInput();
 
-std::map<S, std::pair<S,S>> M;
+std::map<S, std::tuple<S, S, LL>> M;
 
 LL n = 0;
 
@@ -25,7 +25,7 @@ auto count1() {
     while(cur != "ZZZ") {
         ++result;
         auto next = GetNext();
-        auto nextS = next ? M[cur].first : M[cur].second;
+        auto nextS = next ? std::get<0>(M[cur]) : std::get<1>(M[cur]);
         if(cur == nextS) return 0LL;
         cur = nextS;
     }
@@ -48,13 +48,14 @@ auto count2() {
     for(auto m : M) {
         if(m.first[2] == 'A') {
             curs.push_back(m.first);
+            std::get<2>(m.second) = 0;
         }
     }
     while(!AllEnd(curs)) {
         ++result;
         auto next = GetNext();
         for(auto& cur : curs) {
-            const auto& nextS = next ? M[cur].first : M[cur].second;
+            const auto& nextS = next ? std::get<0>(M[cur]) : std::get<1>(M[cur]);
             // P(cur, M[cur].first, M[cur].second, nextS, (next ? 'L' : 'R'));
             if(cur == nextS) return 0LL;
             cur = nextS;
@@ -77,7 +78,7 @@ int main(int argc, char** argv)
         S left(v2[0].begin()+1, v2[0].end());
         v2[1].pop_back();
         S right(v2[1].begin(), v2[1].end());
-        M[v1[0]] = std::make_pair(left, right);
+        M[v1[0]] = std::make_tuple(left, right, -1);
     }
 
     LL score = 0;
