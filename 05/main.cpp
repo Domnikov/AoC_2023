@@ -58,10 +58,9 @@ std::pair<VECPLL, VECPLL> GetCross(std::pair<LL, LL>& seed, LL src, LL dst, LL s
     VECPLL orig;
     if(cuted.second < src_b) {
         orig.push_back({cuted.second+1, src_b});
-        P(1);
     }
     if(cuted.first > src_a) {
-        orig.push_back({src, cuted.first-1});
+        orig.push_back({src_a, cuted.first-1});
         P(2);
     }
     std::pair<VECPLL, VECPLL> result{VECPLL{{cuted.first - src + dst, cuted.second-src+dst}}, orig};
