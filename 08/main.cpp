@@ -45,10 +45,6 @@ LL find_LCM(VECI vec){
     LL counter = 1;
     while(!is_all_div(n)) {
         n += vec[vec.size() - 1];
-        if(counter < n){
-            P(counter);
-            counter *= 10;
-        }
     }
     return n;
 }
@@ -65,7 +61,6 @@ LL count2() {
             LL N = in[0].size();
             while(cur[2] != 'Z' || finds[std::make_pair(cur, n%N)] < 1) {
                 if(cur[2] == 'Z') {
-                    P(cur[2], n%N, finds.count({cur, n%N}), result);
                     finds[std::make_pair(cur, n%N)] = finds[std::make_pair(cur, n%N)] + 1;
                     vec.push_back(result);
                     break;
@@ -73,14 +68,10 @@ LL count2() {
                 ++result;
                 auto next = GetNext();
                 auto nextS = next ? std::get<0>(M[cur]) : std::get<1>(M[cur]);
-                // if(cur == nextS) return 0LL;
                 cur = nextS;
-                // P(cur[2], finds.count({cur, n%N}));
             }
-            P_LINE;
         }
     }
-    P_VEC(vec);
     return find_LCM(vec);
 }
 
@@ -97,7 +88,7 @@ int main(int argc, char** argv)
 
     LL score = 0;
     n = 0;
-    // score = count1();
+    score = count1();
     P_RR("Part1: %lld\n", score);
     //========================================================
 
