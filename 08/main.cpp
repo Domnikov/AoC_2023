@@ -21,6 +21,7 @@ bool GetNext() {
 
 auto count() {
     LL result = 0;
+    P_MAP(M);
     S cur = "AAA";
     while(cur != "ZZZ") {
         ++result;
