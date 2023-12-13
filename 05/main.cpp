@@ -81,21 +81,23 @@ auto count(VECPLL seeds) {
                 auto new_diaposons = GetCross(s, src, dst, sz);
             P_VEC(new_diaposons.first);
             P_VEC(new_diaposons.second);
-            return 0LL;
                 for(auto d : new_diaposons.second) {
-                    P("orig", d.first, d.second);
                     seeds.push_back(d);
                 }
                 for(auto d : new_diaposons.first) {
-                    P("new", d.first, d.second);
                     converted.push_back(d);
                 }
             }
+            P_VEC(seeds);
+            P_VEC(converted);
         }
+            P_VEC(seeds);
+            P_VEC(converted);
         for(auto& s:seeds) {
             converted.push_back(s);
         }
         seeds = converted;
+        return 0LL;
     }
     LL min = seeds[0].first;
     for(auto n : seeds){
