@@ -112,8 +112,36 @@ auto count(VECPLL seeds) {
 
 int main(int argc, char** argv) {
     LL score = 0;
-    auto seeds1 = GetInitialSeeds1();
-    // score = count(seeds1);
+    // auto seeds1 = GetInitialSeeds1();
+    VECPLL seeds1;
+    seeds1.push_back({79, 79});
+    seeds1.push_back({80, 80});
+    seeds1.push_back({81, 81});
+    seeds1.push_back({82, 82});
+    seeds1.push_back({83, 83});
+    seeds1.push_back({84, 84});
+    seeds1.push_back({85, 85});
+    seeds1.push_back({86, 86});
+    seeds1.push_back({87, 87});
+    seeds1.push_back({88, 88});
+    seeds1.push_back({89, 89});
+    seeds1.push_back({90, 90});
+    seeds1.push_back({91, 91});
+    seeds1.push_back({92, 92});
+    seeds1.push_back({55, 55});
+    seeds1.push_back({56, 56});
+    seeds1.push_back({57, 57});
+    seeds1.push_back({58, 58});
+    seeds1.push_back({59, 59});
+    seeds1.push_back({60, 60});
+    seeds1.push_back({61, 61});
+    seeds1.push_back({62, 62});
+    seeds1.push_back({63, 63});
+    seeds1.push_back({64, 64});
+    seeds1.push_back({65, 65});
+    seeds1.push_back({66, 66});
+    seeds1.push_back({67, 67});
+    score = count(seeds1);
     P_RR("Part1: %lld\n", score);
     //========================================================
 
