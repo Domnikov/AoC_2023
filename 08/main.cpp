@@ -14,7 +14,8 @@ std::map<S, std::pair<S,S>> M;
 LL n = 0;
 
 bool GetNext() {
-    LL step = n%(in.size()-1);
+    LL step = n%in.size();
+    P(step);
     ++n;
     return in[0][step] == 'L';
 }
