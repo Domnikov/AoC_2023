@@ -59,10 +59,22 @@ VECPLL GetAllGalaxies(){
     return g;
 }
 
+auto GetDist(std::pair<LL,LL> g1, std::pair<LL,LL> g2){
+    return labs(g1.first - g2.first) + labs(g1.second-g2.second);
+}
+
 auto count() {
     LL result = 0;
     auto g = GetAllGalaxies();
-    P_VEC(g);
+
+    FOR(i, g.size()){
+        for(auto j = i+1; j < g.size(); ++j){
+            auto dist = GetDist(g[i], g[j]);
+            P(g[i], g[j], dist);
+            result += dist;
+        }
+    }
+
     return result;
 }
 
