@@ -4,7 +4,6 @@
 inline auto getInput()
 {
     VECS input {
-"",
 "#.##..##.",
 "..#.##.#.",
 "##......#",
