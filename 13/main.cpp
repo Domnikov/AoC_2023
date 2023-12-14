@@ -73,7 +73,9 @@ LL CheckAll(VECS pattern){
             auto localH = FindReflH(pattern);
             auto localV = FindReflV(pattern);
             if(localH != null || localV != null) {
-                // P(localH, localV);
+                P_RR("\t|\n");
+                P_RR("\tV\n");
+                P_VECV(pattern);
                 LL result = 100*localH.second;
                 result += localV.second;
                 return result;
