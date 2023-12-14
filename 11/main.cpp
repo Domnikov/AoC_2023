@@ -11,7 +11,7 @@ auto in = getInput();
 
 VECI exp_rows;
 VECI exp_cols;
-LL exp_value = 2;
+LL exp_value = 9;
 
 bool is_emptyRow(LL l){
     FOR(i, in[l].size()){
