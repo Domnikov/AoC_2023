@@ -129,7 +129,7 @@ int main(int argc, char** argv)
     //========================================================
 
     UnfoldInput();
-    score = count2();
+    score = count1();
     P_RR("Part2: %lld\n", score);
     return 0;
 }
