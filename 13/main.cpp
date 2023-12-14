@@ -9,10 +9,13 @@
 
 auto in = getInput();
 
-std::pair<LL,LL> FindReflH(const VECS& pattern) {
+std::pair<LL,LL> FindReflH(const VECS& pattern, std::pair<LL,LL> origin = {0LL, 0LL}) {
     for(size_t i = 1; i < pattern.size(); ++i) {
         LL left = i-1;
         LL right = i;
+        if(origin == std::make_pair(left, right)) {
+            continue;
+        }
         while(pattern[left] == pattern[right]) {
             if( (--left < 0) || (++right == pattern.size())){
                 return {i-1,i};
@@ -31,10 +34,13 @@ bool compV(const VECS& pattern, LL left, LL right) {
     return true;
 }
 
-std::pair<LL,LL> FindReflV(const VECS& pattern) {
+std::pair<LL,LL> FindReflV(const VECS& pattern, std::pair<LL,LL> origin = {0LL, 0LL}) {
     for(size_t i = 1; i < pattern[0].size(); ++i) {
         LL left = i-1;
         LL right = i;
+        if(origin == std::make_pair(left, right)) {
+            continue;
+        }
         while(compV(pattern, left, right)) {
             if( (--left < 0) || (++right == pattern[0].size())){
                 return {i-1,i};
@@ -65,13 +71,15 @@ auto count1() {
 
 LL CheckAll(VECS pattern){
     auto null = std::make_pair(0LL,0LL);
+    auto originH = FindReflH(pattern);
+    auto originV = FindReflV(pattern);
     FOR(row, pattern.size()){
         P(row);
         FOR(col, pattern[row].size()){
             P(col);
             pattern[row][col] = pattern[row][col] == '#' ? '.' : '#';
-            auto localH = FindReflH(pattern);
-            auto localV = FindReflV(pattern);
+            auto localH = FindReflH(pattern, originH);
+            auto localV = FindReflV(pattern, originV);
             P(localH, localV);
             if(localH != null || localV != null) {
                 P_RR("\t\t\t|\n");
