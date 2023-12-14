@@ -124,18 +124,21 @@ LL count2(){
 int main(int argc, char** argv)
 {
     LL score = 0;
-    S s = "########################################################################.........................................................................";
-    do {
-        score++;
-    } while(std::next_permutation(BE(s)));
-    P(score);
-return 0;
+//     S s = "########################################################################.........................................................................";
+//     do {
+//         score++;
+//     } while(std::next_permutation(BE(s)));
+//     P(score);
+// return 0;
     score = count1();
     P_RR("Part1: %lld\n", score);
     //========================================================
 
-    UnfoldInput();
-    score = count1();
+    // UnfoldInput();
+    // score = count1();
+    for(auto s:in){
+        score = std::max(score, CountUnknowns(s));
+    }
     P_RR("Part2: %lld\n", score);
     return 0;
 }
