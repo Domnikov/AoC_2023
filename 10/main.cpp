@@ -180,8 +180,7 @@ auto count2(){
     P.emplace_back(1, 2);
     auto [xf, yf] = P[0];
     auto [xl, yl] = P[P.size()-1];
-    P(xf, yl);
-    LL neg = xf*yl;
+    P(xl, yf);
     LL pos = xl*yf;
     for(size_t i = 1; i < P.size(); i+=1){
         auto [x1, y1] = P[i-1];
@@ -189,7 +188,8 @@ auto count2(){
         P(x1, y2);
         pos += x1*y2;
     }
-    P(xl, yf);
+    P(xf, yl);
+    LL neg = xf*yl;
     for(size_t i = 1; i < P.size(); i+=1){
         auto [x1, y1] = P[i-1];
         auto [x2, y2] = P[i];
