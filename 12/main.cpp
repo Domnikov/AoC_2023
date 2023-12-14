@@ -95,8 +95,9 @@ bool CheckFromHere(S& s, LL posS, LL num){
     if ((posS+num) == (s.size()-1)) {
         return true;
     } else {
+        bool result = s[posS+num] != '#';
         s[posS+num] = '.';
-        return (s[posS+num] != '#');
+        return result;
     }
 }
 
