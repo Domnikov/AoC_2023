@@ -126,7 +126,9 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
             P_LINE;
             return 0;
         }
-        return recursion(ss, posS+num+1, nums, posN+1);
+        auto result = recursion(ss, posS+num+1, nums, posN+1);
+        P_LINE;
+        return result;
     } else if(s[posS] == '?') {
         // P_LINE;
         LL total = 0;
@@ -136,11 +138,13 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
             if(CheckFromHere(ss, posS, num)) {
                 // P_LINE;
                 total += recursion(ss, posS+num+1, nums, posN+1);
+                P_LINE;
             }
         }
         S sss = s;
         sss[posS] = '.';
         total += recursion(sss, posS+1, nums, posN);
+        P_LINE;
         return total;
     } else {
         P(s, posS, s[posS], nums.size(), posN);
