@@ -28,6 +28,9 @@ VECI StrToBrokenVeci(S s){
             result.push_back(0);
         }
     }
+    if(!result.back()){
+        result.pop_back();
+    }
     return result;
 }
 
