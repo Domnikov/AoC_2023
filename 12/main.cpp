@@ -35,14 +35,14 @@ VECI StrToBrokenVeci(const S& s){
     return result;
 }
 
-bool IsCorrect(const S& s, const VECI& nums) {
-    auto calced = StrToBrokenVeci(s);
-    // P(s);
-    // P_VEC(calced);
-    // P_VEC(nums);
-    return calced == nums;
-}
-
+// bool IsCorrect(const S& s, const VECI& nums) {
+//     auto calced = StrToBrokenVeci(s);
+//     // P(s);
+//     // P_VEC(calced);
+//     // P_VEC(nums);
+//     return calced == nums;
+// }
+//
 LL CountUnknowns(const S& s){
     LL counter = 0;
     for(auto c:s){
@@ -51,36 +51,36 @@ LL CountUnknowns(const S& s){
     return counter;
 }
 
-LL permutation = 0;
-
-void resetPerm(){
-    permutation = 0;
-}
-
-bool Next(LL len){
-    return (pow(2, len) > ++permutation);
-}
-
-S GetPermutation(LL len){
-    LL cur = permutation;
-    S result;
-    FOR(i, len){
-        result.push_back((cur%2) ? '#' : '.');
-        cur /= 2;
-    }
-    return result;
-}
-
-S ApplyPerm(S s, LL len){
-    auto perm = GetPermutation(len);
-    for(auto& c:s){
-        if(c == '?'){
-            c = perm.back();
-            perm.pop_back();
-        }
-    }
-    return s;
-}
+// LL permutation = 0;
+//
+// void resetPerm(){
+//     permutation = 0;
+// }
+//
+// bool Next(LL len){
+//     return (pow(2, len) > ++permutation);
+// }
+//
+// S GetPermutation(LL len){
+//     LL cur = permutation;
+//     S result;
+//     FOR(i, len){
+//         result.push_back((cur%2) ? '#' : '.');
+//         cur /= 2;
+//     }
+//     return result;
+// }
+//
+// S ApplyPerm(S s, LL len){
+//     auto perm = GetPermutation(len);
+//     for(auto& c:s){
+//         if(c == '?'){
+//             c = perm.back();
+//             perm.pop_back();
+//         }
+//     }
+//     return s;
+// }
 
 // bool CheckFromHere(S& s, LL posS, LL num){
 bool CheckFromHere(const S& s, LL posS, LL num){
