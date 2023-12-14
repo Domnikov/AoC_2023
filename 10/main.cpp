@@ -106,7 +106,7 @@ void GetNext(LL& pos, LL n){
     pos = nextPos;
 }
 
-VEC
+std::deque<LL> P;
 
 auto count1() {
     LL result = 1;
@@ -134,12 +134,19 @@ auto count1() {
     auto p1 = conStart[0];
     auto p2 = conStart[1];
     Set(start, 0);
+    P.push_back(start);
 
     while (p1 != p2){
         ++result;
+        P.push_front(p1);
+        P.push_back(p2);
         GetNext(p1, 0);
         GetNext(p2, 0);
     }
+    P.push_back(p2);
+
+    VECI PP(BE(P));
+    P_VEC(PP);
 
     return result;
 }
