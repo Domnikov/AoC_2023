@@ -195,8 +195,8 @@ int main(int argc, char** argv)
     score = count1();
     P_RR("Part1: %lld\n", score);
     //========================================================
-return 0;
-    UnfoldInput();
+
+    // UnfoldInput();
     score = count1();
     for(auto s:in){
         score = std::max(score, CountUnknowns(s));
