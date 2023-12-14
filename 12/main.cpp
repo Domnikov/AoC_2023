@@ -162,7 +162,6 @@ auto count1() {
                 result++;
             }
         }while(Next(unk));
-        P_RR("%ld%%\n",100*i/in.size());
     }
     return result;
 }
