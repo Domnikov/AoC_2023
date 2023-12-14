@@ -114,6 +114,7 @@ bool Precheck(const S& s, LL posS, const VECI& nums, LL posN){
     for(size_t i = posN; i < nums.size(); i++){
         need += nums[i];
     }
+    P(places, need);
     return places > need;
 }
 
