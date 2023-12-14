@@ -17,8 +17,9 @@ VECI GetNumb(LL i){
     return vecsToVeci(splitStr(splitStr(in[i], ' ')[1], ','));
 }
 
-VECI StrToBrokenVeci(S s){
+VECI StrToBrokenVeci(const S& s){
     VECI result;
+    result.reserve(20);
     result.push_back(0);
     for(auto c:s){
         if(c == '#'){
@@ -34,7 +35,7 @@ VECI StrToBrokenVeci(S s){
     return result;
 }
 
-bool IsCorrect(S s, VECI nums) {
+bool IsCorrect(const S& s, const VECI& nums) {
     auto calced = StrToBrokenVeci(s);
     // P(s);
     // P_VEC(calced);
@@ -42,7 +43,7 @@ bool IsCorrect(S s, VECI nums) {
     return calced == nums;
 }
 
-LL CountUnknowns(S s){
+LL CountUnknowns(const S& s){
     LL counter = 0;
     for(auto c:s){
         if(c == '?') ++counter;
@@ -85,7 +86,7 @@ auto count() {
     LL result = 0;
     FOR(i, in.size()){
         auto numb = GetNumb(i);
-        S s = GetLine(i);
+        const S& s = GetLine(i);
         LL unk = CountUnknowns(s);
         resetPerm();
         // P_VEC(numb);
@@ -96,6 +97,8 @@ auto count() {
                 result++;
             }
         }while(Next(unk));
+
+        P(100*i/in.size());
     }
     return result;
 }
