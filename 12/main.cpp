@@ -118,9 +118,10 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
 auto count1() {
     LL result = 0;
     FOR(i, in.size()){
-        auto numb = GetNumb(i);
+        auto nums = GetNumb(i);
         const S& s = GetLine(i);
         LL unk = CountUnknowns(s);
+        result += recursion(s, 0, nums, 0);
         // resetPerm();
         // do{
         //     auto newS = ApplyPerm(s, unk);
