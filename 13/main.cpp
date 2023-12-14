@@ -9,26 +9,39 @@
 
 auto in = getInput();
 
-LL FindRefl(const VECS& pattern){
-    for(size_t i = 1; i < pattern.size(); ++i){
-        if(pattern[i-1] == pattern[i]) {
-            return i-1;
-        }
-    }
-    for(size_t i = 1; i < pattern[0].size(); ++i){
-        bool find = true;
-        FOR(j, pattern.size()){
-            if(pattern[j][i-1] != pattern[j][i]){
-                find = false;
-                break;
+std::pair<LL,LL> FindReflH(const VECS& pattern) {
+    for(size_t i = 1; i < pattern.size(); ++i) {
+        LL left = i-1;
+        LL right = i;
+        while(pattern[left] == pattern[right]) {
+            if( (--left < 0) || (++right == pattern.size())){
+                return {left,right};
             }
         }
-        if(find){
-            return i-1;
+    }
+    return{0LL,0LL};
+}
+
+bool compV(const VECS& pattern, LL left, LL right) {
+    FOR(j, pattern.size()){
+        if(pattern[j][left] != pattern[j][right]) {
+            return false;
         }
     }
-    P_LINE;
-    exit(1);
+    return true;
+}
+
+std::pair<LL,LL> FindReflV(const VECS& pattern) {
+    for(size_t i = 1; i < pattern[0].size(); ++i) {
+        LL left = i-1;
+        LL right = i;
+        while(compV(pattern, left, right)) {
+            if( (--left < 0) || (++right == pattern[0].size())){
+                return {left,right};
+            }
+        }
+    }
+    return{0LL,0LL};
 }
 
 auto count() {
@@ -39,10 +52,12 @@ auto count() {
         if(!s.empty()){
             pattern.push_back(s);
         } else {
-            auto local = FindRefl(pattern);
-            P(local);
+            auto localH = FindReflH(pattern);
+            auto localV = FindReflV(pattern);
+            P(localH, localV);
             pattern.clear();
-            result += local;
+            result += 100*localH.first;
+            result += localV.first;
         }
     }
 
