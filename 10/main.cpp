@@ -109,8 +109,8 @@ auto count1() {
     if(conu.empty() && (conu[0] == start || conu[1] == start)) conStart.push_back(u);
     if(cond.empty() && (cond[0] == start || cond[1] == start)) conStart.push_back(d);
 
+    P_VEC(conStart);
     if(conStart.size() != 2){
-        P_VEC(conStart);
         P_LINE;
         exit(1);
     }
