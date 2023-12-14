@@ -29,7 +29,7 @@ void insertRow(LL l){
 
 void insertCol(LL c){
     FOR(i, in.size()){
-        in[c].insert(in[c].begin() + c+1, '.');
+        in[i].insert(in[i].begin() + c+1, '.');
     }
 }
 
