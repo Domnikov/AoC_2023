@@ -161,6 +161,7 @@ auto count1() {
         const S& s = GetLine(i);
         LL unk = CountUnknowns(s);
         result += recursion(s, 0, nums, 0);
+        P_LINE;
         // resetPerm();
         // do{
         //     auto newS = ApplyPerm(s, unk);
