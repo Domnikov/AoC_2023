@@ -108,6 +108,7 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN, LL level = 0){
     }
     if(s.size() <= posS) {
         if(nums.size() == posN) {
+            P(s);
             return 1;
         }
         return 0;
