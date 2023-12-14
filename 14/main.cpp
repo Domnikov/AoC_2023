@@ -58,6 +58,7 @@ auto count1() {
     }
     // P_RR("\n");
     // P_VECV(in);
+    result = GetScore();
     return result;
 }
 
