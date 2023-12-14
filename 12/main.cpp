@@ -77,26 +77,16 @@ S ApplyPerm(S s, LL len){
 auto count() {
     LL result = 0;
     FOR(i, in.size()){
-        P_LINE;
         auto numb = GetNumb(i);
-        P_LINE;
         S s = GetLine(i);
-        P_LINE;
         LL unk = CountUnknowns(s);
-        P_LINE;
         resetPerm();
-        P_LINE;
         do{
-        P_LINE;
             auto newS = ApplyPerm(s, unk);
-        P_LINE;
             if(IsCorrect(newS, numb)){
-        P_LINE;
                 result++;
-        P_LINE;
             }
         }while(Next(unk));
-        P_LINE;
     }
     return result;
 }
