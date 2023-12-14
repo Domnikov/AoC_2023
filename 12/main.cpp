@@ -82,7 +82,7 @@ LL CountUnknowns(const S& s){
 //     return s;
 // }
 
-bool CheckFromHere(const S& s, LL posS, LL num){
+bool CheckFromHere(S& s, LL posS, LL num){
     FOR(i, num){
         if(posS >= s.size()) {
             return false;
@@ -90,6 +90,7 @@ bool CheckFromHere(const S& s, LL posS, LL num){
         if(s[posS+i] == '.') {
             return false;
         }
+        s[posS+i] = '#';
     }
     return ((posS+num) == (s.size()-1)) ? true : (s[posS+num] != '#');
 }
@@ -107,17 +108,21 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
         P_LINE;
         return 0;
     } else if(s[posS] == '#'){
-        if(!CheckFromHere(s, posS, num)) {
+        S ss = s;
+        if(!CheckFromHere(ss, posS, num)) {
             P_LINE;
             return 0;
         }
-        return recursion(s, posS+num, nums, posN+1);
+        return recursion(ss, posS+num, nums, posN+1);
     } else if(s[posS] == '?') {
         LL total = 0;
-        if(CheckFromHere(s, posS, num)) {
-            total += recursion(s, posS+num, nums, posN+1);
+        S ss = s;
+        if(CheckFromHere(ss, posS, num)) {
+            total += recursion(ss, posS+num, nums, posN+1);
         }
-        total += recursion(s, posS+1, nums, posN);
+        S sss = s;
+        sss[posS] = '.';
+        total += recursion(sss, posS+1, nums, posN);
         return total;
     } else {
         P(s, posS, s[posS], nums.size(), posN);
