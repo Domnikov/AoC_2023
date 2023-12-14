@@ -103,6 +103,7 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
     }
     LL num = nums[posN];
     if(s.size() <= posS) {
+        P_LINE;
         if(nums.size() == posN) {
             P(s);
             return 1;
@@ -110,6 +111,7 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
         P_LINE;
         return 0;
     } else if(s[posS] == '#'){
+        P_LINE;
         S ss = s;
         if(!CheckFromHere(ss, posS, num)) {
             P_LINE;
@@ -117,6 +119,7 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
         }
         return recursion(ss, posS+num, nums, posN+1);
     } else if(s[posS] == '?') {
+        P_LINE;
         LL total = 0;
         S ss = s;
         if(CheckFromHere(ss, posS, num)) {
