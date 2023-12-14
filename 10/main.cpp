@@ -183,14 +183,14 @@ auto count2(){
     P(xf, yl);
     LL neg = xf*yl;
     LL pos = xl*yf;
-    for(size_t i = 1; i < P.size(); i+=2){
+    for(size_t i = 1; i < P.size(); i+=1){
         auto [x1, y1] = P[i-1];
         auto [x2, y2] = P[i];
         P(x1, y2);
         pos += x1*y2;
     }
     P(xl, yf);
-    for(size_t i = 1; i < P.size(); i+=2){
+    for(size_t i = 1; i < P.size(); i+=1){
         auto [x1, y1] = P[i-1];
         auto [x2, y2] = P[i];
         P(x2, y1);
