@@ -63,9 +63,33 @@ S GetPermutation(LL len){
     return result;
 }
 
+S ApplyPerm(S s, LL len){
+    auto perm = GetPermutation(len);
+    for(auto& c:s){
+        if(c == '?'){
+            c = perm.back();
+            perm.pop_back();
+        }
+    }
+    return s;
+}
+
 auto count() {
     LL result = 0;
+    FOR(i, in.size()){
+        auto numb = GetNumb(i);
+        S s = GetLine(i);
+        LL unk = CountUnknowns(s);
+        resetPerm();
+        do{
+            auto newS = ApplyPerm(s, unk);
+            if(IsCorrect(newS, numb)){
+                result++;
+            }
+        }while(Next(unk));
+    }
     do{
+
         P(GetPermutation(10));
     } while(Next(10));
     return result;
