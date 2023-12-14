@@ -162,7 +162,7 @@ auto count1() {
                 local++;
             }
         }while(Next(unk));
-        P(i, local);
+        P_RR("%ld\t%lld\n", i, local);
         result += local;
     }
     return result;
