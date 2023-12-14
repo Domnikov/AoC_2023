@@ -124,10 +124,9 @@ LL count2(){
 int main(int argc, char** argv)
 {
     S s = "###...";
-
-    while(std::next_permutation(BE(s))) {
+    do {
         P(s);
-    }
+    } while(std::next_permutation(BE(s)));
 return 0;
     LL score = 0;
     score = count1();
