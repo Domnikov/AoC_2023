@@ -10,7 +10,7 @@
 auto in = getInput();
 
 void expand(){
-    for(size_t i = in.size() - 1; i >= 0; --i){
+    for(LL i = in.size() - 1; i >= 0; --i){
 
     }
 }
