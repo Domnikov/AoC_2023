@@ -9,9 +9,29 @@
 
 auto in = getInput();
 
+void MoveNorth(LL row, LL col){
+    for(LL r = row-1; r >= 0; --r){
+        if(in[row][col] == '.') {
+            in[row][col] = 'O';
+            in[row+1][col] = '.';
+        } else {
+            return;
+        }
+    }
+}
+
 auto count1() {
     LL result = 0;
-
+    P_VECV(in);
+    FOR(row, in.size()){
+        FOR(col, in[row].size()){
+            if(in[row][col] == 'O'){
+                MoveNorth(row,col);
+            }
+        }
+    }
+    P_RR("\n");
+    P_VECV(in);
     return result;
 }
 
