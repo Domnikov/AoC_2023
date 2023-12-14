@@ -123,11 +123,17 @@ LL count2(){
 
 int main(int argc, char** argv)
 {
+    S s = "###...";
+
+    while(std::next_permutation(BE(s))) {
+        P(s);
+    }
+return 0;
     LL score = 0;
     score = count1();
     P_RR("Part1: %lld\n", score);
     //========================================================
-return 0;
+
     UnfoldInput();
     score = count1();
     P_RR("Part2: %lld\n", score);
