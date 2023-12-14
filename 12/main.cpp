@@ -149,19 +149,21 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN, LL level = 0){
 auto count1() {
     LL result = 0;
     FOR(i, in.size()){
-        P(i);
         auto nums = GetNumb(i);
         const S& s = GetLine(i);
         LL unk = CountUnknowns(s);
         // result += recursion(s, 0, nums, 0);
         // FOR(i, 0){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, s.c_str());
         resetPerm();
+        LL local = 0;
         do{
             auto newS = ApplyPerm(s, unk);
             if(IsCorrect(newS, nums)){
-                result++;
+                local++;
             }
         }while(Next(unk));
+        P(i, local);
+        result += local;
     }
     return result;
 }
