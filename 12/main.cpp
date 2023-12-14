@@ -51,36 +51,36 @@ LL CountUnknowns(const S& s){
     return counter;
 }
 
-// LL permutation = 0;
-//
-// void resetPerm(){
-//     permutation = 0;
-// }
-//
-// bool Next(LL len){
-//     return (pow(2, len) > ++permutation);
-// }
-//
-// S GetPermutation(LL len){
-//     LL cur = permutation;
-//     S result;
-//     FOR(i, len){
-//         result.push_back((cur%2) ? '#' : '.');
-//         cur /= 2;
-//     }
-//     return result;
-// }
-//
-// S ApplyPerm(S s, LL len){
-//     auto perm = GetPermutation(len);
-//     for(auto& c:s){
-//         if(c == '?'){
-//             c = perm.back();
-//             perm.pop_back();
-//         }
-//     }
-//     return s;
-// }
+LL permutation = 0;
+
+void resetPerm(){
+    permutation = 0;
+}
+
+bool Next(LL len){
+    return (pow(2, len) > ++permutation);
+}
+
+S GetPermutation(LL len){
+    LL cur = permutation;
+    S result;
+    FOR(i, len){
+        result.push_back((cur%2) ? '#' : '.');
+        cur /= 2;
+    }
+    return result;
+}
+
+S ApplyPerm(S s, LL len){
+    auto perm = GetPermutation(len);
+    for(auto& c:s){
+        if(c == '?'){
+            c = perm.back();
+            perm.pop_back();
+        }
+    }
+    return s;
+}
 
 // bool CheckFromHere(S& s, LL posS, LL num){
 bool CheckFromHere(const S& s, LL posS, LL num){
@@ -153,16 +153,16 @@ auto count1() {
         auto nums = GetNumb(i);
         const S& s = GetLine(i);
         LL unk = CountUnknowns(s);
-        result += recursion(s, 0, nums, 0);
-        //FOR(i, 0){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, s.c_str());
-        // resetPerm();
-        // do{
-        //     auto newS = ApplyPerm(s, unk);
-        //     if(IsCorrect(newS, numb)){
-        //         result++;
-        //     }
-        // }while(Next(unk));
-        // P_RR("%ld%%\n",100*i/in.size());
+        // result += recursion(s, 0, nums, 0);
+        FOR(i, 0){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, s.c_str());
+        resetPerm();
+        do{
+            auto newS = ApplyPerm(s, unk);
+            if(IsCorrect(newS, nums)){
+                result++;
+            }
+        }while(Next(unk));
+        P_RR("%ld%%\n",100*i/in.size());
     }
     return result;
 }
