@@ -109,7 +109,7 @@ void GetNext(LL& pos, LL n){
 }
 
 auto count1() {
-    LL result = 0;
+    LL result = 1;
     auto start = findStart();
     auto l = Left(start);
     auto r = Right(start);
@@ -133,7 +133,7 @@ auto count1() {
 
     auto p1 = conStart[0];
     auto p2 = conStart[1];
-    Set(start, result);
+    Set(start, 0);
 
     while (p1 != p2){
         P(p1, Get(p1),p2, Get(p2), result);
