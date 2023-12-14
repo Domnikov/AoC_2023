@@ -106,7 +106,7 @@ auto count2() {
         } else {
             // P_VECV(pattern);
             auto local = CheckAll(pattern);
-            P(local);
+            // P(local);
             result += local;
             pattern.clear();
         }
