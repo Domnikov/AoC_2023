@@ -102,56 +102,40 @@ bool CheckFromHere(S& s, LL posS, LL num){
 }
 
 LL recursion(const S& s, LL posS, const VECI& nums, LL posN, LL level = 0){
-    // P(s, posS, s[posS], nums.size(), posN);
     while(posS < s.size() && s[posS] == '.'){
-        //FOR*i,level){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, s.c_str());
         ++posS;
     }
     if(s.size() <= posS) {
         if(nums.size() == posN) {
-            //FOR*i,level){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, s.c_str());
             return 1;
         }
-        //FOR*i,level){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, s.c_str());
         return 0;
     } else if(s[posS] == '#'){
         if(posN == nums.size()) {
-            //FOR*i,level){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, s.c_str());
             return 0;
         }
-        //FOR*i,level){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, s.c_str());
         S ss = s;
         LL num = nums[posN];
         if(!CheckFromHere(ss, posS, num)) {
-            //FOR*i,level){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, ss.c_str());
             return 0;
         }
-        //FOR*i,level){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, ss.c_str());
         auto result = recursion(ss, posS+num+1, nums, posN+1, level+1);
-        //FOR*i,level){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, ss.c_str());
         return result;
     } else if(s[posS] == '?') {
-        // //FOR*i,level){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, s.c_str());
         LL total = 0;
         S ss = s;
         if(posN < nums.size()) {
             LL num = nums[posN];
             if(CheckFromHere(ss, posS, num)) {
-                // //FOR*i,level){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, s.c_str());
-                //FOR*i,level){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, ss.c_str());
                 total += recursion(ss, posS+num+1, nums, posN+1, level+1);
-                //FOR*i,level){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, ss.c_str());
             }
         }
         S sss = s;
         sss[posS] = '.';
-        //FOR*i,level){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, sss.c_str());
         total += recursion(sss, posS+1, nums, posN, level+1);
-        //FOR*i,level){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, sss.c_str());
         return total;
     } else {
         P(s, posS, s[posS], nums.size(), posN);
-        //FOR*i,level){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, s.c_str());
         exit(1);
     }
 }
