@@ -149,7 +149,7 @@ auto count1() {
     DP.push_back(p2);
     points = DP.size();
     for(auto pos:DP){
-        char c2 = Get(p2);
+        char c2 = Get(pos);
         if(c2 != '|' && c2 != '-')P.emplace_back(X(pos), Y(pos));
     }
     P_VEC(P);
