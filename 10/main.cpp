@@ -177,11 +177,15 @@ auto count2(){
     P.emplace_back(5, 6);
     auto [xf, yf] = P[0];
     auto [xl, yl] = P[P.size()-1];
+    P(xf, yl);
+    P(xl, yf);
     LL pos = xf*yl;
     LL neg = xl*yf;
     for(size_t i = 1; i < P.size(); i+=2){
         auto [x1, y1] = P[i-1];
         auto [x2, y2] = P[i];
+        P(x1, y2);
+        P(x2, y1);
         pos += x1*y2;
         neg -= x2*y1;
     }
