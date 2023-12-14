@@ -142,6 +142,10 @@ auto count1() {
     return result;
 }
 
+auto count2(){
+    return 0;
+}
+
 int main(int argc, char** argv)
 {
     LL score = 0;
@@ -149,6 +153,7 @@ int main(int argc, char** argv)
     P_RR("Part1: %lld\n", score);
     //========================================================
 
+    auto in = getInput();
     score = count1();
     P_RR("Part2: %lld\n", score);
     return 0;
