@@ -63,9 +63,30 @@ auto count1() {
     return result;
 }
 
+LL CheckAll(VECS pattern){
+    auto null = std::make_pair(0LL,0LL);
+    FOR(row, pattern.size()){
+        P(row);
+        FOR(col, pattern[row].size()){
+            P(col);
+            pattern[row][col] = pattern[row][col] == '#' ? '.' : '#';
+            auto localH = FindReflH(pattern);
+            auto localV = FindReflV(pattern);
+            if(localH != null || localV != null) {
+                // P(localH, localV);
+                LL result = 100*localH.second;
+                result += localV.second;
+                return result;
+            }
+            pattern[row][col] = pattern[row][col] == '#' ? '.' : '#';
+        }
+    }
+    P_LINE;
+    exit(1);
+}
+
 auto count2() {
     LL result = 0;
-    auto null = std::make_pair(0LL,0LL);
 
     VECS pattern;
     for(const auto& s:in){
@@ -73,24 +94,10 @@ auto count2() {
             pattern.push_back(s);
         } else {
             P_VECV(pattern);
-            FOR(row, pattern.size()){
-                P(row);
-                FOR(col, pattern[row].size()){
-                    P(col);
-                    pattern[row][col] = pattern[row][col] == '#' ? '.' : '#';
-                    auto localH = FindReflH(pattern);
-                    auto localV = FindReflV(pattern);
-                    if(localH != null || localV != null) {
-                        // P(localH, localV);
-                        pattern.clear();
-                        result += 100*localH.second;
-                        result += localV.second;
-                        row = pattern.size();
-                        break;
-                    }
-                    pattern[row][col] = pattern[row][col] == '#' ? '.' : '#';
-                }
-            }
+            auto local = CheckAll(pattern);
+            P(local);
+            result += local;
+            pattern.clear();
         }
     }
 
