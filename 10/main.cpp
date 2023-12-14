@@ -136,8 +136,8 @@ auto count1() {
     while (p1 != p2){
         P(p1, Get(p1),p2, Get(p2), result);
         ++result;
-        GetNext(p1, result);
-        GetNext(p2, result);
+        GetNext(p1, 0);
+        GetNext(p2, 0);
     }
 
     return result;
