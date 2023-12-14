@@ -56,8 +56,8 @@ auto count() {
             auto localV = FindReflV(pattern);
             P(localH, localV);
             pattern.clear();
-            result += 100*localH.first;
-            result += localV.first;
+            result += 100*localH.second;
+            result += localV.second;
         }
     }
 
