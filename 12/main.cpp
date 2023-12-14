@@ -123,12 +123,13 @@ LL count2(){
 
 int main(int argc, char** argv)
 {
-    S s = "###...";
-    do {
-        P(s);
-    } while(std::next_permutation(BE(s)));
-return 0;
     LL score = 0;
+    S s = "########################################################################.........................................................................";
+    do {
+        score++;
+    } while(std::next_permutation(BE(s)));
+    P(score);
+return 0;
     score = count1();
     P_RR("Part1: %lld\n", score);
     //========================================================
