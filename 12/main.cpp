@@ -66,8 +66,8 @@ S GetPermutation(LL len){
 auto count() {
     LL result = 0;
     do{
-        P(GetPermutation(4));
-    } while(Next(4));
+        P(GetPermutation(10));
+    } while(Next(10));
     return result;
 }
 
