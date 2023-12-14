@@ -216,9 +216,9 @@ int main(int argc, char** argv)
 
     UnfoldInput();
     score = count1();
-    for(auto s:in){
-        score = std::max(score, CountUnknowns(s));
-    }
+    // for(auto s:in){
+    //     score = std::max(score, CountUnknowns(s));
+    // }
     P_RR("Part2: %lld\n", score);
     return 0;
 }
