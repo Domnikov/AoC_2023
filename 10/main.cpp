@@ -99,8 +99,6 @@ bool isPipe(LL pos){
 void GetNext(LL& pos, LL n){
     LL nextPos;
     auto con = GetConnections(pos);
-    P(X(con[0]), Y(con[0]));
-    P(X(con[1]), Y(con[1]));
     if(isPipe(con[0]) && !isPipe(con[1])) nextPos = con[0];
     else if(isPipe(con[1]) && !isPipe(con[0])) nextPos = con[1];
     else {P_LINE; exit(1);}
@@ -136,7 +134,6 @@ auto count1() {
     Set(start, 0);
 
     while (p1 != p2){
-        P(p1, Get(p1),p2, Get(p2), result);
         ++result;
         GetNext(p1, 0);
         GetNext(p2, 0);
