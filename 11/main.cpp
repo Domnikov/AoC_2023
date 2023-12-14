@@ -24,6 +24,8 @@ int main(int argc, char** argv)
 {
     LL score = 0;
     P_VECV(in);
+    expand();
+    P_VECV(in);
     score = count();
     P_RR("Part1: %lld\n", score);
     //========================================================
