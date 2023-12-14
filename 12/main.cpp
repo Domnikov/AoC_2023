@@ -101,54 +101,54 @@ bool CheckFromHere(S& s, LL posS, LL num){
     }
 }
 
-LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
+LL recursion(const S& s, LL posS, const VECI& nums, LL posN, LL level = 0){
     // P(s, posS, s[posS], nums.size(), posN);
     while(posS < s.size() && s[posS] == '.'){
-        P_LINE;
+        FOR(i, level){P_RR("\t");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
         ++posS;
     }
     if(s.size() <= posS) {
         if(nums.size() == posN) {
-            P_LINE;
+            FOR(i, level){P_RR("\t");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
             return 1;
         }
-        P_LINE;
+        FOR(i, level){P_RR("\t");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
         return 0;
     } else if(s[posS] == '#'){
         if(posN == nums.size()) {
-            P_LINE;
+            FOR(i, level){P_RR("\t");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
             return 0;
         }
-        P_LINE;
+        FOR(i, level){P_RR("\t");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
         S ss = s;
         LL num = nums[posN];
         if(!CheckFromHere(ss, posS, num)) {
-            P_LINE;
+            FOR(i, level){P_RR("\t");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
             return 0;
         }
         auto result = recursion(ss, posS+num+1, nums, posN+1);
-        P_LINE;
+        FOR(i, level){P_RR("\t");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
         return result;
     } else if(s[posS] == '?') {
-        // P_LINE;
+        // FOR(i, level){P_RR("\t");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
         LL total = 0;
         S ss = s;
         if(posN < nums.size()) {
             LL num = nums[posN];
             if(CheckFromHere(ss, posS, num)) {
-                // P_LINE;
+                // FOR(i, level){P_RR("\t");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
                 total += recursion(ss, posS+num+1, nums, posN+1);
-                P_LINE;
+                FOR(i, level){P_RR("\t");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
             }
         }
         S sss = s;
         sss[posS] = '.';
         total += recursion(sss, posS+1, nums, posN);
-        P_LINE;
+        FOR(i, level){P_RR("\t");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
         return total;
     } else {
         P(s, posS, s[posS], nums.size(), posN);
-        P_LINE;
+        FOR(i, level){P_RR("\t");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
         exit(1);
     }
 }
@@ -161,7 +161,7 @@ auto count1() {
         const S& s = GetLine(i);
         LL unk = CountUnknowns(s);
         result += recursion(s, 0, nums, 0);
-        P_LINE;
+        FOR(i, 0){P_RR("\t");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
         // resetPerm();
         // do{
         //     auto newS = ApplyPerm(s, unk);
