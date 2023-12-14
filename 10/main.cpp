@@ -105,10 +105,10 @@ auto count1() {
     P_VEC(conu);
     P_VEC(cond);
     VECI conStart;
-    if(conl.empty() && (conl[0] == start || conl[1] == start)) conStart.push_back(l);
-    if(conr.empty() && (conr[0] == start || conr[1] == start)) conStart.push_back(r);
-    if(conu.empty() && (conu[0] == start || conu[1] == start)) conStart.push_back(u);
-    if(cond.empty() && (cond[0] == start || cond[1] == start)) conStart.push_back(d);
+    if(conl.empty() && (conl[0] == start || conl[1] == start)) {P_LINE;conStart.push_back(l);}
+    if(conr.empty() && (conr[0] == start || conr[1] == start)) {P_LINE;conStart.push_back(r);}
+    if(conu.empty() && (conu[0] == start || conu[1] == start)) {P_LINE;conStart.push_back(u);}
+    if(cond.empty() && (cond[0] == start || cond[1] == start)) {P_LINE;conStart.push_back(d);}
 
     P_VEC(conStart);
     if(conStart.size() != 2){
