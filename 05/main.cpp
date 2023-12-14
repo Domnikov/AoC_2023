@@ -9,8 +9,6 @@
 
 auto in = getInput();
 
-using VECPLL = std::vector<std::pair<LL,LL>>;
-
 VECPLL GetInitialSeeds1() {
     auto vecS = splitStr(in[0], ' ');
 

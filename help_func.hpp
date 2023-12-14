@@ -137,6 +137,7 @@ inline std::ostream& operator<<( std::ostream& dest, __int128_t value )
 #define S     std::string
 #define VECI  std::vector<LL>
 using VECII=std::vector<std::vector<LL>>;
+using VECPLL=std::vector<std::pair<LL,LL>>;
 #define VECF  std::vector<double>
 #define VECS  std::vector<S>
 #define VECSS std::vector<std::vector<S>>

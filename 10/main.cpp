@@ -106,6 +106,8 @@ void GetNext(LL& pos, LL n){
     pos = nextPos;
 }
 
+VEC
+
 auto count1() {
     LL result = 1;
     auto start = findStart();
