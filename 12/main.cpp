@@ -84,11 +84,14 @@ LL CountUnknowns(const S& s){
 
 bool CheckFromHere(const S& s, LL posS, LL num){
     FOR(i, num){
+        if(posS >= s.size()) {
+            return false;
+        }
         if(s[posS+i] == '.') {
             return false;
         }
     }
-    return true;
+    return ((posS+num) == (s.size()-1)) ? true : (s[posS+num] != '#');
 }
 
 LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
