@@ -152,7 +152,6 @@ auto count1() {
         char c2 = Get(pos);
         if(c2 != '|' && c2 != '-')P.emplace_back(X(pos), Y(pos));
     }
-    P_VEC(P);
 
     return result;
 }
