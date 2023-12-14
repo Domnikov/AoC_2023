@@ -40,24 +40,28 @@ LL findStart(){
 }
 
 LL Up(LL pos){
+    P_LINE;
     auto x = X(pos);
     auto y = Y(pos);
     return N(x, y+1);
 }
 
 LL Down(LL pos){
+    P_LINE;
     auto x = X(pos);
     auto y = Y(pos);
     return N(x, y-1);
 }
 
 LL Left(LL pos){
+    P_LINE;
     auto x = X(pos);
     auto y = Y(pos);
     return N(x-1, y);
 }
 
 LL Right(LL pos){
+    P_LINE;
     auto x = X(pos);
     auto y = Y(pos);
     return N(x+1, y);
@@ -71,9 +75,9 @@ VECI GetConnections(LL pos){
         case '-':
             return {Left(pos), Right(pos)};
         case 'L':
-            return {Up(pos), Left(pos)};
-        case 'J':
             return {Up(pos), Right(pos)};
+        case 'J':
+            return {Up(pos), Left(pos)};
         case '7':
             return {Left(pos), Down(pos)};
         case 'F':
