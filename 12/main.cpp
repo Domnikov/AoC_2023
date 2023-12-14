@@ -50,7 +50,7 @@ void resetPerm(){
 }
 
 bool Next(LL len){
-    return (pow(2, len) < ++permutation);
+    return (pow(2, len) > ++permutation);
 }
 
 S GetPermutation(LL len){
