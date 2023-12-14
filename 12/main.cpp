@@ -32,7 +32,11 @@ VECI StrToBrokenVeci(S s){
 }
 
 bool IsCorrect(S s, VECI nums) {
-    return StrToBrokenVeci(s) == nums;
+    auto calced = StrToBrokenVeci(s);
+    P(s);
+    P_VEC(calced);
+    P_VEC(nums);
+    return calced == nums;
 }
 
 LL CountUnknowns(S s){
