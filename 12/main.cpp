@@ -92,6 +92,9 @@ bool CheckFromHere(const S& s, LL posS, LL num){
 }
 
 LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
+    while(posS < s.size() && s[posS] == '.'){
+        ++posS;
+    }
     if(s.size() == posS) {
         if(nums.size() == posN) {
             P_LINE;
@@ -99,9 +102,6 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
         }
         P_LINE;
         return 0;
-    }
-    while(s[posS] == '.'){
-        ++posS;
     }
     LL num = nums[posN];
     if(s[posS] == '#'){
