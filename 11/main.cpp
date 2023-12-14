@@ -70,7 +70,7 @@ auto count() {
     FOR(i, g.size()){
         for(auto j = i+1; j < g.size(); ++j){
             auto dist = GetDist(g[i], g[j]);
-            P(g[i], g[j], dist);
+            // P(g[i], g[j], dist);
             result += dist;
         }
     }
