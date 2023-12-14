@@ -78,7 +78,7 @@ auto count2() {
                     auto localH = FindReflH(pattern);
                     auto localV = FindReflV(pattern);
                     if(localH != null || localV != null) {
-                        P(localH, localV);
+                        // P(localH, localV);
                         pattern.clear();
                         result += 100*localH.second;
                         result += localV.second;
