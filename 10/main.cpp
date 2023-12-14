@@ -179,7 +179,7 @@ auto count2(){
     auto [xl, yl] = P[P.size()-1];
     LL pos = xf*yl;
     LL neg = xl*yf;
-    for(size_t i = 1; i < P.size(); ++i){
+    for(size_t i = 1; i < P.size(); i+=2){
         auto [x1, y1] = P[i-1];
         auto [x2, y2] = P[i];
         pos += x1*y2;
