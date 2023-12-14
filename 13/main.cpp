@@ -44,7 +44,7 @@ std::pair<LL,LL> FindReflV(const VECS& pattern) {
     return{0LL,0LL};
 }
 
-auto count() {
+auto count1() {
     LL result = 0;
 
     VECS pattern;
@@ -54,7 +54,6 @@ auto count() {
         } else {
             auto localH = FindReflH(pattern);
             auto localV = FindReflV(pattern);
-            // P(localH, localV);
             pattern.clear();
             result += 100*localH.second;
             result += localV.second;
@@ -64,14 +63,45 @@ auto count() {
     return result;
 }
 
+auto count2() {
+    LL result = 0;
+    auto null = std::make_pair(0LL,0LL);
+
+    VECS pattern;
+    for(const auto& s:in){
+        if(!s.empty()){
+            pattern.push_back(s);
+        } else {
+            FOR(row, pattern.size()){
+                FOR(col, pattern[row].size()){
+                    pattern[row][col] = pattern[row][col] == '#' ? '.' : '#';
+                    auto localH = FindReflH(pattern);
+                    auto localV = FindReflV(pattern);
+                    if(localH != null || localV != null) {
+                        P(localH, localV);
+                        pattern.clear();
+                        result += 100*localH.second;
+                        result += localV.second;
+                        col = pattern[0].size();
+                        row = pattern.size();
+                    }
+                    pattern[row][col] = pattern[row][col] == '#' ? '.' : '#';
+                }
+            }
+        }
+    }
+
+    return result;
+}
+
 int main(int argc, char** argv)
 {
     LL score = 0;
-    score = count();
+    score = count1();
     P_RR("Part1: %lld\n", score);
     //========================================================
 
-    score = count();
+    score = count2();
     P_RR("Part2: %lld\n", score);
     return 0;
 }
