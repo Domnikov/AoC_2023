@@ -93,7 +93,7 @@ bool CheckFromHere(S& s, LL posS, LL num){
         }
         s[posS+i] = '#';
     }
-    if ((posS+num) == (s.size()-1)) {
+    if ((posS+num) == (s.size())) {
         return true;
     } else {
         bool result = s[posS+num] != '#';
