@@ -14,7 +14,7 @@ S GetLine(LL i){
 }
 
 VECI GetNumb(LL i){
-    return vecsToVeci(splitStr(splitStr(in[i], ' ')[0], ','));
+    return vecsToVeci(splitStr(splitStr(in[i], ' ')[1], ','));
 }
 
 VECI StrToBrokenVeci(S s){
