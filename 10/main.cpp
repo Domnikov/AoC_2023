@@ -139,12 +139,15 @@ auto count1() {
 
     while (p1 != p2){
         ++result;
-        DP.push_front(p1);
-        DP.push_back(p2);
+        char c1 = Get(p1);
+        char c2 = Get(p2);
+        if(c1 != '|' && c1 != '-')DP.push_front(p1);
+        if(c2 != '|' && c2 != '-')DP.push_back(p2);
         GetNext(p1, 0);
         GetNext(p2, 0);
     }
-    DP.push_back(p2);
+    char c2 = Get(p2);
+    if(c2 != '|' && c2 != '-')DP.push_back(p2);
 
     for(auto pos:DP){
         P.emplace_back(X(pos), Y(pos));
