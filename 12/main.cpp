@@ -82,8 +82,8 @@ S ApplyPerm(S s, LL len){
     return s;
 }
 
-bool CheckFromHere(S& s, LL posS, LL num){
-// bool CheckFromHere(const S& s, LL posS, LL num){
+// bool CheckFromHere(S& s, LL posS, LL num){
+bool CheckFromHere(const S& s, LL posS, LL num){
     FOR(i, num){
         if((posS+i) >= s.size()) {
             return false;
@@ -91,13 +91,13 @@ bool CheckFromHere(S& s, LL posS, LL num){
         if(s[posS+i] == '.') {
             return false;
         }
-        s[posS+i] = '#';
+        // s[posS+i] = '#';
     }
     if ((posS+num) == (s.size())) {
         return true;
     } else {
         bool result = s[posS+num] != '#';
-        s[posS+num] = '.';
+        // s[posS+num] = '.';
         return result;
     }
 }
@@ -116,30 +116,30 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN, LL level = 0){
         if(posN == nums.size()) {
             return 0;
         }
-        S ss = s;
+        // S ss = s;
         LL num = nums[posN];
-        if(!CheckFromHere(ss, posS, num)) {
-        // if(!CheckFromHere(s, posS, num)) {
+        // if(!CheckFromHere(ss, posS, num)) {
+        if(!CheckFromHere(s, posS, num)) {
             return 0;
         }
-        auto result = recursion(ss, posS+num+1, nums, posN+1, level+1);
-        // auto result = recursion(s, posS+num+1, nums, posN+1, level+1);
+        // auto result = recursion(ss, posS+num+1, nums, posN+1, level+1);
+        auto result = recursion(s, posS+num+1, nums, posN+1, level+1);
         return result;
     } else if(s[posS] == '?') {
         LL total = 0;
-        S ss = s;
+        // S ss = s;
         if(posN < nums.size()) {
             LL num = nums[posN];
-            if(CheckFromHere(ss, posS, num)) {
-                total += recursion(ss, posS+num+1, nums, posN+1, level+1);
-            // if(CheckFromHere(s, posS, num)) {
-            //     total += recursion(s, posS+num+1, nums, posN+1, level+1);
+            // if(CheckFromHere(ss, posS, num)) {
+            //     total += recursion(ss, posS+num+1, nums, posN+1, level+1);
+            if(CheckFromHere(s, posS, num)) {
+                total += recursion(s, posS+num+1, nums, posN+1, level+1);
             }
         }
-        S sss = s;
-        sss[posS] = '.';
-        total += recursion(sss, posS+1, nums, posN, level+1);
-        // total += recursion(s, posS+1, nums, posN, level+1);
+        // S sss = s;
+        // sss[posS] = '.';
+        // total += recursion(sss, posS+1, nums, posN, level+1);
+        total += recursion(s, posS+1, nums, posN, level+1);
         return total;
     } else {
         P(s, posS, s[posS], nums.size(), posN);
