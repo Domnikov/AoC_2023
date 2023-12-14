@@ -24,6 +24,27 @@ void MoveNorth(LL row, LL col){
     // P_RR("\n");
 }
 
+LL GetPerRow(LL row) {
+    LL sum = 0;
+    FOR(col, in[row].size()){
+        if(in[row][col] == 'O') {
+            ++sum;
+        }
+    }
+    return sum;
+}
+
+LL GetScore(){
+    LL score;
+    FOR(row, in.size()){
+        LL dist = in.size() - row;
+        LL rocks = GetPerRow(row);
+        P(rocks, dist);
+        score += rocks*dist;
+    }
+    return score;
+}
+
 auto count1() {
     LL result = 0;
     // P_VECV(in);
