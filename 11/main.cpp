@@ -38,7 +38,11 @@ void expand(){
         if(is_emptyRow(i)){
             insertRow(i);
         }
-
+    }
+    for(LL i = in[0].size() - 1; i >= 0; --i){
+        if(is_emptyCol(i)){
+            insertCol(i);
+        }
     }
 }
 
