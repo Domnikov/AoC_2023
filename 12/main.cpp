@@ -77,6 +77,7 @@ S ApplyPerm(S s, LL len){
 auto count() {
     LL result = 0;
     FOR(i, in.size()){
+        return 0;
         auto numb = GetNumb(i);
         S s = GetLine(i);
         LL unk = CountUnknowns(s);
