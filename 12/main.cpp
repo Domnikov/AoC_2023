@@ -151,10 +151,10 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
 auto count1() {
     LL result = 0;
     FOR(i, in.size()){
-        P_LINE;
         auto nums = GetNumb(i);
         const S& s = GetLine(i);
         LL unk = CountUnknowns(s);
+        P(s);
         result += recursion(s, 0, nums, 0);
         // resetPerm();
         // do{
