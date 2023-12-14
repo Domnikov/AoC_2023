@@ -4,11 +4,11 @@
 inline auto getInput()
 {
     VECS input {
-"...F7.",
-"..FJ|.",
-".SJ.L7",
-".|F--J",
-".LJ...",
+"..F7.",
+".FJ|.",
+"SJ.L7",
+"|F--J",
+"LJ...",
     };
 
     return input;
