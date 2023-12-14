@@ -101,7 +101,7 @@ bool CheckFromHere(S& s, LL posS, LL num){
 }
 
 LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
-        // P(s, posS, s[posS], nums.size(), posN);
+    P(s, posS, s[posS], nums.size(), posN);
     while(posS < s.size() && s[posS] == '.'){
         // P_LINE;
         ++posS;
@@ -154,7 +154,6 @@ auto count1() {
         auto nums = GetNumb(i);
         const S& s = GetLine(i);
         LL unk = CountUnknowns(s);
-        P(s);
         result += recursion(s, 0, nums, 0);
         // resetPerm();
         // do{
