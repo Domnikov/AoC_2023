@@ -11,7 +11,7 @@ auto in = getInput();
 
 VECI exp_rows;
 VECI exp_cols;
-LL exp_value = 1;
+LL exp_value = 10;
 
 bool is_emptyRow(LL l){
     FOR(i, in[l].size()){
@@ -99,7 +99,7 @@ int main(int argc, char** argv)
     P_RR("Part1: %lld\n", score);
     //========================================================
 
-    exp_value = 100;
+    // exp_value = 100;
     score = count();
     P_RR("Part2: %lld\n", score);
     return 0;
