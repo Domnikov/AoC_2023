@@ -126,7 +126,7 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN, LL level = 0){
             FOR(i, level){P_RR("\t");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
             return 0;
         }
-        auto result = recursion(ss, posS+num+1, nums, posN+1);
+        auto result = recursion(ss, posS+num+1, nums, posN+1, level+1);
         FOR(i, level){P_RR("\t");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
         return result;
     } else if(s[posS] == '?') {
@@ -137,13 +137,13 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN, LL level = 0){
             LL num = nums[posN];
             if(CheckFromHere(ss, posS, num)) {
                 // FOR(i, level){P_RR("\t");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
-                total += recursion(ss, posS+num+1, nums, posN+1);
+                total += recursion(ss, posS+num+1, nums, posN+1, level+1);
                 FOR(i, level){P_RR("\t");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
             }
         }
         S sss = s;
         sss[posS] = '.';
-        total += recursion(sss, posS+1, nums, posN);
+        total += recursion(sss, posS+1, nums, posN, level+1);
         FOR(i, level){P_RR("\t");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
         return total;
     } else {
