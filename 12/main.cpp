@@ -80,12 +80,10 @@ auto count() {
         auto numb = GetNumb(i);
         S s = GetLine(i);
         LL unk = CountUnknowns(s);
-        P_VEC(numb);
-        P(s, unk);
-        return 0LL;
         resetPerm();
         do{
             auto newS = ApplyPerm(s, unk);
+            P(s, newS, IsCorrect(newS, numb));
             if(IsCorrect(newS, numb)){
                 result++;
             }
