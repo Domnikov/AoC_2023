@@ -155,6 +155,11 @@ auto count1() {
 }
 
 auto count2(){
+    LL result = 0;
+    LL pos;
+    LL neg;
+    for(auto [x, y] : P){
+    }
     return 0;
 }
 
