@@ -92,13 +92,13 @@ bool CheckFromHere(const S& s, LL posS, LL num){
 }
 
 LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
-    P_LINE;
     while(s[posS] == '.'){
         ++posS;
     }
     LL num = nums[posN];
     if(s[posS] == '#'){
         if(!CheckFromHere(s, posS, num)) {
+            P_LINE;
             return 0;
         }
         return recursion(s, posS+num, nums, posN+1);
@@ -108,8 +108,9 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
             total += recursion(s, posS+num, nums, posN+1);
         }
         total += recursion(s, posS+1, nums, posN);
-        return 0;
+        return total;
     } else if(s.size() == posS) {
+        P_LINE;
         return 1;
     } else {
         P_LINE;
