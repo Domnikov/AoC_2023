@@ -115,7 +115,7 @@ bool Precheck(const S& s, LL posS, const VECI& nums, LL posN){
         need += nums[i];
     }
     P(s, places, need);
-    return places > need;
+    return places >= need;
 }
 
 LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
