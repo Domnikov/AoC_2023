@@ -92,9 +92,9 @@ auto count1() {
     LL result = 0;
     auto start = findStart();
     auto l = Left(start);
-    auto r = Left(start);
-    auto u = Left(start);
-    auto d = Left(start);
+    auto r = Right(start);
+    auto u = Up(start);
+    auto d = Down(start);
     auto conl = GetConnections(l);
     auto conr = GetConnections(r);
     auto conu = GetConnections(u);
