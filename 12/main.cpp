@@ -117,14 +117,14 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
             P_LINE;
             return 0;
         }
-        return recursion(ss, posS+num, nums, posN+1);
+        return recursion(ss, posS+num+1, nums, posN+1);
     } else if(s[posS] == '?') {
         P_LINE;
         LL total = 0;
         S ss = s;
         if(CheckFromHere(ss, posS, num)) {
             P_LINE;
-            total += recursion(ss, posS+num, nums, posN+1);
+            total += recursion(ss, posS+num+1, nums, posN+1);
         }
         S sss = s;
         sss[posS] = '.';
