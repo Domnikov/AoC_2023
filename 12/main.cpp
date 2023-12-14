@@ -126,6 +126,7 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN, LL level = 0){
             FOR(i, level){P_RR("  ");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
             return 0;
         }
+        FOR(i, level){P_RR("  ");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
         auto result = recursion(ss, posS+num+1, nums, posN+1, level+1);
         FOR(i, level){P_RR("  ");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
         return result;
@@ -137,12 +138,14 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN, LL level = 0){
             LL num = nums[posN];
             if(CheckFromHere(ss, posS, num)) {
                 // FOR(i, level){P_RR("  ");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
+                FOR(i, level){P_RR("  ");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
                 total += recursion(ss, posS+num+1, nums, posN+1, level+1);
                 FOR(i, level){P_RR("  ");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
             }
         }
         S sss = s;
         sss[posS] = '.';
+        FOR(i, level){P_RR("  ");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
         total += recursion(sss, posS+1, nums, posN, level+1);
         FOR(i, level){P_RR("  ");}P_RR("%s" ":%d\n",__FUNCTION__, __LINE__);
         return total;
