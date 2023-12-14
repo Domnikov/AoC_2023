@@ -153,7 +153,7 @@ int main(int argc, char** argv)
     P_RR("Part1: %lld\n", score);
     //========================================================
 
-    auto in = getInput();
+    in = getInput();
     score = count1();
     P_RR("Part2: %lld\n", score);
     return 0;
