@@ -159,17 +159,17 @@ auto count1() {
 
 auto count2(){
     LL result = 0;
-    auto [xf, yf] = P[0];
-    auto [xl, yl] = P[P.size()-1];
-    LL pos = xf*yl;
-    LL neg = xl*yf;
-    for(size_t i = 1; i < P.size(); ++i){
-        auto [x1, y1] = P[i-1];
-        auto [x2, y2] = P[i];
-        pos += x1*y2;
-        neg -= x2*y1;
-    }
-    auto A = labs(pos-neg)/2;
+    // auto [xf, yf] = P[0];
+    // auto [xl, yl] = P[P.size()-1];
+    // LL pos = xf*yl;
+    // LL neg = xl*yf;
+    // for(size_t i = 1; i < P.size(); ++i){
+    //     auto [x1, y1] = P[i-1];
+    //     auto [x2, y2] = P[i];
+    //     pos += x1*y2;
+    //     neg -= x2*y1;
+    // }
+    // auto A = labs(pos-neg)/2;
     // P(A);
 
     // P.clear();
@@ -181,25 +181,25 @@ auto count2(){
     // // P.emplace_back(2, 4);
     // // P.emplace_back(3, -8);
     // // P.emplace_back(1, 2);
-    // auto [xf, yf] = P[0];
-    // auto [xl, yl] = P[P.size()-1];
-    // P(xl, yf);
-    // LL pos = xl*yf;
-    // for(size_t i = 1; i < P.size(); i+=1){
-    //     auto [x1, y1] = P[i-1];
-    //     auto [x2, y2] = P[i];
-    //     P(x1, y2);
-    //     pos += x1*y2;
-    // }
-    // P(xf, yl);
-    // LL neg = xf*yl;
-    // for(size_t i = 1; i < P.size(); i+=1){
-    //     auto [x1, y1] = P[i-1];
-    //     auto [x2, y2] = P[i];
-    //     P(x2, y1);
-    //     neg += x2*y1;
-    // }
-    // auto A = labs(pos-neg)/2;
+    auto [xf, yf] = P[0];
+    auto [xl, yl] = P[P.size()-1];
+    P(xl, yf);
+    LL pos = xl*yf;
+    for(size_t i = 1; i < P.size(); i+=1){
+        auto [x1, y1] = P[i-1];
+        auto [x2, y2] = P[i];
+        P(x1, y2);
+        pos += x1*y2;
+    }
+    P(xf, yl);
+    LL neg = xf*yl;
+    for(size_t i = 1; i < P.size(); i+=1){
+        auto [x1, y1] = P[i-1];
+        auto [x2, y2] = P[i];
+        P(x2, y1);
+        neg += x2*y1;
+    }
+    auto A = labs(pos-neg)/2;
     P(neg, pos, A);
     return 0;
 }
