@@ -35,7 +35,7 @@ LL GetPerRow(LL row) {
 }
 
 LL GetScore(){
-    LL score;
+    LL score = 0;
     FOR(row, in.size()){
         LL dist = in.size() - row;
         LL rocks = GetPerRow(row);
