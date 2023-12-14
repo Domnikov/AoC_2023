@@ -110,8 +110,12 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
         total += recursion(s, posS+1, nums, posN);
         return total;
     } else if(s.size() == posS) {
+        if(nums.size() == posN) {
+            P_LINE;
+            return 1;
+        }
         P_LINE;
-        return 1;
+        return 0;
     } else {
         P_LINE;
         exit(1);
