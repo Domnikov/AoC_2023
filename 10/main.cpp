@@ -64,7 +64,7 @@ LL Right(LL n){
 }
 
 VECI GetConnections(LL n){
-    P(n, Get(n));
+    // P(n, Get(n));
     switch(Get(n)){
         case '|':
             return {Up(n), Down(n)};
@@ -99,10 +99,10 @@ auto count1() {
     auto conr = GetConnections(r);
     auto conu = GetConnections(u);
     auto cond = GetConnections(d);
-    P_VEC(conl);
-    P_VEC(conr);
-    P_VEC(conu);
-    P_VEC(cond);
+    // P_VEC(conl);
+    // P_VEC(conr);
+    // P_VEC(conu);
+    // P_VEC(cond);
     VECI conStart;
     if(conl.empty() && (conl[0] == start || conl[1] == start)) conStart.push_back(l);
     if(conr.empty() && (conr[0] == start || conr[1] == start)) conStart.push_back(r);
