@@ -85,8 +85,8 @@ auto count2() {
                         pattern.clear();
                         result += 100*localH.second;
                         result += localV.second;
-                        col = pattern[0].size();
                         row = pattern.size();
+                        break;
                     }
                     pattern[row][col] = pattern[row][col] == '#' ? '.' : '#';
                 }
