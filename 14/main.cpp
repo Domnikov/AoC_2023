@@ -10,14 +10,14 @@
 auto in = getInput();
 
 void MoveNorth(LL row, LL col){
-    P_RR("void MoveNorth(%lld, %lld)", row, col);
+    // P_RR("void MoveNorth(%lld, %lld)", row, col);
     for(LL r = row-1; r >= 0; --r){
         if(in[r][col] == '.') {
-            P_RR(".");
+            // P_RR(".");
             in[r][col] = 'O';
             in[r+1][col] = '.';
         } else {
-            P_RR("\n");
+            // P_RR("\n");
             return;
         }
     }
@@ -26,7 +26,7 @@ void MoveNorth(LL row, LL col){
 
 auto count1() {
     LL result = 0;
-    P_VECV(in);
+    // P_VECV(in);
     FOR(row, in.size()){
         if(row == 0) continue;
         FOR(col, in[row].size()){
@@ -35,8 +35,8 @@ auto count1() {
             }
         }
     }
-    P_RR("\n");
-    P_VECV(in);
+    // P_RR("\n");
+    // P_VECV(in);
     return result;
 }
 
