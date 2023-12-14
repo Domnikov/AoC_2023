@@ -36,9 +36,9 @@ VECI StrToBrokenVeci(S s){
 
 bool IsCorrect(S s, VECI nums) {
     auto calced = StrToBrokenVeci(s);
-    P(s);
-    P_VEC(calced);
-    P_VEC(nums);
+    // P(s);
+    // P_VEC(calced);
+    // P_VEC(nums);
     return calced == nums;
 }
 
@@ -88,10 +88,10 @@ auto count() {
         S s = GetLine(i);
         LL unk = CountUnknowns(s);
         resetPerm();
-        P_VEC(numb);
+        // P_VEC(numb);
         do{
             auto newS = ApplyPerm(s, unk);
-            P(s, newS, IsCorrect(newS, numb));
+            // P(s, newS, IsCorrect(newS, numb));
             if(IsCorrect(newS, numb)){
                 result++;
             }
