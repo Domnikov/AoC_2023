@@ -46,8 +46,22 @@ void expand(){
     }
 }
 
+VECPLL GetAllGalaxies(){
+    VECPLL g;
+    FOR(l, in.size()){
+        FOR(c, in[l].size()){
+            if(in[l][c] == '#')
+            {
+                g.emplace_back(l,c);
+            }
+        }
+    }
+    return g;
+}
+
 auto count() {
     LL result = 0;
+    auto g = GetAllGalaxies();
     return result;
 }
 
