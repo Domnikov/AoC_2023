@@ -84,7 +84,7 @@ LL CountUnknowns(const S& s){
 
 bool CheckFromHere(S& s, LL posS, LL num){
     FOR(i, num){
-        if(posS >= s.size()) {
+        if((posS+i) >= s.size()) {
             return false;
         }
         if(s[posS+i] == '.') {
