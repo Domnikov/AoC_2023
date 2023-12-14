@@ -35,14 +35,6 @@ VECI StrToBrokenVeci(const S& s){
     return result;
 }
 
-// bool IsCorrect(const S& s, const VECI& nums) {
-//     auto calced = StrToBrokenVeci(s);
-//     // P(s);
-//     // P_VEC(calced);
-//     // P_VEC(nums);
-//     return calced == nums;
-// }
-//
 LL CountUnknowns(const S& s){
     LL counter = 0;
     for(auto c:s){
@@ -51,38 +43,7 @@ LL CountUnknowns(const S& s){
     return counter;
 }
 
-// LL permutation = 0;
-//
-// void resetPerm(){
-//     permutation = 0;
-// }
-//
-// bool Next(LL len){
-//     return (pow(2, len) > ++permutation);
-// }
-//
-// S GetPermutation(LL len){
-//     LL cur = permutation;
-//     S result;
-//     FOR(i, len){
-//         result.push_back((cur%2) ? '#' : '.');
-//         cur /= 2;
-//     }
-//     return result;
-// }
-//
-// S ApplyPerm(S s, LL len){
-//     auto perm = GetPermutation(len);
-//     for(auto& c:s){
-//         if(c == '?'){
-//             c = perm.back();
-//             perm.pop_back();
-//         }
-//     }
-//     return s;
-// }
 
-// bool CheckFromHere(S& s, LL posS, LL num){
 bool CheckFromHere(const S& s, LL posS, LL num){
     FOR(i, num){
         if((posS+i) >= s.size()) {
@@ -91,13 +52,11 @@ bool CheckFromHere(const S& s, LL posS, LL num){
         if(s[posS+i] == '.') {
             return false;
         }
-        // s[posS+i] = '#';
     }
     if ((posS+num) == (s.size())) {
         return true;
     } else {
         bool result = s[posS+num] != '#';
-        // s[posS+num] = '.';
         return result;
     }
 }
@@ -114,7 +73,6 @@ bool Precheck(const S& s, LL posS, const VECI& nums, LL posN){
     for(size_t i = posN; i < nums.size(); i++){
         need += nums[i];
     }
-    // P(s, places, need);
     return places >= need;
 }
 
@@ -131,7 +89,6 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN, std::map<std::pair<
     }
     if(s.size() <= posS) {
         if(nums.size() == posN) {
-            // P(s);
             return 1;
         }
         return 0;
@@ -140,30 +97,21 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN, std::map<std::pair<
             cache[{posS, posN}] = 0;
             return 0;
         }
-        // S ss = s;
         LL num = nums[posN];
-        // if(!CheckFromHere(ss, posS, num)) {
         if(!CheckFromHere(s, posS, num)) {
             cache[{posS, posN}] = 0;
             return 0;
         }
-        // auto result = recursion(ss, posS+num+1, nums, posN+1, level+1);
         auto result = recursion(s, posS+num+1, nums, posN+1, cache);
         return result;
     } else if(s[posS] == '?') {
         LL total = 0;
-        // S ss = s;
         if(posN < nums.size()) {
             LL num = nums[posN];
-            // if(CheckFromHere(ss, posS, num)) {
-            //     total += recursion(ss, posS+num+1, nums, posN+1, level+1);
             if(CheckFromHere(s, posS, num)) {
                 total += recursion(s, posS+num+1, nums, posN+1, cache);
             }
         }
-        // S sss = s;
-        // sss[posS] = '.';
-        // total += recursion(sss, posS+1, nums, posN, level+1);
         total += recursion(s, posS+1, nums, posN, cache);
         cache[{posS, posN}] = total;
         return total;
@@ -181,18 +129,7 @@ auto count1() {
         LL unk = CountUnknowns(s);
         LL local = 0;
         std::map<std::pair<LL,LL>, LL> cache;
-        // P_VEC(nums);
-        // P(s);
         local = recursion(s, 0, nums, 0, cache);
-        // FOR(i, 0){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, s.c_str());
-        // resetPerm();
-        // do{
-        //     auto newS = ApplyPerm(s, unk);
-        //     if(IsCorrect(newS, nums)){
-        //         local++;
-        //     }
-        // }while(Next(unk));
-        P_RR("%ld\t%lld\n", i, local);
         result += local;
     }
     return result;
@@ -225,9 +162,6 @@ int main(int argc, char** argv)
 
     UnfoldInput();
     score = count1();
-    // for(auto s:in){
-    //     score = std::max(score, CountUnknowns(s));
-    // }
     P_RR("Part2: %lld\n", score);
     return 0;
 }
