@@ -40,6 +40,7 @@ auto count() {
             pattern.push_back(s);
         } else {
             auto local = FindRefl(pattern);
+            P(local);
             pattern.clear();
             result += local;
         }
