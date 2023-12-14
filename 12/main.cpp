@@ -108,7 +108,7 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN, LL level = 0){
     }
     if(s.size() <= posS) {
         if(nums.size() == posN) {
-            P(s);
+            // P(s);
             return 1;
         }
         return 0;
@@ -154,8 +154,8 @@ auto count1() {
         const S& s = GetLine(i);
         LL unk = CountUnknowns(s);
         LL local = 0;
-        P_VEC(nums);
-        P(s);
+        // P_VEC(nums);
+        // P(s);
         local = recursion(s, 0, nums, 0);
         // FOR(i, 0){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, s.c_str());
         // resetPerm();
