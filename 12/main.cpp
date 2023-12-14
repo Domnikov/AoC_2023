@@ -82,7 +82,7 @@ S ApplyPerm(S s, LL len){
     return s;
 }
 
-auto count() {
+auto count1() {
     LL result = 0;
     FOR(i, in.size()){
         auto numb = GetNumb(i);
@@ -103,14 +103,32 @@ auto count() {
     return result;
 }
 
+void UnfoldInput() {
+    FOR(i, in.size()){
+        auto s = GetLine(i);
+        auto nums = splitStr(in[i], ' ')[1];
+        FOR(i,4){
+            s += '?' + s;
+            nums += ',' + nums;
+        }
+        in[i] = s + ' ' + nums;
+    }
+}
+
+LL count2(){
+    P_VEC(in);
+    return 0;
+}
+
 int main(int argc, char** argv)
 {
     LL score = 0;
-    score = count();
+    // score = count1();
     P_RR("Part1: %lld\n", score);
     //========================================================
-return 0;
-    score = count();
+
+    UnfoldInput();
+    score = count2();
     P_RR("Part2: %lld\n", score);
     return 0;
 }
