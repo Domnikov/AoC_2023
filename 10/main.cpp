@@ -42,13 +42,13 @@ LL findStart(){
 LL Up(LL pos){
     auto x = X(pos);
     auto y = Y(pos);
-    return N(x, y+1);
+    return N(x, y-1);
 }
 
 LL Down(LL pos){
     auto x = X(pos);
     auto y = Y(pos);
-    return N(x, y-1);
+    return N(x, y+1);
 }
 
 LL Left(LL pos){
