@@ -64,6 +64,7 @@ LL Right(LL n){
 }
 
 VECI GetConnections(LL n){
+    P(n, Get(n));
     switch(Get(n)){
         case '|':
             return {Up(n), Down(n)};
