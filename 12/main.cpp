@@ -95,16 +95,15 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
     while(posS < s.size() && s[posS] == '.'){
         ++posS;
     }
-    if(s.size() == posS) {
+    LL num = nums[posN];
+    if(s.size() >= posS) {
         if(nums.size() == posN) {
             P_LINE;
             return 1;
         }
         P_LINE;
         return 0;
-    }
-    LL num = nums[posN];
-    if(s[posS] == '#'){
+    } else if(s[posS] == '#'){
         if(!CheckFromHere(s, posS, num)) {
             P_LINE;
             return 0;
