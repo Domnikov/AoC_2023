@@ -179,7 +179,8 @@ auto count2(){
     }
     auto A = labs(pos-neg)/2;
     P(neg, pos, A, points);
-    return 0;
+    LL Pinside = A + 1 - points/2;
+    return Pinside;
 }
 
 int main(int argc, char** argv)
