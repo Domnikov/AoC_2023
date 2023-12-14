@@ -119,7 +119,7 @@ bool Precheck(const S& s, LL posS, const VECI& nums, LL posN){
 }
 
 LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
-    if(Precheck(s, posS, nums, posN)){
+    if(!Precheck(s, posS, nums, posN)){
         return 0;
     }
     while(posS < s.size() && s[posS] == '.'){
