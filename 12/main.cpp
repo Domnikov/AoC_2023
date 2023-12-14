@@ -152,16 +152,16 @@ auto count1() {
         auto nums = GetNumb(i);
         const S& s = GetLine(i);
         LL unk = CountUnknowns(s);
-        // result += recursion(s, 0, nums, 0);
-        // FOR(i, 0){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, s.c_str());
-        resetPerm();
         LL local = 0;
-        do{
-            auto newS = ApplyPerm(s, unk);
-            if(IsCorrect(newS, nums)){
-                local++;
-            }
-        }while(Next(unk));
+        local = recursion(s, 0, nums, 0);
+        // FOR(i, 0){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, s.c_str());
+        // resetPerm();
+        // do{
+        //     auto newS = ApplyPerm(s, unk);
+        //     if(IsCorrect(newS, nums)){
+        //         local++;
+        //     }
+        // }while(Next(unk));
         P_RR("%ld\t%lld\n", i, local);
         result += local;
     }
