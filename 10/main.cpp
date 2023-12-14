@@ -134,6 +134,7 @@ auto count1() {
     Set(start, result);
 
     while (p1 != p2){
+        P(p1, p2, result);
         ++result;
         GetNext(p1, result);
         GetNext(p2, result);
