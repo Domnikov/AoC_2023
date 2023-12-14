@@ -71,9 +71,9 @@ VECI GetConnections(LL pos){
         case '-':
             return {Left(pos), Right(pos)};
         case 'L':
-            return {Up(pos), Right(pos)};
-        case 'J':
             return {Up(pos), Left(pos)};
+        case 'J':
+            return {Up(pos), Right(pos)};
         case '7':
             return {Left(pos), Down(pos)};
         case 'F':
