@@ -107,6 +107,7 @@ void GetNext(LL& pos, LL n){
 }
 
 VECPLL P;
+LL points;
 
 auto count1() {
     LL result = 1;
@@ -139,18 +140,17 @@ auto count1() {
 
     while (p1 != p2){
         ++result;
-        char c1 = Get(p1);
-        char c2 = Get(p2);
-        if(c1 != '|' && c1 != '-')DP.push_front(p1);
-        if(c2 != '|' && c2 != '-')DP.push_back(p2);
+        DP.push_front(p1);
+        DP.push_back(p2);
         GetNext(p1, 0);
         GetNext(p2, 0);
     }
     char c2 = Get(p2);
-    if(c2 != '|' && c2 != '-')DP.push_back(p2);
-
+    DP.push_back(p2);
+    points = DP.size();
     for(auto pos:DP){
-        P.emplace_back(X(pos), Y(pos));
+        char c2 = Get(p2);
+        if(c2 != '|' && c2 != '-')P.emplace_back(X(pos), Y(pos));
     }
     P_VEC(P);
 
@@ -159,28 +159,6 @@ auto count1() {
 
 auto count2(){
     LL result = 0;
-    // auto [xf, yf] = P[0];
-    // auto [xl, yl] = P[P.size()-1];
-    // LL pos = xf*yl;
-    // LL neg = xl*yf;
-    // for(size_t i = 1; i < P.size(); ++i){
-    //     auto [x1, y1] = P[i-1];
-    //     auto [x2, y2] = P[i];
-    //     pos += x1*y2;
-    //     neg -= x2*y1;
-    // }
-    // auto A = labs(pos-neg)/2;
-    // P(A);
-
-    // P.clear();
-    // P.emplace_back(3, 4);
-    // P.emplace_back(5, 11);
-    // P.emplace_back(12, 8);
-    // P.emplace_back(9, 5);
-    // P.emplace_back(5, 6);
-    // // P.emplace_back(2, 4);
-    // // P.emplace_back(3, -8);
-    // // P.emplace_back(1, 2);
     auto [xf, yf] = P[0];
     auto [xl, yl] = P[P.size()-1];
     P(xl, yf);
