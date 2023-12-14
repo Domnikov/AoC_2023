@@ -39,51 +39,69 @@ LL findStart(){
     exit(1);
 }
 
-LL Up(LL n){
-    auto x = X(n);
-    auto y = Y(n);
+LL Up(LL pos){
+    auto x = X(pos);
+    auto y = Y(pos);
     return N(x, y+1);
 }
 
-LL Down(LL n){
-    auto x = X(n);
-    auto y = Y(n);
+LL Down(LL pos){
+    auto x = X(pos);
+    auto y = Y(pos);
     return N(x, y-1);
 }
 
-LL Left(LL n){
-    auto x = X(n);
-    auto y = Y(n);
+LL Left(LL pos){
+    auto x = X(pos);
+    auto y = Y(pos);
     return N(x-1, y);
 }
 
-LL Right(LL n){
-    auto x = X(n);
-    auto y = Y(n);
+LL Right(LL pos){
+    auto x = X(pos);
+    auto y = Y(pos);
     return N(x+1, y);
 }
 
-VECI GetConnections(LL n){
-    // P(n, Get(n));
-    switch(Get(n)){
+VECI GetConnections(LL pos){
+    // P(pos, Get(pos));
+    switch(Get(pos)){
         case '|':
-            return {Up(n), Down(n)};
+            return {Up(pos), Down(pos)};
         case '-':
-            return {Left(n), Right(n)};
+            return {Left(pos), Right(pos)};
         case 'L':
-            return {Up(n), Right(n)};
+            return {Up(pos), Right(pos)};
         case 'J':
-            return {Up(n), Left(n)};
+            return {Up(pos), Left(pos)};
         case '7':
-            return {Left(n), Down(n)};
+            return {Left(pos), Down(pos)};
         case 'F':
-            return {Right(n), Down(n)};
+            return {Right(pos), Down(pos)};
     }
     return {};
 }
 
+bool isPipe(LL pos){
+    switch(Get(pos)){
+        case '|':
+        case '-':
+        case 'L':
+        case 'J':
+        case '7':
+        case 'F':
+            return true;
+        default:
+            return false;
+    }
+}
+
 void GetNext(LL& pos, LL n){
     LL nextPos;
+    auto con = GetConnections(pos);
+    if(isPipe(con[0]) && !isPipe(con[1])) nextPos = con[0];
+    else if(isPipe(con[1]) && !isPipe(con[0])) nextPos = con[1];
+    else {P_LINE; exit(1);}
     Set(pos, n);
     pos = nextPos;
 }
@@ -99,27 +117,27 @@ auto count1() {
     auto conr = GetConnections(r);
     auto conu = GetConnections(u);
     auto cond = GetConnections(d);
-    P(start);
-    P_VEC(conl);
-    P_VEC(conr);
-    P_VEC(conu);
-    P_VEC(cond);
     VECI conStart;
-    if(!conl.empty() && (conl[0] == start || conl[1] == start)) {P_LINE;conStart.push_back(l);}
-    if(!conr.empty() && (conr[0] == start || conr[1] == start)) {P_LINE;conStart.push_back(r);}
-    if(!conu.empty() && (conu[0] == start || conu[1] == start)) {P_LINE;conStart.push_back(u);}
-    if(!cond.empty() && (cond[0] == start || cond[1] == start)) {P_LINE;conStart.push_back(d);}
+    if(!conl.empty() && (conl[0] == start || conl[1] == start)) {conStart.push_back(l);}
+    if(!conr.empty() && (conr[0] == start || conr[1] == start)) {conStart.push_back(r);}
+    if(!conu.empty() && (conu[0] == start || conu[1] == start)) {conStart.push_back(u);}
+    if(!cond.empty() && (cond[0] == start || cond[1] == start)) {conStart.push_back(d);}
 
-    P_VEC(conStart);
     if(conStart.size() != 2){
+        P_VEC(conStart);
         P_LINE;
         exit(1);
     }
 
     auto p1 = conStart[0];
     auto p2 = conStart[1];
+    Set(start, result);
 
-    P(start, p1, p2);
+    while (p1 != p2){
+        ++result;
+        GetNext(p1, result);
+        GetNext(p2, result);
+    }
 
     return result;
 }
