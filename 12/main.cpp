@@ -102,7 +102,25 @@ bool CheckFromHere(const S& s, LL posS, LL num){
     }
 }
 
+bool Precheck(const S& s, LL posS, const VECI& nums, LL posN){
+    LL places = 0;
+    LL need = 0;
+
+    for(size_t i = posS; i < s.size(); i++){
+        if(s[i] != '.'){
+            ++places;
+        }
+    }
+    for(size_t i = posN; i < nums.size(); i++){
+        need += nums[i];
+    }
+    return places > need;
+}
+
 LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
+    if(!Precheck(s, posS, nums, posN)){
+        return 0;
+    }
     while(posS < s.size() && s[posS] == '.'){
         ++posS;
     }
