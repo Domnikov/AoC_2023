@@ -123,6 +123,7 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
         LL total = 0;
         S ss = s;
         if(CheckFromHere(ss, posS, num)) {
+            P_LINE;
             total += recursion(ss, posS+num, nums, posN+1);
         }
         S sss = s;
