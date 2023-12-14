@@ -98,7 +98,7 @@ auto count() {
             }
         }while(Next(unk));
 
-        P(100*i/in.size());
+        P_RR("%ld%%\n",100*i/in.size());
     }
     return result;
 }
