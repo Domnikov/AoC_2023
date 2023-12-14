@@ -99,13 +99,21 @@ auto count1() {
     auto conr = GetConnections(r);
     auto conu = GetConnections(u);
     auto cond = GetConnections(d);
+    P_VEC(conl);
+    P_VEC(conr);
+    P_VEC(conu);
+    P_VEC(cond);
     VECI conStart;
     if(conl[0] == start || conl[1] == start) conStart.push_back(l);
     if(conr[0] == start || conr[1] == start) conStart.push_back(r);
     if(conu[0] == start || conu[1] == start) conStart.push_back(u);
     if(cond[0] == start || cond[1] == start) conStart.push_back(d);
 
-    if(conStart.size() != 2){P_LINE; exit(1);}
+    if(conStart.size() != 2){
+        P_VEC(conStart);
+        P_LINE;
+        exit(1);
+    }
 
     auto p1 = conStart[0];
     auto p2 = conStart[1];
