@@ -12,10 +12,10 @@ auto in = getInput();
 void MoveNorth(LL row, LL col){
     P_RR("void MoveNorth(%lld, %lld)", row, col);
     for(LL r = row-1; r >= 0; --r){
-        if(in[row][col] == '.') {
+        if(in[r][col] == '.') {
             P_RR(".");
-            in[row][col] = 'O';
-            in[row+1][col] = '.';
+            in[r][col] = 'O';
+            in[r+1][col] = '.';
         } else {
             P_RR("\n");
             return;
