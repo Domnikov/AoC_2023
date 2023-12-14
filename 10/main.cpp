@@ -167,6 +167,7 @@ auto count2(){
         neg -= x2*y1;
     }
     auto A = labs(pos-neg)/2;
+    P(A);
     return 0;
 }
 
