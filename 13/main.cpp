@@ -72,7 +72,9 @@ auto count2() {
         if(!s.empty()){
             pattern.push_back(s);
         } else {
+            P_VECV(pattern);
             FOR(row, pattern.size()){
+                P(row);
                 FOR(col, pattern[row].size()){
                     pattern[row][col] = pattern[row][col] == '#' ? '.' : '#';
                     auto localH = FindReflH(pattern);
