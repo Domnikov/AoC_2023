@@ -76,6 +76,7 @@ auto count2() {
             FOR(row, pattern.size()){
                 P(row);
                 FOR(col, pattern[row].size()){
+                    P(col);
                     pattern[row][col] = pattern[row][col] == '#' ? '.' : '#';
                     auto localH = FindReflH(pattern);
                     auto localV = FindReflV(pattern);
