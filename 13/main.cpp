@@ -15,7 +15,7 @@ std::pair<LL,LL> FindReflH(const VECS& pattern) {
         LL right = i;
         while(pattern[left] == pattern[right]) {
             if( (--left < 0) || (++right == pattern.size())){
-                return {left,right};
+                return {i-i,i};
             }
         }
     }
@@ -37,7 +37,7 @@ std::pair<LL,LL> FindReflV(const VECS& pattern) {
         LL right = i;
         while(compV(pattern, left, right)) {
             if( (--left < 0) || (++right == pattern[0].size())){
-                return {left,right};
+                return {i-i,i};
             }
         }
     }
