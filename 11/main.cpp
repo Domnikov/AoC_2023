@@ -62,6 +62,7 @@ VECPLL GetAllGalaxies(){
 auto count() {
     LL result = 0;
     auto g = GetAllGalaxies();
+    P_VEC(g);
     return result;
 }
 
