@@ -107,11 +107,12 @@ void UnfoldInput() {
     FOR(i, in.size()){
         auto s = GetLine(i);
         auto nums = splitStr(in[i], ' ')[1];
+        S ss = s,nn = nums;
         FOR(i,4){
-            s += '?' + s;
-            nums += ',' + nums;
+            ss += '?' + s;
+            nn += ',' + nums;
         }
-        in[i] = s + ' ' + nums;
+        in[i] = ss + ' ' + nn;
     }
 }
 
