@@ -194,7 +194,7 @@ auto count2(){
         auto [x1, y1] = P[i-1];
         auto [x2, y2] = P[i];
         P(x2, y1);
-        neg -= x2*y1;
+        neg += x2*y1;
     }
     auto A = labs(pos-neg)/2;
     P(neg, pos, A);
