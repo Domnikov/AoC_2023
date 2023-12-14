@@ -92,7 +92,12 @@ bool CheckFromHere(S& s, LL posS, LL num){
         }
         s[posS+i] = '#';
     }
-    return ((posS+num) == (s.size()-1)) ? true : (s[posS+num] != '#');
+    if ((posS+num) == (s.size()-1)) {
+        return true;
+    } else {
+        s[posS+num] = '.';
+        return (s[posS+num] != '#');
+    }
 }
 
 LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
