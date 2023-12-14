@@ -82,6 +82,38 @@ LL CountUnknowns(const S& s){
 //     return s;
 // }
 
+bool CheckFromHere(const S& s, LL posS, LL num){
+    FOR(i, num){
+        if(s[posS+i] == '.') {
+            return false;
+        }
+    }
+    return true;
+}
+
+LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
+    while(s[posS] == '.'){
+        ++posS;
+    }
+    LL num = nums[posN];
+    if(s[posS] == '#'){
+        if(!CheckFromHere(s, posS, num)) {
+            return 0;
+        }
+        return recursion(s, posS+num, nums, posN+1);
+    } else if(s[posS] == '?') {
+        LL total = 0;
+        if(CheckFromHere(s, posS, num)) {
+            total += recursion(s, posS+num, nums, posN+1);
+        }
+        total += recursion(s, posS+1, nums, posN);
+        return 0;
+    } else {
+        P_LINE;
+        exit(1);
+    }
+}
+
 auto count1() {
     LL result = 0;
     FOR(i, in.size()){
