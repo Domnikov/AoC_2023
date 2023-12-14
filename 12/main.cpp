@@ -51,36 +51,36 @@ LL CountUnknowns(const S& s){
     return counter;
 }
 
-LL permutation = 0;
-
-void resetPerm(){
-    permutation = 0;
-}
-
-bool Next(LL len){
-    return (pow(2, len) > ++permutation);
-}
-
-S GetPermutation(LL len){
-    LL cur = permutation;
-    S result;
-    FOR(i, len){
-        result.push_back((cur%2) ? '#' : '.');
-        cur /= 2;
-    }
-    return result;
-}
-
-S ApplyPerm(S s, LL len){
-    auto perm = GetPermutation(len);
-    for(auto& c:s){
-        if(c == '?'){
-            c = perm.back();
-            perm.pop_back();
-        }
-    }
-    return s;
-}
+// LL permutation = 0;
+//
+// void resetPerm(){
+//     permutation = 0;
+// }
+//
+// bool Next(LL len){
+//     return (pow(2, len) > ++permutation);
+// }
+//
+// S GetPermutation(LL len){
+//     LL cur = permutation;
+//     S result;
+//     FOR(i, len){
+//         result.push_back((cur%2) ? '#' : '.');
+//         cur /= 2;
+//     }
+//     return result;
+// }
+//
+// S ApplyPerm(S s, LL len){
+//     auto perm = GetPermutation(len);
+//     for(auto& c:s){
+//         if(c == '?'){
+//             c = perm.back();
+//             perm.pop_back();
+//         }
+//     }
+//     return s;
+// }
 
 auto count1() {
     LL result = 0;
@@ -88,17 +88,14 @@ auto count1() {
         auto numb = GetNumb(i);
         const S& s = GetLine(i);
         LL unk = CountUnknowns(s);
-        resetPerm();
-        // P_VEC(numb);
-        do{
-            auto newS = ApplyPerm(s, unk);
-            // P(s, newS, IsCorrect(newS, numb));
-            if(IsCorrect(newS, numb)){
-                result++;
-            }
-        }while(Next(unk));
-
-        P_RR("%ld%%\n",100*i/in.size());
+        // resetPerm();
+        // do{
+        //     auto newS = ApplyPerm(s, unk);
+        //     if(IsCorrect(newS, numb)){
+        //         result++;
+        //     }
+        // }while(Next(unk));
+        // P_RR("%ld%%\n",100*i/in.size());
     }
     return result;
 }
