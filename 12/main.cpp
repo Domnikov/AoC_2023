@@ -159,6 +159,7 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN, LL level = 0){
 auto count1() {
     LL result = 0;
     FOR(i, in.size()){
+        P(i);
         auto nums = GetNumb(i);
         const S& s = GetLine(i);
         LL unk = CountUnknowns(s);
