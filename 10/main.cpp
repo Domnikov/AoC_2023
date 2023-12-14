@@ -40,28 +40,24 @@ LL findStart(){
 }
 
 LL Up(LL pos){
-    P_LINE;
     auto x = X(pos);
     auto y = Y(pos);
     return N(x, y+1);
 }
 
 LL Down(LL pos){
-    P_LINE;
     auto x = X(pos);
     auto y = Y(pos);
     return N(x, y-1);
 }
 
 LL Left(LL pos){
-    P_LINE;
     auto x = X(pos);
     auto y = Y(pos);
     return N(x-1, y);
 }
 
 LL Right(LL pos){
-    P_LINE;
     auto x = X(pos);
     auto y = Y(pos);
     return N(x+1, y);
