@@ -9,6 +9,10 @@
 
 auto in = getInput();
 
+VECI exp_rows;
+VECI exp_cols;
+LL exp_value = 1;
+
 bool is_emptyRow(LL l){
     FOR(i, in[l].size()){
         if(in[l][i] != '.') return false;
@@ -24,13 +28,11 @@ bool is_emptyCol(LL c){
 }
 
 void insertRow(LL l){
-    in.insert(in.begin() + l+1, in[l]);
+    exp_rows.push_back(l);
 }
 
 void insertCol(LL c){
-    FOR(i, in.size()){
-        in[i].insert(in[i].begin() + c+1, '.');
-    }
+    exp_cols.push_back(c);
 }
 
 void expand(){
@@ -60,7 +62,18 @@ VECPLL GetAllGalaxies(){
 }
 
 auto GetDist(std::pair<LL,LL> g1, std::pair<LL,LL> g2){
-    return labs(g1.first - g2.first) + labs(g1.second-g2.second);
+    LL dist = labs(g1.first - g2.first) + labs(g1.second-g2.second);
+    for(auto l:exp_rows){
+        if((g1.first < l && l < g2.first) || (g2.first < l && l < g1.first)) {
+            dist += exp_value;
+        }
+    }
+    for(auto c:exp_cols){
+        if((g1.second < c && c < g2.second) || (g2.second < c && c < g1.second)) {
+            dist += exp_value;
+        }
+    }
+    return dist;
 }
 
 auto count() {
