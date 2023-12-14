@@ -170,11 +170,14 @@ auto count2(){
     // P(A);
 
     P.clear();
-    P.emplace_back(3, 4);
-    P.emplace_back(5, 11);
-    P.emplace_back(12, 8);
-    P.emplace_back(9, 5);
-    P.emplace_back(5, 6);
+    // P.emplace_back(3, 4);
+    // P.emplace_back(5, 11);
+    // P.emplace_back(12, 8);
+    // P.emplace_back(9, 5);
+    // P.emplace_back(5, 6);
+    P.emplace_back(2, 4);
+    P.emplace_back(3, -8);
+    P.emplace_back(1, 2);
     auto [xf, yf] = P[0];
     auto [xl, yl] = P[P.size()-1];
     P(xf, yl);
