@@ -118,8 +118,12 @@ bool Precheck(const S& s, LL posS, const VECI& nums, LL posN){
     return places >= need;
 }
 
-LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
+LL recursion(const S& s, LL posS, const VECI& nums, LL posN, std::map<std::pair<LL,LL>, LL>& cache){
+    if(auto it = cache.find({posS, posN}); it != cache.end()) {
+        return it->second;
+    }
     if(posS*2 > s.size() && !Precheck(s, posS, nums, posN)){
+        cache[{posS, posN}] = 0;
         return 0;
     }
     while(posS < s.size() && s[posS] == '.'){
@@ -133,16 +137,18 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
         return 0;
     } else if(s[posS] == '#'){
         if(posN == nums.size()) {
+            cache[{posS, posN}] = 0;
             return 0;
         }
         // S ss = s;
         LL num = nums[posN];
         // if(!CheckFromHere(ss, posS, num)) {
         if(!CheckFromHere(s, posS, num)) {
+            cache[{posS, posN}] = 0;
             return 0;
         }
         // auto result = recursion(ss, posS+num+1, nums, posN+1, level+1);
-        auto result = recursion(s, posS+num+1, nums, posN+1);
+        auto result = recursion(s, posS+num+1, nums, posN+1, cache);
         return result;
     } else if(s[posS] == '?') {
         LL total = 0;
@@ -152,13 +158,14 @@ LL recursion(const S& s, LL posS, const VECI& nums, LL posN){
             // if(CheckFromHere(ss, posS, num)) {
             //     total += recursion(ss, posS+num+1, nums, posN+1, level+1);
             if(CheckFromHere(s, posS, num)) {
-                total += recursion(s, posS+num+1, nums, posN+1);
+                total += recursion(s, posS+num+1, nums, posN+1, cache);
             }
         }
         // S sss = s;
         // sss[posS] = '.';
         // total += recursion(sss, posS+1, nums, posN, level+1);
-        total += recursion(s, posS+1, nums, posN);
+        total += recursion(s, posS+1, nums, posN, cache);
+        cache[{posS, posN}] = total;
         return total;
     } else {
         P(s, posS, s[posS], nums.size(), posN);
@@ -173,9 +180,10 @@ auto count1() {
         const S& s = GetLine(i);
         LL unk = CountUnknowns(s);
         LL local = 0;
+        std::map<std::pair<LL,LL>, LL> cache;
         // P_VEC(nums);
         // P(s);
-        local = recursion(s, 0, nums, 0);
+        local = recursion(s, 0, nums, 0, cache);
         // FOR(i, 0){P_RR("  ");}P_RR("%s:%d\t\t%s\n",__FUNCTION__, __LINE__, s.c_str());
         // resetPerm();
         // do{
