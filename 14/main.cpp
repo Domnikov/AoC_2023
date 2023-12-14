@@ -24,6 +24,7 @@ auto count1() {
     LL result = 0;
     P_VECV(in);
     FOR(row, in.size()){
+        if(row == 0) continue;
         FOR(col, in[row].size()){
             if(in[row][col] == 'O'){
                 MoveNorth(row,col);
