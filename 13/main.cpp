@@ -72,6 +72,7 @@ LL CheckAll(VECS pattern){
             pattern[row][col] = pattern[row][col] == '#' ? '.' : '#';
             auto localH = FindReflH(pattern);
             auto localV = FindReflV(pattern);
+            P(localH, localV);
             if(localH != null || localV != null) {
                 P_RR("\t\t\t|\n");
                 P_RR("\t\t\tV\n");
