@@ -21,7 +21,7 @@ void MoveNorth(LL row, LL col){
             return;
         }
     }
-    P_RR("\n");
+    // P_RR("\n");
 }
 
 auto count1() {
