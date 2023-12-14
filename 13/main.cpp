@@ -74,17 +74,11 @@ LL CheckAll(VECS pattern){
     auto originH = FindReflH(pattern);
     auto originV = FindReflV(pattern);
     FOR(row, pattern.size()){
-        // P(row);
         FOR(col, pattern[row].size()){
-            // P(col);
             pattern[row][col] = pattern[row][col] == '#' ? '.' : '#';
             auto localH = FindReflH(pattern, originH);
             auto localV = FindReflV(pattern, originV);
-            // P(localH, localV);
             if(localH != null || localV != null) {
-                // P_RR("\t\t\t|\n");
-                // P_RR("\t\t\tV\n");
-                // P_VECV(pattern);
                 LL result = 100*localH.second;
                 result += localV.second;
                 return result;
@@ -104,9 +98,7 @@ auto count2() {
         if(!s.empty()){
             pattern.push_back(s);
         } else {
-            // P_VECV(pattern);
             auto local = CheckAll(pattern);
-            // P(local);
             result += local;
             pattern.clear();
         }
