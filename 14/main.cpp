@@ -127,8 +127,8 @@ void oneRoll(){
 
 auto count2() {
     LL result = 0;
-    P_RR(".....\n");
-    P_VECV(in);
+    // P_RR(".....\n");
+    // P_VECV(in);
     FOR(row, in.size()){
         FOR(col, in[row].size()){
             if(col == 0) continue;
@@ -137,8 +137,8 @@ auto count2() {
             }
         }
     }
-    P_RR(".....\n");
-    P_VECV(in);
+    // P_RR(".....\n");
+    // P_VECV(in);
     FOR(i, in.size()){
         if(i == 0) continue;
         auto row = in.size() - 1 - i;
@@ -148,8 +148,8 @@ auto count2() {
             }
         }
     }
-    P_RR(".....\n");
-    P_VECV(in);
+    // P_RR(".....\n");
+    // P_VECV(in);
     FOR(row, in.size()){
         FOR(i, in[row].size()){
             if(i == 0) continue;
@@ -159,10 +159,15 @@ auto count2() {
             }
         }
     }
+    // P_RR(".....\n");
+    // P_VECV(in);
+    LL N = 1000;
+    FOR(i, N) {
+        oneRoll();
+    }
+
     P_RR(".....\n");
     P_VECV(in);
-    LL N = 1;
-    // oneRoll();
     result = GetScore();
     return result;
 }
