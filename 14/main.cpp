@@ -68,7 +68,6 @@ LL GetScore(){
     FOR(row, in.size()){
         LL dist = in.size() - row;
         LL rocks = GetPerRow(row);
-        P(rocks, dist);
         score += rocks*dist;
     }
     return score;
