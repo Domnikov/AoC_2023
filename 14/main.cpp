@@ -53,10 +53,10 @@ void MoveEast(LL row, LL col){
     }
 }
 
-LL GetPerRow(LL row) {
+LL GetPerRow(LL row, const VECS& table) {
     LL sum = 0;
-    FOR(col, in[row].size()){
-        if(in[row][col] == 'O') {
+    FOR(col, table[row].size()){
+        if(table[row][col] == 'O') {
             ++sum;
         }
     }
@@ -67,7 +67,7 @@ LL GetScore(const VECS& table){
     LL score = 0;
     FOR(row, table.size()){
         LL dist = table.size() - row;
-        LL rocks = GetPerRow(row);
+        LL rocks = GetPerRow(row, table);
         score += rocks*dist;
     }
     return score;
