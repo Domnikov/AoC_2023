@@ -10,18 +10,47 @@
 auto in = getInput();
 
 void MoveNorth(LL row, LL col){
-    // P_RR("void MoveNorth(%lld, %lld)", row, col);
     for(LL r = row-1; r >= 0; --r){
         if(in[r][col] == '.') {
-            // P_RR(".");
             in[r][col] = 'O';
             in[r+1][col] = '.';
         } else {
-            // P_RR("\n");
             return;
         }
     }
-    // P_RR("\n");
+}
+
+void MoveSouth(LL row, LL col){
+    for(LL r = row+1; r < in.size(); ++r){
+        if(in[r][col] == '.') {
+            in[r][col] = 'O';
+            in[r-1][col] = '.';
+        } else {
+            return;
+        }
+    }
+}
+
+void MoveWest(LL row, LL col){
+    for(LL c = col-1; c >= 0; --c){
+        if(in[row][c] == '.') {
+            in[row][c] = 'O';
+            in[row][c+1] = '.';
+        } else {
+            return;
+        }
+    }
+}
+
+void MoveEast(LL row, LL col){
+    for(LL c = col+1; c < in[0].size(); ++c){
+        if(in[row][c] == '.') {
+            in[row][c] = 'O';
+            in[row][c-1] = '.';
+        } else {
+            return;
+        }
+    }
 }
 
 LL GetPerRow(LL row) {
@@ -47,7 +76,6 @@ LL GetScore(){
 
 auto count1() {
     LL result = 0;
-    // P_VECV(in);
     FOR(row, in.size()){
         if(row == 0) continue;
         FOR(col, in[row].size()){
@@ -56,15 +84,52 @@ auto count1() {
             }
         }
     }
-    // P_RR("\n");
-    // P_VECV(in);
     result = GetScore();
     return result;
 }
 
+void oneRoll(){
+    FOR(row, in.size()){
+        if(row == 0) continue;
+        FOR(col, in[row].size()){
+            if(in[row][col] == 'O'){
+                MoveNorth(row,col);
+            }
+        }
+    }
+    FOR(row, in.size()){
+        FOR(col, in[row].size()){
+            if(col == 0) continue;
+            if(in[row][col] == 'O'){
+                MoveWest(row,col);
+            }
+        }
+    }
+    FOR(i, in.size()){
+        if(i == 0) continue;
+        auto row = in.size() - 1 - i;
+        FOR(col, in[row].size()){
+            if(in[row][col] == 'O'){
+                MoveSouth(row,col);
+            }
+        }
+    }
+    FOR(row, in.size()){
+        FOR(i, in[row].size()){
+            if(i == 0) continue;
+            auto col = in[row].size() - 1 - i;
+            if(in[row][col] == 'O'){
+                MoveEast(row,col);
+            }
+        }
+    }
+}
+
 auto count2() {
     LL result = 0;
-
+    LL N = 1;
+    oneRoll();
+    result = GetScore();
     return result;
 }
 
