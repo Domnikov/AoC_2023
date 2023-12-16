@@ -173,6 +173,7 @@ auto count2() {
             begin = false;
         }
         if(begin)results[in] = i + 1;
+        P(i, results.size(),results.count(in));
     }
 
     // for(const auto& m:results){
