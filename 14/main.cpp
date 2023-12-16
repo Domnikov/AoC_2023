@@ -168,7 +168,7 @@ auto count2() {
         oneRoll();
         if(results.count(in)){
             auto period = i+1 - results[in];
-            auto to_add = (N - i*10);
+            auto to_add = (N - i*10)/period;
             i += to_add*period;
             begin = false;
         }
