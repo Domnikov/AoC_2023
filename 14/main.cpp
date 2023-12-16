@@ -63,10 +63,10 @@ LL GetPerRow(LL row) {
     return sum;
 }
 
-LL GetScore(){
+LL GetScore(const VECS& table = in){
     LL score = 0;
-    FOR(row, in.size()){
-        LL dist = in.size() - row;
+    FOR(row, table.size()){
+        LL dist = table.size() - row;
         LL rocks = GetPerRow(row);
         score += rocks*dist;
     }
@@ -175,7 +175,7 @@ auto count2() {
     }
 
     for(const auto& m:results){
-        P(m.second);
+        P(GetScore(m.first));
     }
 
     result = GetScore();
