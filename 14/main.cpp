@@ -160,19 +160,19 @@ auto count2() {
     }
     // P_RR(".....\n");
     // P_VECV(in);
-    LL N = 99999;//999;
-    std::map<LL, VECI> results;
-    results[GetScore()].push_back(0);
+    LL N = 9999;
+    std::map<VECS, VECI> results;
+    results[in].push_back(0);
     FOR(i, N) {
         oneRoll();
-        results[GetScore()].push_back(i+1);
+        results[in].push_back(i+1);
     }
 
     for(const auto& m:results){
         // P_RR("%lld\t", m.first);
         // P_VEC(m.second);
         if(m.second.size() > 1)
-        P(m.first, m.second.size());
+        P(m.second.size());
     }
 
     result = GetScore();
