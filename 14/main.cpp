@@ -160,7 +160,7 @@ auto count2() {
     }
     // P_RR(".....\n");
     // P_VECV(in);
-    LL N = 999;//999;
+    LL N = 999999;
     std::map<LL, VECI> results;
     results[GetScore()].push_back(0);
     FOR(i, N) {
