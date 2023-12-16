@@ -161,7 +161,7 @@ auto count2() {
     }
     // P_RR(".....\n");
     // P_VECV(in);
-    LL N = 1000;
+    LL N = 1000000;
     FOR(i, N) {
         oneRoll();
     }
