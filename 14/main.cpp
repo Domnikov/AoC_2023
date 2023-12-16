@@ -166,16 +166,13 @@ auto count2() {
     bool begin = true;
     FOR(i, N) {
         oneRoll();
-        if(results.count(in)){
+        if(begin && results.count(in)){
             auto period = i+1 - results[in];
             auto to_add = (N - i*10)/period;
             i += to_add*period;
             begin = false;
-            P(period, to_add, i);
-            return 0LL;
         }
         if(begin)results[in] = i + 1;
-        P(i, results.size(),results.count(in));
     }
 
     // for(const auto& m:results){
