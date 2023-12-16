@@ -163,14 +163,16 @@ auto count2() {
     LL N = 999999999;
     std::map<VECS, LL> results;
     results[in] = 0;
+    bool begin = true;
     FOR(i, N) {
         oneRoll();
         if(results.count(in)){
             auto period = i+1 - results[in];
             auto to_add = (N - i*10);
             i += to_add*period;
+            begin = false;
         }
-        results[in] = i + 1;
+        if(begin)results[in] = i + 1;
     }
 
     // for(const auto& m:results){
