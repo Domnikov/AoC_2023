@@ -126,8 +126,6 @@ void oneRoll(){
 
 auto count2() {
     LL result = 0;
-    // P_RR(".....\n");
-    // P_VECV(in);
     FOR(row, in.size()){
         FOR(col, in[row].size()){
             if(col == 0) continue;
@@ -136,8 +134,6 @@ auto count2() {
             }
         }
     }
-    // P_RR(".....\n");
-    // P_VECV(in);
     FOR(i, in.size()){
         if(i == 0) continue;
         auto row = in.size() - 1 - i;
@@ -147,8 +143,6 @@ auto count2() {
             }
         }
     }
-    // P_RR(".....\n");
-    // P_VECV(in);
     FOR(row, in.size()){
         FOR(i, in[row].size()){
             if(i == 0) continue;
@@ -158,8 +152,6 @@ auto count2() {
             }
         }
     }
-    // P_RR(".....\n");
-    // P_VECV(in);
     LL N = 999999999;
     std::map<VECS, LL> results;
     bool begin = true;
@@ -172,10 +164,6 @@ auto count2() {
             begin = false;
         }
         if(i > 200)results[in] = i + 1;
-    }
-
-    for(const auto& m:results){
-        P(GetScore(m.first));
     }
 
     result = GetScore(in);
