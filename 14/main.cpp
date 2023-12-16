@@ -160,16 +160,12 @@ auto count2() {
     }
     // P_RR(".....\n");
     // P_VECV(in);
-    LL N = 999;//999;
+    LL N = 99999;//999;
     std::map<LL, VECI> results;
     results[GetScore()].push_back(0);
     FOR(i, N) {
         oneRoll();
         results[GetScore()].push_back(i+1);
-        if(((i+1)%100000) == 0)
-        {
-            P(i+1, GetScore());
-        }
     }
 
     for(const auto& m:results){
