@@ -166,7 +166,7 @@ auto count2() {
     FOR(i, N) {
         oneRoll();
         results[GetScore()].push_back(i+1);
-        if(((i+1)%1000) == 0)
+        if(((i+1)%100000) == 0)
         {
             P(i+1, GetScore());
         }
@@ -175,6 +175,7 @@ auto count2() {
     for(const auto& m:results){
         // P_RR("%lld\t", m.first);
         // P_VEC(m.second);
+        if(m.second.size() > 1)
         P(m.first, m.second.size());
     }
 
