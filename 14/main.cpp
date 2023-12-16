@@ -63,7 +63,7 @@ LL GetPerRow(LL row) {
     return sum;
 }
 
-LL GetScore(const VECS& table = in){
+LL GetScore(const VECS& table){
     LL score = 0;
     FOR(row, table.size()){
         LL dist = table.size() - row;
@@ -83,7 +83,7 @@ auto count1() {
             }
         }
     }
-    result = GetScore();
+    result = GetScore(in);
     return result;
 }
 
@@ -178,7 +178,7 @@ auto count2() {
         P(GetScore(m.first));
     }
 
-    result = GetScore();
+    result = GetScore(in);
     return result;
 }
 
