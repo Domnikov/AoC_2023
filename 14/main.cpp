@@ -171,6 +171,8 @@ auto count2() {
             auto to_add = (N - i*10)/period;
             i += to_add*period;
             begin = false;
+            P(period, to_add, i);
+            return 0LL;
         }
         if(begin)results[in] = i + 1;
         P(i, results.size(),results.count(in));
