@@ -173,8 +173,9 @@ auto count2() {
     }
 
     for(const auto& m:results){
-        P_RR("%lld\t", m.first);
-        P_VEC(m.second);
+        // P_RR("%lld\t", m.first);
+        // P_VEC(m.second);
+        P(m.first, m.second.size());
     }
 
     result = GetScore();
