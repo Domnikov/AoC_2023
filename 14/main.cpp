@@ -174,11 +174,9 @@ auto count2() {
         if(i > 200)results[in] = i + 1;
     }
 
-    // for(const auto& m:results){
-        // P_RR("%lld\t", m.first);
-        // P_VEC(m.second);
-    //     P(m.second.size());
-    // }
+    for(const auto& m:results){
+        P(m.second);
+    }
 
     result = GetScore();
     return result;
