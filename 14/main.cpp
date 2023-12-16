@@ -171,7 +171,6 @@ auto count2() {
     for(const auto& m:results){
         // P_RR("%lld\t", m.first);
         // P_VEC(m.second);
-        if(m.second.size() > 1)
         P(m.second.size());
     }
 
