@@ -162,7 +162,6 @@ auto count2() {
     // P_VECV(in);
     LL N = 999999999;
     std::map<VECS, LL> results;
-    results[in] = 0;
     bool begin = true;
     FOR(i, N) {
         oneRoll();
@@ -172,7 +171,7 @@ auto count2() {
             i += to_add*period;
             begin = false;
         }
-        if(begin)results[in] = i + 1;
+        if(i > 200)results[in] = i + 1;
     }
 
     // for(const auto& m:results){
