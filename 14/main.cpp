@@ -166,8 +166,9 @@ auto count2() {
     FOR(i, N) {
         oneRoll();
         results[GetScore()].push_back(i+1);
-        if(((i+1) %1000) == 0) {
-            P(i+i, GetScore());
+        // if(((i+1)%1000) == 0)
+        {
+            P(i+1, GetScore());
         }
     }
 
