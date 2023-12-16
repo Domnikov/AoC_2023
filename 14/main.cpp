@@ -127,8 +127,42 @@ void oneRoll(){
 
 auto count2() {
     LL result = 0;
+    P_RR(".....\n");
+    P_VEC(in);
+    FOR(row, in.size()){
+        FOR(col, in[row].size()){
+            if(col == 0) continue;
+            if(in[row][col] == 'O'){
+                MoveWest(row,col);
+            }
+        }
+    }
+    P_RR(".....\n");
+    P_VEC(in);
+    FOR(i, in.size()){
+        if(i == 0) continue;
+        auto row = in.size() - 1 - i;
+        FOR(col, in[row].size()){
+            if(in[row][col] == 'O'){
+                MoveSouth(row,col);
+            }
+        }
+    }
+    P_RR(".....\n");
+    P_VEC(in);
+    FOR(row, in.size()){
+        FOR(i, in[row].size()){
+            if(i == 0) continue;
+            auto col = in[row].size() - 1 - i;
+            if(in[row][col] == 'O'){
+                MoveEast(row,col);
+            }
+        }
+    }
+    P_RR(".....\n");
+    P_VEC(in);
     LL N = 1;
-    oneRoll();
+    // oneRoll();
     result = GetScore();
     return result;
 }
