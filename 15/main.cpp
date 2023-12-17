@@ -11,6 +11,17 @@ auto in = getInput();
 
 auto count1() {
     LL result = 0;
+    LL hash = 0;
+    for(auto c:in[0]){
+        if(c == ',') {
+            result += hash;
+            hash = 0;
+        } else {
+            hash += c;
+            hash *= 17;
+            hash %= 256;
+        }
+    }
 
     return result;
 }

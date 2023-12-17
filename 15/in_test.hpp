@@ -4,6 +4,7 @@
 inline auto getInput()
 {
     VECS input {
+"HASH"
     };
 
     return input;
