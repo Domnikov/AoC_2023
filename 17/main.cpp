@@ -19,7 +19,7 @@ enum class Dir {
     Up    = 0x100,
     Down  = 0x1000,
 };
-using Path = std::tuple<LL, LL, Dir>;
+using Path = std::tuple<LL, LL, Dir, VECI>;
 namespace std{
 
     inline ostream& operator<<( ostream& dest, Dir d )
@@ -78,11 +78,11 @@ auto ExtractMinPos(std::vector<Path>& vec) {
     return result;
 }
 
-void AddNewPos(LL pos, LL score, Dir d, std::vector<Path>& vec) {
-    try{if(d != Dir::Left ) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToLeft (pos); newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Left ); } }}catch(S s){}
-    try{if(d != Dir::Right) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToRight(pos); newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Right); } }}catch(S s){}
-    try{if(d != Dir::Up   ) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToUp   (pos); newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Up   ); } }}catch(S s){}
-    try{if(d != Dir::Down ) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToDown (pos); newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Down ); } }}catch(S s){}
+void AddNewPos(LL pos, LL score, Dir d, VECI path, std::vector<Path>& vec) {
+    try{if(d != Dir::Left ) { LL newPos = pos; LL newScore = score; VECI newPath = path;FOR(i, 1) { newPos = ToLeft (pos); newPath.push_back(newPos);newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Left , newPath); } }}catch(S s){}
+    try{if(d != Dir::Right) { LL newPos = pos; LL newScore = score; VECI newPath = path;FOR(i, 1) { newPos = ToRight(pos); newPath.push_back(newPos);newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Right, newPath); } }}catch(S s){}
+    try{if(d != Dir::Up   ) { LL newPos = pos; LL newScore = score; VECI newPath = path;FOR(i, 1) { newPos = ToUp   (pos); newPath.push_back(newPos);newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Up   , newPath); } }}catch(S s){}
+    try{if(d != Dir::Down ) { LL newPos = pos; LL newScore = score; VECI newPath = path;FOR(i, 1) { newPos = ToDown (pos); newPath.push_back(newPos);newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Down , newPath); } }}catch(S s){}
 }
 
 auto count1() {
@@ -90,17 +90,17 @@ auto count1() {
     LL endPos = GetPos(X-1, Y-1);
 
     std::vector<Path> points;
-    points.emplace_back(0, GetScore(0), Dir::Up);
+    points.emplace_back(0, GetScore(0), Dir::Up, VECI{0});
     // SetC(0, '*');
     P_VECV(in);
     P_RR("\n");
 
     for(LL i = 0;!points.empty() && i < 10;++i){
-        auto [pos, score, d] = ExtractMinPos(points);
+        auto [pos, score, d, path] = ExtractMinPos(points);
         if(pos == endPos) {
             return score;
         }
-        AddNewPos(pos, score, d, points);
+        AddNewPos(pos, score, d, path, points);
         P(pos, score, points);
         P_VECV(in);
         P_RR("\n");
