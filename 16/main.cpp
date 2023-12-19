@@ -156,16 +156,16 @@ void Beam(Dir d, LL pos) {
             return;
         }
         MarkDirection(d, pos);
+        d = CheckDirection(d, pos);
+        if(d == Dir::None) {
+            // P(d, std::make_pair(GetX(newPos), GetY(newPos)), "Not a direction. Exit");
+            return;
+        }
         LL newPos = 0;
         try{
             newPos = Move(d, pos);
         } catch(S err) {
             // P(d, std::make_pair(GetX(newPos), GetY(newPos)), err, "Outside. Exit");
-            return;
-        }
-        d = CheckDirection(d, newPos);
-        if(d == Dir::None) {
-            // P(d, std::make_pair(GetX(newPos), GetY(newPos)), "Not a direction. Exit");
             return;
         }
         pos = newPos;
