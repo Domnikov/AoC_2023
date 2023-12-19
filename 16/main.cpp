@@ -121,7 +121,7 @@ void Beam(Dir d, LL pos) {
         try{
             newPos = Move(d, pos);
         } catch(S err) {
-            P(d, std::make_pair(GetX(pos), GetY(pos)), err, "Outside. Exit");
+            P(d, std::make_pair(GetX(newPos), GetY(newPos)), err, "Outside. Exit");
             return;
         }
         d = CheckDirection(d, newPos);
