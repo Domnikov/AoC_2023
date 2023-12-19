@@ -89,10 +89,10 @@ void AddNewPos(LL pos, std::vector<std::pair<LL, LL>> vec) {
     try{scoreUp    = GetScore(ToUp   (pos));} catch (S s) {P(pos, "ToUp   ", s);}
     try{scoreDown  = GetScore(ToDown (pos));} catch (S s) {P(pos, "ToDown ", s);}
 
-    if(scoreLeft  != -1) {vec.emplace_back(scoreLeft , ToLeft (pos));}
-    if(scoreRight != -1) {vec.emplace_back(scoreRight, ToRight(pos));}
-    if(scoreUp    != -1) {vec.emplace_back(scoreUp   , ToUp   (pos));}
-    if(scoreDown  != -1) {vec.emplace_back(scoreDown , ToDown (pos));}
+    if(scoreLeft  != -1) {SetC(ToLeft (pos), 'P');vec.emplace_back(scoreLeft , ToLeft (pos));}
+    if(scoreRight != -1) {SetC(ToRight(pos), 'P');vec.emplace_back(scoreRight, ToRight(pos));}
+    if(scoreUp    != -1) {SetC(ToUp   (pos), 'P');vec.emplace_back(scoreUp   , ToUp   (pos));}
+    if(scoreDown  != -1) {SetC(ToDown (pos), 'P');vec.emplace_back(scoreDown , ToDown (pos));}
 }
 
 auto count1() {
