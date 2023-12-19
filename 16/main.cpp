@@ -75,9 +75,10 @@ void MarkDirection(Dir d, LL pos) {
         case Dir::Right: AddRight(pos); break;
         case Dir::Up   : AddUp   (pos); break;
         case Dir::Down : AddDown (pos); break;
+        default:
+            P_LINE;
+            exit(1);
     }
-    P_LINE;
-    exit(1);
 }
 
 LL ToLeft (LL pos) { LL x = GetX(pos); LL y = GetY(pos); if( x == 0) { throw S("x < 0"); } return GetPos(x-1, y  ); }
