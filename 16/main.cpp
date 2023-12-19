@@ -13,11 +13,11 @@ LL Y = in.size();
 std::map<LL, LL> tiles1;
 
 enum class Dir {
-    None = 0,
-    Left = 0x1,
+    None  = 0,
+    Left  = 0x1,
     Right = 0x10,
-    Up = 0x100,
-    Down = 0x1000,
+    Up    = 0x100,
+    Down  = 0x1000,
 };
 namespace std{
 
@@ -196,9 +196,9 @@ auto count2() {
     LL result = 0;
 
     FOR(y, Y) {
-        tiles1.clear();
-        Beam(Dir::Right, GetPos(-1, y));
-        result = std::max(result, (LL)tiles1.size());
+        // tiles1.clear();
+        // Beam(Dir::Right, GetPos(-1, y));
+        // result = std::max(result, (LL)tiles1.size());
 
         tiles1.clear();
         Beam(Dir::Left, GetPos(X, y));
@@ -206,9 +206,9 @@ auto count2() {
     }
 
     FOR(x, X) {
-        tiles1.clear();
-        Beam(Dir::Down, GetPos(x, -1));
-        result = std::max(result, (LL)tiles1.size());
+        // tiles1.clear();
+        // Beam(Dir::Down, GetPos(x, -1));
+        // result = std::max(result, (LL)tiles1.size());
 
         tiles1.clear();
         Beam(Dir::Up, GetPos(x, Y));
