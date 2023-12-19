@@ -110,6 +110,8 @@ auto count1() {
         // P_RR("\n");
     }
 
+    P(points);
+
     P("Not found!!!");
 
     return result;
