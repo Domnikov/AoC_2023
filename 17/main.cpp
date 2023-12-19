@@ -67,7 +67,7 @@ char GetScore(LL pos){
     throw S("Not a score: ") + c;
 }
 
-auto ExtractMinPos(std::vector<std::pair<LL, LL>> vec) {
+auto ExtractMinPos(std::vector<std::pair<LL, LL>>& vec) {
     if(vec.empty()) {
         P_LINE;
         exit(1);
@@ -110,7 +110,7 @@ auto count1() {
         if(pos == endPos) {
             return score;
         }
-        P(pos, score,points);
+        P(pos, score, points);
         P_VECV(in);
         P_RR("\n");
         return 0LL;
