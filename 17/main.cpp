@@ -91,7 +91,7 @@ auto count1() {
 
     std::vector<std::tuple<LL, LL, Dir>> points;
     points.emplace_back(0, GetScore(0), Dir::Up);
-    SetC(0, '*');
+    // SetC(0, '*');
     P_VECV(in);
     P_RR("\n");
 
@@ -102,8 +102,8 @@ auto count1() {
         }
         AddNewPos(pos, score, d, points);
         // P(pos, score, points);
-        P_VECV(in);
-        P_RR("\n");
+        // P_VECV(in);
+        // P_RR("\n");
     }
 
     P("Not found!!!");
