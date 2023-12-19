@@ -120,7 +120,7 @@ auto count1() {
             in = getInput();
             LL sc = 0;
             for(auto p: path){
-                sc += GetScore(p) - 0x30;
+                sc += GetScore(p);
                 SetC(p, '*');
             }
             P(sc);
