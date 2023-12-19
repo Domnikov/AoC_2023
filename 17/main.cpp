@@ -123,13 +123,13 @@ auto count1() {
             for(auto p: path){
                 SetC(p, '*');
             }
+            P_VECV(in);
+            P_RR("\n");
             return score;
         }
         SetC(pos, '*');
         AddNewPos(pos, score, d, path, points);
         // P(pos, score, points);
-        P_VECV(in);
-        P_RR("\n");
     }
 
 
