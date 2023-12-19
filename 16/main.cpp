@@ -187,7 +187,7 @@ void Print(){
 }
 
 LL count1() {
-    Beam(Dir::Right, 0);
+    Beam(Dir::Right, -1);
 
     Print();
 
