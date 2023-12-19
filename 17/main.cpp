@@ -111,6 +111,7 @@ auto count1() {
         if(pos == endPos) {
             return score;
         }
+        P_VEC(points);
         P_VECV(in);
         P_RR("\n");
     }
