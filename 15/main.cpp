@@ -61,7 +61,7 @@ auto count2() {
         if(c == ',') {
             Box& box = boxes[hash];
 
-            auto it = std::find(BE(box), [lbl](const Lens& lens){ return lbl == lens.first;});
+            auto it = std::find_if(BE(box), [lbl](const Lens& lens){ return lbl == lens.first;});
 
             // if(sign == SIGN::MINUS){
             //     box.erase(it);
