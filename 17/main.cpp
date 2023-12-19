@@ -99,7 +99,7 @@ auto count1() {
     // P_VECV(in);
     // P_RR("\n");
 
-    for(LL i = 0;!points.empty() && i < 10;++i){
+    for(LL i = 0;!points.empty() && i < 100;++i){
         auto [pos, score, d, path] = ExtractMinPos(points);
         if(pos == endPos) {
             return score;
