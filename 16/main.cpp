@@ -188,10 +188,8 @@ void Print(){
 }
 
 LL count1() {
-    Beam(Dir::Right, -1);
-
+    Beam(Dir::Right, GetPos(-1, 0));
     // Print();
-
     return tiles1.size();
 }
 
