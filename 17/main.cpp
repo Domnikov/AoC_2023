@@ -119,6 +119,10 @@ auto count1() {
     for(LL i = 0;!points.empty() && i < 10000;++i){
         auto [pos, score, d, path] = ExtractMinPos(points);
         if(pos == endPos) {
+            in = getInput();
+            for(auto p: path){
+                SetC(p, '*');
+            }
             return score;
         }
         SetC(pos, '*');
@@ -127,6 +131,7 @@ auto count1() {
         P_VECV(in);
         P_RR("\n");
     }
+
 
     P(points);
 
