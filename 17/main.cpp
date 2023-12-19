@@ -109,7 +109,7 @@ auto count1() {
             if(minPos == endPos) {
                 return minScore;
             }
-            points.emplace(minPos, minScore);
+            points.emplace(minPos, score+minScore);
             SetC(minPos, 'P');
         } catch(S s){
             P(pos, "minPos", s);
