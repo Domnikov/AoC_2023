@@ -57,8 +57,8 @@ auto count2() {
         }
 
         if(c == ',') {
-            // auto& box = boxes[hash];
-            //
+            auto& box = boxes[hash];
+
             // auto it = std::find(BE(box), [lbl](const auto& pair){ return lbl == pair.first;});
             //
             // if(sign == SIGN::MINUS){
@@ -71,7 +71,7 @@ auto count2() {
             //     }
             // } else {P_LINE; exit(1);}
             //
-            // // P(s, hash, lbl, num, (int)sign);
+            // P(s, hash, lbl, num, (int)sign);
             P_MAP(boxes);
 
             num = 0;
