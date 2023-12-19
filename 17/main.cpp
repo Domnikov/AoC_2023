@@ -67,7 +67,18 @@ char GetScore(LL pos){
     throw S("Not a score: ") + c;
 }
 
-auto GetMinPos(LL pos) {
+auto ExtractMinPos(std::vector<std::pair<LL, LL>> vec) {
+    if(vec.empty()) {
+        P_LINE;
+        exit(1);
+    }
+    auto it = std::min_element(BE(vec), [](auto a, auto b){return a.second < b.second;});
+    auto result = *it;
+    vec.erase(it);
+    return result;
+}
+
+void AddNewPos(LL pos, std::vector<std::pair<LL, LL>> vec) {
     LL scoreLeft  = -1;
     LL scoreRight = -1;
     LL scoreUp    = -1;
@@ -78,44 +89,27 @@ auto GetMinPos(LL pos) {
     try{scoreUp    = GetScore(ToUp   (pos));} catch (S s) {P(pos, "ToUp   ", s);}
     try{scoreDown  = GetScore(ToDown (pos));} catch (S s) {P(pos, "ToDown ", s);}
 
-    if( scoreLeft  == -1 &&
-        scoreRight == -1 &&
-        scoreUp    == -1 &&
-        scoreDown  == -1) throw S("No way!");
-
-    LL minScore = 99999;
-    LL minPos;
-    if(scoreLeft  != -1 && minScore > scoreLeft ) {minScore = scoreLeft ; minPos = ToLeft (pos);}
-    if(scoreRight != -1 && minScore > scoreRight) {minScore = scoreRight; minPos = ToRight(pos);}
-    if(scoreUp    != -1 && minScore > scoreUp   ) {minScore = scoreUp   ; minPos = ToUp   (pos);}
-    if(scoreDown  != -1 && minScore > scoreDown ) {minScore = scoreDown ; minPos = ToDown (pos);}
-
-    return std::make_pair(minPos, minScore);
+    if(scoreLeft  != -1) {vec.emplace_back(scoreLeft , ToLeft (pos));}
+    if(scoreRight != -1) {vec.emplace_back(scoreRight, ToRight(pos));}
+    if(scoreUp    != -1) {vec.emplace_back(scoreUp   , ToUp   (pos));}
+    if(scoreDown  != -1) {vec.emplace_back(scoreDown , ToDown (pos));}
 }
 
 auto count1() {
     LL result = 0;
     LL endPos = GetPos(X-1, Y-1);
 
-    std::queue<std::pair<LL, LL>> points;
+    std::vector<std::pair<LL, LL>> points;
 
-    points.emplace(0, GetScore(0));
+    points.emplace_back(0, GetScore(0));
     SetC(0, 'P');
     P_VECV(in);
     P_RR("\n");
 
     while(!points.empty()){
-        auto [pos, score] = points.front();
-        points.pop();
-        try {
-            auto [minPos, minScore] = GetMinPos(pos);
-            if(minPos == endPos) {
-                return minScore;
-            }
-            points.emplace(minPos, score+minScore);
-            SetC(minPos, 'P');
-        } catch(S s){
-            P(pos, "minPos", s);
+        auto [pos, score] = ExtractMinPos(points);
+        if(pos == endPos) {
+            return score;
         }
         P_VECV(in);
         P_RR("\n");
