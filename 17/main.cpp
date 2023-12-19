@@ -86,8 +86,8 @@ Dir IsThreeSame(const std::vector<Path>& vec) {
     if(vec.size() < 3) {
         return Dir::None;
     }
-    Dir d1 = std::get<2>(vec.back());
-    Dir d2 = std::get<2>(vec[vec.size() - 3]);
+    Dir d1 = std::get<2>(vec[vec.size() - 1]);
+    Dir d2 = std::get<2>(vec[vec.size() - 2]);
     Dir d3 = std::get<2>(vec[vec.size() - 3]);
 
     if(d1 == d2 && d2 == d3) return d1;
