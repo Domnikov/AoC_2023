@@ -100,6 +100,9 @@ auto count1() {
     std::queue<std::pair<LL, LL>> points;
 
     points.emplace(0, GetScore(0));
+    SetC(0, 'P');
+    P_VECV(in);
+    P_RR("\n");
 
     while(!points.empty()){
         auto [pos, score] = points.front();
@@ -114,6 +117,8 @@ auto count1() {
         } catch(S s){
             P(pos, "minPos", s);
         }
+        P_VECV(in);
+        P_RR("\n");
     }
 
     P_VECV(in);
