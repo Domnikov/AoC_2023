@@ -102,7 +102,7 @@ auto count1() {
         }
         AddNewPos(pos, score, d, points);
         // P(pos, score, points);
-        // P_VECV(in);
+        P_VECV(in);
         P_RR("\n");
     }
 
