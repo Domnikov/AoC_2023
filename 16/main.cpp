@@ -188,7 +188,7 @@ void Print(){
 
 LL count1() {
     Beam(Dir::Right, GetPos(0, 0));
-    // Print();
+    Print();
     return tiles1.size()-1;
 }
 
@@ -225,7 +225,7 @@ int main(int argc, char** argv)
     P_RR("Part1: %lld\n", score);
     //========================================================
 
-    score = count2();
+    // score = count2();
     P_RR("Part2: %lld\n", score);
     return 0;
 }
