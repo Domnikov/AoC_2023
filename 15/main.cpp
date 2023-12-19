@@ -63,16 +63,16 @@ auto count2() {
 
             auto it = std::find_if(BE(box), [lbl](const Lens& lens){ return lbl == lens.first;});
 
-            // if(sign == SIGN::MINUS){
-            //     box.erase(it);
-            // } else if(sign == SIGN::EQ) {
-            //     if(it == box.end()) {
-            //         box.emplace_back(lbl, num);
-            //     } else {
-            //         it->second = num;
-            //     }
-            // } else {P_LINE; exit(1);}
-            //
+            if(sign == SIGN::MINUS){
+                box.erase(it);
+            } else if(sign == SIGN::EQ) {
+                if(it == box.end()) {
+                    box.emplace_back(lbl, num);
+                } else {
+                    it->second = num;
+                }
+            } else {P_LINE; exit(1);}
+
             // P(s, hash, lbl, num, (int)sign);
             P_MAP(boxes);
 
