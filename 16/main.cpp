@@ -69,6 +69,7 @@ void AddUp   (LL pos) { if(!tiles1.count(pos)){tiles1[pos] = 0;} tiles1[pos] |= 
 void AddDown (LL pos) { if(!tiles1.count(pos)){tiles1[pos] = 0;} tiles1[pos] |= (LL)Dir::Down ; }
 
 void MarkDirection(Dir d, LL pos) {
+    if(pos == -1) return;
     switch(d) {
         case Dir::None :                break;
         case Dir::Left : AddLeft (pos); break;
