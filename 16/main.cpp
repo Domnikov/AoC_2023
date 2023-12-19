@@ -39,7 +39,7 @@ LL GetX(LL pos) {
 }
 
 LL GetY(LL pos) {
-    return pos / Y;
+    return pos / X;
 }
 
 LL GetPos(LL x, LL y) {
