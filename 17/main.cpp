@@ -116,7 +116,7 @@ auto count1() {
         P_RR("\n");
     }
 
-    P_VECV(in);
+    P("Not found!!!");
 
     return result;
 }
