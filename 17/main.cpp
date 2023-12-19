@@ -79,10 +79,10 @@ auto ExtractMinPos(std::vector<std::tuple<LL, LL, Dir>>& vec) {
 }
 
 void AddNewPos(LL pos, LL score, Dir d, std::vector<std::tuple<LL, LL, Dir>>& vec) {
-    if(d != Dir::Left ) { LL newPos = pos; LL newScore = score; FOR(i, 3) { newPos = ToLeft (pos); newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Left ); } }
-    if(d != Dir::Right) { LL newPos = pos; LL newScore = score; FOR(i, 3) { newPos = ToRight(pos); newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Right); } }
-    if(d != Dir::Up   ) { LL newPos = pos; LL newScore = score; FOR(i, 3) { newPos = ToUp   (pos); newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Up   ); } }
-    if(d != Dir::Down ) { LL newPos = pos; LL newScore = score; FOR(i, 3) { newPos = ToDown (pos); newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Down ); } }
+    try{if(d != Dir::Left ) { LL newPos = pos; LL newScore = score; FOR(i, 3) { newPos = ToLeft (pos); newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Left ); } }}catch(S s){}
+    try{if(d != Dir::Right) { LL newPos = pos; LL newScore = score; FOR(i, 3) { newPos = ToRight(pos); newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Right); } }}catch(S s){}
+    try{if(d != Dir::Up   ) { LL newPos = pos; LL newScore = score; FOR(i, 3) { newPos = ToUp   (pos); newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Up   ); } }}catch(S s){}
+    try{if(d != Dir::Down ) { LL newPos = pos; LL newScore = score; FOR(i, 3) { newPos = ToDown (pos); newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Down ); } }}catch(S s){}
 }
 
 auto count1() {
