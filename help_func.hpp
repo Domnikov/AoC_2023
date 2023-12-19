@@ -141,13 +141,31 @@ using VECPLL=std::vector<std::pair<LL,LL>>;
 #define VECF  std::vector<double>
 #define VECS  std::vector<S>
 #define VECSS std::vector<std::vector<S>>
+
 namespace std{
-template<typename T>
-inline ostream& operator<<( ostream& dest, pair<T,T> value )
-{
-    dest << "("<<value.first<<","<<value.second<<")";
-    return dest;
-}}
+
+    template<typename T, typename R>
+    inline ostream& operator<<( ostream& dest, pair<T,R> value )
+    {
+        dest << "("<<value.first<<","<<value.second<<")";
+        return dest;
+    }
+
+    template<typename T>
+    inline ostream& operator<<( ostream& dest, vector<T> vec )
+    {
+        dest << " = [";
+
+        if(!vec.empty())
+        {
+            std::copy (vec.begin(), vec.end()-1, std::ostream_iterator<T>(dest, ";"));
+            dest << vec.back();
+        }
+
+        dest << "]\n";
+        return dest;
+    }
+}
 
 template<typename T>
 void _P_VEC (const std::vector<T>& vec)
