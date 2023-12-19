@@ -113,7 +113,6 @@ auto count1() {
         P(pos, score, points);
         P_VECV(in);
         P_RR("\n");
-        return 0LL;
     }
 
     P_VECV(in);
