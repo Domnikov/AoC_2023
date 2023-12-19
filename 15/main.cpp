@@ -48,9 +48,6 @@ void doBoxes(LL hash, Boxes& boxes, S lbl, SIGN sign, LL num, const S& s) {
             it->second = num;
         }
     } else {P_LINE; exit(1);}
-
-    P(s, hash, lbl, num, (int)sign);
-    P_MAP(boxes);
 }
 
 LL calcPower(const Boxes& boxes) {
