@@ -91,10 +91,10 @@ Dir IsThreeSame(const std::vector<Path>& vec) {
     LL y1 = GetY(std::get<0>(vec.back()));
     LL y2 = GetY(std::get<0>(vec[vec.size() - 3]));
 
-    if((x1-x2) ==-2) return Dir::Left ;
-    if((x1-x2) == 2) return Dir::Right;
-    if((y1-y2) ==-2) return Dir::Up   ;
-    if((y1-y2) == 2) return Dir::Down ;
+    if((x2-x1) == 2) {P("Left ");return Dir::Left ;}
+    if((x1-x2) == 2) {P("Right");return Dir::Right;}
+    if((y2-y1) == 2) {P("Up   ");return Dir::Up   ;}
+    if((y1-y2) == 2) {P("Down ");return Dir::Down ;}
 
     return Dir::None;
 }
