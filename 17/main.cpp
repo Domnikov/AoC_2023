@@ -67,50 +67,40 @@ char GetScore(LL pos){
     throw S("Not a score: ") + c;
 }
 
-auto ExtractMinPos(std::vector<std::pair<LL, LL>>& vec) {
+auto ExtractMinPos(std::vector<std::tuple<LL, LL, Dir>>& vec) {
     if(vec.empty()) {
         P_LINE;
         exit(1);
     }
-    auto it = std::min_element(BE(vec), [](auto a, auto b){return a.second < b.second;});
+    auto it = std::min_element(BE(vec), [](auto a, auto b){return std::get<1>(a) < std::get<1>(b);});
     auto result = *it;
     vec.erase(it);
     return result;
 }
 
-void AddNewPos(LL pos, LL score, std::vector<std::pair<LL, LL>>& vec) {
-    LL scoreLeft  = -1;
-    LL scoreRight = -1;
-    LL scoreUp    = -1;
-    LL scoreDown  = -1;
-
-    try{scoreLeft  = GetScore(ToLeft (pos));} catch (S s) {P(pos, "ToLeft ", s);}
-    try{scoreRight = GetScore(ToRight(pos));} catch (S s) {P(pos, "ToRight", s);}
-    try{scoreUp    = GetScore(ToUp   (pos));} catch (S s) {P(pos, "ToUp   ", s);}
-    try{scoreDown  = GetScore(ToDown (pos));} catch (S s) {P(pos, "ToDown ", s);}
-
-    if(scoreLeft  != -1) {SetC(ToLeft (pos), '*');vec.emplace_back(ToLeft (pos), score+scoreLeft );}
-    if(scoreRight != -1) {SetC(ToRight(pos), '*');vec.emplace_back(ToRight(pos), score+scoreRight);}
-    if(scoreUp    != -1) {SetC(ToUp   (pos), '*');vec.emplace_back(ToUp   (pos), score+scoreUp   );}
-    if(scoreDown  != -1) {SetC(ToDown (pos), '*');vec.emplace_back(ToDown (pos), score+scoreDown );}
+void AddNewPos(LL pos, LL score, Dir d, std::vector<std::tuple<LL, LL, Dir>>& vec) {
+    if(d != Dir::Left ) { LL newPos = pos; LL newScore = score; FOR(i, 3) { newPos = ToLeft (pos); newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Left ); } }
+    if(d != Dir::Right) { LL newPos = pos; LL newScore = score; FOR(i, 3) { newPos = ToRight(pos); newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Right); } }
+    if(d != Dir::Up   ) { LL newPos = pos; LL newScore = score; FOR(i, 3) { newPos = ToUp   (pos); newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Up   ); } }
+    if(d != Dir::Down ) { LL newPos = pos; LL newScore = score; FOR(i, 3) { newPos = ToDown (pos); newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Down ); } }
 }
 
 auto count1() {
     LL result = 0;
     LL endPos = GetPos(X-1, Y-1);
 
-    std::vector<std::pair<LL, LL>> points;
+    std::vector<std::tuple<LL, LL, Dir>> points;
     points.emplace_back(0, GetScore(0));
     SetC(0, '*');
     P_VECV(in);
     P_RR("\n");
 
     while(!points.empty()){
-        auto [pos, score] = ExtractMinPos(points);
+        auto [pos, score, d] = ExtractMinPos(points);
         if(pos == endPos) {
             return score;
         }
-        AddNewPos(pos, score, points);
+        AddNewPos(pos, score, d, points);
         P(pos, score, points);
         P_VECV(in);
         P_RR("\n");
