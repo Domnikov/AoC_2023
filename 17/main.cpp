@@ -124,8 +124,8 @@ auto count1() {
         SetC(pos, '*');
         AddNewPos(pos, score, d, path, points);
         // P(pos, score, points);
-        // P_VECV(in);
-        // P_RR("\n");
+        P_VECV(in);
+        P_RR("\n");
     }
 
     P(points);
