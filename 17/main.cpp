@@ -87,12 +87,12 @@ Dir IsThreeSame(const VECI& vec) {
         return Dir::None;
     }
     LL p1 = vec[vec.size() - 1];
-    LL p3 = vec[vec.size() - 3];
+    LL p4 = vec[vec.size() - 4];
 
-    if((GetX(p3) - GetX(p1)) == 2) { return Dir::Left ; }
-    if((GetX(p1) - GetX(p3)) == 2) { return Dir::Right; }
-    if((GetY(p3) - GetY(p1)) == 2) { return Dir::Up   ; }
-    if((GetY(p1) - GetY(p3)) == 2) { return Dir::Down ; }
+    if((GetX(p4) - GetX(p1)) == 3) { return Dir::Left ; }
+    if((GetX(p1) - GetX(p4)) == 3) { return Dir::Right; }
+    if((GetY(p4) - GetY(p1)) == 3) { return Dir::Up   ; }
+    if((GetY(p1) - GetY(p4)) == 3) { return Dir::Down ; }
 
     return Dir::None;
 }
