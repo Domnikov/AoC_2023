@@ -36,7 +36,9 @@ auto count2() {
     SIGN sign = SIGN::NO_SET;
     LL num = 0;
     S lbl;
-    std::map<LL, std::vector<std::pair<S,LL>>> boxes;
+    using Lens = std::pair<S, LL>;
+    using Box = std::vector<Lens>;
+    std::map<LL, Box> boxes;
     for(auto c:in[0]){
         if(c == '=') {
             sign  = SIGN::EQ;
@@ -57,9 +59,9 @@ auto count2() {
         }
 
         if(c == ',') {
-            auto& box = boxes[hash];
+            Box& box = boxes[hash];
 
-            auto it = std::find(BE(box), [lbl](const auto& pair){ return lbl == pair.first;});
+            auto it = std::find(BE(box), [lbl](const Lens& lens){ return lbl == lens.first;});
 
             // if(sign == SIGN::MINUS){
             //     box.erase(it);
