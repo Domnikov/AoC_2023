@@ -99,13 +99,13 @@ auto count1() {
     // P_VECV(in);
     // P_RR("\n");
 
-    for(LL i = 0;!points.empty() && i < 1000;++i){
+    for(LL i = 0;!points.empty() && i < 10000;++i){
         auto [pos, score, d, path] = ExtractMinPos(points);
         if(pos == endPos) {
             return score;
         }
         AddNewPos(pos, score, d, path, points);
-        P(pos, score, points);
+        // P(pos, score, points);
         // P_VECV(in);
         // P_RR("\n");
     }
