@@ -63,6 +63,7 @@ auto count2() {
             num = 0;
             sign = SIGN::NO_SET;
             lbl.clear();
+            s.clear();
             hash = 0;
         } else {
             s += c;
