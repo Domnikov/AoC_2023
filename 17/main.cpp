@@ -95,7 +95,7 @@ auto count1() {
     P_VECV(in);
     P_RR("\n");
 
-    while(!points.empty()){
+    for(LL i = 0;!points.empty() && i < 10;++i){
         auto [pos, score, d] = ExtractMinPos(points);
         if(pos == endPos) {
             return score;
