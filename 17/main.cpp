@@ -56,20 +56,65 @@ char GetC(LL pos){
     return in[GetY(pos)][GetX(pos)];
 }
 
-LL Move(Dir d, LL pos) {
-    switch(d) {
-        case Dir::None : throw(S("Not a direction"));
-        case Dir::Left : return ToLeft (pos);
-        case Dir::Right: return ToRight(pos);
-        case Dir::Up   : return ToUp   (pos);
-        case Dir::Down : return ToDown (pos);
-    }
-    P_LINE;
-    exit(1);
+void SetC(LL pos, char c){
+    in[GetY(pos)][GetX(pos)] = c;
+}
+
+char GetScore(LL pos){
+    auto c = GetC(pos);
+    if (c >= 0x30 && c <= 0x39)
+        return GetC(pos) - 0x30;
+    throw S("Passed!");
+}
+
+auto GetMinPos(LL pos) {
+    LL scoreLeft  = -1;
+    LL scoreRight = -1;
+    LL scoreUp    = -1;
+    LL scoreDown  = -1;
+
+    try{scoreLeft  = GetScore(ToLeft (pos));} catch (S s) {P(pos, "ToLeft ", s);}
+    try{scoreRight = GetScore(ToRight(pos));} catch (S s) {P(pos, "ToRight", s);}
+    try{scoreUp    = GetScore(ToUp   (pos));} catch (S s) {P(pos, "ToUp   ", s);}
+    try{scoreDown  = GetScore(ToDown (pos));} catch (S s) {P(pos, "ToDown ", s);}
+
+    if( scoreLeft  == -1 &&
+        scoreRight == -1 &&
+        scoreUp    == -1 &&
+        scoreDown  == -1) throw S("No way!");
+
+    LL minScore = 99999;
+    LL minPos;
+    if(scoreLeft  != -1 && minScore > scoreLeft ) {minScore = scoreLeft ; minPos = ToLeft (pos);}
+    if(scoreRight != -1 && minScore > scoreRight) {minScore = scoreRight; minPos = ToRight(pos);}
+    if(scoreUp    != -1 && minScore > scoreUp   ) {minScore = scoreUp   ; minPos = ToUp   (pos);}
+    if(scoreDown  != -1 && minScore > scoreDown ) {minScore = scoreDown ; minPos = ToDown (pos);}
+
+    return std::make_pair(minPos, minScore);
 }
 
 auto count1() {
     LL result = 0;
+    LL endPos = GetPos(X-1, Y-1);
+
+    std::queue<std::pair<LL, LL>> points;
+
+    points.emplace(0, GetScore(0));
+
+    while(!points.empty()){
+        auto [pos, score] = points.front();
+        points.pop();
+        try {
+            auto [minPos, minScore] = GetMinPos(pos);
+            if(minPos == endPos) {
+                return minScore;
+            }
+            points.emplace(minPos, minScore);
+            SetC(minPos, 'P');
+        } catch(S s){
+            P(pos, "minPos", s);
+        }
+    }
 
     return result;
 }
