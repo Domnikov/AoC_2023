@@ -116,6 +116,8 @@ auto count1() {
         }
     }
 
+    P_VECV(in);
+
     return result;
 }
 
