@@ -196,9 +196,9 @@ auto count2() {
     LL result = 0;
 
     FOR(y, Y) {
-        // tiles1.clear();
-        // Beam(Dir::Right, GetPos(-1, y));
-        // result = std::max(result, (LL)tiles1.size());
+        tiles1.clear();
+        Beam(Dir::Right, GetPos(-1, y));
+        result = std::max(result, (LL)tiles1.size());
 
         tiles1.clear();
         Beam(Dir::Left, GetPos(X, y));
@@ -206,9 +206,9 @@ auto count2() {
     }
 
     FOR(x, X) {
-        // tiles1.clear();
-        // Beam(Dir::Down, GetPos(x, -1));
-        // result = std::max(result, (LL)tiles1.size());
+        tiles1.clear();
+        Beam(Dir::Down, GetPos(x, -1));
+        result = std::max(result, (LL)tiles1.size());
 
         tiles1.clear();
         Beam(Dir::Up, GetPos(x, Y));
