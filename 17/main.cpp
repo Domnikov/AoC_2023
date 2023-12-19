@@ -78,7 +78,7 @@ auto ExtractMinPos(std::vector<std::pair<LL, LL>>& vec) {
     return result;
 }
 
-void AddNewPos(LL pos, std::vector<std::pair<LL, LL>> vec) {
+void AddNewPos(LL pos, std::vector<std::pair<LL, LL>>& vec) {
     LL scoreLeft  = -1;
     LL scoreRight = -1;
     LL scoreUp    = -1;
