@@ -28,6 +28,30 @@ auto count1() {
 }
 
 enum class SIGN {NO_SET,MINUS, EQ};
+using Lens = std::pair<S, LL>;
+using Box = std::vector<Lens>;
+using Boxes = std::map<LL, Box>;
+
+void doBoxes(LL hash, Boxes& boxes, S lbl, SIGN sign, LL num, const S& s) {
+    Box& box = boxes[hash];
+
+    auto it = std::find_if(BE(box), [lbl](const Lens& lens){ return lbl == lens.first;});
+
+    if(sign == SIGN::MINUS){
+        if(it != box.end()) {
+            box.erase(it);
+        }
+    } else if(sign == SIGN::EQ) {
+        if(it == box.end()) {
+            box.emplace_back(lbl, num);
+        } else {
+            it->second = num;
+        }
+    } else {P_LINE; exit(1);}
+
+    P(s, hash, lbl, num, (int)sign);
+    P_MAP(boxes);
+}
 
 auto count2() {
     LL result = 0;
@@ -36,9 +60,7 @@ auto count2() {
     SIGN sign = SIGN::NO_SET;
     LL num = 0;
     S lbl;
-    using Lens = std::pair<S, LL>;
-    using Box = std::vector<Lens>;
-    std::map<LL, Box> boxes;
+    Boxes boxes;
     for(auto c:in[0]){
         if(c == '=') {
             sign  = SIGN::EQ;
@@ -59,24 +81,7 @@ auto count2() {
         }
 
         if(c == ',') {
-            Box& box = boxes[hash];
-
-            auto it = std::find_if(BE(box), [lbl](const Lens& lens){ return lbl == lens.first;});
-
-            if(sign == SIGN::MINUS){
-                if(it != box.end()) {
-                    box.erase(it);
-                }
-            } else if(sign == SIGN::EQ) {
-                if(it == box.end()) {
-                    box.emplace_back(lbl, num);
-                } else {
-                    it->second = num;
-                }
-            } else {P_LINE; exit(1);}
-
-            P(s, hash, lbl, num, (int)sign);
-            P_MAP(boxes);
+            doBoxes(hash, boxes, lbl, sign, num, s);
 
             num = 0;
             sign = SIGN::NO_SET;
@@ -88,7 +93,8 @@ auto count2() {
         }
     }
 
-    result += hash;
+    doBoxes(hash, boxes, lbl, sign, num, s);
+
     return result;
 }
 
