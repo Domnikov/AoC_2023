@@ -101,7 +101,7 @@ auto count1() {
 
     std::vector<std::pair<LL, LL>> points;
     points.emplace_back(0, GetScore(0));
-    SetC(0, 'P');
+    SetC(0, '*');
     P_VECV(in);
     P_RR("\n");
 
@@ -110,6 +110,7 @@ auto count1() {
         if(pos == endPos) {
             return score;
         }
+        AddNewPos(pos, points);
         P(pos, score, points);
         P_VECV(in);
         P_RR("\n");
