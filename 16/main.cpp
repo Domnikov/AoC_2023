@@ -69,7 +69,6 @@ void AddUp   (LL pos) { if(!tiles1.count(pos)){tiles1[pos] = 0;} tiles1[pos] |= 
 void AddDown (LL pos) { if(!tiles1.count(pos)){tiles1[pos] = 0;} tiles1[pos] |= (LL)Dir::Down ; }
 
 void MarkDirection(Dir d, LL pos) {
-    if(pos == -1) return;
     switch(d) {
         case Dir::None :                break;
         case Dir::Left : AddLeft (pos); break;
@@ -190,7 +189,7 @@ void Print(){
 LL count1() {
     Beam(Dir::Right, GetPos(-1, 0));
     // Print();
-    return tiles1.size();
+    return tiles1.size()-1;
 }
 
 auto count2() {
@@ -216,7 +215,7 @@ auto count2() {
         result = std::max(result, (LL)tiles1.size());
     }
 
-    return result;
+    return result-1;
 }
 
 int main(int argc, char** argv)
