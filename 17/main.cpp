@@ -100,6 +100,8 @@ auto count1() {
     LL endPos = GetPos(X-1, Y-1);
 
     std::vector<std::pair<LL, LL>> points;
+    P_VECV(in);
+    P_RR("\n");
 
     points.emplace_back(0, GetScore(0));
     SetC(0, 'P');
