@@ -28,6 +28,7 @@ auto count1() {
         }
     }
 
+    result += hash;
     return result;
 }
 
