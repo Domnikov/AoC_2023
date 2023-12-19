@@ -12,6 +12,7 @@ auto in = getInput();
 auto count1() {
     LL result = 0;
     LL hash = 0;
+    P(in[0]);
     for(auto c:in[0]){
         if(c == ',') {
             result += hash;
