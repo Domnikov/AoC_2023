@@ -121,6 +121,7 @@ auto count1() {
         if(pos == endPos) {
             return score;
         }
+        SetC(pos, 'c');
         AddNewPos(pos, score, d, path, points);
         // P(pos, score, points);
         // P_VECV(in);
