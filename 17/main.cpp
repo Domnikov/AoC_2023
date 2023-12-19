@@ -118,9 +118,12 @@ auto count1() {
         auto [pos, score, d, path] = ExtractMinPos(points);
         if(pos == endPos) {
             in = getInput();
+            LL sc = 0;
             for(auto p: path){
+                sc += GetScore(p) - 0x30;
                 SetC(p, '*');
             }
+            P(sc);
             P_VECV(in);
             P_RR("\n");
             // Dir d1 = std::get<2>(path[path.size() - 1]);
