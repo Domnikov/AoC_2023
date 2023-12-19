@@ -57,20 +57,20 @@ auto count2() {
         }
 
         if(c == ',') {
-            // auto& box = boxes[hash];
-            //
-            // auto it = std::find(BE(box), [lbl](const auto& pair){ return lbl == pair.first;});
-            //
-            // if(sign == SIGN::MINUS){
-            //     box.erase(it);
-            // } else if(sign == SIGN::EQ) {
-            //     if(it == box.end()) {
-            //         box.emplace_back(lbl, num);
-            //     } else {
-            //         it->second = num;
-            //     }
-            // } else {P_LINE; exit(1);}
-            //
+            auto& box = boxes[hash];
+
+            auto it = std::find(BE(box), [lbl](const auto& pair){ return lbl == pair.first;});
+
+            if(sign == SIGN::MINUS){
+                box.erase(it);
+            } else if(sign == SIGN::EQ) {
+                if(it == box.end()) {
+                    box.emplace_back(lbl, num);
+                } else {
+                    it->second = num;
+                }
+            } else {P_LINE; exit(1);}
+
             // // P(s, hash, lbl, num, (int)sign);
             // P_MAP(boxes);
 
