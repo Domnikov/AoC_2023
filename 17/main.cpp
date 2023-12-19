@@ -114,6 +114,7 @@ auto count1() {
         P_VEC(points);
         P_VECV(in);
         P_RR("\n");
+        return 0LL;
     }
 
     P_VECV(in);
