@@ -53,6 +53,18 @@ void doBoxes(LL hash, Boxes& boxes, S lbl, SIGN sign, LL num, const S& s) {
     P_MAP(boxes);
 }
 
+LL calcPower(const Boxes& boxes) {
+    LL result = 0;
+    for(const auto& box : boxes) {
+        LL box_num = 1+box.first;
+        FOR(i, box.second.size()) {
+            LL len_num = i+1;
+            result += box_num*len_num*box.second[i].second;
+        }
+    }
+    return result;
+}
+
 auto count2() {
     LL result = 0;
     LL hash = 0;
@@ -94,6 +106,8 @@ auto count2() {
     }
 
     doBoxes(hash, boxes, lbl, sign, num, s);
+
+    result = calcPower(boxes);
 
     return result;
 }
