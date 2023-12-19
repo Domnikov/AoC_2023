@@ -13,18 +13,13 @@ auto count1() {
     LL result = 0;
     LL hash = 0;
     for(auto c:in[0]){
-        P(c);
         if(c == ',') {
             result += hash;
             hash = 0;
         } else {
-            P(hash);
             hash += c;
-            P(hash);
             hash *= 17;
-            P(hash);
             hash %= 256;
-            P(hash);
         }
     }
 
