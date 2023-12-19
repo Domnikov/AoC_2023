@@ -189,7 +189,7 @@ void Print(){
 LL count1() {
     Beam(Dir::Right, GetPos(0, 0));
     Print();
-    return tiles1.size()-1;
+    return tiles1.size();
 }
 
 auto count2() {
@@ -215,7 +215,7 @@ auto count2() {
         result = std::max(result, (LL)tiles1.size());
     }
 
-    return result-1;
+    return result;
 }
 
 int main(int argc, char** argv)
