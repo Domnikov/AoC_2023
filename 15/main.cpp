@@ -64,7 +64,9 @@ auto count2() {
             auto it = std::find_if(BE(box), [lbl](const Lens& lens){ return lbl == lens.first;});
 
             if(sign == SIGN::MINUS){
-                box.erase(it);
+                if(it != box.end()) {
+                    box.erase(it);
+                }
             } else if(sign == SIGN::EQ) {
                 if(it == box.end()) {
                     box.emplace_back(lbl, num);
