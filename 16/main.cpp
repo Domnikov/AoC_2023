@@ -82,7 +82,7 @@ void MarkDirection(Dir d, LL pos) {
 }
 
 LL ToLeft (LL pos) { LL x = GetX(pos); LL y = GetY(pos); if( x == 0) { throw S("x < 0"); } return GetPos(x-1, y  ); }
-LL ToRight(LL pos) { LL x = GetX(pos); LL y = GetY(pos); if( x>=X-2) { throw S("x > X"); } return GetPos(x+1, y  ); }
+LL ToRight(LL pos) { LL x = GetX(pos); LL y = GetY(pos); if( x>=X-1) { throw S("x > X"); } return GetPos(x+1, y  ); }
 LL ToUp   (LL pos) { LL x = GetX(pos); LL y = GetY(pos); if( y == 0) { throw S("y < 0"); } return GetPos(x  , y-1); }
 LL ToDown (LL pos) { LL x = GetX(pos); LL y = GetY(pos); if( y>=Y-1) { throw S("y > Y"); } return GetPos(x  , y+1); }
 
@@ -102,11 +102,49 @@ LL Move(Dir d, LL pos) {
     exit(1);
 }
 
+void Beam(Dir d, LL pos);
+
 Dir CheckDirection(Dir d, LL pos) {
-        // switch(GetC(newPos)){
-        //     case '-':
-        // }
-    return d;
+    auto c = GetC(pos);
+    if(c == '.') {
+        return d;
+    } else if(c == '/') {
+        switch(d) {
+            case Dir::None : return Dir::None ;
+            case Dir::Left : return Dir::Down ;
+            case Dir::Right: return Dir::Up   ;
+            case Dir::Up   : return Dir::Right;
+            case Dir::Down : return Dir::Left ;
+        }
+    } else if(c == '\\') {
+        switch(d) {
+            case Dir::None : return Dir::None ;
+            case Dir::Left : return Dir::Up   ;
+            case Dir::Right: return Dir::Down ;
+            case Dir::Up   : return Dir::Left ;
+            case Dir::Down : return Dir::Right;
+        }
+    } else if(c == '-') {
+        if (d == Dir::Left || d == Dir::Right) {
+            return d;
+        } else if(d == Dir::Up || d == Dir::Down) {
+            Beam(Dir::Left, pos);
+            return Dir::Right;
+        } else if(d == Dir::None) {
+            return Dir::None;
+        }
+    } else if(c == '|') {
+        if (d == Dir::Up || d == Dir::Down) {
+            return d;
+        } else if (d == Dir::Left || d == Dir::Right) {
+            Beam(Dir::Up, pos);
+            return Dir::Down;
+        } else if(d == Dir::None) {
+            return Dir::None;
+        }
+    }
+    P_LINE;
+    exit(1);
 }
 
 void Beam(Dir d, LL pos) {
