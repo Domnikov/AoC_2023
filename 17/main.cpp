@@ -78,7 +78,7 @@ auto ExtractMinPos(std::vector<std::pair<LL, LL>>& vec) {
     return result;
 }
 
-void AddNewPos(LL pos, std::vector<std::pair<LL, LL>>& vec) {
+void AddNewPos(LL pos, LL score, std::vector<std::pair<LL, LL>>& vec) {
     LL scoreLeft  = -1;
     LL scoreRight = -1;
     LL scoreUp    = -1;
@@ -89,10 +89,10 @@ void AddNewPos(LL pos, std::vector<std::pair<LL, LL>>& vec) {
     try{scoreUp    = GetScore(ToUp   (pos));} catch (S s) {P(pos, "ToUp   ", s);}
     try{scoreDown  = GetScore(ToDown (pos));} catch (S s) {P(pos, "ToDown ", s);}
 
-    if(scoreLeft  != -1) {SetC(ToLeft (pos), '*');vec.emplace_back(ToLeft (pos),scoreLeft );}
-    if(scoreRight != -1) {SetC(ToRight(pos), '*');vec.emplace_back(ToRight(pos),scoreRight);}
-    if(scoreUp    != -1) {SetC(ToUp   (pos), '*');vec.emplace_back(ToUp   (pos),scoreUp   );}
-    if(scoreDown  != -1) {SetC(ToDown (pos), '*');vec.emplace_back(ToDown (pos),scoreDown );}
+    if(scoreLeft  != -1) {SetC(ToLeft (pos), '*');vec.emplace_back(ToLeft (pos), score+scoreLeft );}
+    if(scoreRight != -1) {SetC(ToRight(pos), '*');vec.emplace_back(ToRight(pos), score+scoreRight);}
+    if(scoreUp    != -1) {SetC(ToUp   (pos), '*');vec.emplace_back(ToUp   (pos), score+scoreUp   );}
+    if(scoreDown  != -1) {SetC(ToDown (pos), '*');vec.emplace_back(ToDown (pos), score+scoreDown );}
 }
 
 auto count1() {
@@ -110,7 +110,7 @@ auto count1() {
         if(pos == endPos) {
             return score;
         }
-        AddNewPos(pos, points);
+        AddNewPos(pos, score, points);
         P(pos, score, points);
         P_VECV(in);
         P_RR("\n");
