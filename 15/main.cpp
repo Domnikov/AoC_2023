@@ -73,7 +73,7 @@ auto count2() {
                 }
             } else {P_LINE; exit(1);}
 
-            // P(s, hash, lbl, num, (int)sign);
+            P(s, hash, lbl, num, (int)sign);
             P_MAP(boxes);
 
             num = 0;
