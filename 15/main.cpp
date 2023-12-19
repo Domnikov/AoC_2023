@@ -59,8 +59,8 @@ auto count2() {
         if(c == ',') {
             auto& box = boxes[hash];
 
-            // auto it = std::find(BE(box), [lbl](const auto& pair){ return lbl == pair.first;});
-            //
+            auto it = std::find(BE(box), [lbl](const auto& pair){ return lbl == pair.first;});
+
             // if(sign == SIGN::MINUS){
             //     box.erase(it);
             // } else if(sign == SIGN::EQ) {
