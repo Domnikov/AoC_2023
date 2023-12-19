@@ -109,7 +109,7 @@ auto count1() {
     LL endPos = GetPos(X-1, Y-1);
 
     std::vector<Path> points;
-    points.emplace_back(0, GetScore(0), Dir::Up, VECI{0});
+    points.emplace_back(0, GetScore(0), Dir::Up, VECI{});
     // SetC(0, '*');
     // P_VECV(in);
     // P_RR("\n");
