@@ -46,10 +46,10 @@ LL GetPos(LL x, LL y) {
     return y*X + x;
 }
 
-bool isLeft (LL d) { return d & (LL)Dir::Left ; }
-bool isRight(LL d) { return d & (LL)Dir::Right; }
-bool isUp   (LL d) { return d & (LL)Dir::Up   ; }
-bool isDown (LL d) { return d & (LL)Dir::Down ; }
+bool isLeft (LL pos) { return tiles1[pos] & (LL)Dir::Left ; }
+bool isRight(LL pos) { return tiles1[pos] & (LL)Dir::Right; }
+bool isUp   (LL pos) { return tiles1[pos] & (LL)Dir::Up   ; }
+bool isDown (LL pos) { return tiles1[pos] & (LL)Dir::Down ; }
 
 bool WasDirection(Dir d, LL pos) {
     switch(d) {
