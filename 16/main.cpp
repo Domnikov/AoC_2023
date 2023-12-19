@@ -110,7 +110,7 @@ Dir CheckDirection(Dir d, LL pos) {
 }
 
 void Beam(Dir d, LL pos) {
-    // do {
+    FOR(ii, 10){
         if(WasDirection(d, pos)) {
             P(d, std::make_pair(GetX(pos), GetY(pos)), "Duplicated. Exit");
             return;
@@ -124,7 +124,7 @@ void Beam(Dir d, LL pos) {
             return;
         }
         d = CheckDirection(d, pos);
-    // } while (true);
+    }
 }
 
 void Print(){
