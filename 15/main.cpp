@@ -50,12 +50,15 @@ auto count2() {
 
         if(sign == SIGN::NO_SET){
             lbl += c;
+            hash += c;
+            hash *= 17;
+            hash %= 256;
         }
 
         if(c == ',') {
             result += hash;
 
-            P(hash, lbl, num, (int)sign);
+            P(s, hash, lbl, num, (int)sign);
 
             num = 0;
             sign = SIGN::NO_SET;
@@ -63,9 +66,6 @@ auto count2() {
             hash = 0;
         } else {
             s += c;
-            hash += c;
-            hash *= 17;
-            hash %= 256;
         }
     }
 
