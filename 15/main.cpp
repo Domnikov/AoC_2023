@@ -27,14 +27,42 @@ auto count1() {
     return result;
 }
 
+enum class SIGN {NO_SET,MINUS, EQ};
+
 auto count2() {
     LL result = 0;
     LL hash = 0;
+    S s;
+    SIGN sign = SIGN::NO_SET;
+    LL num = 0;
+    S lbl;
     for(auto c:in[0]){
+        if(c == '=') {
+            sign  = SIGN::EQ;
+        } else if (c == '-') {
+            sign = SIGN::MINUS;
+        }
+
+        if(c >= '0' && c <= '9')
+        {
+            num = num*10 + c - 0x30;
+        }
+
+        if(sign == SIGN::NO_SET){
+            lbl += c;
+        }
+
         if(c == ',') {
             result += hash;
+
+            P(hash, lbl, num, (int)sign);
+
+            num = 0;
+            sign = SIGN::NO_SET;
+            lbl.clear();
             hash = 0;
         } else {
+            s += c;
             hash += c;
             hash *= 17;
             hash %= 256;
