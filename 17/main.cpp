@@ -84,20 +84,24 @@ LL GetScore(LL pos){
 }
 
 std::list<Path> points;
-std::set<LL> passed;
+std::map<LL, LL> passed;
 
 Path GetMin(){
     auto it = std::min_element(BE(points), [](const auto& a, const auto& b){return (std::get<1>(a) < std::get<1>(b));});
     assert(it != points.end());
     auto path = *it;
     points.erase(it);
-    passed.emplace(std::get<0>(path));
+    passed.emplace(std::get<0>(path), std::get<1>(path));
     return path;
 }
 
 void InsertIfLess(LL newPos, LL newScore, Dir dir, LL dir_count, const VECI& path) {
     if(passed.count(newPos)){
-        return;
+        if(passed[newPos] < newScore) {
+            return;
+        } else {
+            passed.erase(newPos);
+        }
     }
     auto it = std::find_if(BE(points), [newPos](const auto& a){return std::get<0>(a) == newPos;});
     if(it == points.end()){
