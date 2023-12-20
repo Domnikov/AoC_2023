@@ -99,6 +99,8 @@ auto ExtractMinPos(std::list<Path>& vec) {
     if (isFool(std::get<0>(result))) {
         SetC(std::get<0>(result), 'X');
         vec.erase(it);
+    } else {
+        SetC(std::get<0>(result), '#');
     }
     return result;
 }
@@ -192,7 +194,7 @@ auto count1() {
             return score;
         }
         // if(GetC(pos) == '*') continue;
-        SetC(pos, '#');
+        // SetC(pos, '#');
         if(!AddNewPos(path, points)) {
             continue;
         }
