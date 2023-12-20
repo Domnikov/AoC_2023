@@ -100,17 +100,30 @@ LL inserted = 0;
 LL rejected1 = 0;
 LL rejected2 = 0;
 LL rejected3 = 0;
+LL rejected4 = 0;
 void AddNewPos(const Path& path, std::list<Path>& vec) {
     auto [pos, score, dir, dir_counter, path_vec] = path;
     if(score == 0) {
         // P(pos);
     }
     LL minScore = 9999999;
-    Path mimPath;
-    if(/*d != Dir::Left  &&*/IsThreeSame(path) != Dir::Left ) { LL newPos = pos; newPos = ToLeft (pos); if(newPos == -1) {rejected1++;}else{LL newScore = GetScore(newPos);if(newScore == -1){rejected2++;}else{if(newScore > MAX_SCORE) {rejected3++;}else{if(newScore == 0) { P(newPos);}LL new_dir_counter = (dir == Dir::Left ) ? dir_counter+1 : 0; VECI newPath;if constexpr(USE_PATH) {newPath.reserve(path_vec.size()+1); newPath = path_vec; newPath.push_back(newPos);} vec.emplace_back(newPos, score+newScore, Dir::Left , new_dir_counter, newPath);SetC(newPos, '*');inserted++; }}}}
-    if(/*d != Dir::Right &&*/IsThreeSame(path) != Dir::Right) { LL newPos = pos; newPos = ToRight(pos); if(newPos == -1) {rejected1++;}else{LL newScore = GetScore(newPos);if(newScore == -1){rejected2++;}else{if(newScore > MAX_SCORE) {rejected3++;}else{if(newScore == 0) { P(newPos);}LL new_dir_counter = (dir == Dir::Right) ? dir_counter+1 : 0; VECI newPath;if constexpr(USE_PATH) {newPath.reserve(path_vec.size()+1); newPath = path_vec; newPath.push_back(newPos);} vec.emplace_back(newPos, score+newScore, Dir::Right, new_dir_counter, newPath);SetC(newPos, '*');inserted++; }}}}
-    if(/*d != Dir::Up    &&*/IsThreeSame(path) != Dir::Up   ) { LL newPos = pos; newPos = ToUp   (pos); if(newPos == -1) {rejected1++;}else{LL newScore = GetScore(newPos);if(newScore == -1){rejected2++;}else{if(newScore > MAX_SCORE) {rejected3++;}else{if(newScore == 0) { P(newPos);}LL new_dir_counter = (dir == Dir::Up   ) ? dir_counter+1 : 0; VECI newPath;if constexpr(USE_PATH) {newPath.reserve(path_vec.size()+1); newPath = path_vec; newPath.push_back(newPos);} vec.emplace_back(newPos, score+newScore, Dir::Up   , new_dir_counter, newPath);SetC(newPos, '*');inserted++; }}}}
-    if(/*d != Dir::Down  &&*/IsThreeSame(path) != Dir::Down ) { LL newPos = pos; newPos = ToDown (pos); if(newPos == -1) {rejected1++;}else{LL newScore = GetScore(newPos);if(newScore == -1){rejected2++;}else{if(newScore > MAX_SCORE) {rejected3++;}else{if(newScore == 0) { P(newPos);}LL new_dir_counter = (dir == Dir::Down ) ? dir_counter+1 : 0; VECI newPath;if constexpr(USE_PATH) {newPath.reserve(path_vec.size()+1); newPath = path_vec; newPath.push_back(newPos);} vec.emplace_back(newPos, score+newScore, Dir::Down , new_dir_counter, newPath);SetC(newPos, '*');inserted++; }}}}
+    Path minPath;
+    // if(/*d != Dir::Left  &&*/IsThreeSame(path) != Dir::Left ) { LL newPos = pos; newPos = ToLeft (pos); if(newPos == -1) {rejected1++;}else{LL newScore = GetScore(newPos);if(newScore == -1){rejected2++;}else{if(newScore > MAX_SCORE) {rejected3++;}else{if(newScore == 0) { P(newPos);}LL new_dir_counter = (dir == Dir::Left ) ? dir_counter+1 : 0; VECI newPath;if constexpr(USE_PATH) {newPath.reserve(path_vec.size()+1); newPath = path_vec; newPath.push_back(newPos);} vec.emplace_back(newPos, score+newScore, Dir::Left , new_dir_counter, newPath);SetC(newPos, '*');inserted++; }}}}
+    // if(/*d != Dir::Right &&*/IsThreeSame(path) != Dir::Right) { LL newPos = pos; newPos = ToRight(pos); if(newPos == -1) {rejected1++;}else{LL newScore = GetScore(newPos);if(newScore == -1){rejected2++;}else{if(newScore > MAX_SCORE) {rejected3++;}else{if(newScore == 0) { P(newPos);}LL new_dir_counter = (dir == Dir::Right) ? dir_counter+1 : 0; VECI newPath;if constexpr(USE_PATH) {newPath.reserve(path_vec.size()+1); newPath = path_vec; newPath.push_back(newPos);} vec.emplace_back(newPos, score+newScore, Dir::Right, new_dir_counter, newPath);SetC(newPos, '*');inserted++; }}}}
+    // if(/*d != Dir::Up    &&*/IsThreeSame(path) != Dir::Up   ) { LL newPos = pos; newPos = ToUp   (pos); if(newPos == -1) {rejected1++;}else{LL newScore = GetScore(newPos);if(newScore == -1){rejected2++;}else{if(newScore > MAX_SCORE) {rejected3++;}else{if(newScore == 0) { P(newPos);}LL new_dir_counter = (dir == Dir::Up   ) ? dir_counter+1 : 0; VECI newPath;if constexpr(USE_PATH) {newPath.reserve(path_vec.size()+1); newPath = path_vec; newPath.push_back(newPos);} vec.emplace_back(newPos, score+newScore, Dir::Up   , new_dir_counter, newPath);SetC(newPos, '*');inserted++; }}}}
+    // if(/*d != Dir::Down  &&*/IsThreeSame(path) != Dir::Down ) { LL newPos = pos; newPos = ToDown (pos); if(newPos == -1) {rejected1++;}else{LL newScore = GetScore(newPos);if(newScore == -1){rejected2++;}else{if(newScore > MAX_SCORE) {rejected3++;}else{if(newScore == 0) { P(newPos);}LL new_dir_counter = (dir == Dir::Down ) ? dir_counter+1 : 0; VECI newPath;if constexpr(USE_PATH) {newPath.reserve(path_vec.size()+1); newPath = path_vec; newPath.push_back(newPos);} vec.emplace_back(newPos, score+newScore, Dir::Down , new_dir_counter, newPath);SetC(newPos, '*');inserted++; }}}}
+    if(/*d != Dir::Left  &&*/IsThreeSame(path) != Dir::Left ) { LL newPos = pos; newPos = ToLeft (pos); if(newPos == -1) {rejected1++;}else{LL newScore = GetScore(newPos);if(newScore == -1){rejected2++;}else{if(newScore > MAX_SCORE) {rejected3++;}else{if(newScore == 0) { P(newPos);} if(minScore > score+newScore){LL new_dir_counter = (dir == Dir::Left ) ? dir_counter+1 : 0; VECI newPath;if constexpr(USE_PATH) {newPath.reserve(path_vec.size()+1); newPath = path_vec; newPath.push_back(newPos);} minPath = Path{newPos, newScore, Dir::Left , new_dir_counter, newPath};}}}}}
+    if(/*d != Dir::Right &&*/IsThreeSame(path) != Dir::Right) { LL newPos = pos; newPos = ToRight(pos); if(newPos == -1) {rejected1++;}else{LL newScore = GetScore(newPos);if(newScore == -1){rejected2++;}else{if(newScore > MAX_SCORE) {rejected3++;}else{if(newScore == 0) { P(newPos);} if(minScore > score+newScore){LL new_dir_counter = (dir == Dir::Right) ? dir_counter+1 : 0; VECI newPath;if constexpr(USE_PATH) {newPath.reserve(path_vec.size()+1); newPath = path_vec; newPath.push_back(newPos);} minPath = Path{newPos, newScore, Dir::Right, new_dir_counter, newPath};}}}}}
+    if(/*d != Dir::Up    &&*/IsThreeSame(path) != Dir::Up   ) { LL newPos = pos; newPos = ToUp   (pos); if(newPos == -1) {rejected1++;}else{LL newScore = GetScore(newPos);if(newScore == -1){rejected2++;}else{if(newScore > MAX_SCORE) {rejected3++;}else{if(newScore == 0) { P(newPos);} if(minScore > score+newScore){LL new_dir_counter = (dir == Dir::Up   ) ? dir_counter+1 : 0; VECI newPath;if constexpr(USE_PATH) {newPath.reserve(path_vec.size()+1); newPath = path_vec; newPath.push_back(newPos);} minPath = Path{newPos, newScore, Dir::Up   , new_dir_counter, newPath};}}}}}
+    if(/*d != Dir::Down  &&*/IsThreeSame(path) != Dir::Down ) { LL newPos = pos; newPos = ToDown (pos); if(newPos == -1) {rejected1++;}else{LL newScore = GetScore(newPos);if(newScore == -1){rejected2++;}else{if(newScore > MAX_SCORE) {rejected3++;}else{if(newScore == 0) { P(newPos);} if(minScore > score+newScore){LL new_dir_counter = (dir == Dir::Down ) ? dir_counter+1 : 0; VECI newPath;if constexpr(USE_PATH) {newPath.reserve(path_vec.size()+1); newPath = path_vec; newPath.push_back(newPos);} minPath = Path{newPos, newScore, Dir::Down , new_dir_counter, newPath};}}}}}
+
+    const auto& [min_pos, min_score, min_dir, min_dir_counter, min_path_vec] = minPath;
+    if(min_pos != -1 && minScore != -1) {
+        vec.push_back(minPath);
+        inserted++;
+    } else {
+        rejected4++;
+    }
 }
 
 auto count1() {
@@ -141,7 +154,7 @@ auto count1() {
             // Dir d3 = std::get<2>(path[path.size() - 3]);
             //
             // P(d1, d2, d3);
-            P(inserted, rejected1, rejected2, rejected3, points.size());
+            P(inserted, rejected1, rejected2, rejected3, rejected4, points.size());
             for(const auto& p:points) {
                 P(p);
             }
@@ -170,7 +183,7 @@ auto count1() {
         P(p);
     }
 
-    P(inserted, rejected1, rejected2, rejected3, points.size());
+    P(inserted, rejected1, rejected2, rejected3, rejected4, points.size());
 
 
     P("Not found!!!");
