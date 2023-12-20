@@ -134,6 +134,7 @@ auto count1() {
                 SetC(p,'*', newIn);
             }
             P_VECV(newIn);
+            P_VECV(in2);
             return score;
         }
         AddNew(pos, score, dir, dir_count, path);
