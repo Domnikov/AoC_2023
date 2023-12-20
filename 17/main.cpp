@@ -86,7 +86,7 @@ LL GetScore(LL pos){
 std::list<Path> points;
 
 Path& GetMin(){
-    auto it = std::min_element(BE(points), [](const auto& a, const auto& b){return std::get<5>(a) && (std::get<1>(a) < std::get<1>(b));});
+    auto it = std::min_element(BE(points), [](const auto& a, const auto& b){return !std::get<5>(a) && (std::get<1>(a) < std::get<1>(b));});
     assert(it != points.end());
     auto& path = *it;
     // points.erase(it);
@@ -117,7 +117,6 @@ auto count1() {
     points.emplace_back(0, GetScore(0), Dir::Up, 0, VECI{0}, true);
     LL counter = 100;
     for(LL i = 0;!points.empty() && i < 10000;++i){
-        P(i);
         auto& [pos, score, dir, dir_count, path, isNew] = GetMin();
         isNew = false;
         SetC(pos, '#', in2);
