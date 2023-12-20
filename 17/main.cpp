@@ -96,8 +96,10 @@ void InsertIfLess(LL newPos, LL newScore, Dir dir, LL dir_count, const VECI& pat
     P(newPos, newScore, dir, dir_count, path);
     auto it = std::find_if(BE(points), [newPos](const auto& a){return std::get<0>(a);});
     if(it == points.end()){
+        P_LINE;
         points.emplace_back(newPos, newScore, dir, dir_count, path);
     } else if(newScore < std::get<1>(*it)) {
+        P_LINE;
         *it = Path{newPos, newScore, dir, dir_count, path};
     }
 }
