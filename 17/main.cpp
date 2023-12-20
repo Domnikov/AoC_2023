@@ -9,7 +9,7 @@
 
 auto in = getInput();
 
-constexpr bool USE_PATH = true;
+constexpr bool USE_PATH = false;
 
 LL X = in[0].size();
 LL Y = in.size();
@@ -167,7 +167,7 @@ auto count1() {
     // P_VECV(in);
     // P_RR("\n");
     LL counter = 100;
-    for(LL i = 0;!points.empty() && i < 10000;++i){
+    for(LL i = 0;!points.empty() /*&& i < 10000*/;++i){
         const auto& path = ExtractMinPos(points);
         auto [pos, score, d, dir_counter, path_vec] = path;
         if(pos == endPos) {
