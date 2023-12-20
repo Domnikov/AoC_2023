@@ -135,12 +135,11 @@ auto count1() {
     }
 
     P("Not found!!!");
-    auto newIn = getInput();
     // for(auto pnt:points){
     //     LL p = std::get<0>(pnt);
     //     SetC(p,'*', newIn);
     // }
-    P_VECV(newIn);
+    P_VECV(in2);
     // for(const auto& p:points) {
     //     P(p);
     // }
