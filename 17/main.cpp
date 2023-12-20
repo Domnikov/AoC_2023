@@ -157,7 +157,7 @@ bool AddNewPos(const Path& path, std::list<Path>& vec) {
     } else {
         // P(path, minPath, vec.size());
         // P(inserted, rejected1, rejected2, rejected3, rejected4);
-        SetC(min_pos, 'x');
+        // SetC(min_pos, 'x');
         auto it = std::find_if(BE(vec), [&path](auto p){ return std::get<0>(p) == std::get<0>(path) && std::get<1>(p) == std::get<1>(path);});
         if(it != vec.end()) {
             vec.erase(it);
