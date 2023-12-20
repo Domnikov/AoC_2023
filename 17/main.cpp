@@ -180,7 +180,7 @@ auto count1() {
             return score;
         }
         // if(GetC(pos) == '*') continue;
-        // SetC(pos, '*');
+        SetC(pos, '#');
         AddNewPos(path, points);
         if( counter < i ) {
             P(counter, score, points.size());
