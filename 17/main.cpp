@@ -95,7 +95,7 @@ LL rejected1 = 0;
 LL rejected2 = 0;
 LL rejected3 = 0;
 void AddNewPos(const Path& path, std::list<Path>& vec) {
-    auto [pos, score, dir, dir_counter] = path;
+    auto [pos, score, dir, dir_counter, path_vec] = path;
     if(/*d != Dir::Left  &&*/IsThreeSame(path) != Dir::Left ) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToLeft (pos); if(newPos == -1) {rejected1++;break;}newScore += GetScore(newPos);if(newScore == -1){rejected2++;break;} if(newScore > MAX_SCORE) {rejected3++;break;} LL new_dir_counter = (dir == Dir::Left ) ? dir_counter+1 : 0; vec.emplace_back(newPos, newScore, Dir::Left , new_dir_counter);SetC(newPos, '*');inserted++; } }
     if(/*d != Dir::Right &&*/IsThreeSame(path) != Dir::Right) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToRight(pos); if(newPos == -1) {rejected1++;break;}newScore += GetScore(newPos);if(newScore == -1){rejected2++;break;} if(newScore > MAX_SCORE) {rejected3++;break;} LL new_dir_counter = (dir == Dir::Right) ? dir_counter+1 : 0; vec.emplace_back(newPos, newScore, Dir::Right, new_dir_counter);SetC(newPos, '*');inserted++; } }
     if(/*d != Dir::Up    &&*/IsThreeSame(path) != Dir::Up   ) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToUp   (pos); if(newPos == -1) {rejected1++;break;}newScore += GetScore(newPos);if(newScore == -1){rejected2++;break;} if(newScore > MAX_SCORE) {rejected3++;break;} LL new_dir_counter = (dir == Dir::Up   ) ? dir_counter+1 : 0; vec.emplace_back(newPos, newScore, Dir::Up   , new_dir_counter);SetC(newPos, '*');inserted++; } }
