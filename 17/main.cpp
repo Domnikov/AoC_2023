@@ -132,7 +132,7 @@ auto count1() {
             // P(d1, d2, d3);
             return score;
         }
-        if(GetC(pos) == '*') continue;
+        // if(GetC(pos) == '*') continue;
         SetC(pos, '*');
         AddNewPos(path, points);
         if( counter < i ) {
