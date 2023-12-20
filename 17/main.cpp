@@ -117,7 +117,7 @@ auto count1() {
     points.emplace_back(0, GetScore(0), Dir::Up, 0, VECI{0}, true);
     LL counter = 100;
     for(LL i = 0;!points.empty() && i < 10000;++i){
-        // P(i);
+        P(i);
         auto& [pos, score, dir, dir_count, path, isNew] = GetMin();
         isNew = false;
         SetC(pos, '#', in2);
