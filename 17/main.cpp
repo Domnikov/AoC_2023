@@ -67,7 +67,7 @@ char GetScore(LL pos){
     throw S("Not a score: ") + c;
 }
 
-auto ExtractMinPos(std::vector<Path>& vec) {
+auto ExtractMinPos(std::list<Path>& vec) {
     if(vec.empty()) {
         P_LINE;
         exit(1);
@@ -97,7 +97,7 @@ Dir IsThreeSame(const VECI& vec) {
     return Dir::None;
 }
 
-void AddNewPos(LL pos, LL score, Dir d, VECI path, std::vector<Path>& vec) {
+void AddNewPos(LL pos, LL score, Dir d, VECI path, std::list<Path>& vec) {
     try{if(/*d != Dir::Left  &&*/IsThreeSame(path) != Dir::Left ) { LL newPos = pos; LL newScore = score; VECI newPath = path;FOR(i, 1) { newPos = ToLeft (pos); if(exist(newPos, path)){break;} newPath.push_back(newPos);newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Left , newPath); } }}catch(S s){}
     try{if(/*d != Dir::Right &&*/IsThreeSame(path) != Dir::Right) { LL newPos = pos; LL newScore = score; VECI newPath = path;FOR(i, 1) { newPos = ToRight(pos); if(exist(newPos, path)){break;} newPath.push_back(newPos);newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Right, newPath); } }}catch(S s){}
     try{if(/*d != Dir::Up    &&*/IsThreeSame(path) != Dir::Up   ) { LL newPos = pos; LL newScore = score; VECI newPath = path;FOR(i, 1) { newPos = ToUp   (pos); if(exist(newPos, path)){break;} newPath.push_back(newPos);newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Up   , newPath); } }}catch(S s){}
@@ -108,7 +108,7 @@ auto count1() {
     LL result = 0;
     LL endPos = GetPos(X-1, Y-1);
 
-    std::vector<Path> points;
+    std::list<Path> points;
     points.emplace_back(0, /*GetScore(0)*/0, Dir::Up, VECI{0});
     // SetC(0, '*');
     // P_VECV(in);
@@ -142,8 +142,6 @@ auto count1() {
         // P(pos, score, points);
     }
 
-
-    P(points);
 
     P("Not found!!!");
 
