@@ -169,10 +169,13 @@ auto count1() {
     // SetC(0, '*');
     // P_VECV(in);
     // P_RR("\n");
-    LL counter = 1;
+    LL counter = 100;
     for(LL i = 0;!points.empty() && i < 10000;++i){
+        P_LINE;
         const auto& path = ExtractMinPos(points);
+        P_LINE;
         auto [pos, score, d, dir_counter, path_vec] = path;
+        P_LINE;
         if(pos == endPos) {
             in = getInput();
             LL sc = 0;
@@ -194,6 +197,7 @@ auto count1() {
             }
             return score;
         }
+        P_LINE;
         // if(GetC(pos) == '*') continue;
         SetC(pos, '#');
         P_LINE;
@@ -215,6 +219,7 @@ auto count1() {
             }
             counter *= 10;
         }
+        P_LINE;
         // P(pos, score, points);
     }
 
