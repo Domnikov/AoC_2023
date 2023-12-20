@@ -117,8 +117,9 @@ void AddNewPos(const Path& path, std::list<Path>& vec) {
     if(/*d != Dir::Up    &&*/IsThreeSame(path) != Dir::Up   ) { LL newPos = pos; newPos = ToUp   (pos); if(newPos == -1) {rejected1++;}else{LL newScore = GetScore(newPos);if(newScore == -1){rejected2++;}else{if(newScore > MAX_SCORE) {rejected3++;}else{if(newScore == 0) { P(newPos);} if(minScore > score+newScore){LL new_dir_counter = (dir == Dir::Up   ) ? dir_counter+1 : 0; VECI newPath;if constexpr(USE_PATH) {newPath.reserve(path_vec.size()+1); newPath = path_vec; newPath.push_back(newPos);} minPath = Path{newPos, newScore, Dir::Up   , new_dir_counter, newPath};}}}}}
     if(/*d != Dir::Down  &&*/IsThreeSame(path) != Dir::Down ) { LL newPos = pos; newPos = ToDown (pos); if(newPos == -1) {rejected1++;}else{LL newScore = GetScore(newPos);if(newScore == -1){rejected2++;}else{if(newScore > MAX_SCORE) {rejected3++;}else{if(newScore == 0) { P(newPos);} if(minScore > score+newScore){LL new_dir_counter = (dir == Dir::Down ) ? dir_counter+1 : 0; VECI newPath;if constexpr(USE_PATH) {newPath.reserve(path_vec.size()+1); newPath = path_vec; newPath.push_back(newPos);} minPath = Path{newPos, newScore, Dir::Down , new_dir_counter, newPath};}}}}}
 
-    const auto& [min_pos, min_score, min_dir, min_dir_counter, min_path_vec] = minPath;
+    auto& [min_pos, min_score, min_dir, min_dir_counter, min_path_vec] = minPath;
     if(min_pos != -1 && minScore != -1) {
+        min_score += score;
         vec.push_back(minPath);
         inserted++;
     } else {
