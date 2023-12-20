@@ -48,10 +48,10 @@ LL GetPos(LL x, LL y) {
     return y*X + x;
 }
 
-LL ToLeft (LL pos) { LL x = GetX(pos); LL y = GetY(pos); if( x == 0) { throw S("x < 0"); } return GetPos(x-1, y  ); }
-LL ToRight(LL pos) { LL x = GetX(pos); LL y = GetY(pos); if( x>=X-1) { throw S("x > X"); } return GetPos(x+1, y  ); }
-LL ToUp   (LL pos) { LL x = GetX(pos); LL y = GetY(pos); if( y == 0) { throw S("y < 0"); } return GetPos(x  , y-1); }
-LL ToDown (LL pos) { LL x = GetX(pos); LL y = GetY(pos); if( y>=Y-1) { throw S("y > Y"); } return GetPos(x  , y+1); }
+LL ToLeft (LL pos) { LL x = GetX(pos); LL y = GetY(pos); if( x == 0) { return -1; } return GetPos(x-1, y  ); }
+LL ToRight(LL pos) { LL x = GetX(pos); LL y = GetY(pos); if( x>=X-1) { return -1; } return GetPos(x+1, y  ); }
+LL ToUp   (LL pos) { LL x = GetX(pos); LL y = GetY(pos); if( y == 0) { return -1; } return GetPos(x  , y-1); }
+LL ToDown (LL pos) { LL x = GetX(pos); LL y = GetY(pos); if( y>=Y-1) { return -1; } return GetPos(x  , y+1); }
 
 char GetC(LL pos){
     return in[GetY(pos)][GetX(pos)];
@@ -65,7 +65,7 @@ char GetScore(LL pos){
     auto c = GetC(pos);
     if (c >= 0x30 && c <= 0x39)
         return GetC(pos) - 0x30;
-    throw S("Not a score: ") + c;
+    return -1;
 }
 
 auto ExtractMinPos(std::list<Path>& vec) {
@@ -99,10 +99,10 @@ Dir IsThreeSame(const VECI& vec) {
 }
 
 void AddNewPos(LL pos, LL score, Dir d, const VECI& path, std::list<Path>& vec) {
-    try{if(/*d != Dir::Left  &&*/IsThreeSame(path) != Dir::Left ) { LL newPos = pos; LL newScore = score; VECI newPath = path;FOR(i, 1) { newPos = ToLeft (pos); /*if(exist(newPos, path)){break;}*/ newPath.push_back(newPos);newScore += GetScore(newPos); if(newScore > MAX_SCORE) {break;} vec.emplace_back(newPos, newScore, Dir::Left , std::move(newPath)); } }}catch(S s){}
-    try{if(/*d != Dir::Right &&*/IsThreeSame(path) != Dir::Right) { LL newPos = pos; LL newScore = score; VECI newPath = path;FOR(i, 1) { newPos = ToRight(pos); /*if(exist(newPos, path)){break;}*/ newPath.push_back(newPos);newScore += GetScore(newPos); if(newScore > MAX_SCORE) {break;} vec.emplace_back(newPos, newScore, Dir::Right, std::move(newPath)); } }}catch(S s){}
-    try{if(/*d != Dir::Up    &&*/IsThreeSame(path) != Dir::Up   ) { LL newPos = pos; LL newScore = score; VECI newPath = path;FOR(i, 1) { newPos = ToUp   (pos); /*if(exist(newPos, path)){break;}*/ newPath.push_back(newPos);newScore += GetScore(newPos); if(newScore > MAX_SCORE) {break;} vec.emplace_back(newPos, newScore, Dir::Up   , std::move(newPath)); } }}catch(S s){}
-    try{if(/*d != Dir::Down  &&*/IsThreeSame(path) != Dir::Down ) { LL newPos = pos; LL newScore = score; VECI newPath = path;FOR(i, 1) { newPos = ToDown (pos); /*if(exist(newPos, path)){break;}*/ newPath.push_back(newPos);newScore += GetScore(newPos); if(newScore > MAX_SCORE) {break;} vec.emplace_back(newPos, newScore, Dir::Down , std::move(newPath)); } }}catch(S s){}
+    if(/*d != Dir::Left  &&*/IsThreeSame(path) != Dir::Left ) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToLeft (pos); if(newPos == -1) {break;}newScore += GetScore(newPos);if(newScore == -1){break;}/*if(exist(newPos, path)){break;}*/VECI newPath = path; newPath.push_back(newPos); if(newScore > MAX_SCORE) {break;} vec.emplace_back(newPos, newScore, Dir::Left , std::move(newPath)); } }
+    if(/*d != Dir::Right &&*/IsThreeSame(path) != Dir::Right) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToRight(pos); if(newPos == -1) {break;}newScore += GetScore(newPos);if(newScore == -1){break;}/*if(exist(newPos, path)){break;}*/VECI newPath = path; newPath.push_back(newPos); if(newScore > MAX_SCORE) {break;} vec.emplace_back(newPos, newScore, Dir::Right, std::move(newPath)); } }
+    if(/*d != Dir::Up    &&*/IsThreeSame(path) != Dir::Up   ) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToUp   (pos); if(newPos == -1) {break;}newScore += GetScore(newPos);if(newScore == -1){break;}/*if(exist(newPos, path)){break;}*/VECI newPath = path; newPath.push_back(newPos); if(newScore > MAX_SCORE) {break;} vec.emplace_back(newPos, newScore, Dir::Up   , std::move(newPath)); } }
+    if(/*d != Dir::Down  &&*/IsThreeSame(path) != Dir::Down ) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToDown (pos); if(newPos == -1) {break;}newScore += GetScore(newPos);if(newScore == -1){break;}/*if(exist(newPos, path)){break;}*/VECI newPath = path; newPath.push_back(newPos); if(newScore > MAX_SCORE) {break;} vec.emplace_back(newPos, newScore, Dir::Down , std::move(newPath)); } }
 }
 
 auto count1() {
