@@ -142,6 +142,9 @@ void AddNewPos(const Path& path, std::list<Path>& vec) {
         inserted++;
         SetC(min_pos, '*');
     } else {
+        SetC(min_pos, 'X');
+        auto it = std::find(BE(vec), path);
+        vec.erase(it);
         rejected4++;
     }
 }
