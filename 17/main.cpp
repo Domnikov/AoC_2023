@@ -181,7 +181,7 @@ auto count1() {
                 SetC(p, '*');
             }
             // P(sc);
-            // P_VECV(in);
+            P_VECV(in);
             // P_RR("\n");
             // Dir d1 = std::get<2>(path[path.size() - 1]);
             // Dir d2 = std::get<2>(path[path.size() - 2]);
