@@ -113,7 +113,7 @@ auto count1() {
     // SetC(0, '*');
     // P_VECV(in);
     // P_RR("\n");
-
+    LL counter = 1;
     for(LL i = 0;!points.empty() && i < 10000000;++i){
         auto [pos, score, d, path] = ExtractMinPos(points);
         if(pos == endPos) {
@@ -135,6 +135,10 @@ auto count1() {
         }
         SetC(pos, '*');
         AddNewPos(pos, score, d, path, points);
+        if(counter < i) {
+            P(counter, points.size());
+            counter *= 10;
+        }
         // P(pos, score, points);
     }
 
