@@ -126,9 +126,9 @@ auto count1() {
             return score;
         }
         AddNew(pos, score, dir, dir_count, path);
-        // for(const auto& p:points) {
-        //     P(p);
-        // }
+        for(const auto& p:points) {
+            P(p);
+        }
     }
 
     P("Not found!!!");
