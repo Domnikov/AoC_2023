@@ -9,7 +9,7 @@
 
 auto in = getInput();
 
-constexpr bool USE_PATH = true;
+constexpr bool USE_PATH = false;
 
 LL X = in[0].size();
 LL Y = in.size();
