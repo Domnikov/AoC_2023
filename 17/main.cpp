@@ -122,6 +122,7 @@ void AddNewPos(const Path& path, std::list<Path>& vec) {
         min_score += score;
         vec.push_back(minPath);
         inserted++;
+        SetC(min_pos, '*');
     } else {
         rejected4++;
     }
@@ -162,7 +163,7 @@ auto count1() {
             return score;
         }
         // if(GetC(pos) == '*') continue;
-        SetC(pos, '*');
+        // SetC(pos, '*');
         AddNewPos(path, points);
         if( counter < i ) {
             P(counter, score, points.size());
