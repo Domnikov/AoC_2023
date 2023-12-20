@@ -115,7 +115,6 @@ auto count1() {
     for(LL i = 0;!points.empty() && i < 10000000;++i){
         const auto& path = ExtractMinPos(points);
         auto [pos, score, d, dir_counter] = path;
-        SetC(pos, '*');
         if(pos == endPos) {
             // in = getInput();
             // LL sc = 0;
@@ -133,6 +132,8 @@ auto count1() {
             // P(d1, d2, d3);
             return score;
         }
+        if(GetC(pos) == '*') continue;
+        SetC(pos, '*');
         AddNewPos(path, points);
         if( (i % 10000) == 0 ) {
             P(counter, score, points.size());
