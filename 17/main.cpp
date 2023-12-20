@@ -95,12 +95,13 @@ auto ExtractMinPos(std::list<Path>& vec) {
     }
     auto it = std::min_element(BE(vec), [](auto a, auto b){return std::get<1>(a) < std::get<1>(b);});
     auto result = *it;
+    auto [pos, score, dir, dir_counter, path_vec] = result;
     // vec.erase(it);
-    if (isFool(std::get<0>(result))) {
-        SetC(std::get<0>(result), 'X');
+    if (isFool(pos)) {
+        SetC(pos, 'X');
         vec.erase(it);
     } else {
-        SetC(std::get<0>(result), '#');
+        SetC(pos, '#');
     }
     return result;
 }
