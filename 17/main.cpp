@@ -136,9 +136,9 @@ auto count1() {
         }
         SetC(pos, '*');
         AddNewPos(pos, score, d, path, points);
-        if(counter < i) {
-            P(counter, points.size());
-            counter *= 10;
+        if( (i % 10000) == 0 ) {
+            P(counter, score, points.size());
+            P_VECV(in);
         }
         // P(pos, score, points);
     }
