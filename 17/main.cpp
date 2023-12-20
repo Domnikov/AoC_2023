@@ -140,11 +140,12 @@ auto count1() {
         AddNewPos(pos, score, d, path, points);
         if( (i % 10000) == 0 ) {
             P(counter, score, points.size());
-            auto input_copy = getInput();
-            for(auto p: path){
-                SetC(p, '*', input_copy);
-            }
-            P_VECV(input_copy);
+            // auto input_copy = getInput();
+            // for(auto p: path){
+            //     SetC(p, '*', input_copy);
+            // }
+            // P_VECV(input_copy);
+            P_VECV(in);
         }
         // P(pos, score, points);
     }
