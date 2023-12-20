@@ -150,6 +150,7 @@ bool AddNewPos(const Path& path, std::list<Path>& vec) {
         SetC(min_pos, 'X');
         auto it = std::find(BE(vec), path);
         if(it != vec.end()) {
+            P_LINE;
             vec.erase(it);
         }
         rejected4++;
