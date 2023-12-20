@@ -129,14 +129,14 @@ auto count1() {
             for(auto p:path){
                 SetC(p,'*', newIn);
             }
-            // P_VECV(newIn);
-            // return score;
+            P_VECV(newIn);
+            return score;
         }
         AddNew(pos, score, dir, dir_count, path);
-        P(i, pos, score, dir, dir_count, path)
-        for(const auto& p:points) {
-            P(p);
-        }
+        // P(i, pos, score, dir, dir_count, path)
+        // for(const auto& p:points) {
+        //     P(p);
+        // }
     }
 
     P("Not found!!!");
