@@ -90,7 +90,7 @@ bool exist(LL pos, const VECI& path) {
 }
 
 Dir IsThreeSame(const Path& p) {
-    if(std::get<3>(p) >= 3) {
+    if(std::get<3>(p) >= 2) {
         return std::get<2>(p);
     }
     return Dir::None;
