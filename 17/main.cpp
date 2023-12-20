@@ -215,7 +215,7 @@ auto count1() {
             //     SetC(p, '*', input_copy);
             // }
             // P_VECV(input_copy);
-            P_VECV(in);
+            // P_VECV(in);
         P_LINE;
             for(const auto& p:points) {
                 P(p);
