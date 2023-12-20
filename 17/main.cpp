@@ -60,7 +60,13 @@ char GetC(LL pos){
 }
 
 void SetC(LL pos, char c, VECS& table = in){
-    table[GetY(pos)][GetX(pos)] = c;
+    auto x = GetX(pos);
+    auto y = GetY(pos);
+    if(x < 0 || y < 0 || x >= X || y >= Y) {
+        P_LINE;
+        exit(1);
+    }
+    table[y][x] = c;
 }
 
 LL GetScore(LL pos){
