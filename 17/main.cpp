@@ -20,7 +20,7 @@ enum class Dir {
     Up    = 0x100,
     Down  = 0x1000,
 };
-using Path = std::tuple<LL, LL, Dir, LL>;
+using Path = std::tuple<LL, LL, Dir, LL, VECI>;
 namespace std{
 
     inline ostream& operator<<( ostream& dest, Dir d )
@@ -114,7 +114,7 @@ auto count1() {
     LL counter = 1;
     for(LL i = 0;!points.empty() /*&& i < 1000000000*/;++i){
         const auto& path = ExtractMinPos(points);
-        auto [pos, score, d, dir_counter] = path;
+        auto [pos, score, d, dir_counter, vec] = path;
         if(pos == endPos) {
             // in = getInput();
             // LL sc = 0;
