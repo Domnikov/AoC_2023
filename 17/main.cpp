@@ -129,11 +129,10 @@ auto count1() {
         }
     }
 
+    P("Not found!!!");
     for(const auto& p:points) {
         P(p);
     }
-
-    P("Not found!!!");
 
     return result;
 }
