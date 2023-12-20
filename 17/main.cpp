@@ -148,7 +148,7 @@ auto count1() {
     }
 
     for(const auto& p:points) {
-        P_VEC(std::get<3>(p));
+        P(p);
     }
 
 
