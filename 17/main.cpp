@@ -112,7 +112,7 @@ auto count1() {
     // P_VECV(in);
     // P_RR("\n");
     LL counter = 1;
-    for(LL i = 0;!points.empty() && i < 10000000;++i){
+    for(LL i = 0;!points.empty() && i < 1000000000;++i){
         const auto& path = ExtractMinPos(points);
         auto [pos, score, d, dir_counter] = path;
         if(pos == endPos) {
@@ -135,7 +135,7 @@ auto count1() {
         if(GetC(pos) == '*') continue;
         SetC(pos, '*');
         AddNewPos(path, points);
-        if( (i % 10000) == 0 ) {
+        if( counter < i ) {
             P(counter, score, points.size());
             // auto input_copy = getInput();
             // for(auto p: path){
@@ -143,6 +143,7 @@ auto count1() {
             // }
             // P_VECV(input_copy);
             P_VECV(in);
+            counter *= 10;
         }
         // P(pos, score, points);
     }
