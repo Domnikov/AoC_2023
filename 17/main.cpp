@@ -119,7 +119,8 @@ LL rejected1 = 0;
 LL rejected2 = 0;
 LL rejected3 = 0;
 LL rejected4 = 0;
-void AddNewPos(const Path& path, std::list<Path>& vec) {
+
+bool AddNewPos(const Path& path, std::list<Path>& vec) {
     auto [pos, score, dir, dir_counter, path_vec] = path;
     if(score == 0) {
         // P(pos);
@@ -142,6 +143,7 @@ void AddNewPos(const Path& path, std::list<Path>& vec) {
         inserted++;
         SetC(min_pos, '*');
         P(minPath, vec.size());
+        return true;
     } else {
         P(path, minPath, vec.size());
         P(inserted, rejected1, rejected2, rejected3, rejected4);
@@ -149,6 +151,7 @@ void AddNewPos(const Path& path, std::list<Path>& vec) {
         auto it = std::find(BE(vec), path);
         vec.erase(it);
         rejected4++;
+        return false;
     }
 }
 
@@ -188,7 +191,9 @@ auto count1() {
         }
         // if(GetC(pos) == '*') continue;
         SetC(pos, '#');
-        AddNewPos(path, points);
+        if(!AddNewPos(path, points)) {
+            continue;
+        }
         if( counter < i ) {
             P(counter, score, points.size());
             // auto input_copy = getInput();
