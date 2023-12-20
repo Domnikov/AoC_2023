@@ -191,9 +191,12 @@ auto count1() {
         }
         // if(GetC(pos) == '*') continue;
         SetC(pos, '#');
+        P_LINE;
         if(!AddNewPos(path, points)) {
+        P_LINE;
             continue;
         }
+        P_LINE;
         if( counter < i ) {
             P(counter, score, points.size());
             // auto input_copy = getInput();
