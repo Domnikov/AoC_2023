@@ -152,7 +152,7 @@ auto count1() {
         P(p);
     }
 
-    P(inserted, rejected1, rejected2, rejected3);
+    P(inserted, rejected1, rejected2, rejected3, points.size());
 
 
     P("Not found!!!");
