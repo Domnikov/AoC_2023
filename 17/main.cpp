@@ -74,6 +74,20 @@ LL GetScore(LL pos){
     return -1;
 }
 
+bool isFool(LL pos) {
+    LL left  = ToLeft (pos);
+    LL right = ToRight(pos);
+    LL up    = ToUp   (pos);
+    LL down  = ToDown (pos);
+    if ((left  == -1 || GetScore(left ) == -1) &&
+        (right == -1 || GetScore(right) == -1) &&
+        (up    == -1 || GetScore(up   ) == -1) &&
+        (down  == -1 || GetScore(down ) == -1)) {
+        return true;
+    }
+    return false;
+}
+
 auto ExtractMinPos(std::list<Path>& vec) {
     if(vec.empty()) {
         P_LINE;
@@ -82,10 +96,7 @@ auto ExtractMinPos(std::list<Path>& vec) {
     auto it = std::min_element(BE(vec), [](auto a, auto b){return std::get<1>(a) < std::get<1>(b);});
     auto result = *it;
     // vec.erase(it);
-    if (ToLeft (std::get<0>(result)) == -1 &&
-        ToRight(std::get<0>(result)) == -1 &&
-        ToUp   (std::get<0>(result)) == -1 &&
-        ToDown (std::get<0>(result)) == -1 ) {
+    if (isFool(std::get<0>(result))) {
         vec.erase(it);
     }
     return result;
