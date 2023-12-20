@@ -143,6 +143,9 @@ auto count1() {
             // }
             // P_VECV(input_copy);
             P_VECV(in);
+            for(const auto& p:points) {
+                P(p);
+            }
             counter *= 10;
         }
         // P(pos, score, points);
