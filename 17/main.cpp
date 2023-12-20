@@ -146,16 +146,14 @@ bool AddNewPos(const Path& path, std::list<Path>& vec) {
         P(minPath, vec.size());
         return true;
     } else {
-        P(path, minPath, vec.size());
-        P(inserted, rejected1, rejected2, rejected3, rejected4);
+        // P(path, minPath, vec.size());
+        // P(inserted, rejected1, rejected2, rejected3, rejected4);
         SetC(min_pos, 'X');
         auto it = std::find_if(BE(vec), [&path](auto p){ return std::get<0>(p) == std::get<0>(path) && std::get<1>(p) == std::get<1>(path);});
         if(it != vec.end()) {
-            P_LINE;
             vec.erase(it);
         }
         rejected4++;
-        P_LINE;
         return false;
     }
 }
@@ -171,11 +169,8 @@ auto count1() {
     // P_RR("\n");
     LL counter = 100;
     for(LL i = 0;!points.empty() && i < 10000;++i){
-        P_LINE;
         const auto& path = ExtractMinPos(points);
-        P_LINE;
         auto [pos, score, d, dir_counter, path_vec] = path;
-        P_LINE;
         if(pos == endPos) {
             in = getInput();
             LL sc = 0;
@@ -197,33 +192,26 @@ auto count1() {
             }
             return score;
         }
-        P_LINE;
         // if(GetC(pos) == '*') continue;
         SetC(pos, '#');
-        P_LINE;
         if(!AddNewPos(path, points)) {
-        P_LINE;
             continue;
         }
-        P_LINE;
         if( counter < i ) {
-        P_LINE;
             P(counter, score, points.size());
-        P_LINE;
             // auto input_copy = getInput();
             // for(auto p: path){
             //     SetC(p, '*', input_copy);
             // }
-            P_VECV(in);
-        P_LINE;
+            // P_VECV(input_copy);
+            for(const auto& s : in) {
+                P_RR("%s\n", s.c_str());
+            }
             for(const auto& p:points) {
                 P(p);
             }
-        P_LINE;
             counter *= 10;
-        P_LINE;
         }
-        P_LINE;
         // P(pos, score, points);
     }
 
