@@ -118,6 +118,11 @@ auto count1() {
         // P(i);
         auto [pos, score, dir, dir_count, path] = GetMin();
         if(pos == endPos) {
+            auto newIn = getInput();
+            for(auto p:path){
+                SetC(p,'*', newIn);
+            }
+            P_VECV(newIn);
             return score;
         }
         AddNew(pos, score, dir, dir_count, path);
