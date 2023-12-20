@@ -114,7 +114,7 @@ auto count1() {
     LL result = 0;
     LL endPos = GetPos(X-1, Y-1);
 
-    points.emplace_back(0, GetScore(0), Dir::Up, 0, VECI{0});
+    points.emplace_back(0, GetScore(0), Dir::Up, 0, VECI{0}, true);
     LL counter = 100;
     for(LL i = 0;!points.empty() && i < 10000;++i){
         // P(i);
