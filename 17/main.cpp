@@ -102,10 +102,10 @@ LL rejected1 = 0;
 LL rejected2 = 0;
 LL rejected3 = 0;
 void AddNewPos(LL pos, LL score, Dir d, const VECI& path, std::list<Path>& vec) {
-    if(/*d != Dir::Left  &&*/IsThreeSame(path) != Dir::Left ) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToLeft (pos); if(newPos == -1) {rejected1++;break;}newScore += GetScore(newPos);if(newScore == -1){rejected2++;break;}/*if(exist(newPos, path)){break;}*/VECI newPath; newPath.reserve(path.size()+1); newPath = path; newPath.push_back(newPos); if(newScore > MAX_SCORE) {rejected3++;break;} vec.emplace_back(newPos, newScore, Dir::Left , std::move(newPath));inserted++; } }
-    if(/*d != Dir::Right &&*/IsThreeSame(path) != Dir::Right) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToRight(pos); if(newPos == -1) {rejected1++;break;}newScore += GetScore(newPos);if(newScore == -1){rejected2++;break;}/*if(exist(newPos, path)){break;}*/VECI newPath; newPath.reserve(path.size()+1); newPath = path; newPath.push_back(newPos); if(newScore > MAX_SCORE) {rejected3++;break;} vec.emplace_back(newPos, newScore, Dir::Right, std::move(newPath));inserted++; } }
-    if(/*d != Dir::Up    &&*/IsThreeSame(path) != Dir::Up   ) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToUp   (pos); if(newPos == -1) {rejected1++;break;}newScore += GetScore(newPos);if(newScore == -1){rejected2++;break;}/*if(exist(newPos, path)){break;}*/VECI newPath; newPath.reserve(path.size()+1); newPath = path; newPath.push_back(newPos); if(newScore > MAX_SCORE) {rejected3++;break;} vec.emplace_back(newPos, newScore, Dir::Up   , std::move(newPath));inserted++; } }
-    if(/*d != Dir::Down  &&*/IsThreeSame(path) != Dir::Down ) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToDown (pos); if(newPos == -1) {rejected1++;break;}newScore += GetScore(newPos);if(newScore == -1){rejected2++;break;}/*if(exist(newPos, path)){break;}*/VECI newPath; newPath.reserve(path.size()+1); newPath = path; newPath.push_back(newPos); if(newScore > MAX_SCORE) {rejected3++;break;} vec.emplace_back(newPos, newScore, Dir::Down , std::move(newPath));inserted++; } }
+    if(/*d != Dir::Left  &&*/IsThreeSame(path) != Dir::Left ) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToLeft (pos); if(newPos == -1) {rejected1++;break;}newScore += GetScore(newPos);if(newScore == -1){rejected2++;break;}/*if(exist(newPos, path)){break;}*/VECI newPath; newPath.reserve(path.size()+1); newPath = path; newPath.push_back(newPos); if(newScore > MAX_SCORE) {rejected3++;break;} vec.emplace_back(newPos, newScore, Dir::Left , std::move(newPath));SetC(newPos, '*');inserted++; } }
+    if(/*d != Dir::Right &&*/IsThreeSame(path) != Dir::Right) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToRight(pos); if(newPos == -1) {rejected1++;break;}newScore += GetScore(newPos);if(newScore == -1){rejected2++;break;}/*if(exist(newPos, path)){break;}*/VECI newPath; newPath.reserve(path.size()+1); newPath = path; newPath.push_back(newPos); if(newScore > MAX_SCORE) {rejected3++;break;} vec.emplace_back(newPos, newScore, Dir::Right, std::move(newPath));SetC(newPos, '*');inserted++; } }
+    if(/*d != Dir::Up    &&*/IsThreeSame(path) != Dir::Up   ) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToUp   (pos); if(newPos == -1) {rejected1++;break;}newScore += GetScore(newPos);if(newScore == -1){rejected2++;break;}/*if(exist(newPos, path)){break;}*/VECI newPath; newPath.reserve(path.size()+1); newPath = path; newPath.push_back(newPos); if(newScore > MAX_SCORE) {rejected3++;break;} vec.emplace_back(newPos, newScore, Dir::Up   , std::move(newPath));SetC(newPos, '*');inserted++; } }
+    if(/*d != Dir::Down  &&*/IsThreeSame(path) != Dir::Down ) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToDown (pos); if(newPos == -1) {rejected1++;break;}newScore += GetScore(newPos);if(newScore == -1){rejected2++;break;}/*if(exist(newPos, path)){break;}*/VECI newPath; newPath.reserve(path.size()+1); newPath = path; newPath.push_back(newPos); if(newScore > MAX_SCORE) {rejected3++;break;} vec.emplace_back(newPos, newScore, Dir::Down , std::move(newPath));SetC(newPos, '*');inserted++; } }
 }
 
 auto count1() {
@@ -137,7 +137,6 @@ auto count1() {
             // P(d1, d2, d3);
             return score;
         }
-        SetC(pos, '*');
         AddNewPos(pos, score, d, path, points);
         if( (i % 10000) == 0 ) {
             P(counter, score, points.size());
