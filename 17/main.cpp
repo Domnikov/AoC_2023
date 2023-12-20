@@ -134,7 +134,6 @@ auto count1() {
                 SetC(p,'*', newIn);
             }
             P_VECV(newIn);
-            P_VECV(in2);
             P_VECV(in);
             return score;
         }
