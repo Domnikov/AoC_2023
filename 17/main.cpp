@@ -57,8 +57,8 @@ char GetC(LL pos){
     return in[GetY(pos)][GetX(pos)];
 }
 
-void SetC(LL pos, char c){
-    in[GetY(pos)][GetX(pos)] = c;
+void SetC(LL pos, char c, VECS& table = in){
+    table[GetY(pos)][GetX(pos)] = c;
 }
 
 char GetScore(LL pos){
@@ -138,7 +138,11 @@ auto count1() {
         AddNewPos(pos, score, d, path, points);
         if( (i % 10000) == 0 ) {
             P(counter, score, points.size());
-            P_VECV(in);
+            auto input_copy = getInput();
+            for(auto p: path){
+                SetC(p, '*', input_copy);
+            }
+            P_VECV(input_copy);
         }
         // P(pos, score, points);
     }
