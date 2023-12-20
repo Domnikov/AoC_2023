@@ -81,7 +81,13 @@ auto ExtractMinPos(std::list<Path>& vec) {
     }
     auto it = std::min_element(BE(vec), [](auto a, auto b){return std::get<1>(a) < std::get<1>(b);});
     auto result = *it;
-    vec.erase(it);
+    // vec.erase(it);
+    if (ToLeft (std::get<0>(result)) == -1 &&
+        ToRight(std::get<0>(result)) == -1 &&
+        ToUp   (std::get<0>(result)) == -1 &&
+        ToDown (std::get<0>(result)) == -1 ) {
+        vec.erase(it);
+    }
     return result;
 }
 
