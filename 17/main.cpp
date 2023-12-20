@@ -153,6 +153,7 @@ bool AddNewPos(const Path& path, std::list<Path>& vec) {
             vec.erase(it);
         }
         rejected4++;
+        P_LINE;
         return false;
     }
 }
