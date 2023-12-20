@@ -135,6 +135,7 @@ auto count1() {
             }
             P_VECV(newIn);
             P_VECV(in2);
+            P_VECV(in);
             return score;
         }
         AddNew(pos, score, dir, dir_count, path);
