@@ -97,6 +97,7 @@ auto ExtractMinPos(std::list<Path>& vec) {
     auto result = *it;
     // vec.erase(it);
     if (isFool(std::get<0>(result))) {
+        P_LINE;
         SetC(std::get<0>(result), 'X');
         vec.erase(it);
     }
