@@ -86,10 +86,10 @@ LL GetScore(LL pos){
 std::list<Path> points;
 std::set<Path> passed;
 
-Path& GetMin(){
+Path GetMin(){
     auto it = std::min_element(BE(points), [](const auto& a, const auto& b){return (std::get<1>(a) < std::get<1>(b));});
     assert(it != points.end());
-    auto& path = *it;
+    auto path = *it;
     points.erase(it);
     return path;
 }
