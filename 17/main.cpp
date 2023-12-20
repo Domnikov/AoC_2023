@@ -174,6 +174,7 @@ auto count1() {
         const auto& path = ExtractMinPos(points);
         auto [pos, score, d, dir_counter, path_vec] = path;
         if(pos == endPos) {
+            P_VECV(in);
             in = getInput();
             LL sc = 0;
             for(auto p: path_vec){
