@@ -24,7 +24,7 @@ enum class Dir {
     Up    = 0x100,
     Down  = 0x1000,
 };
-using Path = std::tuple<LL, LL, Dir, LL, VECI>;
+using Path = std::tuple<LL, LL, Dir, LL, VECI, bool>;
 namespace std{
 
     inline ostream& operator<<( ostream& dest, Dir d )
@@ -86,7 +86,7 @@ LL GetScore(LL pos){
 std::list<Path> points;
 
 Path GetMin(){
-    auto it = std::min_element(BE(points), [](const auto& a, const auto& b){return std::get<1>(a) < std::get<1>(b);});
+    auto it = std::min_element(BE(points), [](const auto& a, const auto& b){return std::get<5>(a) && (std::get<1>(a) < std::get<1>(b));});
     assert(it != points.end());
     auto path = *it;
     points.erase(it);
@@ -98,8 +98,8 @@ void InsertIfLess(LL newPos, LL newScore, Dir dir, LL dir_count, const VECI& pat
     if(it == points.end()){
         points.emplace_back(newPos, newScore, dir, dir_count, path);
         SetC(newPos, '*', in2);
-    } else if(newScore < std::get<1>(*it)) {
-        *it = Path{newPos, newScore, dir, dir_count, path};
+    } else if(newScore < std::get<1>(*it) && std::get<5>(*it)) {
+        *it = Path{newPos, newScore, dir, dir_count, path, true};
     }
 }
 
@@ -118,7 +118,7 @@ auto count1() {
     LL counter = 100;
     for(LL i = 0;!points.empty() && i < 10000;++i){
         // P(i);
-        auto [pos, score, dir, dir_count, path] = GetMin();
+        auto [pos, score, dir, dir_count, path, isNew] = GetMin();
         SetC(pos, '#', in2);
         if(pos == endPos) {
             auto newIn = getInput();
