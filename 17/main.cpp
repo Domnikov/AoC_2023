@@ -66,6 +66,9 @@ void SetC(LL pos, char c, VECS& table = in){
 LL GetScore(LL pos){
     auto c = GetC(pos);
     if (c >= 0x30 && c <= 0x39)
+        if(c == 0x30){
+            P(pos);
+        }
         return GetC(pos) - 0x30;
     return -1;
 }
