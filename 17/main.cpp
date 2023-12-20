@@ -133,6 +133,7 @@ auto count1() {
             return score;
         }
         AddNew(pos, score, dir, dir_count, path);
+        P(i)
         for(const auto& p:points) {
             P(p);
         }
