@@ -118,15 +118,15 @@ auto count1() {
     points.emplace_back(0, GetScore(0), Dir::Up, 0, VECI{0});
     LL counter = 100;
     for(LL i = 0;!points.empty() && i < 10000;++i){
-        P(i);
+        // P(i);
         auto [pos, score, dir, dir_count, path] = GetMin();
         if(pos == endPos) {
             return score;
         }
         AddNew(pos, score, dir, dir_count, path);
-        for(const auto& p:points) {
-            P(p);
-        }
+        // for(const auto& p:points) {
+        //     P(p);
+        // }
     }
 
     P("Not found!!!");
