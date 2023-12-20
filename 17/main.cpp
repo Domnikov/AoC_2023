@@ -141,9 +141,9 @@ void AddNewPos(const Path& path, std::list<Path>& vec) {
         vec.push_back(minPath);
         inserted++;
         SetC(min_pos, '*');
-        P(minPath);
+        P(minPath, vec.size());
     } else {
-        P(path);
+        P(path, vec.size());
         P(minPath);
         P(inserted, rejected1, rejected2, rejected3, rejected4);
         SetC(min_pos, 'X');
