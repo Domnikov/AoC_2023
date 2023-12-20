@@ -177,18 +177,18 @@ auto count1() {
                 sc += GetScore(p);
                 SetC(p, '*');
             }
-            P(sc);
-            P_VECV(in);
-            P_RR("\n");
+            // P(sc);
+            // P_VECV(in);
+            // P_RR("\n");
             // Dir d1 = std::get<2>(path[path.size() - 1]);
             // Dir d2 = std::get<2>(path[path.size() - 2]);
             // Dir d3 = std::get<2>(path[path.size() - 3]);
             //
             // P(d1, d2, d3);
-            P(inserted, rejected1, rejected2, rejected3, rejected4, points.size());
-            for(const auto& p:points) {
-                P(p);
-            }
+            // P(inserted, rejected1, rejected2, rejected3, rejected4, points.size());
+            // for(const auto& p:points) {
+            //     P(p);
+            // }
             return score;
         }
         // if(GetC(pos) == '*') continue;
