@@ -20,7 +20,7 @@ enum class Dir {
     Up    = 0x100,
     Down  = 0x1000,
 };
-using Path = std::tuple<LL, LL, Dir, VECI>;
+using Path = std::tuple<LL, LL, Dir, LL>;
 namespace std{
 
     inline ostream& operator<<( ostream& dest, Dir d )
@@ -83,29 +83,23 @@ bool exist(LL pos, const VECI& path) {
     return std::any_of(BE(path), [pos](const auto& p){return pos == p;});
 }
 
-Dir IsThreeSame(const VECI& vec) {
-    if(vec.size() < 3) {
-        return Dir::None;
+Dir IsThreeSame(const Path& p) {
+    if(std::get<3>(p) >= 3) {
+        return std::get<2>(p);
     }
-    LL p1 = vec[vec.size() - 1];
-    LL p4 = vec[vec.size() - 4];
-
-    if((GetX(p4) - GetX(p1)) == 3) { return Dir::Left ; }
-    if((GetX(p1) - GetX(p4)) == 3) { return Dir::Right; }
-    if((GetY(p4) - GetY(p1)) == 3) { return Dir::Up   ; }
-    if((GetY(p1) - GetY(p4)) == 3) { return Dir::Down ; }
-
     return Dir::None;
 }
+
 LL inserted = 0;
 LL rejected1 = 0;
 LL rejected2 = 0;
 LL rejected3 = 0;
-void AddNewPos(LL pos, LL score, Dir d, const VECI& path, std::list<Path>& vec) {
-    if(/*d != Dir::Left  &&*/IsThreeSame(path) != Dir::Left ) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToLeft (pos); if(newPos == -1) {rejected1++;break;}newScore += GetScore(newPos);if(newScore == -1){rejected2++;break;}/*if(exist(newPos, path)){break;}*/VECI newPath; newPath.reserve(path.size()+1); newPath = path; newPath.push_back(newPos); if(newScore > MAX_SCORE) {rejected3++;break;} vec.emplace_back(newPos, newScore, Dir::Left , std::move(newPath));SetC(newPos, '*');inserted++; } }
-    if(/*d != Dir::Right &&*/IsThreeSame(path) != Dir::Right) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToRight(pos); if(newPos == -1) {rejected1++;break;}newScore += GetScore(newPos);if(newScore == -1){rejected2++;break;}/*if(exist(newPos, path)){break;}*/VECI newPath; newPath.reserve(path.size()+1); newPath = path; newPath.push_back(newPos); if(newScore > MAX_SCORE) {rejected3++;break;} vec.emplace_back(newPos, newScore, Dir::Right, std::move(newPath));SetC(newPos, '*');inserted++; } }
-    if(/*d != Dir::Up    &&*/IsThreeSame(path) != Dir::Up   ) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToUp   (pos); if(newPos == -1) {rejected1++;break;}newScore += GetScore(newPos);if(newScore == -1){rejected2++;break;}/*if(exist(newPos, path)){break;}*/VECI newPath; newPath.reserve(path.size()+1); newPath = path; newPath.push_back(newPos); if(newScore > MAX_SCORE) {rejected3++;break;} vec.emplace_back(newPos, newScore, Dir::Up   , std::move(newPath));SetC(newPos, '*');inserted++; } }
-    if(/*d != Dir::Down  &&*/IsThreeSame(path) != Dir::Down ) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToDown (pos); if(newPos == -1) {rejected1++;break;}newScore += GetScore(newPos);if(newScore == -1){rejected2++;break;}/*if(exist(newPos, path)){break;}*/VECI newPath; newPath.reserve(path.size()+1); newPath = path; newPath.push_back(newPos); if(newScore > MAX_SCORE) {rejected3++;break;} vec.emplace_back(newPos, newScore, Dir::Down , std::move(newPath));SetC(newPos, '*');inserted++; } }
+void AddNewPos(const Path& path, std::list<Path>& vec) {
+    auto [pos, score, dir, dir_counter] = path;
+    if(/*d != Dir::Left  &&*/IsThreeSame(path) != Dir::Left ) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToLeft (pos); if(newPos == -1) {rejected1++;break;}newScore += GetScore(newPos);if(newScore == -1){rejected2++;break;} if(newScore > MAX_SCORE) {rejected3++;break;} LL new_dir_counter = (dir == Dir::Left) ? dir_counter+1 : 0; vec.emplace_back(newPos, newScore, Dir::Left , new_dir_counter);SetC(newPos, '*');inserted++; } }
+    if(/*d != Dir::Right &&*/IsThreeSame(path) != Dir::Right) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToRight(pos); if(newPos == -1) {rejected1++;break;}newScore += GetScore(newPos);if(newScore == -1){rejected2++;break;} if(newScore > MAX_SCORE) {rejected3++;break;} LL new_dir_counter = (dir == Dir::Left) ? dir_counter+1 : 0; vec.emplace_back(newPos, newScore, Dir::Right, new_dir_counter);SetC(newPos, '*');inserted++; } }
+    if(/*d != Dir::Up    &&*/IsThreeSame(path) != Dir::Up   ) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToUp   (pos); if(newPos == -1) {rejected1++;break;}newScore += GetScore(newPos);if(newScore == -1){rejected2++;break;} if(newScore > MAX_SCORE) {rejected3++;break;} LL new_dir_counter = (dir == Dir::Left) ? dir_counter+1 : 0; vec.emplace_back(newPos, newScore, Dir::Up   , new_dir_counter);SetC(newPos, '*');inserted++; } }
+    if(/*d != Dir::Down  &&*/IsThreeSame(path) != Dir::Down ) { LL newPos = pos; LL newScore = score; FOR(i, 1) { newPos = ToDown (pos); if(newPos == -1) {rejected1++;break;}newScore += GetScore(newPos);if(newScore == -1){rejected2++;break;} if(newScore > MAX_SCORE) {rejected3++;break;} LL new_dir_counter = (dir == Dir::Left) ? dir_counter+1 : 0; vec.emplace_back(newPos, newScore, Dir::Down , new_dir_counter);SetC(newPos, '*');inserted++; } }
 }
 
 auto count1() {
@@ -119,17 +113,18 @@ auto count1() {
     // P_RR("\n");
     LL counter = 1;
     for(LL i = 0;!points.empty() && i < 10000000;++i){
-        auto [pos, score, d, path] = ExtractMinPos(points);
+        const auto& path = ExtractMinPos(points);
+        auto [pos, score, d, dir_counter] = ExtractMinPos(points);
         if(pos == endPos) {
-            in = getInput();
-            LL sc = 0;
-            for(auto p: path){
-                sc += GetScore(p);
-                SetC(p, '*');
-            }
-            P(sc);
-            P_VECV(in);
-            P_RR("\n");
+            // in = getInput();
+            // LL sc = 0;
+            // for(auto p: path){
+            //     sc += GetScore(p);
+            //     SetC(p, '*');
+            // }
+            // P(sc);
+            // P_VECV(in);
+            // P_RR("\n");
             // Dir d1 = std::get<2>(path[path.size() - 1]);
             // Dir d2 = std::get<2>(path[path.size() - 2]);
             // Dir d3 = std::get<2>(path[path.size() - 3]);
@@ -137,7 +132,7 @@ auto count1() {
             // P(d1, d2, d3);
             return score;
         }
-        AddNewPos(pos, score, d, path, points);
+        AddNewPos(path, points);
         if( (i % 10000) == 0 ) {
             P(counter, score, points.size());
             // auto input_copy = getInput();
