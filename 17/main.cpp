@@ -11,6 +11,7 @@ auto in = getInput();
 
 LL X = in[0].size();
 LL Y = in.size();
+LL MAX_SCORE = (in.size() + in[0].size()) * 6;
 
 enum class Dir {
     None  = 0,
@@ -98,10 +99,10 @@ Dir IsThreeSame(const VECI& vec) {
 }
 
 void AddNewPos(LL pos, LL score, Dir d, VECI path, std::list<Path>& vec) {
-    try{if(/*d != Dir::Left  &&*/IsThreeSame(path) != Dir::Left ) { LL newPos = pos; LL newScore = score; VECI newPath = path;FOR(i, 1) { newPos = ToLeft (pos); if(exist(newPos, path)){break;} newPath.push_back(newPos);newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Left , newPath); } }}catch(S s){}
-    try{if(/*d != Dir::Right &&*/IsThreeSame(path) != Dir::Right) { LL newPos = pos; LL newScore = score; VECI newPath = path;FOR(i, 1) { newPos = ToRight(pos); if(exist(newPos, path)){break;} newPath.push_back(newPos);newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Right, newPath); } }}catch(S s){}
-    try{if(/*d != Dir::Up    &&*/IsThreeSame(path) != Dir::Up   ) { LL newPos = pos; LL newScore = score; VECI newPath = path;FOR(i, 1) { newPos = ToUp   (pos); if(exist(newPos, path)){break;} newPath.push_back(newPos);newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Up   , newPath); } }}catch(S s){}
-    try{if(/*d != Dir::Down  &&*/IsThreeSame(path) != Dir::Down ) { LL newPos = pos; LL newScore = score; VECI newPath = path;FOR(i, 1) { newPos = ToDown (pos); if(exist(newPos, path)){break;} newPath.push_back(newPos);newScore += GetScore(newPos); vec.emplace_back(newPos, newScore, Dir::Down , newPath); } }}catch(S s){}
+    try{if(/*d != Dir::Left  &&*/IsThreeSame(path) != Dir::Left ) { LL newPos = pos; LL newScore = score; VECI newPath = path;FOR(i, 1) { newPos = ToLeft (pos); if(exist(newPos, path)){break;} newPath.push_back(newPos);newScore += GetScore(newPos); if(newScore > MAX_SCORE) {break;} vec.emplace_back(newPos, newScore, Dir::Left , newPath); } }}catch(S s){}
+    try{if(/*d != Dir::Right &&*/IsThreeSame(path) != Dir::Right) { LL newPos = pos; LL newScore = score; VECI newPath = path;FOR(i, 1) { newPos = ToRight(pos); if(exist(newPos, path)){break;} newPath.push_back(newPos);newScore += GetScore(newPos); if(newScore > MAX_SCORE) {break;} vec.emplace_back(newPos, newScore, Dir::Right, newPath); } }}catch(S s){}
+    try{if(/*d != Dir::Up    &&*/IsThreeSame(path) != Dir::Up   ) { LL newPos = pos; LL newScore = score; VECI newPath = path;FOR(i, 1) { newPos = ToUp   (pos); if(exist(newPos, path)){break;} newPath.push_back(newPos);newScore += GetScore(newPos); if(newScore > MAX_SCORE) {break;} vec.emplace_back(newPos, newScore, Dir::Up   , newPath); } }}catch(S s){}
+    try{if(/*d != Dir::Down  &&*/IsThreeSame(path) != Dir::Down ) { LL newPos = pos; LL newScore = score; VECI newPath = path;FOR(i, 1) { newPos = ToDown (pos); if(exist(newPos, path)){break;} newPath.push_back(newPos);newScore += GetScore(newPos); if(newScore > MAX_SCORE) {break;} vec.emplace_back(newPos, newScore, Dir::Down , newPath); } }}catch(S s){}
 }
 
 auto count1() {
