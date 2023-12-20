@@ -216,12 +216,12 @@ auto count1() {
             //     SetC(p, '*', input_copy);
             // }
             // P_VECV(input_copy);
-            for(const auto& s : in) {
-                P_RR("%s\n", s.c_str());
-            }
-            for(const auto& p:points) {
-                P(p);
-            }
+            // for(const auto& s : in) {
+            //     P_RR("%s\n", s.c_str());
+            // }
+            // for(const auto& p:points) {
+            //     P(p);
+            // }
             counter *= 10;
         }
         // P(pos, score, points);
