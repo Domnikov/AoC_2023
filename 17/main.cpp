@@ -132,6 +132,7 @@ auto count1() {
             // Dir d3 = std::get<2>(path[path.size() - 3]);
             //
             // P(d1, d2, d3);
+            P(inserted, rejected1, rejected2, rejected3, points.size());
             return score;
         }
         // if(GetC(pos) == '*') continue;
