@@ -133,6 +133,9 @@ auto count1() {
             //
             // P(d1, d2, d3);
             P(inserted, rejected1, rejected2, rejected3, points.size());
+            for(const auto& p:points) {
+                P(p);
+            }
             return score;
         }
         // if(GetC(pos) == '*') continue;
