@@ -9,6 +9,7 @@
 #include <list>
 
 auto in = getInput();
+auto in2 = getInput();
 
 constexpr bool USE_PATH = true;
 
@@ -96,6 +97,7 @@ void InsertIfLess(LL newPos, LL newScore, Dir dir, LL dir_count, const VECI& pat
     auto it = std::find_if(BE(points), [newPos](const auto& a){return std::get<0>(a) == newPos;});
     if(it == points.end()){
         points.emplace_back(newPos, newScore, dir, dir_count, path);
+        SetC(newPos, '*', in2);
     } else if(newScore < std::get<1>(*it)) {
         *it = Path{newPos, newScore, dir, dir_count, path};
     }
@@ -117,6 +119,7 @@ auto count1() {
     for(LL i = 0;!points.empty() && i < 10000;++i){
         // P(i);
         auto [pos, score, dir, dir_count, path] = GetMin();
+        SetC(pos, '#', in2);
         if(pos == endPos) {
             auto newIn = getInput();
             for(auto p:path){
@@ -133,10 +136,10 @@ auto count1() {
 
     P("Not found!!!");
     auto newIn = getInput();
-    for(auto pnt:points){
-        LL p = std::get<0>(pnt);
-        SetC(p,'*', newIn);
-    }
+    // for(auto pnt:points){
+    //     LL p = std::get<0>(pnt);
+    //     SetC(p,'*', newIn);
+    // }
     P_VECV(newIn);
     // for(const auto& p:points) {
     //     P(p);
