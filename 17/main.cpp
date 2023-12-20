@@ -115,7 +115,7 @@ auto count1() {
     // P_VECV(in);
     // P_RR("\n");
     LL counter = 1;
-    for(LL i = 0;!points.empty() && i < 10000000;++i){
+    for(LL i = 0;!points.empty() && i < 100;++i){
         auto [pos, score, d, path] = ExtractMinPos(points);
         if(pos == endPos) {
             in = getInput();
@@ -145,6 +145,10 @@ auto count1() {
             P_VECV(input_copy);
         }
         // P(pos, score, points);
+    }
+
+    for(const auto& p:points) {
+        P_VEC(std::get<3>(p));
     }
 
 
