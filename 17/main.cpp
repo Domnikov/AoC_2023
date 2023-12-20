@@ -64,6 +64,7 @@ void SetC(LL pos, char c, VECS& table = in){
     auto y = GetY(pos);
     if(x < 0 || y < 0 || x >= X || y >= Y) {
         P_LINE;
+        P(x, y, pos, c);
         exit(1);
     }
     table[y][x] = c;
