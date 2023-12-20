@@ -207,17 +207,22 @@ auto count1() {
         }
         P_LINE;
         if( counter < i ) {
+        P_LINE;
             P(counter, score, points.size());
+        P_LINE;
             // auto input_copy = getInput();
             // for(auto p: path){
             //     SetC(p, '*', input_copy);
             // }
             // P_VECV(input_copy);
             P_VECV(in);
+        P_LINE;
             for(const auto& p:points) {
                 P(p);
             }
+        P_LINE;
             counter *= 10;
+        P_LINE;
         }
         P_LINE;
         // P(pos, score, points);
