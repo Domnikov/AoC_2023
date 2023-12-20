@@ -140,9 +140,9 @@ auto count1() {
     //     SetC(p,'*', newIn);
     // }
     P_VECV(in2);
-    // for(const auto& p:points) {
-    //     P(p);
-    // }
+    for(const auto& p:points) {
+        P(p);
+    }
 
     return result;
 }
