@@ -203,7 +203,7 @@ void CheckAndInsert(LL newPos, LL score, Dir dir, LL dir_count, const VECI& path
     if(USE_PATH) {newPath.reserve(path.size()+1); newPath = path; newPath.push_back(newPos);}
     auto& oldScore = matrix[newPos][newDir][dir_count];
     // P(newPos, newScore, newDir, newDirCount, newPath, newDir, oldScore);
-    if(newPos == 8){//GetPos(X-1, Y-1)) {
+    if(newPos == 2){//GetPos(X-1, Y-1)) {
         auto newIn = getInput();
         for(auto p:newPath){
             SetC(p,'*', newIn);
