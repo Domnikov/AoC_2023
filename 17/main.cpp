@@ -180,7 +180,54 @@ std::vector<Point> matrix;
 std::vector<Q> queue;
 
 Q GetMin(){
-    return {0,0,Dir::Up,0};
+    auto it = std::min_element(BE(queue), [](const auto& a, const auto& b){return a.score < b.score;});
+    assert(it != queue.end());
+    auto path = *it;
+    queue.erase(it);
+    return path;
+}
+
+void CheckAndInsert(LL newPos, LL score, Dir dir, LL dir_count, const VECI& path, Dir newDir) {
+    if(newPos == -1) return;
+    LL newScore = GetScore(newPos);
+    if(newScore == -1) return;
+    newScore += score;
+    LL newDirCount = (dir == newDir) ? dir_count+1 : 0;
+    VECI newPath;
+    if(USE_PATH) {newPath.reserve(path.size()+1); newPath = path; newPath.push_back(newPos);}
+    auto& oldScore = matrix[newPos][newDir][dir_count];
+    if(oldScore > newScore) {
+        oldScore = newScore;
+        queue.emplace_back(newPos, newScore, newDir, newDirCount, newPath);
+    }
+}
+
+void AddLeft (LL pos, LL score, Dir dir, LL dir_count, const VECI& path){
+    LL newPos = ToLeft(pos);
+    CheckAndInsert(newPos, score, dir, dir_count, path, Dir::Left);
+}
+
+void AddRight(LL pos, LL score, Dir dir, LL dir_count, const VECI& path){
+    LL newPos = ToRight(pos);
+    CheckAndInsert(newPos, score, dir, dir_count, path, Dir::Right);
+}
+
+void AddUp   (LL pos, LL score, Dir dir, LL dir_count, const VECI& path){
+    LL newPos = ToUp(pos);
+    CheckAndInsert(newPos, score, dir, dir_count, path, Dir::Up);
+}
+
+void AddDown (LL pos, LL score, Dir dir, LL dir_count, const VECI& path){
+    LL newPos = ToDown(pos);
+    CheckAndInsert(newPos, score, dir, dir_count, path, Dir::Down);
+}
+
+
+void AddNew(LL pos, LL score, Dir dir, LL dir_count, const VECI& path) {
+    if(dir != Dir::Right && (dir != Dir::Left  && dir_count >= 3)){AddLeft (pos,score,dir,dir_count, path);}
+    if(dir != Dir::Left  && (dir != Dir::Right && dir_count >= 3)){AddRight(pos,score,dir,dir_count, path);}
+    if(dir != Dir::Down  && (dir != Dir::Up    && dir_count >= 3)){AddUp   (pos,score,dir,dir_count, path);}
+    if(dir != Dir::Up    && (dir != Dir::Down  && dir_count >= 3)){AddDown (pos,score,dir,dir_count, path);}
 }
 
 auto count1() {
@@ -188,12 +235,17 @@ auto count1() {
     LL endPos = GetPos(X-1, Y-1);
 
     FOR(i, X*Y){
-        matrix.emplace_back();
+        Point map;
+        map[Dir::Left ] = VECI{3,999999999};
+        map[Dir::Right] = VECI{3,999999999};
+        map[Dir::Up   ] = VECI{3,999999999};
+        map[Dir::Down ] = VECI{3,999999999};
+        matrix.push_back(map);
     }
 
     queue.emplace_back(0, GetScore(0), Dir::Up, 0, VECI{0});
 
-    for(LL i = 0;!queue.empty() && i < 1000000;++i){
+    for(LL i = 0;!queue.empty() && i < 10;++i){
         auto [pos, score, dir, dir_count, path] = GetMin();
         SetC(pos, '#', in2);
         if(pos == endPos) {
@@ -205,7 +257,7 @@ auto count1() {
             P_VECV(in);
             return score;
         }
-        // AddNew(pos, score, dir, dir_count, path);
+        AddNew(pos, score, dir, dir_count, path);
         // P(i, pos, score, dir, dir_count, path)
         // for(const auto& p:points) {
         //     P(p);
