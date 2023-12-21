@@ -203,6 +203,16 @@ void CheckAndInsert(LL newPos, LL score, Dir dir, LL dir_count, const VECI& path
     if(USE_PATH) {newPath.reserve(path.size()+1); newPath = path; newPath.push_back(newPos);}
     auto& oldScore = matrix[newPos][newDir][dir_count];
     // P(newPos, newScore, newDir, newDirCount, newPath, newDir, oldScore);
+    if(newPos == GetPos(X-1, Y-1)) {
+        auto newIn = getInput();
+        for(auto p:path){
+            SetC(p,'*', newIn);
+        }
+        P_VECV(newIn);
+        P(score);
+        // P_VECV(in);
+        // return score;
+    }
     if(oldScore > newScore) {
         oldScore = newScore;
         queue.emplace_back(newPos, newScore, newDir, newDirCount, newPath);
@@ -257,15 +267,6 @@ auto count1() {
         // P(i);
         auto [pos, score, dir, dir_count, path] = GetMin();
         SetC(pos, '#', in2);
-        if(pos == endPos) {
-            auto newIn = getInput();
-            for(auto p:path){
-                SetC(p,'*', newIn);
-            }
-            P_VECV(newIn);
-            // P_VECV(in);
-            // return score;
-        }
         AddNew(pos, score, dir, dir_count, path);
         // P(i, pos, score, dir, dir_count, path)
         // for(const auto& p:queue) {
