@@ -316,8 +316,8 @@ auto count2() {
         auto [pos, score, dir, dir_count, path] = GetMin();
         SetC(pos, '#', in2);
         AddNew2(pos, score, dir, dir_count, path);
-        P(i);
-        P_VECV(queue);
+        // P(i);
+        // P_VECV(queue);
     }
 
     LL result = 9999;
