@@ -251,15 +251,15 @@ auto count1() {
         P(i);
         auto [pos, score, dir, dir_count, path] = GetMin();
         SetC(pos, '#', in2);
-        if(pos == endPos) {
-            auto newIn = getInput();
-            for(auto p:path){
-                SetC(p,'*', newIn);
-            }
-            P_VECV(newIn);
-            P_VECV(in);
-            return score;
-        }
+        // if(pos == endPos) {
+        //     auto newIn = getInput();
+        //     for(auto p:path){
+        //         SetC(p,'*', newIn);
+        //     }
+        //     P_VECV(newIn);
+        //     P_VECV(in);
+        //     return score;
+        // }
         AddNew(pos, score, dir, dir_count, path);
         // P(i, pos, score, dir, dir_count, path)
         for(const auto& p:queue) {
