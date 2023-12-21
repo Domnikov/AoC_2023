@@ -101,6 +101,22 @@ std::pair<LL,LL> JumpLeft (LL pos, LL n) {
     return {pos, score};
 }
 
+std::pair<LL,LL> JumpRight (LL pos, LL n) {
+    LL score = 0;
+    FOR(i,n){
+        pos = ToRight(pos);
+        if(pos == -1){
+            return {-1,-1};
+        }
+        LL newScore = GetScore(pos);
+        if(newScore == -1){
+            return {-1,-1};
+        }
+        score += newScore;
+    }
+    return {pos, score};
+}
+
 struct Q {
     Q(LL p, LL s, Dir d, LL dc, VECI path = {})
         :pos(p),score(s),dir(d),dir_count(dc), path(path)
@@ -173,7 +189,8 @@ void AddLeft (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jump
 }
 
 void AddRight(LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jumpN){
-    pos = ToRight(pos);
+    auto [newPos, newScore] = JumpRight(pos, jumpN);
+    pos = newPos;
     VECI newPath;
     if(USE_PATH) {newPath.reserve(path.size()+10); newPath = path;}
     FOR(i,3){
