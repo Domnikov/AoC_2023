@@ -355,7 +355,7 @@ auto count2() {
         SetC(pos, '#', in2);
         AddNew2(pos, score, dir, dir_count, path);
         P(i);
-        // P_VECV(queue);
+        P_VECV(queue);
     }
 
     LL result = 9999;
