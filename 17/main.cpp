@@ -117,6 +117,38 @@ std::pair<LL,LL> JumpRight (LL pos, LL n) {
     return {pos, score};
 }
 
+std::pair<LL,LL> JumpUp (LL pos, LL n) {
+    LL score = 0;
+    FOR(i,n){
+        pos = ToUp(pos);
+        if(pos == -1){
+            return {-1,-1};
+        }
+        LL newScore = GetScore(pos);
+        if(newScore == -1){
+            return {-1,-1};
+        }
+        score += newScore;
+    }
+    return {pos, score};
+}
+
+std::pair<LL,LL> JumpDown (LL pos, LL n) {
+    LL score = 0;
+    FOR(i,n){
+        pos = ToDown(pos);
+        if(pos == -1){
+            return {-1,-1};
+        }
+        LL newScore = GetScore(pos);
+        if(newScore == -1){
+            return {-1,-1};
+        }
+        score += newScore;
+    }
+    return {pos, score};
+}
+
 struct Q {
     Q(LL p, LL s, Dir d, LL dc, VECI path = {})
         :pos(p),score(s),dir(d),dir_count(dc), path(path)
@@ -151,7 +183,7 @@ bool CheckAndInsert(LL& newPos, LL& score, Dir& dir, LL& dir_count, VECI& path, 
     if(newPos == -1) return false;
     LL newScore = GetScore(newPos);
     if(newScore == -1) return false;
-    score += newScore;
+    // score += newScore;
 
     if(std::find(path.begin(), path.end(), newPos) != path.end()) {
         return false;
@@ -191,6 +223,7 @@ void AddLeft (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jump
 void AddRight(LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jumpN){
     auto [newPos, newScore] = JumpRight(pos, jumpN);
     pos = newPos;
+    score += newScore;
     VECI newPath;
     if(USE_PATH) {newPath.reserve(path.size()+10); newPath = path;}
     FOR(i,3){
@@ -200,7 +233,9 @@ void AddRight(LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jump
 }
 
 void AddUp   (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jumpN){
-    pos = ToUp(pos);
+    auto [newPos, newScore] = JumpUp(pos, jumpN);
+    pos = newPos;
+    score += newScore;
     VECI newPath;
     if(USE_PATH) {newPath.reserve(path.size()+10); newPath = path;}
     FOR(i,3){
@@ -210,7 +245,9 @@ void AddUp   (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jump
 }
 
 void AddDown (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jumpN){
-    pos = ToDown(pos);
+    auto [newPos, newScore] = JumpDown(pos, jumpN);
+    pos = newPos;
+    score += newScore;
     VECI newPath;
     if(USE_PATH) {newPath.reserve(path.size()+10); newPath = path;}
     FOR(i,3){CheckAndInsert(pos, score, dir, dir_count, newPath, Dir::Down);
