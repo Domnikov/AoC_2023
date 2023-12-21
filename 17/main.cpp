@@ -235,6 +235,10 @@ void AddLeft (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jump
     FOR(i,n) {
         CheckAndInsert(pos, score, dir, dir_count, newPath, Dir::Left, n);
         pos = ToLeft(pos);
+        if(pos == -1) return;
+        newScore = GetScore(pos);
+        if(newScore == -1) return;
+        score += newScore;
     }
 }
 
@@ -248,6 +252,10 @@ void AddRight(LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jump
     FOR(i,n){
         CheckAndInsert(pos, score, dir, dir_count, newPath, Dir::Right, n);
         pos = ToRight(pos);
+        if(pos == -1) return;
+        newScore = GetScore(pos);
+        if(newScore == -1) return;
+        score += newScore;
     }
 }
 
@@ -261,6 +269,10 @@ void AddUp   (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jump
     FOR(i,n){
         CheckAndInsert(pos, score, dir, dir_count, newPath, Dir::Up, n);
         pos = ToUp(pos);
+        if(pos == -1) return;
+        newScore = GetScore(pos);
+        if(newScore == -1) return;
+        score += newScore;
     }
 }
 
@@ -273,6 +285,10 @@ void AddDown (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jump
     score += newScore;
     FOR(i,n){CheckAndInsert(pos, score, dir, dir_count, newPath, Dir::Down, n);
         pos = ToDown(pos);
+        if(pos == -1) return;
+        newScore = GetScore(pos);
+        if(newScore == -1) return;
+        score += newScore;
     }
 }
 
