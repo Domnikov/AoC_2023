@@ -198,8 +198,6 @@ auto count1() {
             if(v<result) result = v;
         }
     }
-    P_MAP(matrix[endPos]);
-
     return result;
 }
 
