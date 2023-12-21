@@ -164,8 +164,14 @@ void AddDown (LL pos, LL score, Dir dir, LL dir_count, const VECI& path){
     CheckAndInsert(newPos, score, dir, dir_count, path, Dir::Down);
 }
 
-
 void AddNew(LL pos, LL score, Dir dir, LL dir_count, const VECI& path) {
+    if(dir != Dir::Right){AddLeft (pos,score,dir,dir_count, path);}
+    if(dir != Dir::Left ){AddRight(pos,score,dir,dir_count, path);}
+    if(dir != Dir::Down ){AddUp   (pos,score,dir,dir_count, path);}
+    if(dir != Dir::Up   ){AddDown (pos,score,dir,dir_count, path);}
+}
+
+void AddNew2(LL pos, LL score, Dir dir, LL dir_count, const VECI& path) {
     if(dir != Dir::Right){AddLeft (pos,score,dir,dir_count, path);}
     if(dir != Dir::Left ){AddRight(pos,score,dir,dir_count, path);}
     if(dir != Dir::Down ){AddUp   (pos,score,dir,dir_count, path);}
@@ -218,7 +224,7 @@ auto count2() {
     for(LL i = 0;!queue.empty();++i){
         auto [pos, score, dir, dir_count, path] = GetMin();
         SetC(pos, '#', in2);
-        AddNew(pos, score, dir, dir_count, path);
+        AddNew2(pos, score, dir, dir_count, path);
     }
 
     LL result = 9999;
