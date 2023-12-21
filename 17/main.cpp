@@ -158,8 +158,30 @@ void AddNew3(LL pos, LL score, Dir dir, LL dir_count, const VECI& path) {
 
 #endif
 
+struct Q {
+    Q(LL p, LL s, Dir d, LL dc, VECI path = {})
+        :pos(p),score(s),dir(d),dir_count(dc), path(path)
+    {}
+    LL pos;
+    LL score;
+    Dir dir;
+    LL dir_count;
+    VECI path;
+};
+
+inline std::ostream& operator<<( std::ostream& dest, Q q )
+{
+    dest<<"[pos="<<q.pos<<",score="<<q.score<<","<<q.dir<<",dc="<<q.dir_count<<",path:"<<q.path<<']';
+    return dest;
+}
+
 using Point = std::map<Dir, VECI>;
 std::vector<Point> matrix;
+std::vector<Q> queue;
+
+Q GetMin(){
+    return {0,0,Dir::Up,0};
+}
 
 auto count1() {
     LL result = 0;
@@ -169,10 +191,9 @@ auto count1() {
         matrix.emplace_back();
     }
 
-#if 0
-    points.emplace_back(0, GetScore(0), Dir::Up, 0, VECI{0});
-    LL counter = 100;
-    for(LL i = 0;!points.empty() && i < 1000000;++i){
+    queue.emplace_back(0, GetScore(0), Dir::Up, 0, VECI{0});
+
+    for(LL i = 0;!queue.empty() && i < 1000000;++i){
         auto [pos, score, dir, dir_count, path] = GetMin();
         SetC(pos, '#', in2);
         if(pos == endPos) {
@@ -184,7 +205,7 @@ auto count1() {
             P_VECV(in);
             return score;
         }
-        AddNew(pos, score, dir, dir_count, path);
+        // AddNew(pos, score, dir, dir_count, path);
         // P(i, pos, score, dir, dir_count, path)
         // for(const auto& p:points) {
         //     P(p);
@@ -197,10 +218,10 @@ auto count1() {
     //     SetC(p,'*', newIn);
     // }
     P_VECV(in2);
-    for(const auto& p:points) {
+    for(const auto& p:queue) {
         P(p);
     }
-#endif
+
     return result;
 }
 
