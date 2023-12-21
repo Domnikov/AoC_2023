@@ -205,11 +205,11 @@ void CheckAndInsert(LL newPos, LL score, Dir dir, LL dir_count, const VECI& path
     // P(newPos, newScore, newDir, newDirCount, newPath, newDir, oldScore);
     if(newPos == GetPos(X-1, Y-1)) {
         auto newIn = getInput();
-        for(auto p:path){
+        for(auto p:newPath){
             SetC(p,'*', newIn);
         }
         P_VECV(newIn);
-        P(score);
+        P(newScore);
         // P_VECV(in);
         // return score;
     }
