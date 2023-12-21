@@ -254,23 +254,23 @@ auto count1() {
     queue.emplace_back(0, GetScore(0), Dir::None, 0, VECI{0});
 
     for(LL i = 0;!queue.empty() && i < 1000000;++i){
-        P(i);
+        // P(i);
         auto [pos, score, dir, dir_count, path] = GetMin();
         SetC(pos, '#', in2);
-        // if(pos == endPos) {
-        //     auto newIn = getInput();
-        //     for(auto p:path){
-        //         SetC(p,'*', newIn);
-        //     }
-        //     P_VECV(newIn);
-        //     P_VECV(in);
-        //     return score;
-        // }
+        if(pos == endPos) {
+            auto newIn = getInput();
+            for(auto p:path){
+                SetC(p,'*', newIn);
+            }
+            P_VECV(newIn);
+            // P_VECV(in);
+            // return score;
+        }
         AddNew(pos, score, dir, dir_count, path);
         // P(i, pos, score, dir, dir_count, path)
-        for(const auto& p:queue) {
-            P(p);
-        }
+        // for(const auto& p:queue) {
+        //     P(p);
+        // }
     }
 
     P("Not found!!!");
@@ -278,13 +278,12 @@ auto count1() {
     //     LL p = std::get<0>(pnt);
     //     SetC(p,'*', newIn);
     // }
-    P_VECV(in2);
+    // P_VECV(in2);
     for(const auto& p:queue) {
         P(p);
     }
     // for(const auto& m:matrix[endPos]) {
     // }
-    P_MAP(matrix[15]);
     P_MAP(matrix[endPos]);
 
     return result;
