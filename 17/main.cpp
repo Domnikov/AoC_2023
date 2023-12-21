@@ -261,9 +261,9 @@ auto count1() {
         }
         AddNew(pos, score, dir, dir_count, path);
         // P(i, pos, score, dir, dir_count, path)
-        // for(const auto& p:points) {
-        //     P(p);
-        // }
+        for(const auto& p:queue) {
+            P(p);
+        }
     }
 
     P("Not found!!!");
