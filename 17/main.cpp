@@ -277,17 +277,17 @@ void AddDown (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jump
 }
 
 void AddNew(LL pos, LL score, Dir dir, LL dir_count, const VECI& path) {
-    if(dir != Dir::Right && dir != Dir::Left ){AddLeft (pos,score,dir,dir_count, path, 1, 3);}
-    if(dir != Dir::Left  && dir != Dir::Right){AddRight(pos,score,dir,dir_count, path, 1, 3);}
-    if(dir != Dir::Down  && dir != Dir::Up   ){AddUp   (pos,score,dir,dir_count, path, 1, 3);}
-    if(dir != Dir::Up    && dir != Dir::Down ){AddDown (pos,score,dir,dir_count, path, 1, 3);}
+    if(dir == Dir::Up    && dir == Dir::Down ){AddLeft (pos,score,dir,dir_count, path, 1, 3);}
+    if(dir == Dir::Up    && dir == Dir::Down ){AddRight(pos,score,dir,dir_count, path, 1, 3);}
+    if(dir == Dir::Left  && dir == Dir::Right){AddUp   (pos,score,dir,dir_count, path, 1, 3);}
+    if(dir == Dir::Left  && dir == Dir::Right){AddDown (pos,score,dir,dir_count, path, 1, 3);}
 }
 
 void AddNew2(LL pos, LL score, Dir dir, LL dir_count, const VECI& path) {
-    if(dir != Dir::Right && dir != Dir::Left ){AddLeft (pos,score,dir,dir_count, path, 4, 6);}
-    if(dir != Dir::Left  && dir != Dir::Right){AddRight(pos,score,dir,dir_count, path, 4, 6);}
-    if(dir != Dir::Down  && dir != Dir::Up   ){AddUp   (pos,score,dir,dir_count, path, 4, 6);}
-    if(dir != Dir::Up    && dir != Dir::Down ){AddDown (pos,score,dir,dir_count, path, 4, 6);}
+    if(dir == Dir::Up    && dir == Dir::Down ){AddLeft (pos,score,dir,dir_count, path, 4, 6);}
+    if(dir == Dir::Up    && dir == Dir::Down ){AddRight(pos,score,dir,dir_count, path, 4, 6);}
+    if(dir == Dir::Left  && dir == Dir::Right){AddUp   (pos,score,dir,dir_count, path, 4, 6);}
+    if(dir == Dir::Left  && dir == Dir::Right){AddDown (pos,score,dir,dir_count, path, 4, 6);}
 }
 
 auto count1() {
