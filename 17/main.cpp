@@ -232,8 +232,6 @@ auto count1() {
         auto [pos, score, dir, dir_count, path] = GetMin();
         SetC(pos, '#', in2);
         AddNew(pos, score, dir, dir_count, path);
-        P(i);
-        P_VECV(queue);
     }
 
     LL result = 9999;
@@ -259,10 +257,12 @@ auto count2() {
 
     queue.emplace_back(0, 0, Dir::None, 0, VECI{0});
 
-    for(LL i = 0;!queue.empty();++i){
+    for(LL i = 0;!queue.empty() && i < 2;++i){
         auto [pos, score, dir, dir_count, path] = GetMin();
         SetC(pos, '#', in2);
         AddNew2(pos, score, dir, dir_count, path);
+        P(i);
+        P_VECV(queue);
     }
 
     LL result = 9999;
