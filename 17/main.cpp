@@ -305,7 +305,7 @@ auto count1() {
         matrix.push_back(map);
     }
 
-    queue.emplace_back(0, GetScore(0), Dir::None, 0, VECI{0});
+    queue.emplace_back(0, /*GetScore(0)*/0, Dir::None, 0, VECI{0});
 
     for(LL i = 0;!queue.empty()/* && i < 1000000*/;++i){
         // P(i);
