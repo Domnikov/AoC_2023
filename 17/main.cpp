@@ -276,6 +276,9 @@ auto count1() {
     for(const auto& p:queue) {
         P(p);
     }
+    // for(const auto& m:matrix[endPos]) {
+    // }
+    P_MAP(matrix[endPos]);
 
     return result;
 }
