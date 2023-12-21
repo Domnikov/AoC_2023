@@ -112,7 +112,7 @@ void InsertIfLess(LL newPos, LL newScore, Dir dir, LL dir_count, const VECI& pat
     }
 }
 
-void InsertIfCorrect(LL newPos, LL newScore, Dir dir, LL dir_count, const VECI& path) {
+void InsertIfCorrect(LL newPos, LL newScore, Dir dir, LL dir_count, VECI& path) {
     if(path.size() >= 3) {
         LL x5 = GetX(path[path.size()-5]);
         LL x4 = GetX(path[path.size()-4]);
@@ -131,17 +131,19 @@ void InsertIfCorrect(LL newPos, LL newScore, Dir dir, LL dir_count, const VECI& 
         }
     }
 
-    if(std::find(path.begin(), path.end()-1, newPos) == path.end()) {
-        P_LINE;
+    if(std::find(path.begin(), path.end(), newPos) == path.end()) {
+        if(USE_PATH) {
+            path.push_back(newPos);
+        }
         points.emplace_back(newPos, newScore, dir, dir_count, path);
     }
 }
 
 void AddNew(LL pos, LL score, Dir dir, LL dir_count, const VECI& path) {
-    if(dir != Dir::Right){LL newPos = pos; LL newScore = score; VECI newPath; if(USE_PATH){newPath.reserve(path.size()+1); newPath = path;} LL newDirCount =  0; for(LL i = 0;i< 1;++i){newPos = ToLeft (newPos); if(newPos == -1){break;} LL sc = GetScore(newPos); if(sc == -1){break;} newScore += sc; if(USE_PATH){newPath.push_back(newPos);}InsertIfCorrect(newPos, newScore, Dir::Left , newDirCount+i+1, newPath);}}
-    if(dir != Dir::Left ){LL newPos = pos; LL newScore = score; VECI newPath; if(USE_PATH){newPath.reserve(path.size()+1); newPath = path;} LL newDirCount =  0; for(LL i = 0;i< 1;++i){newPos = ToRight(newPos); if(newPos == -1){break;} LL sc = GetScore(newPos); if(sc == -1){break;} newScore += sc; if(USE_PATH){newPath.push_back(newPos);}InsertIfCorrect(newPos, newScore, Dir::Right, newDirCount+i+1, newPath);}}
-    if(dir != Dir::Down ){LL newPos = pos; LL newScore = score; VECI newPath; if(USE_PATH){newPath.reserve(path.size()+1); newPath = path;} LL newDirCount =  0; for(LL i = 0;i< 1;++i){newPos = ToUp   (newPos); if(newPos == -1){break;} LL sc = GetScore(newPos); if(sc == -1){break;} newScore += sc; if(USE_PATH){newPath.push_back(newPos);}InsertIfCorrect(newPos, newScore, Dir::Up   , newDirCount+i+1, newPath);}}
-    if(dir != Dir::Up   ){LL newPos = pos; LL newScore = score; VECI newPath; if(USE_PATH){newPath.reserve(path.size()+1); newPath = path;} LL newDirCount =  0; for(LL i = 0;i< 1;++i){newPos = ToDown (newPos); if(newPos == -1){break;} LL sc = GetScore(newPos); if(sc == -1){break;} newScore += sc; if(USE_PATH){newPath.push_back(newPos);}InsertIfCorrect(newPos, newScore, Dir::Down , newDirCount+i+1, newPath);}}
+    if(dir != Dir::Right){LL newPos = pos; LL newScore = score; VECI newPath; if(USE_PATH){newPath.reserve(path.size()+1); newPath = path;} LL newDirCount =  0; for(LL i = 0;i< 1;++i){newPos = ToLeft (newPos); if(newPos == -1){break;} LL sc = GetScore(newPos); if(sc == -1){break;} newScore += sc; InsertIfCorrect(newPos, newScore, Dir::Left , newDirCount+i+1, newPath);}}
+    if(dir != Dir::Left ){LL newPos = pos; LL newScore = score; VECI newPath; if(USE_PATH){newPath.reserve(path.size()+1); newPath = path;} LL newDirCount =  0; for(LL i = 0;i< 1;++i){newPos = ToRight(newPos); if(newPos == -1){break;} LL sc = GetScore(newPos); if(sc == -1){break;} newScore += sc; InsertIfCorrect(newPos, newScore, Dir::Right, newDirCount+i+1, newPath);}}
+    if(dir != Dir::Down ){LL newPos = pos; LL newScore = score; VECI newPath; if(USE_PATH){newPath.reserve(path.size()+1); newPath = path;} LL newDirCount =  0; for(LL i = 0;i< 1;++i){newPos = ToUp   (newPos); if(newPos == -1){break;} LL sc = GetScore(newPos); if(sc == -1){break;} newScore += sc; InsertIfCorrect(newPos, newScore, Dir::Up   , newDirCount+i+1, newPath);}}
+    if(dir != Dir::Up   ){LL newPos = pos; LL newScore = score; VECI newPath; if(USE_PATH){newPath.reserve(path.size()+1); newPath = path;} LL newDirCount =  0; for(LL i = 0;i< 1;++i){newPos = ToDown (newPos); if(newPos == -1){break;} LL sc = GetScore(newPos); if(sc == -1){break;} newScore += sc; InsertIfCorrect(newPos, newScore, Dir::Down , newDirCount+i+1, newPath);}}
 }
 
 void AddNew3(LL pos, LL score, Dir dir, LL dir_count, const VECI& path) {
