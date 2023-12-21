@@ -135,7 +135,7 @@ void InsertIfCorrect(LL newPos, LL newScore, Dir dir, LL dir_count, const VECI& 
         P_LINE;
         points.emplace_back(newPos, newScore, dir, dir_count, path);
     }
-    P_LINE;
+    P(newPos, newScore, dir, path);
 }
 
 void AddNew(LL pos, LL score, Dir dir, LL dir_count, const VECI& path) {
