@@ -114,7 +114,7 @@ Q GetMin(){
     return path;
 }
 
-bool CheckAndInsert(LL newPos, LL& score, Dir& dir, LL& dir_count, VECI& path, Dir newDir) {
+bool CheckAndInsert(LL& newPos, LL& score, Dir& dir, LL& dir_count, VECI& path, Dir newDir) {
     if(dir == newDir && dir_count >= 2) return false;
     if(newPos == -1) return false;
     LL newScore = GetScore(newPos);
@@ -201,10 +201,12 @@ auto count1() {
 
     queue.emplace_back(0, 0, Dir::None, 0, VECI{0});
 
-    for(LL i = 0;!queue.empty();++i){
+    for(LL i = 0;!queue.empty() && i < 10;++i){
         auto [pos, score, dir, dir_count, path] = GetMin();
         SetC(pos, '#', in2);
         AddNew(pos, score, dir, dir_count, path);
+        P(i);
+        P(queue);
     }
 
     LL result = 9999;
