@@ -239,7 +239,7 @@ void AddUp   (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jump
     VECI newPath;
     if(USE_PATH) {newPath.reserve(path.size()+10); newPath = path;}
     FOR(i,n){
-        CheckAndInsert(pos, score, dir, dir_count, newPath, Dir::Up);
+        CheckAndInsert(pos, score, dir, dir_count, newPath, Dir::Up, n);
         pos = ToUp(pos);
     }
 }
