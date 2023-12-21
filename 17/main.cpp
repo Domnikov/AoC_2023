@@ -227,9 +227,9 @@ void AddLeft (LL pos, LL score, Dir dir, LL dir_count, const VECI& path){
     if(USE_PATH) {newPath.reserve(path.size()+2); newPath = path; newPath.push_back(newPos);}
     newPos = ToLeft(newPos);
     CheckAndInsert(newPos, score, dir, dir_count+1, newPath, Dir::Left);
-    newPath.push_back(newPos);
+    if(USE_PATH)newPath.push_back(newPos);
     newPos = ToLeft(newPos);
-    CheckAndInsert(newPos, score, dir, dir_count+2, path, Dir::Left);
+    CheckAndInsert(newPos, score, dir, dir_count+2, newPath, Dir::Left);
 }
 
 void AddRight(LL pos, LL score, Dir dir, LL dir_count, const VECI& path){
