@@ -188,7 +188,7 @@ Q GetMin(){
 }
 
 void CheckAndInsert(LL newPos, LL score, Dir dir, LL dir_count, const VECI& path, Dir newDir) {
-    if(dir == newDir && dir_count >= 3) return;
+    if(dir == newDir && dir_count >= 2) return;
     if(newPos == -1) return;
     LL newScore = GetScore(newPos);
     if(newScore == -1) return;
