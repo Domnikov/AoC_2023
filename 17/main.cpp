@@ -85,13 +85,14 @@ LL GetScore(LL pos){
     return -1;
 }
 
-std::pair<LL,LL> JumpLeft (LL pos, LL n) {
+std::pair<LL,LL> JumpLeft (LL pos, LL n, VECI& path) {
     LL score = 0;
     FOR(i,n){
         pos = ToLeft(pos);
         if(pos == -1){
             return {-1,-1};
         }
+        path.push_back(pos);
         LL newScore = GetScore(pos);
         if(newScore == -1){
             return {-1,-1};
@@ -101,13 +102,14 @@ std::pair<LL,LL> JumpLeft (LL pos, LL n) {
     return {pos, score};
 }
 
-std::pair<LL,LL> JumpRight (LL pos, LL n) {
+std::pair<LL,LL> JumpRight (LL pos, LL n, VECI& path) {
     LL score = 0;
     FOR(i,n){
         pos = ToRight(pos);
         if(pos == -1){
             return {-1,-1};
         }
+        path.push_back(pos);
         LL newScore = GetScore(pos);
         if(newScore == -1){
             return {-1,-1};
@@ -117,13 +119,14 @@ std::pair<LL,LL> JumpRight (LL pos, LL n) {
     return {pos, score};
 }
 
-std::pair<LL,LL> JumpUp (LL pos, LL n) {
+std::pair<LL,LL> JumpUp (LL pos, LL n, VECI& path) {
     LL score = 0;
     FOR(i,n){
         pos = ToUp(pos);
         if(pos == -1){
             return {-1,-1};
         }
+        path.push_back(pos);
         LL newScore = GetScore(pos);
         if(newScore == -1){
             return {-1,-1};
@@ -133,13 +136,14 @@ std::pair<LL,LL> JumpUp (LL pos, LL n) {
     return {pos, score};
 }
 
-std::pair<LL,LL> JumpDown (LL pos, LL n) {
+std::pair<LL,LL> JumpDown (LL pos, LL n, VECI& path) {
     LL score = 0;
     FOR(i,n){
         pos = ToDown(pos);
         if(pos == -1){
             return {-1,-1};
         }
+        path.push_back(pos);
         LL newScore = GetScore(pos);
         if(newScore == -1){
             return {-1,-1};
@@ -210,10 +214,10 @@ bool CheckAndInsert(LL& newPos, LL& score, Dir& dir, LL& dir_count, VECI& path, 
 }
 
 void AddLeft (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jumpN, LL n){
-    auto [newPos, newScore] = JumpLeft(pos, jumpN);
-    pos = newPos;
     VECI newPath;
     if(USE_PATH) {newPath.reserve(path.size()+10); newPath = path;}
+    auto [newPos, newScore] = JumpLeft(pos, jumpN, newPath);
+    pos = newPos;
     FOR(i,n) {
         CheckAndInsert(pos, score, dir, dir_count, newPath, Dir::Left, n);
         pos = ToLeft(pos);
@@ -221,11 +225,11 @@ void AddLeft (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jump
 }
 
 void AddRight(LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jumpN, LL n){
-    auto [newPos, newScore] = JumpRight(pos, jumpN);
-    pos = newPos;
-    score += newScore;
     VECI newPath;
     if(USE_PATH) {newPath.reserve(path.size()+10); newPath = path;}
+    auto [newPos, newScore] = JumpRight(pos, jumpN, newPath);
+    pos = newPos;
+    score += newScore;
     FOR(i,n){
         CheckAndInsert(pos, score, dir, dir_count, newPath, Dir::Right, n);
         pos = ToRight(pos);
@@ -233,11 +237,11 @@ void AddRight(LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jump
 }
 
 void AddUp   (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jumpN, LL n){
-    auto [newPos, newScore] = JumpUp(pos, jumpN);
-    pos = newPos;
-    score += newScore;
     VECI newPath;
     if(USE_PATH) {newPath.reserve(path.size()+10); newPath = path;}
+    auto [newPos, newScore] = JumpUp(pos, jumpN, newPath);
+    pos = newPos;
+    score += newScore;
     FOR(i,n){
         CheckAndInsert(pos, score, dir, dir_count, newPath, Dir::Up, n);
         pos = ToUp(pos);
@@ -245,11 +249,11 @@ void AddUp   (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jump
 }
 
 void AddDown (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jumpN, LL n){
-    auto [newPos, newScore] = JumpDown(pos, jumpN);
-    pos = newPos;
-    score += newScore;
     VECI newPath;
     if(USE_PATH) {newPath.reserve(path.size()+10); newPath = path;}
+    auto [newPos, newScore] = JumpDown(pos, jumpN, newPath);
+    pos = newPos;
+    score += newScore;
     FOR(i,n){CheckAndInsert(pos, score, dir, dir_count, newPath, Dir::Down, n);
         pos = ToDown(pos);
     }
@@ -303,10 +307,10 @@ auto count2() {
 
     FOR(i, X*Y){
         Point map;
-        map[Dir::Left ] = VECI{999999999,999999999,999999999};
-        map[Dir::Right] = VECI{999999999,999999999,999999999};
-        map[Dir::Up   ] = VECI{999999999,999999999,999999999};
-        map[Dir::Down ] = VECI{999999999,999999999,999999999};
+        map[Dir::Left ] = VECI{999999999,999999999,999999999,999999999,999999999,999999999,999999999,999999999,999999999,999999999,999999999};
+        map[Dir::Right] = VECI{999999999,999999999,999999999,999999999,999999999,999999999,999999999,999999999,999999999,999999999,999999999};
+        map[Dir::Up   ] = VECI{999999999,999999999,999999999,999999999,999999999,999999999,999999999,999999999,999999999,999999999,999999999};
+        map[Dir::Down ] = VECI{999999999,999999999,999999999,999999999,999999999,999999999,999999999,999999999,999999999,999999999,999999999};
         matrix.push_back(map);
     }
 
