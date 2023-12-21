@@ -285,6 +285,7 @@ auto count1() {
     }
     // for(const auto& m:matrix[endPos]) {
     // }
+    P_MAP(matrix[2]);
     P_MAP(matrix[endPos]);
 
     return result;
