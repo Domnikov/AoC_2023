@@ -238,10 +238,10 @@ auto count1() {
 
     FOR(i, X*Y){
         Point map;
-        map[Dir::Left ] = VECI{4,999999999};
-        map[Dir::Right] = VECI{4,999999999};
-        map[Dir::Up   ] = VECI{4,999999999};
-        map[Dir::Down ] = VECI{4,999999999};
+        map[Dir::Left ] = VECI{999999999,3};
+        map[Dir::Right] = VECI{999999999,3};
+        map[Dir::Up   ] = VECI{999999999,3};
+        map[Dir::Down ] = VECI{999999999,3};
         matrix.push_back(map);
     }
 
