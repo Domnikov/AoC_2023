@@ -126,8 +126,9 @@ bool CheckAndInsert(LL newPos, LL& score, Dir& dir, LL& dir_count, VECI& path, D
     }
 
     dir_count = (dir == newDir) ? dir_count+1 : 0;
+    dir = newDir;
     if(USE_PATH) {path.push_back(newPos);}
-    auto& oldScore = matrix[newPos][newDir][dir_count];
+    auto& oldScore = matrix[newPos][dir][dir_count];
     if(newPos == GetPos(X-1, Y-1)) {
         auto newIn = getInput();
         for(auto p:path){
@@ -138,7 +139,7 @@ bool CheckAndInsert(LL newPos, LL& score, Dir& dir, LL& dir_count, VECI& path, D
     }
     if(oldScore > score) {
         oldScore = score;
-        queue.emplace_back(newPos, score, newDir, dir_count, path);
+        queue.emplace_back(newPos, score, dir, dir_count, path);
         SetC(newPos, '*', in2);
     }
     return true;
