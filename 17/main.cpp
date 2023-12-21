@@ -209,7 +209,7 @@ bool CheckAndInsert(LL& newPos, LL& score, Dir& dir, LL& dir_count, VECI& path, 
     return true;
 }
 
-void AddLeft (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jumpN){
+void AddLeft (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jumpN, LL n){
     auto [newPos, newScore] = JumpLeft(pos, jumpN);
     pos = newPos;
     VECI newPath;
@@ -220,7 +220,7 @@ void AddLeft (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jump
     }
 }
 
-void AddRight(LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jumpN){
+void AddRight(LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jumpN, LL n){
     auto [newPos, newScore] = JumpRight(pos, jumpN);
     pos = newPos;
     score += newScore;
@@ -232,7 +232,7 @@ void AddRight(LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jump
     }
 }
 
-void AddUp   (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jumpN){
+void AddUp   (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jumpN, LL n){
     auto [newPos, newScore] = JumpUp(pos, jumpN);
     pos = newPos;
     score += newScore;
@@ -244,7 +244,7 @@ void AddUp   (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jump
     }
 }
 
-void AddDown (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jumpN){
+void AddDown (LL pos, LL score, Dir dir, LL dir_count, const VECI& path, LL jumpN, LL n){
     auto [newPos, newScore] = JumpDown(pos, jumpN);
     pos = newPos;
     score += newScore;
