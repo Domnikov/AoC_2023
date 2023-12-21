@@ -209,14 +209,6 @@ bool CheckAndInsert(LL& newPos, LL& score, Dir& dir, LL& dir_count, VECI& path, 
     dir = newDir;
     if(USE_PATH) {path.push_back(newPos);}
     auto& oldScore = matrix[newPos][dir][dir_count];
-    if(newPos == GetPos(X-1, Y-1)) {
-        auto newIn = getInput();
-        for(auto p:path){
-            SetC(p,'*', newIn);
-        }
-        P_VECV(newIn);
-        P(score);
-    }
     if(oldScore > score) {
         oldScore = score;
         queue.emplace_back(newPos, score, dir, dir_count, path);
@@ -354,8 +346,6 @@ auto count2() {
         auto [pos, score, dir, dir_count, path] = GetMin();
         SetC(pos, '#', in2);
         AddNew2(pos, score, dir, dir_count, path);
-        // P(i);
-        // P_VECV(queue);
     }
 
     LL result = 9999;
