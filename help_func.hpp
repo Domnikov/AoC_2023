@@ -144,17 +144,10 @@ using VECPLL=std::vector<std::pair<LL,LL>>;
 
 namespace std{
 
-    template<typename T, typename R>
-    inline ostream& operator<<( ostream& dest, pair<T,R> value )
-    {
-        dest << "("<<value.first<<","<<value.second<<")";
-        return dest;
-    }
-
     template<typename T>
     inline ostream& operator<<( ostream& dest, vector<T> vec )
     {
-        dest << " = [";
+        dest << "[";
 
         if(!vec.empty())
         {
@@ -162,7 +155,42 @@ namespace std{
             dest << vec.back();
         }
 
-        dest << "]\n";
+        dest << "]";
+        return dest;
+    }
+
+    template<typename T, typename R>
+    inline ostream& operator<<( ostream& dest, pair<T,R> value )
+    {
+        dest << "("<<value.first<<","<<value.second<<")";
+        return dest;
+    }
+
+    template<typename T1, typename T2, typename T3>
+    inline ostream& operator<<( ostream& dest, tuple<T1, T2, T3> value )
+    {
+        dest << "("<<get<0>(value)<<","<<get<1>(value)<<","<<get<2>(value)<<")";
+        return dest;
+    }
+
+    template<typename T1, typename T2, typename T3, typename T4>
+    inline ostream& operator<<( ostream& dest, tuple<T1, T2, T3, T4> value )
+    {
+        dest << "("<<get<0>(value)<<","<<get<1>(value)<<","<<get<2>(value)<<","<<get<3>(value)<<")";
+        return dest;
+    }
+
+    template<typename T1, typename T2, typename T3, typename T4, typename T5>
+    inline ostream& operator<<( ostream& dest, tuple<T1, T2, T3, T4, T5> value )
+    {
+        dest << "("<<get<0>(value)<<","<<get<1>(value)<<","<<get<2>(value)<<","<<get<3>(value)<<","<<get<4>(value)<<")";
+        return dest;
+    }
+
+    template<typename T1, typename T2, typename T3, typename T4, typename T5, typename T6>
+    inline ostream& operator<<( ostream& dest, tuple<T1, T2, T3, T4, T5, T6> value )
+    {
+        dest << "("<<get<0>(value)<<","<<get<1>(value)<<","<<get<2>(value)<<","<<get<3>(value)<<","<<get<4>(value)<<","<<get<5>(value)<<")";
         return dest;
     }
 }
@@ -196,7 +224,7 @@ void _P_VEC (const std::vector<std::vector<T>>& vec)
 #define P_VEC(a) {fprintf(stderr, #a);_P_VEC(a);}
 
 template<typename T>
-void _P_VECV (const std::vector<T> vec)
+void _P_VECV (const std::vector<T>& vec)
 {
     for(size_t i = 0; i < vec.size(); i++)
     {
@@ -206,7 +234,7 @@ void _P_VECV (const std::vector<T> vec)
 #define P_VECV(a) {fprintf(stderr, #a ":\n");_P_VECV(a);}
 
 template<typename T>
-void _P_VECH (const std::vector<T> vec)
+void _P_VECH (const std::vector<T>& vec)
 {
     std::cerr << "[";
     for(size_t i = 0; i < vec.size(); i++)
