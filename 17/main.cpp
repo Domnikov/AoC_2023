@@ -199,6 +199,7 @@ void CheckAndInsert(LL newPos, LL score, Dir dir, LL dir_count, const VECI& path
     if(oldScore > newScore) {
         oldScore = newScore;
         queue.emplace_back(newPos, newScore, newDir, newDirCount, newPath);
+        SetC(newPos, '*', in2);
     }
 }
 
