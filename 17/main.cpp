@@ -202,8 +202,31 @@ auto count1() {
 }
 
 auto count2() {
-    LL result = 0;
+    LL endPos = GetPos(X-1, Y-1);
 
+    FOR(i, X*Y){
+        Point map;
+        map[Dir::Left ] = VECI{999999999,999999999,999999999};
+        map[Dir::Right] = VECI{999999999,999999999,999999999};
+        map[Dir::Up   ] = VECI{999999999,999999999,999999999};
+        map[Dir::Down ] = VECI{999999999,999999999,999999999};
+        matrix.push_back(map);
+    }
+
+    queue.emplace_back(0, 0, Dir::None, 0, VECI{0});
+
+    for(LL i = 0;!queue.empty();++i){
+        auto [pos, score, dir, dir_count, path] = GetMin();
+        SetC(pos, '#', in2);
+        AddNew(pos, score, dir, dir_count, path);
+    }
+
+    LL result = 9999;
+    for(auto m:matrix[endPos]){
+        for(auto v: m.second){
+            if(v<result) result = v;
+        }
+    }
     return result;
 }
 
