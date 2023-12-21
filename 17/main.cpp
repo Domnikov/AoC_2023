@@ -178,8 +178,8 @@ Q GetMin(){
     return path;
 }
 
-bool CheckAndInsert(LL& newPos, LL& score, Dir& dir, LL& dir_count, VECI& path, Dir newDir) {
-    if(dir == newDir && dir_count >= 2) return false;
+bool CheckAndInsert(LL& newPos, LL& score, Dir& dir, LL& dir_count, VECI& path, Dir newDir, LL n) {
+    if(dir == newDir && dir_count >= n) return false;
     if(newPos == -1) return false;
     LL newScore = GetScore(newPos);
     if(newScore == -1) return false;
