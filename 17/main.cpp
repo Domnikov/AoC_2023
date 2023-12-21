@@ -192,6 +192,11 @@ void CheckAndInsert(LL newPos, LL score, Dir dir, LL dir_count, const VECI& path
     LL newScore = GetScore(newPos);
     if(newScore == -1) return;
     newScore += score;
+
+    if(std::find(path.begin(), path.end(), newPos) != path.end()) {
+        return;
+    }
+
     LL newDirCount = (dir == newDir) ? dir_count+1 : 0;
     VECI newPath;
     if(USE_PATH) {newPath.reserve(path.size()+1); newPath = path; newPath.push_back(newPos);}
