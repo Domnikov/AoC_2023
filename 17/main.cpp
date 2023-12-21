@@ -112,7 +112,36 @@ void InsertIfLess(LL newPos, LL newScore, Dir dir, LL dir_count, const VECI& pat
     }
 }
 
+void InsertIfCorrect(LL newPos, LL newScore, Dir dir, LL dir_count, const VECI& path) {
+    if(path.size() >= 3) {
+        LL x5 = GetX(path[path.size()-5]);
+        LL x4 = GetX(path[path.size()-4]);
+        LL x3 = GetX(path[path.size()-3]);
+        LL x2 = GetX(path[path.size()-2]);
+        LL x1 = GetX(path[path.size()-1]);
+
+        LL y5 = GetY(path[path.size()-5]);
+        LL y4 = GetY(path[path.size()-4]);
+        LL y3 = GetY(path[path.size()-3]);
+        LL y2 = GetY(path[path.size()-2]);
+        LL y1 = GetY(path[path.size()-1]);
+
+        if((x1 == x2 && x2 == x3 && x3 == x4 && x4 == x5) || (y1 == y2 && y2 == y3 && y3 == y4 && y4 == y5)) {
+            return;
+        }
+    }
+
+    points.emplace_back(newPos, newScore, dir, dir_count, path);
+}
+
 void AddNew(LL pos, LL score, Dir dir, LL dir_count, const VECI& path) {
+    {LL newPos = pos; LL newScore = score; VECI newPath; if(USE_PATH){newPath.reserve(path.size()+1); newPath = path;} LL newDirCount =  0; for(LL i = 0;i< 1;++i){newPos = ToLeft (newPos); if(newPos == -1){break;} LL sc = GetScore(newPos); if(sc == -1){break;} newScore += sc; if(USE_PATH){newPath.push_back(newPos);}InsertIfCorrect(newPos, newScore, Dir::Left , newDirCount+i+1, newPath);}}
+    {LL newPos = pos; LL newScore = score; VECI newPath; if(USE_PATH){newPath.reserve(path.size()+1); newPath = path;} LL newDirCount =  0; for(LL i = 0;i< 1;++i){newPos = ToRight(newPos); if(newPos == -1){break;} LL sc = GetScore(newPos); if(sc == -1){break;} newScore += sc; if(USE_PATH){newPath.push_back(newPos);}InsertIfCorrect(newPos, newScore, Dir::Right, newDirCount+i+1, newPath);}}
+    {LL newPos = pos; LL newScore = score; VECI newPath; if(USE_PATH){newPath.reserve(path.size()+1); newPath = path;} LL newDirCount =  0; for(LL i = 0;i< 1;++i){newPos = ToUp   (newPos); if(newPos == -1){break;} LL sc = GetScore(newPos); if(sc == -1){break;} newScore += sc; if(USE_PATH){newPath.push_back(newPos);}InsertIfCorrect(newPos, newScore, Dir::Up   , newDirCount+i+1, newPath);}}
+    {LL newPos = pos; LL newScore = score; VECI newPath; if(USE_PATH){newPath.reserve(path.size()+1); newPath = path;} LL newDirCount =  0; for(LL i = 0;i< 1;++i){newPos = ToDown (newPos); if(newPos == -1){break;} LL sc = GetScore(newPos); if(sc == -1){break;} newScore += sc; if(USE_PATH){newPath.push_back(newPos);}InsertIfCorrect(newPos, newScore, Dir::Down , newDirCount+i+1, newPath);}}
+}
+
+void AddNew3(LL pos, LL score, Dir dir, LL dir_count, const VECI& path) {
     {LL newPos = pos; LL newScore = score; VECI newPath; if(USE_PATH){newPath.reserve(path.size()+3); newPath = path;} LL newDirCount =  (dir != Dir::Left ) ? 0 : dir_count; for(LL i = 0;i< 3-newDirCount;++i){newPos = ToLeft (newPos); if(newPos == -1){break;} LL sc = GetScore(newPos); if(sc == -1){break;} newScore += sc; if(USE_PATH){newPath.push_back(newPos);}InsertIfLess(newPos, newScore, Dir::Left , newDirCount+i+1, newPath);}}
     {LL newPos = pos; LL newScore = score; VECI newPath; if(USE_PATH){newPath.reserve(path.size()+3); newPath = path;} LL newDirCount =  (dir != Dir::Right) ? 0 : dir_count; for(LL i = 0;i< 3-newDirCount;++i){newPos = ToRight(newPos); if(newPos == -1){break;} LL sc = GetScore(newPos); if(sc == -1){break;} newScore += sc; if(USE_PATH){newPath.push_back(newPos);}InsertIfLess(newPos, newScore, Dir::Right, newDirCount+i+1, newPath);}}
     {LL newPos = pos; LL newScore = score; VECI newPath; if(USE_PATH){newPath.reserve(path.size()+3); newPath = path;} LL newDirCount =  (dir != Dir::Up   ) ? 0 : dir_count; for(LL i = 0;i< 3-newDirCount;++i){newPos = ToUp   (newPos); if(newPos == -1){break;} LL sc = GetScore(newPos); if(sc == -1){break;} newScore += sc; if(USE_PATH){newPath.push_back(newPos);}InsertIfLess(newPos, newScore, Dir::Up   , newDirCount+i+1, newPath);}}
