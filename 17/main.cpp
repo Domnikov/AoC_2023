@@ -85,6 +85,22 @@ LL GetScore(LL pos){
     return -1;
 }
 
+std::pair<LL,LL> JumpLeft (LL pos, LL n) {
+    LL score = 0;
+    FOR(i,n){
+        pos = ToLeft(pos);
+        if(pos == -1){
+            return {-1,-1};
+        }
+        LL newScore = GetScore(pos);
+        if(newScore == -1){
+            return {-1,-1};
+        }
+        score += newScore;
+    }
+    return {pos, score};
+}
+
 struct Q {
     Q(LL p, LL s, Dir d, LL dc, VECI path = {})
         :pos(p),score(s),dir(d),dir_count(dc), path(path)
@@ -212,7 +228,7 @@ auto count1() {
 
     queue.emplace_back(0, 0, Dir::None, 0, VECI{0});
 
-    for(LL i = 0;!queue.empty() && i < 2;++i){
+    for(LL i = 0;!queue.empty();++i){
         auto [pos, score, dir, dir_count, path] = GetMin();
         SetC(pos, '#', in2);
         AddNew(pos, score, dir, dir_count, path);
@@ -261,7 +277,7 @@ auto count2() {
 int main(int argc, char** argv)
 {
     LL score = 0;
-    score = count1();
+    // score = count1();
     P_RR("Part1: %lld\n", score);
     //========================================================
 
