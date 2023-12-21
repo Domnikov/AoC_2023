@@ -188,6 +188,7 @@ Q GetMin(){
 }
 
 void CheckAndInsert(LL newPos, LL score, Dir dir, LL dir_count, const VECI& path, Dir newDir) {
+    if(dir == newDir && dir_count >= 3) return;
     if(newPos == -1) return;
     LL newScore = GetScore(newPos);
     if(newScore == -1) return;
@@ -231,10 +232,10 @@ void AddDown (LL pos, LL score, Dir dir, LL dir_count, const VECI& path){
 
 
 void AddNew(LL pos, LL score, Dir dir, LL dir_count, const VECI& path) {
-    if(!(dir == Dir::Right || (dir == Dir::Left  && dir_count <= 3))){AddLeft (pos,score,dir,dir_count, path);}
-    if(!(dir == Dir::Left  || (dir == Dir::Right && dir_count <= 3))){AddRight(pos,score,dir,dir_count, path);}
-    if(!(dir == Dir::Down  || (dir == Dir::Up    && dir_count <= 3))){AddUp   (pos,score,dir,dir_count, path);}
-    if(!(dir == Dir::Up    || (dir == Dir::Down  && dir_count <= 3))){AddDown (pos,score,dir,dir_count, path);}
+    if(dir != Dir::Right){AddLeft (pos,score,dir,dir_count, path);}
+    if(dir != Dir::Left ){AddRight(pos,score,dir,dir_count, path);}
+    if(dir != Dir::Down ){AddUp   (pos,score,dir,dir_count, path);}
+    if(dir != Dir::Up   ){AddDown (pos,score,dir,dir_count, path);}
 }
 
 auto count1() {
