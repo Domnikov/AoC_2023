@@ -114,54 +114,62 @@ Q GetMin(){
     return path;
 }
 
-void CheckAndInsert(LL newPos, LL score, Dir dir, LL dir_count, const VECI& path, Dir newDir) {
-    if(dir == newDir && dir_count >= 2) return;
-    if(newPos == -1) return;
+bool CheckAndInsert(LL newPos, LL& score, Dir& dir, LL& dir_count, VECI& path, Dir newDir) {
+    if(dir == newDir && dir_count >= 2) return false;
+    if(newPos == -1) return false;
     LL newScore = GetScore(newPos);
-    if(newScore == -1) return;
-    newScore += score;
+    if(newScore == -1) return false;
+    score += newScore;
 
     if(std::find(path.begin(), path.end(), newPos) != path.end()) {
-        return;
+        return false;
     }
 
-    LL newDirCount = (dir == newDir) ? dir_count+1 : 0;
-    VECI newPath;
-    if(USE_PATH) {newPath.reserve(path.size()+1); newPath = path; newPath.push_back(newPos);}
-    auto& oldScore = matrix[newPos][newDir][newDirCount];
+    dir_count = (dir == newDir) ? dir_count+1 : 0;
+    if(USE_PATH) {path.push_back(newPos);}
+    auto& oldScore = matrix[newPos][newDir][dir_count];
     // if(newPos == GetPos(X-1, Y-1)) {
     //     auto newIn = getInput();
     //     for(auto p:newPath){
     //         SetC(p,'*', newIn);
     //     }
     //     P_VECV(newIn);
-    //     P(newScore);
+    //     P(score);
     // }
-    if(oldScore > newScore) {
-        oldScore = newScore;
-        queue.emplace_back(newPos, newScore, newDir, newDirCount, newPath);
+    if(oldScore > score) {
+        oldScore = score;
+        queue.emplace_back(newPos, score, newDir, dir_count, path);
         SetC(newPos, '*', in2);
     }
+    return true;
 }
 
 void AddLeft (LL pos, LL score, Dir dir, LL dir_count, const VECI& path){
-    LL newPos = ToLeft(pos);
-    CheckAndInsert(newPos, score, dir, dir_count, path, Dir::Left);
+    pos = ToLeft(pos);
+    VECI newPath;
+    if(USE_PATH) {newPath.reserve(path.size()+10); newPath = path;}
+    CheckAndInsert(pos, score, dir, dir_count, newPath, Dir::Left);
 }
 
 void AddRight(LL pos, LL score, Dir dir, LL dir_count, const VECI& path){
-    LL newPos = ToRight(pos);
-    CheckAndInsert(newPos, score, dir, dir_count, path, Dir::Right);
+    pos = ToRight(pos);
+    VECI newPath;
+    if(USE_PATH) {newPath.reserve(path.size()+10); newPath = path;}
+    CheckAndInsert(pos, score, dir, dir_count, newPath, Dir::Right);
 }
 
 void AddUp   (LL pos, LL score, Dir dir, LL dir_count, const VECI& path){
-    LL newPos = ToUp(pos);
-    CheckAndInsert(newPos, score, dir, dir_count, path, Dir::Up);
+    pos = ToUp(pos);
+    VECI newPath;
+    if(USE_PATH) {newPath.reserve(path.size()+10); newPath = path;}
+    CheckAndInsert(pos, score, dir, dir_count, newPath, Dir::Up);
 }
 
 void AddDown (LL pos, LL score, Dir dir, LL dir_count, const VECI& path){
-    LL newPos = ToDown(pos);
-    CheckAndInsert(newPos, score, dir, dir_count, path, Dir::Down);
+    pos = ToDown(pos);
+    VECI newPath;
+    if(USE_PATH) {newPath.reserve(path.size()+10); newPath = path;}
+    CheckAndInsert(pos, score, dir, dir_count, newPath, Dir::Down);
 }
 
 void AddNew(LL pos, LL score, Dir dir, LL dir_count, const VECI& path) {
