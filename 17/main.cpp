@@ -188,7 +188,6 @@ Q GetMin(){
 }
 
 void CheckAndInsert(LL newPos, LL score, Dir dir, LL dir_count, const VECI& path, Dir newDir) {
-    P(newPos, score, dir, dir_count, path, newDir);
     if(newPos == -1) return;
     LL newScore = GetScore(newPos);
     if(newScore == -1) return;
@@ -197,6 +196,7 @@ void CheckAndInsert(LL newPos, LL score, Dir dir, LL dir_count, const VECI& path
     VECI newPath;
     if(USE_PATH) {newPath.reserve(path.size()+1); newPath = path; newPath.push_back(newPos);}
     auto& oldScore = matrix[newPos][newDir][dir_count];
+    P(newPos, newScore, newDir, newDirCount, newPath, newDir);
     if(oldScore > newScore) {
         oldScore = newScore;
         queue.emplace_back(newPos, newScore, newDir, newDirCount, newPath);
