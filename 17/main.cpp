@@ -131,7 +131,9 @@ void InsertIfCorrect(LL newPos, LL newScore, Dir dir, LL dir_count, const VECI& 
         }
     }
 
-    points.emplace_back(newPos, newScore, dir, dir_count, path);
+    if(std::find(BE(path), newPos) == path.end()) {
+        points.emplace_back(newPos, newScore, dir, dir_count, path);
+    }
 }
 
 void AddNew(LL pos, LL score, Dir dir, LL dir_count, const VECI& path) {
