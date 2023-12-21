@@ -25,6 +25,8 @@ enum class Dir {
     Down  = 0x1000,
 };
 using Path = std::tuple<LL, LL, Dir, LL, VECI>;
+
+
 namespace std{
 
     inline ostream& operator<<( ostream& dest, Dir d )
@@ -83,6 +85,7 @@ LL GetScore(LL pos){
     return -1;
 }
 
+#if 0
 std::list<Path> points;
 std::map<LL, LL> passed;
 
@@ -153,10 +156,20 @@ void AddNew3(LL pos, LL score, Dir dir, LL dir_count, const VECI& path) {
     if(dir != Dir::Up   ){LL newPos = pos; LL newScore = score; VECI newPath; if(USE_PATH){newPath.reserve(path.size()+3); newPath = path;} LL newDirCount =  (dir != Dir::Down ) ? 0 : dir_count; for(LL i = 0;i< 3-newDirCount;++i){newPos = ToDown (newPos); if(newPos == -1){break;} LL sc = GetScore(newPos); if(sc == -1){break;} newScore += sc; if(USE_PATH){newPath.push_back(newPos);}InsertIfLess(newPos, newScore, Dir::Down , newDirCount+i+1, newPath);}}
 }
 
+#endif
+
+using Point = std::map<Dir, VECI>;
+std::vector<Point> matrix;
+
 auto count1() {
     LL result = 0;
     LL endPos = GetPos(X-1, Y-1);
 
+    FOR(i, X*Y){
+        matrix.emplace_back();
+    }
+
+#if 0
     points.emplace_back(0, GetScore(0), Dir::Up, 0, VECI{0});
     LL counter = 100;
     for(LL i = 0;!points.empty() && i < 1000000;++i){
@@ -187,7 +200,7 @@ auto count1() {
     for(const auto& p:points) {
         P(p);
     }
-
+#endif
     return result;
 }
 
