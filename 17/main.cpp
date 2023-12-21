@@ -301,6 +301,8 @@ void AddNew2(LL pos, LL score, Dir dir, LL dir_count, const VECI& path) {
 
 auto count1() {
     LL endPos = GetPos(X-1, Y-1);
+    matrix.clear();
+    queue.clear();
 
     FOR(i, X*Y){
         Point map;
@@ -330,6 +332,8 @@ auto count1() {
 
 auto count2() {
     LL endPos = GetPos(X-1, Y-1);
+    matrix.clear();
+    queue.clear();
 
     FOR(i, X*Y){
         Point map;
