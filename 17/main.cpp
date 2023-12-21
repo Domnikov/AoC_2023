@@ -202,6 +202,7 @@ bool CheckAndInsert(LL& newPos, LL& score, Dir& dir, LL& dir_count, VECI& path, 
     // score += newScore;
 
     if(std::find(path.begin(), path.end(), newPos) != path.end()) {
+        P_LINE;
         return false;
     }
 
