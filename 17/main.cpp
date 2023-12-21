@@ -92,6 +92,9 @@ std::pair<LL,LL> JumpLeft (LL pos, LL n, VECI& path) {
         if(pos == -1){
             return {-1,-1};
         }
+        if(std::find(path.begin(), path.end(), pos) != path.end()) {
+            return {-1,-1};
+        }
         path.push_back(pos);
         LL newScore = GetScore(pos);
         if(newScore == -1){
@@ -107,6 +110,9 @@ std::pair<LL,LL> JumpRight (LL pos, LL n, VECI& path) {
     FOR(i,n){
         pos = ToRight(pos);
         if(pos == -1){
+            return {-1,-1};
+        }
+        if(std::find(path.begin(), path.end(), pos) != path.end()) {
             return {-1,-1};
         }
         path.push_back(pos);
@@ -126,6 +132,9 @@ std::pair<LL,LL> JumpUp (LL pos, LL n, VECI& path) {
         if(pos == -1){
             return {-1,-1};
         }
+        if(std::find(path.begin(), path.end(), pos) != path.end()) {
+            return {-1,-1};
+        }
         path.push_back(pos);
         LL newScore = GetScore(pos);
         if(newScore == -1){
@@ -141,6 +150,9 @@ std::pair<LL,LL> JumpDown (LL pos, LL n, VECI& path) {
     FOR(i,n){
         pos = ToDown(pos);
         if(pos == -1){
+            return {-1,-1};
+        }
+        if(std::find(path.begin(), path.end(), pos) != path.end()) {
             return {-1,-1};
         }
         path.push_back(pos);
