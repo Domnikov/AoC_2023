@@ -235,16 +235,37 @@ void AddLeft (LL pos, LL score, Dir dir, LL dir_count, const VECI& path){
 void AddRight(LL pos, LL score, Dir dir, LL dir_count, const VECI& path){
     LL newPos = ToRight(pos);
     CheckAndInsert(newPos, score, dir, dir_count, path, Dir::Right);
+    VECI newPath;
+    if(USE_PATH) {newPath.reserve(path.size()+2); newPath = path; newPath.push_back(newPos);}
+    newPos = ToRight(newPos);
+    CheckAndInsert(newPos, score, dir, dir_count+1, newPath, Dir::Right);
+    if(USE_PATH)newPath.push_back(newPos);
+    newPos = ToRight(newPos);
+    CheckAndInsert(newPos, score, dir, dir_count+2, newPath, Dir::Right);
 }
 
 void AddUp   (LL pos, LL score, Dir dir, LL dir_count, const VECI& path){
     LL newPos = ToUp(pos);
     CheckAndInsert(newPos, score, dir, dir_count, path, Dir::Up);
+    VECI newPath;
+    if(USE_PATH) {newPath.reserve(path.size()+2); newPath = path; newPath.push_back(newPos);}
+    newPos = ToUp(newPos);
+    CheckAndInsert(newPos, score, dir, dir_count+1, newPath, Dir::Up);
+    if(USE_PATH)newPath.push_back(newPos);
+    newPos = ToUp(newPos);
+    CheckAndInsert(newPos, score, dir, dir_count+2, newPath, Dir::Up);
 }
 
 void AddDown (LL pos, LL score, Dir dir, LL dir_count, const VECI& path){
     LL newPos = ToDown(pos);
     CheckAndInsert(newPos, score, dir, dir_count, path, Dir::Down);
+    VECI newPath;
+    if(USE_PATH) {newPath.reserve(path.size()+2); newPath = path; newPath.push_back(newPos);}
+    newPos = ToDown(newPos);
+    CheckAndInsert(newPos, score, dir, dir_count+1, newPath, Dir::Down);
+    if(USE_PATH)newPath.push_back(newPos);
+    newPos = ToDown(newPos);
+    CheckAndInsert(newPos, score, dir, dir_count+2, newPath, Dir::Down);
 }
 
 
