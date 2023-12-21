@@ -263,7 +263,7 @@ auto count1() {
 
     queue.emplace_back(0, GetScore(0), Dir::None, 0, VECI{0});
 
-    for(LL i = 0;!queue.empty() && i < 1000000;++i){
+    for(LL i = 0;!queue.empty()/* && i < 1000000*/;++i){
         // P(i);
         auto [pos, score, dir, dir_count, path] = GetMin();
         SetC(pos, '#', in2);
