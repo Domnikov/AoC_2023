@@ -132,12 +132,30 @@ auto count2() {
 
     for(const auto& s: in){
         auto vec = splitStr(s, ' ');
-        char dir = vec[0][0];
-        LL num = stoi(vec[1]);
         S color = vec[2];
+        char dir = 0x0;
+        if( color[7] == '0' ){
+            dir = 'R';
+        } else if( color[7] == '1' ) {
+            dir = 'D';
+        } else if( color[7] == '2' ) {
+            dir = 'L';
+        } else if( color[7] == '3' ) {
+            dir = 'U';
+        } else {
+            P_LINE;
+            exit(1);
+        }
 
-        Point p2 = Go(dir, num, p0);
-        p0 = p2;
+        S snum;
+        for(LL i = 2; i < 7; ++i){
+            snum.push_back(color[i]);
+        }
+
+        P(dir, snum);
+
+        // Point p2 = Go(dir, num, p0);
+        // p0 = p2;
         pol.AddPoint(p0);
     }
 
