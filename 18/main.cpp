@@ -9,7 +9,7 @@
 #include <list>
 
 auto in = getInput();
-LL N = 500;
+LL N = 400;
 
 VECS field;
 
