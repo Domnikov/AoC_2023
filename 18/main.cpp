@@ -19,7 +19,7 @@ struct PP{
 };
 
 std::ostream& operator<<(std::ostream& s, PP p){
-    s<<'['<<p.col<<','<<p.col<<']';
+    s<<'['<<p.row<<','<<p.col<<']';
     return s;
 }
 
