@@ -15,7 +15,8 @@ using Ptype = std::map<S, bool>;
 
 Ptype levels;
 
-LL output = 0;
+LL outputH = 0;
+LL outputL = 0;
 
 void Set(S from, S to, bool level, Ptype& dst) {
     if(to == "broadcaster") {
@@ -25,8 +26,8 @@ void Set(S from, S to, bool level, Ptype& dst) {
     } else if(cjmod.count(to)) {
         dst[to+'|'+from] = level;
     } else if(to == "output"){
-        ++output;
-        P(output, level);
+        outputH += level;
+        outputL += !level;
     } else {
         P_LINE;
         exit(1);
@@ -97,6 +98,8 @@ std::pair<LL,LL> Push(Ptype& mod) {
         p.first += recRus.first;
         p.second += recRus.second;
     }
+    p.first += outputH;
+    p.second += outputL;
     return p;
 }
 
@@ -104,6 +107,8 @@ auto count1() {
     LL result = 0;
     std::pair<LL,LL> pair{0,0};
     FOR(i, 4LL) {
+        outputH = 0;
+        outputL = 0;
         P_RR("%lld\n", i);
         Ptype mod;
         mod["broadcaster"] = false;
