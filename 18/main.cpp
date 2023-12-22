@@ -63,7 +63,7 @@ auto count1() {
     FOR(n, N) {
         field.push_back(S(N, '.'));
     }
-    PP p0{200,200};
+    PP p0{250,200};
     std::vector<PP> points;
     points.push_back(p0);
 
