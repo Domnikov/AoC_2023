@@ -53,7 +53,8 @@ LL Push(Ptype& mod) {
             bool isAllHigh = true;
             levels[m.first] = m.second;
             P_MAPV(levels);
-            for(const auto& ii:cjmod){
+            for(const auto& ii:ffmod){
+                if (!isAllHigh) break;
                 P(ii);
                 for(const auto& iii:ii.second) {
                     P(iii, vec[0]);
@@ -64,7 +65,19 @@ LL Push(Ptype& mod) {
                         }
                     }
                 }
+            }
+            for(const auto& ii:cjmod){
                 if (!isAllHigh) break;
+                P(ii);
+                for(const auto& iii:ii.second) {
+                    P(iii, vec[0]);
+                    if(iii == vec[0]) {
+                        if(!levels[vec[0]+'|'+iii]) {
+                            isAllHigh = false;
+                            break;
+                        }
+                    }
+                }
             }
             P(isAllHigh);
             for(const auto& out: cjmod[vec[0]]) {
