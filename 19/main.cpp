@@ -100,9 +100,12 @@ auto count1() {
     return result;
 }
 
-auto count2() {
-    LL result = 0;
+LL check(std::pair<LL,LL> x, std::pair<LL,LL> m, std::pair<LL,LL> a, std::pair<LL,LL> s){
+    return 10;
+}
 
+auto count2() {
+    LL result = check({1,4000},{1,4000},{1,4000},{1,4000});
     return result;
 }
 
