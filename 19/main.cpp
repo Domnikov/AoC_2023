@@ -12,19 +12,29 @@ auto in = getInput();
 auto count1() {
     LL result = 0;
     std::map<S, VECSS> map;
-    for(const auto& s:in){
-        if(s.empty()) break;
-
-        auto v1 = splitStr(s, '{');
-        S name = v1[0];
-        VECSS cond;
-        v1[1].erase(v1[1].size()-1);
-        auto v2 = splitStr(v1[1], ',');
-        for(auto vs:v2){
-            auto v3 = splitStr(vs,':');
-            cond.push_back(v3);
+    std::vector<std::map<char, LL>> w;
+    bool work = false;
+    FOR(i, in.size()) {
+        S s = in[i];
+        if(s.empty()){
+            work = true;
+        } else if(work){
+            s.erase(0,1);
+            s.erase(s.size()-1);
+            auto v = splitStr(s, ',');
+            P_VECV(v);
+        } else {
+            auto v1 = splitStr(s, '{');
+            S name = v1[0];
+            VECSS cond;
+            v1[1].erase(v1[1].size()-1);
+            auto v2 = splitStr(v1[1], ',');
+            for(auto vs:v2){
+                auto v3 = splitStr(vs,':');
+                cond.push_back(v3);
+            }
+            map[name] = cond;
         }
-        map[name] = cond;
     }
 
     P_MAPV(map);
@@ -41,6 +51,7 @@ auto count1() {
         qs: [[s>3448;A];[lnx]]
         rfg: [[s<537;gd];[x>2440;R];[A]]
 #endif
+
 
 
     return result;
