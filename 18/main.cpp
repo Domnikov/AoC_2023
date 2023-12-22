@@ -70,7 +70,7 @@ struct Polygon {
     }
 
     LL GetInner() {
-        LL Pinside = GetArea() + 1 - points.size()/2;
+        LL Pinside = GetArea() + 1 - GetBorderArea()/2;
         return Pinside;
     }
 
