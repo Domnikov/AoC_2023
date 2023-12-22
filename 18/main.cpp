@@ -38,12 +38,12 @@ PP Go(char c, LL num, PP point){
             point.col-=num;
             break;
     }
-    P(point);
     assert(point.row >= 0 && point.col >= 0 && point.row < N && point.col < N);
     return point;
 }
 
 void mark(VECS& field, PP p1, PP p2){
+    P(p1, p2);
     assert(!(p1.row == p2.row || p1.col == p2.col));
     for(LL r = std::min(p1.row, p2.row); r <= std::max(p1.row, p2.row); ++r){
         field[r][p1.col] = '#';
