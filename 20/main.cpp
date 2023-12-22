@@ -15,6 +15,19 @@ using Ptype = std::map<S, bool>;
 
 Ptype levels;
 
+void Set(S from, S to, bool level, Ptype& dst) {
+    if(to == "broadcaster") {
+        dst[to] = level;
+    } else if(ffmod.count(to)) {
+        dst[to] = level;
+    } else if(cjmod.count(to)) {
+        dst[to+'|'+from] = level;
+    } else {
+        P_LINE;
+        exit(1);
+    }
+}
+
 LL Push(Ptype& mod) {
     Ptype copy;
     for(auto& m:mod){
@@ -23,15 +36,14 @@ LL Push(Ptype& mod) {
         if(m.first == "broadcaster") {
             for(const auto& out: bcast) {
                 levels["broadcast"] = m.second;
-                copy[out] = m.second;
+                Set(m.first, out, m.second, copy);
             }
         } else if(ffmod.count(m.first)) {
             bool level = levels[m.first];
             if(!m.second) {
                 levels[m.first] = !level;
                 for(const auto& out: ffmod[m.first]) {
-                    P(out);
-                    copy[out] = !level;
+                    Set(m.first, out, !level, copy);
                 }
             }
         } else if(cjmod.count(m.first)) {
@@ -39,7 +51,7 @@ LL Push(Ptype& mod) {
             if(!m.second) {
                 levels[m.first] = !level;
                 for(const auto& out: bcast) {
-                    copy[out] = !level;
+                    Set(m.first, out, !level, copy);
                 }
             }
         } else {
