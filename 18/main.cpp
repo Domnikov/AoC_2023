@@ -26,16 +26,16 @@ std::ostream& operator<<(std::ostream& s, PP p){
 PP Go(char c, LL num, PP point){
     switch(c){
         case 'R':
-            point.row+=num;
-            break;
-        case 'L':
-            point.row-=num;
-            break;
-        case 'U':
             point.col+=num;
             break;
-        case 'D':
+        case 'L':
             point.col-=num;
+            break;
+        case 'U':
+            point.row+=num;
+            break;
+        case 'D':
+            point.row-=num;
             break;
     }
     assert(point.row >= 0 && point.col >= 0 && point.row < N && point.col < N);
