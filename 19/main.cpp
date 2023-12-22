@@ -100,14 +100,46 @@ auto count1() {
     return result;
 }
 
-LL check(S cur, std::pair<LL,LL> x, std::pair<LL,LL> m, std::pair<LL,LL> a, std::pair<LL,LL> s){
+LL check(S cur, std::map<char, std::pair<LL,LL>> vals){
+    LL result = 0;
     if(cur == "A") {
-        return (x.second-x.first) * (m.second-m.first) * (a.second-a.first) * (s.second-s.first);
+        return (vals['x'].second-vals['x'].first) * (vals['m'].second-vals['m'].first) * (vals['a'].second-vals['a'].first) * (vals['s'].second-vals['s'].first);
+    } else if(cur == "R") {
+        return 0;
     }
     const VECSS rules = map[cur];
     for(const auto& rule:rules) {
         if(rule.size() == 1) {
-            return check(rule[0], x, m, a, s);
+            return result + check(rule[0], vals);
+        } else {
+            S r = rule[0];
+            char name = r[0];
+            char sign = r[1];
+            r.erase(0,2);
+            LL num = stoll(r);
+            if(sign == '>'){
+                if(vals[name].second <= num){
+                    continue;
+                } else if(vals[name].first <= num){
+                    auto newVals = vals;
+                    newVals[name].first = num+1;
+                    result += check(rule[1], newVals);
+                    vals[name].second = num;
+                } else {
+                    return result + check(rule[1], vals);
+                }
+            } else if(sign == '<'){
+                if(vals[name].first >= num){
+                    continue;
+                } else if(vals[name].second >= num){
+                    auto newVals = vals;
+                    newVals[name].second = num-1;
+                    result += check(rule[1], newVals);
+                    vals[name].first = num;
+                } else {
+                    return result + check(rule[1], vals);
+                }
+            }
         }
     }
     P_LINE;
@@ -115,7 +147,12 @@ LL check(S cur, std::pair<LL,LL> x, std::pair<LL,LL> m, std::pair<LL,LL> a, std:
 }
 
 auto count2() {
-    LL result = check("in", {1,4000},{1,4000},{1,4000},{1,4000});
+    std::map<char, std::pair<LL,LL>> vals;
+    vals['x'] = {1, 4000};
+    vals['m'] = {1, 4000};
+    vals['a'] = {1, 4000};
+    vals['s'] = {1, 4000};
+    LL result = check("in", vals);
     return result;
 }
 
