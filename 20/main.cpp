@@ -90,7 +90,7 @@ int main(int argc, char** argv)
     for(auto cj: cjmod){
         for(auto out: cj.second){
             if(cjmod.count(out)){
-                levels[cj.first+"|"+out] = false;
+                levels[out+'|'+cj.first] = false;
             }
         }
     }
@@ -98,7 +98,7 @@ int main(int argc, char** argv)
     for(auto cj: ffmod){
         for(auto out: cj.second){
             if(cjmod.count(out)){
-                levels[cj.first+"|"+out] = false;
+                levels[out+'|'+cj.first] = false;
             }
         }
     }
