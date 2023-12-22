@@ -142,10 +142,10 @@ auto count1() {
 
     Polygon Pol;
 
-    Pol.AddPoint(1,1);
-    Pol.AddPoint(1,3);
+    Pol.AddPoint(0,0);
+    Pol.AddPoint(0,3);
     Pol.AddPoint(3,3);
-    Pol.AddPoint(3,1);
+    Pol.AddPoint(3,0);
 
     P(Pol.GetArea());
     P(Pol.GetInner());
