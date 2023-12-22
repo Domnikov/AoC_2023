@@ -46,7 +46,8 @@ std::pair<LL,LL> Push(Ptype& mod) {
     for(auto& m:mod){
         p.first += m.second;
         p.second += !m.second;
-        P(m, p);
+        P_RR("%s -> %s\n", m.first.c_str(), m.second ? "True" : "False")
+        // P(m, p);
         // copy.insert(m);
         auto vec = splitStr(m.first, '|');
         if(m.first == "broadcaster") {
