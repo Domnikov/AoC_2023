@@ -30,7 +30,13 @@ auto count1() {
     }
     PP ss{300,300};
 
-    P(field);
+    for(const auto& s: in){
+        char dir = splitStr(s, ' ')[0][0];
+        LL num = stoi(splitStr(s, ' ')[1]);
+        S color = splitStr(s, 'n')[2];
+
+        P(dir, nut, color);
+    }
 
 
     return result;
