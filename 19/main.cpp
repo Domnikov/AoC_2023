@@ -28,6 +28,7 @@ auto count1() {
                 m.erase(0,2);
                 mm[c] = stoll(m);
             }
+            w.push_back(mm);
         } else {
             auto v1 = splitStr(s, '{');
             S name = v1[0];
@@ -43,7 +44,9 @@ auto count1() {
     }
 
     P_MAPV(map);
-    P_VECV(w);
+    for(auto v:w){
+        P_MAPV(v);
+    }
 #if 0
         crn: [[x>2662;A];[R]]
         gd: [[a>3333;R];[R]]
