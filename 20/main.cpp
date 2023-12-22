@@ -17,38 +17,37 @@ Ptype levels;
 
 LL Push(Ptype& mod) {
     Ptype copy;
-    FOR(i,2){
-        for(auto& m:mod){
-            P(m);
-            // copy.insert(m);
-            if(m.first == "broadcaster") {
-                for(const auto& out: bcast) {
-                    levels["broadcast"] = m.second;
-                    copy[out] = m.second;
-                }
-            } else if(ffmod.count(m.first)) {
-                bool level = levels[m.first];
-                if(!m.second) {
-                    levels[m.first] = !level;
-                    for(const auto& out: bcast) {
-                        copy[out] = !level;
-                    }
-                }
-            } else if(cjmod.count(m.first)) {
-                bool level = levels[m.first];
-                if(!m.second) {
-                    levels[m.first] = !level;
-                    for(const auto& out: bcast) {
-                        copy[out] = !level;
-                    }
-                }
-            } else {
-                P_LINE;
-                exit(1);
+    for(auto& m:mod){
+        P(m);
+        // copy.insert(m);
+        if(m.first == "broadcaster") {
+            for(const auto& out: bcast) {
+                levels["broadcast"] = m.second;
+                copy[out] = m.second;
             }
+        } else if(ffmod.count(m.first)) {
+            bool level = levels[m.first];
+            if(!m.second) {
+                levels[m.first] = !level;
+                for(const auto& out: bcast) {
+                    copy[out] = !level;
+                }
+            }
+        } else if(cjmod.count(m.first)) {
+            bool level = levels[m.first];
+            if(!m.second) {
+                levels[m.first] = !level;
+                for(const auto& out: bcast) {
+                    copy[out] = !level;
+                }
+            }
+        } else {
+            P_LINE;
+            exit(1);
         }
-        mod = copy;
     }
+    mod = copy;
+
     P_MAP(mod);
     if(mod.size())
         return Push(mod);
