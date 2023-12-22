@@ -9,8 +9,8 @@
 #include <list>
 
 auto in = getInput();
-LL R = 400;
-LL C = 355;
+LL R = 394;
+LL C = 349;
 
 
 VECS field;
