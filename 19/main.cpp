@@ -107,7 +107,6 @@ auto count2() {
         P(x);
         FOR(m, 4000){
             if(x == 1) continue;
-            P(m);
             FOR(a, 4000){
                 if(x == 1) continue;
                 FOR(s, 4000) {
