@@ -47,8 +47,10 @@ bool Process(const Work& w){
         const auto& rule = map[cur];
         S res = CheckRule(w, rule);
         if( res == "A" ){
+            P("A");
             return true;
         } else if( res == "R" ) {
+            P("R");
             return false;
         }
         cur = res;
