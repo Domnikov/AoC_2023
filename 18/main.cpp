@@ -126,6 +126,8 @@ auto count1() {
     P_VECV(field);
 
     P(pol.GetArea());
+    P(pol.GetInner());
+    P(pol.GetArea() - pol.GetInner());
 
     return result;
 }
