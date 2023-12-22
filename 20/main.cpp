@@ -10,6 +10,7 @@
 auto in = getInput();
 std::map<S, VECS> ffmod;
 std::map<S, VECS> cjmod;
+VECS bcast;
 
 auto count1() {
     LL result = 0;
@@ -30,10 +31,13 @@ int main(int argc, char** argv)
         auto name = splitStr(v[0], ' ')[0];
         auto outs = splitStr(v[1], ',');
         char type = name[0];
-        name.erase(0,1);
-        if(type == '%') {
+        if(name == "broadcaster") {
+            bcast = outs;
+        } else if(type == '%') {
+            name.erase(0,1);
             ffmod[name] = outs;
         } else if(type == '&') {
+            name.erase(0,1);
             cjmod[name] = outs;
         } else {
             P(type);
@@ -41,7 +45,7 @@ int main(int argc, char** argv)
             exit(1);
         }
     }
-
+    P(bcast);
     P_MAP(ffmod);
     P_MAP(cjmod);
 
