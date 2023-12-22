@@ -46,7 +46,7 @@ std::pair<LL,LL> Push(Ptype& mod) {
     for(auto& m:mod){
         p.first += m.second;
         p.second += !m.second;
-        // P(m, p);
+        P(m, p);
         // copy.insert(m);
         auto vec = splitStr(m.first, '|');
         if(m.first == "broadcaster") {
@@ -111,7 +111,7 @@ std::pair<LL,LL> Push(Ptype& mod) {
 auto count1() {
     LL result = 0;
     std::pair<LL,LL> pair{0,0};
-    FOR(i, 1000LL) {
+    FOR(i, 1LL) {
         outputH = 0;
         outputL = 0;
         P_RR("%lld\n", i);
