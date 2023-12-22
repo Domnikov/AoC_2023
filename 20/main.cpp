@@ -30,6 +30,7 @@ LL Push(Ptype& mod) {
             if(!m.second) {
                 levels[m.first] = !level;
                 for(const auto& out: bcast) {
+                    P(out);
                     copy[out] = !level;
                 }
             }
