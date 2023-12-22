@@ -31,7 +31,7 @@ void Set(S from, S to, bool level, Ptype& dst) {
 LL Push(Ptype& mod) {
     Ptype copy;
     for(auto& m:mod){
-        P(m);
+        // P(m);
         // copy.insert(m);
         auto vec = splitStr(m.first, '|');
         if(m.first == "broadcaster") {
