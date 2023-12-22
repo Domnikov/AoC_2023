@@ -9,26 +9,32 @@
 
 auto in = getInput();
 
+std::map<S, VECSS> map;
+using Work = std::map<char, LL>;
+std::vector<Work> work;
+
+bool Process(const Work& w){
+    return true;
+}
+
 auto count1() {
     LL result = 0;
-    std::map<S, VECSS> map;
-    std::vector<std::map<char, LL>> w;
-    bool work = false;
+    bool iswork = false;
     FOR(i, in.size()) {
         S s = in[i];
         if(s.empty()){
-            work = true;
-        } else if(work){
+            iswork = true;
+        } else if(iswork){
             s.erase(0,1);
             s.erase(s.size()-1);
             auto v = splitStr(s, ',');
-            decltype(w)::value_type mm;
+            decltype(work)::value_type mm;
             for(auto m:v){
                 char c = m[0];
                 m.erase(0,2);
                 mm[c] = stoll(m);
             }
-            w.push_back(mm);
+            work.push_back(mm);
         } else {
             auto v1 = splitStr(s, '{');
             S name = v1[0];
@@ -44,7 +50,7 @@ auto count1() {
     }
 
     P_MAPV(map);
-    for(auto v:w){
+    for(auto v:work){
         P_MAPV(v);
     }
 #if 0
@@ -61,6 +67,11 @@ auto count1() {
         rfg: [[s<537;gd];[x>2440;R];[A]]
 #endif
 
+    for(const auto& w:work){
+        if(Process(w)){
+            ;
+        }
+    }
 
 
     return result;
