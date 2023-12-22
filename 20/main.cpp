@@ -18,13 +18,13 @@ Ptype levels;
 LL outputH = 0;
 LL outputL = 0;
 
-void Set(S from, S to, bool level, Ptype& dst) {
+void Set(S from, S to, bool level, std::vector<std::pair<S,bool>>& dst) {
     if(to == "broadcaster") {
-        dst[to] = level;
+        dst.emplace_back(to, level);
     } else if(ffmod.count(to)) {
-        dst[to] = level;
+        dst.emplace_back(to, level);
     } else if(cjmod.count(to)) {
-        dst[to+'|'+from] = level;
+        dst.emplace_back(to+'|'+from, level);
     } else if(to == "output" || to == "rx"){
         if(level) {
             P_RR("outputH\n");
@@ -40,9 +40,9 @@ void Set(S from, S to, bool level, Ptype& dst) {
     }
 }
 
-std::pair<LL,LL> Push(Ptype& mod) {
+std::pair<LL,LL> Push(std::vector<std::pair<S,bool>>& mod) {
     std::pair<LL,LL> p{0,0};
-    Ptype copy;
+    std::vector<std::pair<S,bool>> copy;
     P_RR("\n");
     for(auto& m:mod){
         p.first += m.second;
@@ -117,8 +117,8 @@ auto count1() {
         outputH = 0;
         outputL = 0;
         P_RR("%lld\n", i);
-        Ptype mod;
-        mod["broadcaster"] = false;
+        std::vector<std::pair<S,bool>> mod;
+        mod.emplace_back("broadcaster", false);
         auto local = Push(mod);
         pair.first += local.first;
         pair.second += local.second;
