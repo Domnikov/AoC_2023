@@ -33,9 +33,12 @@ void Set(S from, S to, bool level, Ptype& dst) {
     }
 }
 
-LL Push(Ptype& mod) {
+std::pair<LL,LL> Push(Ptype& mod) {
+    std::pair<LL,LL> p{0,0};
     Ptype copy;
     for(auto& m:mod){
+        p.first += m.second;
+        p.second += !m.second;
         // copy.insert(m);
         auto vec = splitStr(m.first, '|');
         if(m.first == "broadcaster") {
@@ -89,16 +92,26 @@ LL Push(Ptype& mod) {
     // P_MAPV(copy);
     mod = copy;
 
-    if(mod.size())
-        return Push(mod);
-    return 0;
+    if(mod.size()) {
+        std::pair<LL,LL> recRus = Push(mod);
+        p.first += recRus.first;
+        p.second += recRus.second;
+    }
+    return p;
 }
 
 auto count1() {
     LL result = 0;
-    Ptype mod;
-    mod["broadcaster"] = false;
-    result = Push(mod);
+    std::pair<LL,LL> pair{0,0};
+    FOR(i, 4LL) {
+        P_RR("%lld\n", i);
+        Ptype mod;
+        mod["broadcaster"] = false;
+        auto local = Push(mod);
+        pair.first += local.first;
+        pair.second += local.second;
+    }
+    result = pair.first*pair.second;
     return result;
 }
 
@@ -149,10 +162,7 @@ int main(int argc, char** argv)
     }
 
     LL score = 0;
-    FOR(i, 4LL) {
-        P_RR("%lld\n", i);
-        score += count1();
-    }
+    score = count1();
     P_RR("Part1: %lld\n", score);
     //========================================================
 
