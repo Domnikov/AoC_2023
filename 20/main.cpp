@@ -15,6 +15,8 @@ using Ptype = std::map<S, bool>;
 
 Ptype levels;
 
+LL output = 0;
+
 void Set(S from, S to, bool level, Ptype& dst) {
     if(to == "broadcaster") {
         dst[to] = level;
@@ -22,6 +24,9 @@ void Set(S from, S to, bool level, Ptype& dst) {
         dst[to] = level;
     } else if(cjmod.count(to)) {
         dst[to+'|'+from] = level;
+    } else if(to == "output"){
+        ++output;
+        P(output);
     } else {
         P_LINE;
         exit(1);
