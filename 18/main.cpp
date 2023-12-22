@@ -120,14 +120,12 @@ auto count1() {
         Point p2 = Go(dir, num, p0);
         mark(field, p0, p2);
         p0 = p2;
-        if(std::find(BE(points), p0) == points.end()) {
-            points.push_back(p0);
-        }
+        pol.AddPoint(p0);
     }
 
     P_VECV(field);
 
-    P();
+    P(pol.GetArea());
 
     return result;
 }
