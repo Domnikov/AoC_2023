@@ -26,6 +26,8 @@ auto count1() {
         }
     }
 
+    P_MAPV(map);
+
     return result;
 }
 
