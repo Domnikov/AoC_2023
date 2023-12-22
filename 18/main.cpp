@@ -36,7 +36,7 @@ auto count1() {
         LL num = stoi(vec[1]);
         S color = vec[2];
 
-        // P(dir, num, color);
+        P(dir, num, color);
     }
 
 
