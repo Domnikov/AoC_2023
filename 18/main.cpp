@@ -9,11 +9,11 @@
 #include <list>
 
 auto in = getInput();
-LL R = 394;
-LL C = 349;
+// LL R = 394;
+// LL C = 349;
 
 
-VECS field;
+// VECS field;
 
 struct Point{
     LL row;
@@ -92,10 +92,10 @@ Point Go(char c, LL num, Point point){
             point.row+=num;
             break;
     }
-    assert(point.row >= 0);
-    assert(point.col >= 0);
-    assert(point.row < R);
-    assert(point.col < C);
+    // assert(point.row >= 0);
+    // assert(point.col >= 0);
+    // assert(point.row < R);
+    // assert(point.col < C);
     return point;
 }
 
@@ -111,10 +111,10 @@ void mark(VECS& field, Point p1, Point p2){
 
 auto count1() {
     LL result = 0;
-    field.clear();
-    FOR(n, R) {
-        field.push_back(S(C, '.'));
-    }
+    // field.clear();
+    // FOR(n, R) {
+    //     field.push_back(S(C, '.'));
+    // }
     Point p0{209,132};
     Polygon pol;
     pol.AddPoint(p0);
@@ -126,7 +126,7 @@ auto count1() {
         S color = vec[2];
 
         Point p2 = Go(dir, num, p0);
-        mark(field, p0, p2);
+        // mark(field, p0, p2);
         p0 = p2;
         pol.AddPoint(p0);
     }
