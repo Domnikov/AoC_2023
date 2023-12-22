@@ -19,18 +19,29 @@ auto count1() {
         S name = v1[0];
         VECSS cond;
         v1[1].erase(v1[1].size()-1);
-        P(v1);
         auto v2 = splitStr(v1[1], ',');
-        P(v2);
         for(auto vs:v2){
             auto v3 = splitStr(vs,':');
-        P(v3);
             cond.push_back(v3);
         }
         map[name] = cond;
     }
 
     P_MAPV(map);
+#if 0
+        crn: [[x>2662;A];[R]]
+        gd: [[a>3333;R];[R]]
+        hdj: [[m>838;A];[pv]]
+        in: [[s<1351;px];[qqz]]
+        lnx: [[m>1548;A];[A]]
+        pv: [[a>1716;R];[A]]
+        px: [[a<2006;qkq];[m>2090;A];[rfg]]
+        qkq: [[x<1416;A];[crn]]
+        qqz: [[s>2770;qs];[m<1801;hdj];[R]]
+        qs: [[s>3448;A];[lnx]]
+        rfg: [[s<537;gd];[x>2440;R];[A]]
+#endif
+
 
     return result;
 }
