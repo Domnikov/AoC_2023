@@ -43,14 +43,11 @@ S CheckRule(const Work& w, const VECSS& rules){
 bool Process(const Work& w){
     S cur = "in";
     for(;;){
-        P(cur);
         const auto& rule = map[cur];
         S res = CheckRule(w, rule);
         if( res == "A" ){
-            P("A");
             return true;
         } else if( res == "R" ) {
-            P("R");
             return false;
         }
         cur = res;
@@ -91,26 +88,7 @@ auto count1() {
         }
     }
 
-    // P_MAPV(map);
-    // for(auto v:work){
-    //     P_MAPV(v);
-    // }
-#if 0
-        crn: [[x>2662;A];[R]]
-        gd: [[a>3333;R];[R]]
-        hdj: [[m>838;A];[pv]]
-        in: [[s<1351;px];[qqz]]
-        lnx: [[m>1548;A];[A]]
-        pv: [[a>1716;R];[A]]
-        px: [[a<2006;qkq];[m>2090;A];[rfg]]
-        qkq: [[x<1416;A];[crn]]
-        qqz: [[s>2770;qs];[m<1801;hdj];[R]]
-        qs: [[s>3448;A];[lnx]]
-        rfg: [[s<537;gd];[x>2440;R];[A]]
-#endif
-
     for(const auto& w:work){
-        P_MAP(w);
         if(Process(w)){
             for(auto [name, value] : w){
                 result += value;
