@@ -15,21 +15,60 @@ LL C = 349;
 
 VECS field;
 
-struct PP{
+struct Point{
     LL row;
     LL col;
 };
 
-bool operator==(PP p1, PP p2){
+bool operator==(Point p1, Point p2){
     return p1.row == p2.row && p1.col == p2.col;
 }
 
-std::ostream& operator<<(std::ostream& s, PP p){
+std::ostream& operator<<(std::ostream& s, Point p){
     s<<'['<<p.row<<','<<p.col<<']';
     return s;
 }
 
-PP Go(char c, LL num, PP point){
+struct Polygon {
+    void AddPoint(LL x, LL y){
+        AddPoint(Point{x, y});
+    }
+
+    void AddPoint(Point p) {
+        if(std::find(BE(points), p) == points.end()){
+            points.push_back(p);
+        }
+    }
+
+    LL GetArea() {
+        assert(points.size() > 2);
+        LL result = 0;
+        auto [xf, yf] = points[0];
+        auto [xl, yl] = points[points.size()-1];
+        LL pos = xl*yf;
+        for(size_t i = 1; i < points.size(); i+=1){
+            auto [x1, y1] = points[i-1];
+            auto [x2, y2] = points[i];
+            pos += x1*y2;
+        }
+        LL neg = xf*yl;
+        for(size_t i = 1; i < points.size(); i+=1){
+            auto [x1, y1] = points[i-1];
+            auto [x2, y2] = points[i];
+            neg += x2*y1;
+        }
+        return labs(pos-neg)/2;
+    }
+
+    LL GetInner() {
+        LL Pinside = GetArea() + 1 - points.size()/2;
+        return Pinside;
+    }
+
+    std::vector<Point> points;
+};
+
+Point Go(char c, LL num, Point point){
     switch(c){
         case 'R':
             point.col+=num;
@@ -52,8 +91,7 @@ PP Go(char c, LL num, PP point){
     return point;
 }
 
-void mark(VECS& field, PP p1, PP p2){
-    P(p1, p2);
+void mark(VECS& field, Point p1, Point p2){
     assert(p1.row == p2.row || p1.col == p2.col);
     for(LL r = std::min(p1.row, p2.row); r <= std::max(p1.row, p2.row); ++r){
         field[r][p1.col] = '#';
@@ -69,9 +107,9 @@ auto count1() {
     FOR(n, R) {
         field.push_back(S(C, '.'));
     }
-    PP p0{209,132};
-    std::vector<PP> points;
-    points.push_back(p0);
+    Point p0{209,132};
+    Polygon pol;
+    pol.AddPoint(p0);
 
     for(const auto& s: in){
         auto vec = splitStr(s, ' ');
@@ -79,7 +117,7 @@ auto count1() {
         LL num = stoi(vec[1]);
         S color = vec[2];
 
-        PP p2 = Go(dir, num, p0);
+        Point p2 = Go(dir, num, p0);
         mark(field, p0, p2);
         p0 = p2;
         if(std::find(BE(points), p0) == points.end()) {
@@ -88,6 +126,8 @@ auto count1() {
     }
 
     P_VECV(field);
+
+    P();
 
     return result;
 }
