@@ -59,7 +59,7 @@ LL Push(Ptype& mod) {
                 for(const auto& iii:ii.second) {
                     P(iii, vec[0]);
                     if(iii == vec[0]) {
-                        if(!levels[vec[0]+'|'+iii]) {
+                        if(!levels[vec[0]+'|'+ii.first]) {
                             isAllHigh = false;
                             break;
                         }
