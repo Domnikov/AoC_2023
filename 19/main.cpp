@@ -13,8 +13,47 @@ std::map<S, VECSS> map;
 using Work = std::map<char, LL>;
 std::vector<Work> work;
 
+S CheckRule(const Work& w, const VECSS& rules){
+    for(const auto& rule : rules) {
+        if(rule.size() == 1) {
+            return rule[0];
+        } else {
+            S r = rule[0];
+            char name = r[0];
+            char sign = r[1];
+            r.erase(0,2);
+            LL num = stoll(r);
+            if(w.count(name)){
+                if(sign == '>'){
+                    if(w.at(name) > num){
+                        return rule[1];
+                    }
+                } else if(sign == '<'){
+                    if(w.at(name) < num){
+                        return rule[1];
+                    }
+                }
+            }
+        }
+    }
+    P_LINE;
+    exit(1);
+}
+
 bool Process(const Work& w){
-    return true;
+    S cur = "in";
+    for(;;){
+        const auto& rule = map[cur];
+        S res = CheckRule(w, rule);
+        if( res == "A" ){
+            return true;
+        } else if( res == "R" ) {
+            return false;
+        }
+        cur = res;
+    }
+    P_LINE;
+    exit(1);
 }
 
 auto count1() {
