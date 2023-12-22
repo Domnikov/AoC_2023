@@ -48,12 +48,16 @@ LL Push(Ptype& mod) {
                 }
             }
         } else if(cjmod.count(vec[0])) {
-            bool level = levels[m.first];
-            if(!m.second) {
-                levels[m.first] = !level;
-                for(const auto& out: bcast) {
-                    Set(m.first, out, !level, copy);
+            bool isAllHigh = true;
+            levels[m.first] = m.second;
+            for(const auto& ii:cjmod[vec[0]]){
+                if(!levels[vec[0]+'|'+ii]) {
+                    isAllHigh = false;
+                    break;
                 }
+            }
+            for(const auto& out: bcast) {
+                Set(vec[0], out, !isAllHigh, copy);
             }
         } else {
             P_LINE;
