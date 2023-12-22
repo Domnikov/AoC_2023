@@ -36,7 +36,7 @@ LL Push(Ptype& mod) {
         if(m.first == "broadcaster") {
             P(m, __LINE__);
             for(const auto& out: bcast) {
-                levels["broadcast"] = m.second;
+                levels["broadcaster"] = m.second;
                 Set(m.first, out, m.second, copy);
             }
         } else if(ffmod.count(m.first)) {
