@@ -56,7 +56,7 @@ struct Polygon {
 
     LL GetBorderArea() {
         assert(points.size() > 2);
-        LL counter = 1;
+        LL counter = 0;
         for(LL i = 1; i <= points.size(); ++i){
             Point p1 = points[i-1];
             Point p2 = points[i%points.size()];
