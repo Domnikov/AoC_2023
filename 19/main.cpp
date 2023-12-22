@@ -100,12 +100,15 @@ auto count1() {
     return result;
 }
 
-LL check(std::pair<LL,LL> x, std::pair<LL,LL> m, std::pair<LL,LL> a, std::pair<LL,LL> s){
-    return 10;
+LL check(S cur, std::pair<LL,LL> x, std::pair<LL,LL> m, std::pair<LL,LL> a, std::pair<LL,LL> s){
+    const VECSS rules = map[cur];
+    for(const auto& rule:rules) {
+    }
+    return (x.second-x.first) * (m.second-m.first) * (a.second-a.first) * (s.second-s.first);
 }
 
 auto count2() {
-    LL result = check({1,4000},{1,4000},{1,4000},{1,4000});
+    LL result = check("in", {1,4000},{1,4000},{1,4000},{1,4000});
     return result;
 }
 
