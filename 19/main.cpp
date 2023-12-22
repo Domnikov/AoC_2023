@@ -69,7 +69,9 @@ auto count1() {
 
     for(const auto& w:work){
         if(Process(w)){
-            ;
+            for(auto [name, value] : w){
+                result += value;
+            }
         }
     }
 
