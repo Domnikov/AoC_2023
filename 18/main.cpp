@@ -9,8 +9,29 @@
 
 auto in = getInput();
 
+VECS field;
+
+struct PP{
+    LL row;
+    LL col;
+};
+
+std::ostream& operator<<(std::ostream& s, PP p){
+    s<<'['<<p.col<<','<<p.col<<']';
+    return s;
+}
+
 auto count1() {
     LL result = 0;
+    field.clear();
+    LL N = 1000;
+    FOR(n, N) {
+        field.push_back(S{0,'.'});
+    }
+    PP ss{300,300};
+
+    P(ss);
+
 
     return result;
 }
