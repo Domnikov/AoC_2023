@@ -129,8 +129,8 @@ auto count1() {
 
     Pol.AddPoint(1,1);
     Pol.AddPoint(1,3);
-    Pol.AddPoint(3,1);
     Pol.AddPoint(3,3);
+    Pol.AddPoint(3,1);
 
     P(Pol.GetArea());
     P(Pol.GetInner());
