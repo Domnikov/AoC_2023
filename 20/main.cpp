@@ -33,6 +33,7 @@ LL Push(Ptype& mod) {
     for(auto& m:mod){
         P(m);
         // copy.insert(m);
+        auto vec = splitStr(m.first, '|');
         if(m.first == "broadcaster") {
             for(const auto& out: bcast) {
                 levels["broadcast"] = m.second;
@@ -46,7 +47,7 @@ LL Push(Ptype& mod) {
                     Set(m.first, out, !level, copy);
                 }
             }
-        } else if(cjmod.count(m.first)) {
+        } else if(cjmod.count(vec[0])) {
             bool level = levels[m.first];
             if(!m.second) {
                 levels[m.first] = !level;
