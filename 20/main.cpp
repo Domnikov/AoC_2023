@@ -31,15 +31,16 @@ void Set(S from, S to, bool level, Ptype& dst) {
 LL Push(Ptype& mod) {
     Ptype copy;
     for(auto& m:mod){
-        // P(m);
         // copy.insert(m);
         auto vec = splitStr(m.first, '|');
         if(m.first == "broadcaster") {
+            P(m, __LINE__);
             for(const auto& out: bcast) {
                 levels["broadcast"] = m.second;
                 Set(m.first, out, m.second, copy);
             }
         } else if(ffmod.count(m.first)) {
+            P(m, __LINE__);
             bool level = levels[m.first];
             if(!m.second) {
                 levels[m.first] = !level;
@@ -48,6 +49,7 @@ LL Push(Ptype& mod) {
                 }
             }
         } else if(cjmod.count(vec[0])) {
+            P(m, __LINE__);
             bool isAllHigh = true;
             levels[m.first] = m.second;
             for(const auto& ii:cjmod[vec[0]]){
