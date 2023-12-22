@@ -52,8 +52,11 @@ LL Push(Ptype& mod) {
             P(m, __LINE__);
             bool isAllHigh = true;
             levels[m.first] = m.second;
+            P_MAPV(levels);
             for(const auto& ii:cjmod){
+                P(ii);
                 for(const auto& iii:ii.second) {
+                    P(iii, vec[0]);
                     if(iii == vec[0]) {
                         if(!levels[vec[0]+'|'+iii]) {
                             isAllHigh = false;
