@@ -9,7 +9,7 @@
 #include <list>
 
 auto in = getInput();
-LL R = 330;
+LL R = 350;
 LL C = 370;
 
 
