@@ -67,9 +67,9 @@ LL Push(Ptype& mod) {
             exit(1);
         }
     }
+    P_MAPV(copy);
     mod = copy;
 
-    P_MAP(mod);
     if(mod.size())
         return Push(mod);
     return 0;
