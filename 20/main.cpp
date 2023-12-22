@@ -27,10 +27,10 @@ void Set(S from, S to, bool level, Ptype& dst) {
         dst[to+'|'+from] = level;
     } else if(to == "output" || to == "rx"){
         if(level) {
-            P_RR("outputH\n");
+            // P_RR("outputH\n");
             ++outputH;
         } else {
-            P_RR("outputL\n");
+            // P_RR("outputL\n");
             ++outputL;
         }
     } else {
@@ -46,7 +46,7 @@ std::pair<LL,LL> Push(Ptype& mod) {
     for(auto& m:mod){
         p.first += m.second;
         p.second += !m.second;
-        P(m, p);
+        // P(m, p);
         // copy.insert(m);
         auto vec = splitStr(m.first, '|');
         if(m.first == "broadcaster") {
