@@ -32,6 +32,7 @@ auto count1() {
 
     for(const auto& s: in){
         auto vec = splitStr(s, ' ');
+        P(vec);
         // char dir = splitStr(s, ' ')[0][0];
         // LL num = stoi(splitStr(s, ' ')[1]);
         // S color = splitStr(s, 'n')[2];
