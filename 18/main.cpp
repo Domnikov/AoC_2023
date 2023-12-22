@@ -32,10 +32,10 @@ PP Go(char c, LL num, PP point){
             point.col-=num;
             break;
         case 'U':
-            point.row+=num;
+            point.row-=num;
             break;
         case 'D':
-            point.row-=num;
+            point.row+=num;
             break;
     }
     assert(point.row >= 0 && point.col >= 0 && point.row < N && point.col < N);
