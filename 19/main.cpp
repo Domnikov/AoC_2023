@@ -103,6 +103,7 @@ auto count1() {
 LL check(S cur, std::map<char, std::pair<LL,LL>> vals){
     LL result = 0;
     if(cur == "A") {
+        P(vals['x'],vals['m'],vals['a'],vals['s']);
         return (vals['x'].second-vals['x'].first) * (vals['m'].second-vals['m'].first) * (vals['a'].second-vals['a'].first) * (vals['s'].second-vals['s'].first);
     } else if(cur == "R") {
         return 0;
