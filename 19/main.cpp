@@ -102,20 +102,6 @@ auto count1() {
 
 auto count2() {
     LL result = 0;
-    FOR(x, 4000){
-        if(x == 1) continue;
-        P(x);
-        FOR(m, 4000){
-            if(x == 1) continue;
-            FOR(a, 4000){
-                if(x == 1) continue;
-                FOR(s, 4000) {
-                    if(x == 1) continue;
-                    result ++;
-                }
-            }
-        }
-    }
 
     return result;
 }
