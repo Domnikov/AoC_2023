@@ -22,7 +22,12 @@ auto count1() {
             s.erase(0,1);
             s.erase(s.size()-1);
             auto v = splitStr(s, ',');
-            P_VECV(v);
+            decltype(w)::value_type mm;
+            for(auto m:v){
+                char c = m[0];
+                m.erase(0,2);
+                mm[c] = stoll(m);
+            }
         } else {
             auto v1 = splitStr(s, '{');
             S name = v1[0];
@@ -38,6 +43,7 @@ auto count1() {
     }
 
     P_MAPV(map);
+    P_VECV(w);
 #if 0
         crn: [[x>2662;A];[R]]
         gd: [[a>3333;R];[R]]
