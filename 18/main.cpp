@@ -30,7 +30,7 @@ auto count1() {
     }
     PP ss{300,300};
 
-    P(ss);
+    P(field);
 
 
     return result;
