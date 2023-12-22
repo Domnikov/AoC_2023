@@ -43,6 +43,7 @@ S CheckRule(const Work& w, const VECSS& rules){
 bool Process(const Work& w){
     S cur = "in";
     for(;;){
+        P(cur);
         const auto& rule = map[cur];
         S res = CheckRule(w, rule);
         if( res == "A" ){
@@ -88,10 +89,10 @@ auto count1() {
         }
     }
 
-    P_MAPV(map);
-    for(auto v:work){
-        P_MAPV(v);
-    }
+    // P_MAPV(map);
+    // for(auto v:work){
+    //     P_MAPV(v);
+    // }
 #if 0
         crn: [[x>2662;A];[R]]
         gd: [[a>3333;R];[R]]
@@ -107,6 +108,7 @@ auto count1() {
 #endif
 
     for(const auto& w:work){
+        P_MAP(w);
         if(Process(w)){
             for(auto [name, value] : w){
                 result += value;
