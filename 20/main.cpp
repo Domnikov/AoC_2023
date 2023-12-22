@@ -63,6 +63,7 @@ LL Push(Ptype& mod) {
                 }
                 if (!isAllHigh) break;
             }
+            P(isAllHigh);
             for(const auto& out: cjmod[vec[0]]) {
                 Set(vec[0], out, !isAllHigh, copy);
             }
