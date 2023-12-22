@@ -12,9 +12,26 @@ std::map<S, VECS> ffmod;
 std::map<S, VECS> cjmod;
 VECS bcast;
 
+std::map<S, bool> mod;
+
 auto count1() {
     LL result = 0;
-
+    mod["broadcaster"] = false;
+    FOR(i,1){
+        decltype(mod) copy;
+        for(auto& m:mod){
+            copy.insert(m);
+            if(m.first == "broadcaster") {
+                for(const auto& out: bcast) {
+                    copy[out] = m.second;
+                }
+            } else if(ffmod.count(m.first)) {
+            } else if(cjmod.count(m.first)) {
+            }
+        }
+        mod = copy;
+    }
+    P_MAP(mod);
     return result;
 }
 
@@ -45,10 +62,6 @@ int main(int argc, char** argv)
             exit(1);
         }
     }
-    P(bcast);
-    P_MAP(ffmod);
-    P_MAP(cjmod);
-
 
     LL score = 0;
     score = count1();
