@@ -26,7 +26,7 @@ void Set(S from, S to, bool level, Ptype& dst) {
         dst[to+'|'+from] = level;
     } else if(to == "output"){
         ++output;
-        P(output);
+        P(output, level);
     } else {
         P_LINE;
         exit(1);
@@ -39,13 +39,11 @@ LL Push(Ptype& mod) {
         // copy.insert(m);
         auto vec = splitStr(m.first, '|');
         if(m.first == "broadcaster") {
-            P(m, __LINE__);
             for(const auto& out: bcast) {
                 levels["broadcaster"] = m.second;
                 Set(m.first, out, m.second, copy);
             }
         } else if(ffmod.count(m.first)) {
-            P(m, __LINE__);
             bool level = levels[m.first];
             if(!m.second) {
                 levels[m.first] = !level;
@@ -54,15 +52,12 @@ LL Push(Ptype& mod) {
                 }
             }
         } else if(cjmod.count(vec[0])) {
-            P(m, __LINE__);
             bool isAllHigh = true;
             levels[m.first] = m.second;
-            P_MAPV(levels);
+            // P_MAPV(levels);
             for(const auto& ii:ffmod){
                 if (!isAllHigh) break;
-                P(ii);
                 for(const auto& iii:ii.second) {
-                    P(iii, vec[0]);
                     if(iii == vec[0]) {
                         if(!levels[vec[0]+'|'+ii.first]) {
                             isAllHigh = false;
@@ -73,9 +68,7 @@ LL Push(Ptype& mod) {
             }
             for(const auto& ii:cjmod){
                 if (!isAllHigh) break;
-                P(ii);
                 for(const auto& iii:ii.second) {
-                    P(iii, vec[0]);
                     if(iii == vec[0]) {
                         if(!levels[vec[0]+'|'+ii.first]) {
                             isAllHigh = false;
@@ -84,7 +77,7 @@ LL Push(Ptype& mod) {
                     }
                 }
             }
-            P(isAllHigh);
+            // P(isAllHigh);
             for(const auto& out: cjmod[vec[0]]) {
                 Set(vec[0], out, !isAllHigh, copy);
             }
