@@ -35,7 +35,7 @@ auto count1() {
         LL num = stoi(splitStr(s, ' ')[1]);
         S color = splitStr(s, 'n')[2];
 
-        P(dir, nut, color);
+        P(dir, num, color);
     }
 
 
