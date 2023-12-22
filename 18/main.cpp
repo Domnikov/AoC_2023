@@ -26,7 +26,7 @@ auto count1() {
     field.clear();
     LL N = 1000;
     FOR(n, N) {
-        field.push_back(S('.', N));
+        field.push_back(S(N, '.'));
     }
     PP ss{300,300};
 
