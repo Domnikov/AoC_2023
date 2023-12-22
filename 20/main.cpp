@@ -27,10 +27,10 @@ void Set(S from, S to, bool level, Ptype& dst) {
         dst[to+'|'+from] = level;
     } else if(to == "output" || to == "rx"){
         if(level) {
-            // P_RR("outputH\n");
+            P_RR("outputH\n");
             ++outputH;
         } else {
-            // P_RR("outputL\n");
+            P_RR("outputL\n");
             ++outputL;
         }
     } else {
