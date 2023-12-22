@@ -24,6 +24,7 @@ auto count1() {
             auto v3 = splitStr(vs,':');
             cond.push_back(v3);
         }
+        map[name] = cond;
     }
 
     P_MAPV(map);
