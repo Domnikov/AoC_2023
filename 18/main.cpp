@@ -155,8 +155,8 @@ auto count2() {
         LL num = stoll(snum, nullptr, 16);
         P(dir, snum, num);
 
-        // Point p2 = Go(dir, num, p0);
-        // p0 = p2;
+        Point p2 = Go(dir, num, p0);
+        p0 = p2;
         pol.AddPoint(p0);
     }
 
