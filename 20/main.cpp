@@ -53,11 +53,16 @@ LL Push(Ptype& mod) {
             P(m, __LINE__);
             bool isAllHigh = true;
             levels[m.first] = m.second;
-            for(const auto& ii:cjmod[vec[0]]){
-                if(!levels[vec[0]+'|'+ii]) {
-                    isAllHigh = false;
-                    break;
+            for(const auto& ii:cjmod){
+                for(const auto& iii:ii.second) {
+                    if(iii == vec[0]) {
+                        if(!levels[vec[0]+'|'+iii]) {
+                            isAllHigh = false;
+                            break;
+                        }
+                    }
                 }
+                if (!isAllHigh) break;
             }
             for(const auto& out: cjmod[vec[0]]) {
                 Set(vec[0], out, !isAllHigh, copy);
