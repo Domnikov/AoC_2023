@@ -41,6 +41,9 @@ LL Push(Ptype& mod) {
                         copy[out] = !level;
                     }
                 }
+            } else {
+                P_LINE;
+                exit(1);
             }
         }
         mod = copy;
