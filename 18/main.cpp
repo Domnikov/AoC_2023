@@ -9,7 +9,7 @@
 #include <list>
 
 auto in = getInput();
-LL N = 100;
+LL N = 900;
 
 VECS field;
 
@@ -59,7 +59,7 @@ auto count1() {
     FOR(n, N) {
         field.push_back(S(N, '.'));
     }
-    PP p0{30,30};
+    PP p0{400,400};
     std::vector<PP> points;
     points.push_back(p0);
 
