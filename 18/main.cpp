@@ -43,19 +43,13 @@ struct Polygon {
     LL GetArea() {
         assert(points.size() > 2);
         LL result = 0;
-        auto [xf, yf] = points[0];
-        auto [xl, yl] = points[points.size()-1];
-        LL pos = xl*yf;
+        LL pos = points[points.size()-1].row * points[0].col;
         for(size_t i = 1; i < points.size(); i+=1){
-            auto [x1, y1] = points[i-1];
-            auto [x2, y2] = points[i];
-            pos += x1*y2;
+            pos += points[i-1].row * points[i].col;
         }
-        LL neg = xf*yl;
+        LL neg = points[0].row * points[points.size()-1].col;
         for(size_t i = 1; i < points.size(); i+=1){
-            auto [x1, y1] = points[i-1];
-            auto [x2, y2] = points[i];
-            neg += x2*y1;
+            neg += points[i].row * points[i-1].col;
         }
         return labs(pos-neg)/2;
     }
