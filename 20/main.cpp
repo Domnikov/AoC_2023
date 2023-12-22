@@ -19,6 +19,7 @@ LL Push(Ptype& mod) {
     Ptype copy;
     FOR(i,2){
         for(auto& m:mod){
+            P(m);
             // copy.insert(m);
             if(m.first == "broadcaster") {
                 for(const auto& out: bcast) {
