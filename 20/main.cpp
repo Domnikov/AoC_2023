@@ -46,6 +46,7 @@ LL Push(Ptype& mod) {
         mod = copy;
     }
     P_MAP(mod);
+    return 0;
 }
 
 auto count1() {
