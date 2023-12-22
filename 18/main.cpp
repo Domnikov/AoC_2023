@@ -20,6 +20,10 @@ struct PP{
     LL col;
 };
 
+bool operator==(PP p1, PP p2){
+    return p1.row == p2.row && p1.col == p2.col;
+}
+
 std::ostream& operator<<(std::ostream& s, PP p){
     s<<'['<<p.row<<','<<p.col<<']';
     return s;
