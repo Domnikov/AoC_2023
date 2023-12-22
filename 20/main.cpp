@@ -110,7 +110,7 @@ std::pair<LL,LL> Push(Ptype& mod) {
 auto count1() {
     LL result = 0;
     std::pair<LL,LL> pair{0,0};
-    FOR(i, 4LL) {
+    FOR(i, 1000LL) {
         outputH = 0;
         outputL = 0;
         P_RR("%lld\n", i);
