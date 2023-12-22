@@ -18,7 +18,7 @@ auto count1() {
         auto v1 = splitStr(s, '{');
         S name = v1[0];
         VECSS cond;
-        v1[1].erase(v1.size()-2);
+        v1[1].erase(v1[1].size()-2);
         P(v1);
         auto v2 = splitStr(v1[1], ',');
         P(v2);
