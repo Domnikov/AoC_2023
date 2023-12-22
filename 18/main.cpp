@@ -10,7 +10,7 @@
 
 auto in = getInput();
 LL R = 400;
-LL C = 360;
+LL C = 350;
 
 
 VECS field;
