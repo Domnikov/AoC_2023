@@ -149,6 +149,13 @@ int main(int argc, char** argv)
     }
 
     LL score = 0;
+    P_RR("1\n");
+    score = count1();
+    P_RR("2\n");
+    score = count1();
+    P_RR("3\n");
+    score = count1();
+    P_RR("4\n");
     score = count1();
     P_RR("Part1: %lld\n", score);
     //========================================================
