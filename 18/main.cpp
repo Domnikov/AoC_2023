@@ -9,7 +9,8 @@
 #include <list>
 
 auto in = getInput();
-LL N = 370;
+LL R = 330;
+LL C = 330;
 
 
 VECS field;
@@ -42,8 +43,8 @@ PP Go(char c, LL num, PP point){
     P(point);
     assert(point.row >= 0);
     assert(point.col >= 0);
-    assert(point.row < N);
-    assert(point.col < N);
+    assert(point.row < R);
+    assert(point.col < C);
     return point;
 }
 
@@ -61,8 +62,8 @@ void mark(VECS& field, PP p1, PP p2){
 auto count1() {
     LL result = 0;
     field.clear();
-    FOR(n, N) {
-        field.push_back(S(N, '.'));
+    FOR(n, R) {
+        field.push_back(S(C, '.'));
     }
     PP p0{210,140};
     std::vector<PP> points;
