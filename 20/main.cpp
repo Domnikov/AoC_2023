@@ -17,6 +17,7 @@ Ptype levels;
 
 LL outputH = 0;
 LL outputL = 0;
+LL counter = 0;
 
 void Set(S from, S to, bool level, std::vector<std::pair<S,bool>>& dst) {
     if(to == "broadcaster") {
@@ -30,6 +31,8 @@ void Set(S from, S to, bool level, std::vector<std::pair<S,bool>>& dst) {
             ++outputH;
         } else {
             ++outputL;
+            P(counter);
+            exit(1);
         }
     } else {
         P(to);
@@ -127,7 +130,8 @@ auto count1() {
 auto count2() {
     LL result = 0;
     std::pair<LL,LL> pair{0,0};
-    FOR(i, 1000LL) {
+    for(;;){
+        counter++;
         outputH = 0;
         outputL = 0;
         std::vector<std::pair<S,bool>> mod;
