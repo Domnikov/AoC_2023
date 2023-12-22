@@ -60,6 +60,8 @@ auto count1() {
         field.push_back(S(N, '.'));
     }
     PP p0{30,30};
+    std::vector<PP> points;
+    points.push_back(p0);
 
     for(const auto& s: in){
         auto vec = splitStr(s, ' ');
@@ -70,6 +72,7 @@ auto count1() {
         PP p2 = Go(dir, num, p0);
         mark(field, p0, p2);
         p0 = p2;
+        points.push_back(p0);
     }
 
     P_VECV(field);
