@@ -173,6 +173,7 @@ auto count2(){
         neg += x2*y1;
     }
     auto A = labs(pos-neg)/2;
+    P(A, points);
     LL Pinside = A + 1 - points/2;
     return Pinside;
 }
