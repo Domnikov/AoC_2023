@@ -57,9 +57,9 @@ struct Polygon {
     LL GetBorderArea() {
         assert(points.size() > 2);
         LL counter = 1;
-        for(LL i = 1; i < points.size(); ++i){
+        for(LL i = 1; i <= points.size(); ++i){
             Point p1 = points[i-1];
-            Point p2 = points[i];
+            Point p2 = points[i%points.size()];
             counter += labs(p1.row-p2.row) + labs(p1.col-p2.col);
         }
         return counter;
