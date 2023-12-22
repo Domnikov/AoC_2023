@@ -49,7 +49,9 @@ LL Push(Ptype& mod) {
         mod = copy;
     }
     P_MAP(mod);
-    return Push(mod);
+    if(mod.size())
+        return Push(mod);
+    return 0;
 }
 
 auto count1() {
