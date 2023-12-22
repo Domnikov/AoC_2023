@@ -132,12 +132,8 @@ auto count1() {
         pol.AddPoint(p0);
     }
 
-    P_VECV(field);
-
-    P(pol.GetArea());
-    P(pol.GetBorderArea());
-    P(pol.GetInner());
-    P(pol.GetFullArea());
+    // P_VECV(field);
+    result = pol.GetFullArea();
 
 
 
