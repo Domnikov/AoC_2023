@@ -43,6 +43,7 @@ void Set(S from, S to, bool level, Ptype& dst) {
 std::pair<LL,LL> Push(Ptype& mod) {
     std::pair<LL,LL> p{0,0};
     Ptype copy;
+    P_RR("\n");
     for(auto& m:mod){
         p.first += m.second;
         p.second += !m.second;
