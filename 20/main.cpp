@@ -29,6 +29,7 @@ void Set(S from, S to, bool level, Ptype& dst) {
 }
 
 LL Push(Ptype& mod) {
+    P_MAPV(mod);
     Ptype copy;
     for(auto& m:mod){
         // copy.insert(m);
