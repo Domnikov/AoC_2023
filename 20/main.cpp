@@ -11,27 +11,48 @@ auto in = getInput();
 std::map<S, VECS> ffmod;
 std::map<S, VECS> cjmod;
 VECS bcast;
+using Ptype = std::map<S, bool>;
 
-std::map<S, bool> mod;
+Ptype levels;
 
-auto count1() {
-    LL result = 0;
-    mod["broadcaster"] = false;
-    FOR(i,1){
-        decltype(mod) copy;
+LL Push(Ptype& mod) {
+    Ptype copy;
+    FOR(i,2){
         for(auto& m:mod){
-            copy.insert(m);
+            // copy.insert(m);
             if(m.first == "broadcaster") {
                 for(const auto& out: bcast) {
+                    levels["broadcast"] = m.second;
                     copy[out] = m.second;
                 }
             } else if(ffmod.count(m.first)) {
+                bool level = levels[m.first];
+                if(!m.second) {
+                    levels[m.first] = !level;
+                    for(const auto& out: bcast) {
+                        copy[out] = !level;
+                    }
+                }
             } else if(cjmod.count(m.first)) {
+                bool level = levels[m.first];
+                if(!m.second) {
+                    levels[m.first] = !level;
+                    for(const auto& out: bcast) {
+                        copy[out] = !level;
+                    }
+                }
             }
         }
         mod = copy;
     }
     P_MAP(mod);
+}
+
+auto count1() {
+    LL result = 0;
+    Ptype mod;
+    mod["broadcaster"] = false;
+    result = Push(mod);
     return result;
 }
 
@@ -50,9 +71,11 @@ int main(int argc, char** argv)
         char type = name[0];
         if(name == "broadcaster") {
             bcast = outs;
+            levels[name] = false;
         } else if(type == '%') {
             name.erase(0,1);
             ffmod[name] = outs;
+            levels[name] = false;
         } else if(type == '&') {
             name.erase(0,1);
             cjmod[name] = outs;
@@ -63,8 +86,24 @@ int main(int argc, char** argv)
         }
     }
 
+    for(auto cj: cjmod){
+        for(auto out: cj.second){
+            if(cjmod.count(out)){
+                levels[cj.first+"|"+out] = false;
+            }
+        }
+    }
+
+    for(auto cj: ffmod){
+        for(auto out: cj.second){
+            if(cjmod.count(out)){
+                levels[cj.first+"|"+out] = false;
+            }
+        }
+    }
+
     LL score = 0;
-    score = count1();
+    // score = count1();
     P_RR("Part1: %lld\n", score);
     //========================================================
 
