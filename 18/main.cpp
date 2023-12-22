@@ -60,6 +60,21 @@ struct Polygon {
         return labs(pos-neg)/2;
     }
 
+    LL GetBorderArea() {
+        assert(points.size() > 2);
+        LL counter = 1;
+        for(LL i = 1; i < points.size(); ++i){
+            Point p1 = points[i-1];
+            Point p2 = points[i];
+            counter += labs(p1.row-p2.row) + labs(p1.col-p2.col);
+        }
+        return counter;
+    }
+
+    LL GetFullArea(){
+        return GetInner() + GetBorderArea();
+    }
+
     LL GetInner() {
         LL Pinside = GetArea() + 1 - points.size()/2;
         return Pinside;
@@ -135,6 +150,8 @@ auto count1() {
     P(Pol.GetArea());
     P(Pol.GetInner());
     P(Pol.GetArea() - Pol.GetInner());
+    P(Pol.GetBorderArea());
+    P(Pol.GetFullArea());
 
 
 
