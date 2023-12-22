@@ -110,6 +110,7 @@ auto count1() {
         auto local = Push(mod);
         pair.first += local.first;
         pair.second += local.second;
+        P(local, pair);
     }
     result = pair.first*pair.second;
     return result;
