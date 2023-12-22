@@ -27,10 +27,8 @@ void Set(S from, S to, bool level, std::vector<std::pair<S,bool>>& dst) {
         dst.emplace_back(to+'|'+from, level);
     } else if(to == "output" || to == "rx"){
         if(level) {
-            P_RR("outputH\n");
             ++outputH;
         } else {
-            P_RR("outputL\n");
             ++outputL;
         }
     } else {
@@ -43,11 +41,9 @@ void Set(S from, S to, bool level, std::vector<std::pair<S,bool>>& dst) {
 std::pair<LL,LL> Push(std::vector<std::pair<S,bool>>& mod) {
     std::pair<LL,LL> p{0,0};
     std::vector<std::pair<S,bool>> copy;
-    P_RR("\n");
     for(auto& m:mod){
         p.first += m.second;
         p.second += !m.second;
-        P_RR("%s -> %s\n", splitStr(m.first, '|')[0].c_str(), m.second ? "True" : "False")
         // P(m, p);
         // copy.insert(m);
         auto vec = splitStr(m.first, '|');
@@ -116,7 +112,6 @@ auto count1() {
     FOR(i, 1000LL) {
         outputH = 0;
         outputL = 0;
-        P_RR("%lld\n", i);
         std::vector<std::pair<S,bool>> mod;
         mod.emplace_back("broadcaster", false);
         auto local = Push(mod);
@@ -124,7 +119,6 @@ auto count1() {
         pair.second += local.second;
         pair.first += outputH;
         pair.second += outputL;
-        P(local, pair);
     }
     result = pair.first*pair.second;
     return result;
