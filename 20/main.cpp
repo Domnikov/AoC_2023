@@ -36,6 +36,7 @@ int main(int argc, char** argv)
         } else if(type == '&') {
             cjmod[name] = outs;
         } else {
+            P(type);
             P_LINE;
             exit(1);
         }
