@@ -16,12 +16,15 @@ auto count1() {
         if(s.empty()) break;
 
         auto v1 = splitStr(s, '{');
+        P(v1);
         S name = v1[0];
         VECSS cond;
         v1[1].erase(v1.size()-2);
         auto v2 = splitStr(v1[1], ',');
+        P(v2);
         for(auto vs:v2){
             auto v3 = splitStr(vs,':');
+        P(v3);
             cond.push_back(v3);
         }
         map[name] = cond;
