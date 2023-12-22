@@ -34,6 +34,7 @@ void Set(S from, S to, bool level, Ptype& dst) {
             ++outputL;
         }
     } else {
+        P(to);
         P_LINE;
         exit(1);
     }
