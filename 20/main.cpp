@@ -25,7 +25,7 @@ void Set(S from, S to, bool level, Ptype& dst) {
         dst[to] = level;
     } else if(cjmod.count(to)) {
         dst[to+'|'+from] = level;
-    } else if(to == "output"){
+    } else if(to == "output" || to == "rx"){
         if(level) {
             P_RR("outputH\n");
             ++outputH;
