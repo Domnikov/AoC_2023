@@ -11,6 +11,20 @@ auto in = getInput();
 
 auto count1() {
     LL result = 0;
+    std::map<S, VECSS> map;
+    for(const auto& s:in){
+        if(s.empty()) break;
+
+        auto v1 = splitStr(s, '{');
+        S name = v1[0];
+        VECSS cond;
+        v1[1].erase(v1.size()-2);
+        auto v2 = splitStr(v1[1], ',');
+        for(auto vs:v2){
+            auto v3 = splitStr(vs,':');
+            cond.push_back(v3);
+        }
+    }
 
     return result;
 }
