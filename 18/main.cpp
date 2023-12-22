@@ -125,9 +125,18 @@ auto count1() {
 
     P_VECV(field);
 
-    P(pol.GetArea());
-    P(pol.GetInner());
-    P(pol.GetArea() - pol.GetInner());
+    Polygon Pol;
+
+    Pol.AddPoint(1,1);
+    Pol.AddPoint(1,3);
+    Pol.AddPoint(3,1);
+    Pol.AddPoint(3,3);
+
+    P(Pol.GetArea());
+    P(Pol.GetInner());
+    P(Pol.GetArea() - Pol.GetInner());
+
+
 
     return result;
 }
