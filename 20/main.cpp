@@ -148,8 +148,6 @@ int main(int argc, char** argv)
         }
     }
 
-    P_MAPV(levels);
-
     LL score = 0;
     score = count1();
     P_RR("Part1: %lld\n", score);
