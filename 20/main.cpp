@@ -114,7 +114,7 @@ auto count1() {
     FOR(i, 1000LL) {
         outputH = 0;
         outputL = 0;
-        // P_RR("%lld\n", i);
+        P_RR("%lld\n", i);
         Ptype mod;
         mod["broadcaster"] = false;
         auto local = Push(mod);
@@ -122,7 +122,7 @@ auto count1() {
         pair.second += local.second;
         pair.first += outputH;
         pair.second += outputL;
-        // P(local, pair);
+        P(local, pair);
     }
     result = pair.first*pair.second;
     return result;
