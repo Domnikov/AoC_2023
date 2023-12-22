@@ -4,10 +4,12 @@
 #include "in.hpp"
 #endif
 
+#include <cassert>
 #include <queue>
 #include <list>
 
 auto in = getInput();
+LL N = 1000;
 
 VECS field;
 
@@ -21,10 +23,27 @@ std::ostream& operator<<(std::ostream& s, PP p){
     return s;
 }
 
+void Go(char c, LL num, PP& point){
+    switch(c){
+        case 'R':
+            point.row+=num;
+            break;
+        case 'L':
+            point.row-=num;
+            break;
+        case 'U':
+            point.col+=num;
+            break;
+        case 'D':
+            point.col-=num;
+            break;
+    }
+    assert(point.row < 0 || point.col < 0 || point.row >= N || point.col >= N);
+}
+
 auto count1() {
     LL result = 0;
     field.clear();
-    LL N = 1000;
     FOR(n, N) {
         field.push_back(S(N, '.'));
     }
@@ -36,7 +55,6 @@ auto count1() {
         LL num = stoi(vec[1]);
         S color = vec[2];
 
-        P(dir, num, color);
     }
 
 
