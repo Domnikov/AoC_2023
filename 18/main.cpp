@@ -92,7 +92,6 @@ Point Go(char c, LL num, Point point){
             point.row+=num;
             break;
     }
-    P(point);
     assert(point.row >= 0);
     assert(point.col >= 0);
     assert(point.row < R);
