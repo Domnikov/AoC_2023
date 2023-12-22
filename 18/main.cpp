@@ -39,7 +39,10 @@ PP Go(char c, LL num, PP point){
             break;
     }
     P(point);
-    assert(point.row >= 0 && point.col >= 0 && point.row < N && point.col < N);
+    assert(point.row >= 0);
+    assert(point.col >= 0);
+    assert(point.row < N);
+    assert(point.col < N);
     return point;
 }
 
