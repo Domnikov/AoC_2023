@@ -152,7 +152,8 @@ auto count2() {
             snum.push_back(color[i]);
         }
 
-        P(dir, snum);
+        LL num = stoll(snum, nullptr, 16);
+        P(dir, snum, num);
 
         // Point p2 = Go(dir, num, p0);
         // p0 = p2;
