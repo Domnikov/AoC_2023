@@ -104,8 +104,6 @@ std::pair<LL,LL> Push(Ptype& mod) {
         p.first += recRus.first;
         p.second += recRus.second;
     }
-    p.first += outputH;
-    p.second += outputL;
     return p;
 }
 
@@ -121,6 +119,8 @@ auto count1() {
         auto local = Push(mod);
         pair.first += local.first;
         pair.second += local.second;
+        pair.first += outputH;
+        pair.second += outputL;
         P(local, pair);
     }
     result = pair.first*pair.second;
