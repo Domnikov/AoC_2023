@@ -101,10 +101,17 @@ auto count1() {
 }
 
 LL check(S cur, std::pair<LL,LL> x, std::pair<LL,LL> m, std::pair<LL,LL> a, std::pair<LL,LL> s){
+    if(cur == "A") {
+        return (x.second-x.first) * (m.second-m.first) * (a.second-a.first) * (s.second-s.first);
+    }
     const VECSS rules = map[cur];
     for(const auto& rule:rules) {
+        if(rule.size() == 1) {
+            return check(rule[0], x, m, a, s);
+        }
     }
-    return (x.second-x.first) * (m.second-m.first) * (a.second-a.first) * (s.second-s.first);
+    P_LINE;
+    exit(1);
 }
 
 auto count2() {
