@@ -130,8 +130,13 @@ auto count1() {
 auto count2() {
     LL result = 0;
     std::pair<LL,LL> pair{0,0};
+    int cnt = 1;
     for(;;){
         counter++;
+        if(cnt < counter) {
+            P(cnt);
+            cnt*=10;
+        }
         outputH = 0;
         outputL = 0;
         std::vector<std::pair<S,bool>> mod;
