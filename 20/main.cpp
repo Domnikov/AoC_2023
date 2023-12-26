@@ -75,6 +75,7 @@ struct cjNode : Node{
         if(/*!isAllHigh && counter > 1 &&*/ (name == "vg" || name == "kp" || name == "gc" || name == "tx" )) {
                 if(allCj.count (name ) == 0){
                     P(counter, in_name, name, levels.size(), isAllHigh, level);
+                    if(counter > 4000)exit(1);
                     // allCj[name] = counter;
                     // if( allCj.size() == 4) {exit(0);}
                 }
