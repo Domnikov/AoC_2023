@@ -72,14 +72,13 @@ struct cjNode : Node{
                 break;
             }
         }
-        if(isAllHigh && level && counter > 0){
-            if(name == "vg" || name == "kp" || name == "gc" || name == "tx" ) {
+        if(isAllHigh && level && (name == "vg" || name == "kp" || name == "gc" || name == "tx" )) {
                 if(allCj.count (name ) == 0){
                     allCj[name] = counter;
                     P(counter, in_name, name);
                     if( allCj.size() == 4) {exit(0);}
                 }
-            }
+            // }
             // auto key = std::make_pair(name, in_name);
             // if(per.count(key) == 0){
             //     P(counter, in_name, name);
