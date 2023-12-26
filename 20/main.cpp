@@ -8,6 +8,7 @@
 #include <list>
 
 auto in = getInput();
+/*
 std::map<S, VECS> ffmod;
 std::map<S, VECS> cjmod;
 VECS bcast;
@@ -107,21 +108,33 @@ std::pair<LL,LL> Push(std::vector<std::pair<S,bool>>& mod) {
         p.second += recRus.second;
     }
     return p;
-}
+}*/
+
+struct Node{
+    virtual void update(bool level, std::pair<LL,LL> cnt_pair) = 0;
+
+    bool level = false;
+
+    S name;
+    VECS Sins;
+    VECS Souts;
+    std::vector<std::shared_ptr<Node>> ins;
+    std::vector<std::shared_ptr<Node>> outs;
+};
+
+struct ffNode : Node{};
+struct cjNode : Node{};
+struct rxNode : Node{};
+struct bcNode : Node{};
+
+std::map<S, std::shared_ptr<Node>> nodes;
+
 
 auto count1() {
     LL result = 0;
     std::pair<LL,LL> pair{0,0};
-    FOR(i, 1000LL) {
-        outputH = 0;
-        outputL = 0;
-        std::vector<std::pair<S,bool>> mod;
-        mod.emplace_back("broadcaster", false);
-        auto local = Push(mod);
-        pair.first += local.first;
-        pair.second += local.second;
-        pair.first += outputH;
-        pair.second += outputL;
+    FOR(i, 1LL) {
+        nodes["broadcaster"]->update(false, pair);
     }
     result = pair.first*pair.second;
     return result;
@@ -153,41 +166,39 @@ auto count2() {
 
 int main(int argc, char** argv)
 {
+    nodes["broadcaster"] = std::make_shared<bcNode>();
+    nodes["output"] = std::make_shared<rxNode>();
+    nodes["rx"] = std::make_shared<rxNode>();
     for(const auto& l: in){
         auto v = splitStr(l, '>');
         auto name = splitStr(v[0], ' ')[0];
         auto outs = splitStr(v[1], ',');
         char type = name[0];
         if(name == "broadcaster") {
-            bcast = outs;
-            levels[name] = false;
         } else if(type == '%') {
             name.erase(0,1);
-            ffmod[name] = outs;
-            levels[name] = false;
+            nodes[name] = std::make_shared<ffNode>();
         } else if(type == '&') {
             name.erase(0,1);
-            cjmod[name] = outs;
+            nodes[name] = std::make_shared<ffNode>();
         } else {
             P(type);
             P_LINE;
             exit(1);
         }
     }
-
-    for(auto cj: cjmod){
-        for(auto out: cj.second){
-            if(cjmod.count(out)){
-                levels[out+'|'+cj.first] = false;
-            }
+    for(const auto& l: in){
+        auto v = splitStr(l, '>');
+        auto name = splitStr(v[0], ' ')[0];
+        auto shortName = name;
+        char type = name[0];
+        if(type == '%' || type == '&') {
+            shortName.erase(0,1);
         }
-    }
-
-    for(auto cj: ffmod){
-        for(auto out: cj.second){
-            if(cjmod.count(out)){
-                levels[out+'|'+cj.first] = false;
-            }
+        auto outs = splitStr(v[1], ',');
+        for(auto& o : outs){
+            nodes[o]->ins.push_back(nodes[shortName]);
+            nodes[shortName]->outs.push_back(nodes[o]);
         }
     }
 
