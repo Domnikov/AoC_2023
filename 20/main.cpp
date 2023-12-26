@@ -123,6 +123,7 @@ struct Node{
 
 struct ffNode : Node{
     void update(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
+        P(name, level);
         if(level) {
             cnt_pair.first++;
         } else {
@@ -139,6 +140,7 @@ struct ffNode : Node{
 
 struct cjNode : Node{
     void update(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
+        P(name, level);
         if(level) {
             cnt_pair.first++;
         } else {
@@ -171,6 +173,7 @@ struct rxNode : Node{
 
 struct bcNode : Node{
     void update(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
+        P(name, level);
         if(level) {
             cnt_pair.first++;
         } else {
