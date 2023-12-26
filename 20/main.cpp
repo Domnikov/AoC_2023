@@ -191,7 +191,7 @@ std::map<S, std::shared_ptr<Node>> nodes;
 auto count1() {
     LL result = 0;
     std::pair<LL,LL> pair{0,0};
-    FOR(i, 1LL) {
+    FOR(i, 1000LL) {
         nodes["broadcaster"]->update(false, "broadcaster", pair);
     }
     result = pair.first*pair.second;
