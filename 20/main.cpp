@@ -137,10 +137,10 @@ struct ffNode : Node{
     void check(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
         if(!level) {
             for(auto& out:outs) {
-                out->update(!level, name, cnt_pair);
+                out->update(levels[0], name, cnt_pair);
             }
             for(auto& out:outs) {
-                out->check(!level, name, cnt_pair);
+                out->check(levels[0], name, cnt_pair);
             }
         }
     }
