@@ -9,7 +9,7 @@
 
 auto in = getInput();
 LL counter = 0;
-std::set<S> allCj;
+std::map<S, LL> allCj;
 
 struct Node{
     virtual void update(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) = 0;
@@ -62,7 +62,10 @@ struct cjNode : Node{
                 //P_RR("%s -%s-> %s[%s]\n", in_name.c_str(), level ? "high":"low", name.c_str(), levels[i] ? "high":"low");
                 if(level && counter > 0){
                     if(name == "vg" || name == "kp" || name == "gc" || name == "tx" ) {
-                        P(counter, in_name, name);
+                        if(allCj.count (name ) == 0){
+                            P(counter, in_name, name);
+                            if( allCj.size() == 4) {exit(0);}
+                        }
                     }
                     // auto key = std::make_pair(name, in_name);
                     // if(per.count(key) == 0){
