@@ -45,7 +45,7 @@ struct ffNode : Node{
         }
     }
 };
-std::map<S, VECI> per;
+std::map<S, LL> per;
 struct cjNode : Node{
     void update(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
         if(level) {
@@ -57,7 +57,7 @@ struct cjNode : Node{
             if(per.count(in_name) == 0){
                 P(counter, in_name, name);
             }
-            per[in_name].push_back(counter);
+            per[in_name] = (counter);
         }
         FOR(i, levels.size()){
             if(ins[i]->name == in_name) {
