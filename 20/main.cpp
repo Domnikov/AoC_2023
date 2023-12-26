@@ -76,16 +76,11 @@ struct cjNode : Node{
                 if(allCj.count (name ) == 0){
                     P(counter, in_name, name, isAllHigh, level);
                     allCj[name] = counter;
-                    if( allCj.size() == 4) {exit(0);}
+                    if( allCj.size() == 4) {
+                        P_RR("Part2 = %lld\n", allCj["vg"]*allCj["kp"]*allCj["gc"]*allCj["tx"]);
+                        exit(0);
+                    }
                 }
-            // }
-            // auto key = std::make_pair(name, in_name);
-            // if(per.count(key) == 0){
-            //     P(counter, in_name, name);
-            // }
-            // per[key] = (counter);
-            // cnt[in_name] = counter;
-            // isCj = true;
         }
         for(auto& out:outs) {
             out->update(!isAllHigh, name, cnt_pair);
