@@ -8,107 +8,7 @@
 #include <list>
 
 auto in = getInput();
-/*
-std::map<S, VECS> ffmod;
-std::map<S, VECS> cjmod;
-VECS bcast;
-using Ptype = std::map<S, bool>;
-
-Ptype levels;
-
-LL outputH = 0;
-LL outputL = 0;
 LL counter = 0;
-
-void Set(S from, S to, bool level, std::vector<std::pair<S,bool>>& dst) {
-    if(to == "broadcaster") {
-        dst.emplace_back(to, level);
-    } else if(ffmod.count(to)) {
-        dst.emplace_back(to, level);
-    } else if(cjmod.count(to)) {
-        dst.emplace_back(to+'|'+from, level);
-    } else if(to == "output" || to == "rx"){
-        if(level) {
-            ++outputH;
-        } else {
-            ++outputL;
-            P(counter);
-            exit(1);
-        }
-    } else {
-        P(to);
-        P_LINE;
-        exit(1);
-    }
-}
-
-std::pair<LL,LL> Push(std::vector<std::pair<S,bool>>& mod) {
-    std::pair<LL,LL> p{0,0};
-    std::vector<std::pair<S,bool>> copy;
-    for(auto& m:mod){
-        p.first += m.second;
-        p.second += !m.second;
-        // P(m, p);
-        // copy.insert(m);
-        auto vec = splitStr(m.first, '|');
-        if(m.first == "broadcaster") {
-            for(const auto& out: bcast) {
-                levels["broadcaster"] = m.second;
-                Set(m.first, out, m.second, copy);
-            }
-        } else if(ffmod.count(m.first)) {
-            bool level = levels[m.first];
-            if(!m.second) {
-                levels[m.first] = !level;
-                for(const auto& out: ffmod[m.first]) {
-                    Set(m.first, out, !level, copy);
-                }
-            }
-        } else if(cjmod.count(vec[0])) {
-            bool isAllHigh = true;
-            levels[m.first] = m.second;
-            // P_MAPV(levels);
-            for(const auto& ii:ffmod){
-                if (!isAllHigh) break;
-                for(const auto& iii:ii.second) {
-                    if(iii == vec[0]) {
-                        if(!levels[vec[0]+'|'+ii.first]) {
-                            isAllHigh = false;
-                            break;
-                        }
-                    }
-                }
-            }
-            for(const auto& ii:cjmod){
-                if (!isAllHigh) break;
-                for(const auto& iii:ii.second) {
-                    if(iii == vec[0]) {
-                        if(!levels[vec[0]+'|'+ii.first]) {
-                            isAllHigh = false;
-                            break;
-                        }
-                    }
-                }
-            }
-            // P(isAllHigh);
-            for(const auto& out: cjmod[vec[0]]) {
-                Set(vec[0], out, !isAllHigh, copy);
-            }
-        } else {
-            P_LINE;
-            exit(1);
-        }
-    }
-    // P_MAPV(copy);
-    mod = copy;
-
-    if(mod.size()) {
-        std::pair<LL,LL> recRus = Push(mod);
-        p.first += recRus.first;
-        p.second += recRus.second;
-    }
-    return p;
-}*/
 
 struct Node{
     virtual void update(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) = 0;
@@ -132,7 +32,7 @@ struct ffNode : Node{
         if(!level) {
             levels[0] = !levels[0];
         }
-        P_RR("%s -%s-> %s[%s]\n", in_name.c_str(), level ? "high":"low", name.c_str(), levels[0] ? "high":"low");
+        // P_RR("%s -%s-> %s[%s]\n", in_name.c_str(), level ? "high":"low", name.c_str(), levels[0] ? "high":"low");
     }
     void check(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
         if(!level) {
@@ -156,7 +56,7 @@ struct cjNode : Node{
         FOR(i, levels.size()){
             if(ins[i]->name == in_name) {
                 levels[i] = level;
-                P_RR("%s -%s-> %s[%s]\n", in_name.c_str(), level ? "high":"low", name.c_str(), levels[i] ? "high":"low");
+                // P_RR("%s -%s-> %s[%s]\n", in_name.c_str(), level ? "high":"low", name.c_str(), levels[i] ? "high":"low");
                 return;
             }
         }
@@ -179,11 +79,13 @@ struct cjNode : Node{
 };
 struct rxNode : Node{
     void update(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
-        P_RR("%s -%s-> %s\n", in_name.c_str(), level ? "high":"low", name.c_str());
+        // P_RR("%s -%s-> %s\n", in_name.c_str(), level ? "high":"low", name.c_str());
         if(level) {
             cnt_pair.first++;
         } else {
             cnt_pair.second++;
+            P(counter);
+            exit(0);
         }
     }
     void check(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
@@ -192,7 +94,7 @@ struct rxNode : Node{
 
 struct bcNode : Node{
     void update(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
-        P_RR("%s -%s-> %s\n", in_name.c_str(), level ? "high":"low", name.c_str());
+        // P_RR("%s -%s-> %s\n", in_name.c_str(), level ? "high":"low", name.c_str());
         if(level) {
             cnt_pair.first++;
         } else {
@@ -226,25 +128,14 @@ auto count1() {
 
 auto count2() {
     LL result = 0;
-    // std::pair<LL,LL> pair{0,0};
-    // int cnt = 1;
-    // for(;;){
-    //     counter++;
-    //     if(cnt < counter) {
-    //         P(cnt);
-    //         cnt*=10;
-    //     }
-    //     outputH = 0;
-    //     outputL = 0;
-    //     std::vector<std::pair<S,bool>> mod;
-    //     mod.emplace_back("broadcaster", false);
-    //     auto local = Push(mod);
-    //     pair.first += local.first;
-    //     pair.second += local.second;
-    //     pair.first += outputH;
-    //     pair.second += outputL;
-    // }
-    // result = pair.first*pair.second;
+    std::pair<LL,LL> pair{0,0};
+    for(;;) {
+        nodes["broadcaster"]->update(false, "broadcaster", pair);
+        nodes["broadcaster"]->check(false, "broadcaster", pair);
+        counter++;
+    }
+    result = pair.first*pair.second;
+    P(pair.first, pair.second, result);
     return result;
 }
 
