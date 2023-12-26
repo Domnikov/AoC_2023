@@ -246,6 +246,7 @@ int main(int argc, char** argv)
         }
     }
     for(auto& node : nodes){
+        node.second->name = node.first;
         P_RR("%s -> %s\n", node.first.c_str(), nodes[node.first]->name.c_str());
     }
     for(const auto& l: in){
