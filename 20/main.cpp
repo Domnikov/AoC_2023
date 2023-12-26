@@ -238,7 +238,7 @@ int main(int argc, char** argv)
             nodes[name] = std::make_shared<ffNode>();
         } else if(type == '&') {
             name.erase(0,1);
-            nodes[name] = std::make_shared<ffNode>();
+            nodes[name] = std::make_shared<cjNode>();
         } else {
             P(type);
             P_LINE;
@@ -255,7 +255,7 @@ int main(int argc, char** argv)
         }
         auto outs = splitStr(v[1], ',');
         P(shortName, outs);
-        for(auto& o : outs){
+        for(const auto& o : outs){
             auto& node = nodes[o];
             P(node->name);
             nodes[o]->ins.push_back(nodes[shortName]);
