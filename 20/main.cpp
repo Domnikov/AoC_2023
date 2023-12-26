@@ -267,6 +267,7 @@ int main(int argc, char** argv)
             P_RR("\t%s\n", l->name.c_str());
         }
     }
+    P_LINE;
 
     LL score = 0;
     score = count1();
