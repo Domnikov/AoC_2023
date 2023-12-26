@@ -256,7 +256,8 @@ int main(int argc, char** argv)
         auto outs = splitStr(v[1], ',');
         P(shortName, outs);
         for(auto& o : outs){
-            P(shortName, o);
+            auto& node = nodes[o];
+            P(node->name);
             nodes[o]->ins.push_back(nodes[shortName]);
             nodes[o]->levels.push_back(false);
             nodes[shortName]->outs.push_back(nodes[o]);
