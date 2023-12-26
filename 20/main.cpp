@@ -257,7 +257,6 @@ int main(int argc, char** argv)
             shortName.erase(0,1);
         }
         auto outs = splitStr(v[1], ',');
-        P(shortName, outs);
         for(const auto& o : outs){
             auto& node = nodes[o];
             nodes[o]->ins.push_back(nodes[shortName]);
