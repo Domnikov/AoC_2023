@@ -75,7 +75,7 @@ struct cjNode : Node{
         if(isAllHigh && level && counter > 0 && (name == "vg" || name == "kp" || name == "gc" || name == "tx" )) {
                 if(allCj.count (name ) == 0){
                     allCj[name] = counter;
-                    P(counter, in_name, name);
+                    P(counter, in_name, name, levels.size());
                     if( allCj.size() == 4) {exit(0);}
                 }
             // }
