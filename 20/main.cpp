@@ -247,7 +247,6 @@ int main(int argc, char** argv)
     }
     for(auto& node : nodes){
         node.second->name = node.first;
-        P_RR("%s -> %s\n", node.first.c_str(), nodes[node.first]->name.c_str());
     }
     for(const auto& l: in){
         auto v = splitStr(l, '>');
@@ -261,14 +260,12 @@ int main(int argc, char** argv)
         P(shortName, outs);
         for(const auto& o : outs){
             auto& node = nodes[o];
-            P(o, node->name);
             nodes[o]->ins.push_back(nodes[shortName]);
             nodes[o]->levels.push_back(false);
             nodes[shortName]->outs.push_back(nodes[o]);
         }
     }
     for(auto& node : nodes){
-        node.second->name = node.first;
         P_RR("%s\n", node.first.c_str());
         for(auto& l : node.second->outs) {
             P_RR("\t%s\n", l->name.c_str());
