@@ -61,13 +61,16 @@ struct cjNode : Node{
                 levels[i] = level;
                 //P_RR("%s -%s-> %s[%s]\n", in_name.c_str(), level ? "high":"low", name.c_str(), levels[i] ? "high":"low");
                 if(level && counter > 0){
-                    auto key = std::make_pair(name, in_name);
-                    if(per.count(key) == 0){
+                    if(name == "vg" || name == "kp" || name == "gc" || name == "tx" ) {
                         P(counter, in_name, name);
                     }
-                    per[key] = (counter);
-                    cnt[in_name] = counter;
-                    isCj = true;
+                    // auto key = std::make_pair(name, in_name);
+                    // if(per.count(key) == 0){
+                    //     P(counter, in_name, name);
+                    // }
+                    // per[key] = (counter);
+                    // cnt[in_name] = counter;
+                    // isCj = true;
                 }
                 return;
             }
