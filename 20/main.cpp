@@ -219,6 +219,7 @@ int main(int argc, char** argv)
     //========================================================
 
     for(auto& node : nodes){
+        P(node.second->name, node.second->levels);
         for(auto& l : node.second->levels) {
             l = false;
         }
