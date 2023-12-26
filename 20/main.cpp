@@ -130,7 +130,7 @@ struct ffNode : Node{
             cnt_pair.second++;
         }
         if(!level) {
-            levels[0] = !level;
+            levels[0] = !levels[0];
         }
         P_RR("%s -%s-> %s[%s]\n", in_name.c_str(), level ? "high":"low", name.c_str(), levels[0] ? "high":"low");
     }
