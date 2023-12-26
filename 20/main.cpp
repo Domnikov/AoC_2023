@@ -8,7 +8,7 @@
 #include <list>
 
 auto in = getInput();
-LL counter = 0;
+LL counter = 1;
 std::map<S, LL> allCj;
 
 struct Node{
