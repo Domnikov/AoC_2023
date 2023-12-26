@@ -142,25 +142,25 @@ auto count1() {
 
 auto count2() {
     LL result = 0;
-    std::pair<LL,LL> pair{0,0};
-    int cnt = 1;
-    for(;;){
-        counter++;
-        if(cnt < counter) {
-            P(cnt);
-            cnt*=10;
-        }
-        outputH = 0;
-        outputL = 0;
-        std::vector<std::pair<S,bool>> mod;
-        mod.emplace_back("broadcaster", false);
-        auto local = Push(mod);
-        pair.first += local.first;
-        pair.second += local.second;
-        pair.first += outputH;
-        pair.second += outputL;
-    }
-    result = pair.first*pair.second;
+    // std::pair<LL,LL> pair{0,0};
+    // int cnt = 1;
+    // for(;;){
+    //     counter++;
+    //     if(cnt < counter) {
+    //         P(cnt);
+    //         cnt*=10;
+    //     }
+    //     outputH = 0;
+    //     outputL = 0;
+    //     std::vector<std::pair<S,bool>> mod;
+    //     mod.emplace_back("broadcaster", false);
+    //     auto local = Push(mod);
+    //     pair.first += local.first;
+    //     pair.second += local.second;
+    //     pair.first += outputH;
+    //     pair.second += outputL;
+    // }
+    // result = pair.first*pair.second;
     return result;
 }
 
@@ -207,8 +207,8 @@ int main(int argc, char** argv)
     P_RR("Part1: %lld\n", score);
     //========================================================
 
-    for(auto& level : levels){
-        level.second = false;
+    for(auto& node : nodes){
+        node.second->level = false;
     }
     score = count2();
     P_RR("Part2: %lld\n", score);
