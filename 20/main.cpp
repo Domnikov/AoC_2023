@@ -53,7 +53,7 @@ struct cjNode : Node{
         } else {
             cnt_pair.second++;
         }
-        if(level){
+        if(level && name == "bq"){
             P(counter, in_name, name);
         }
         FOR(i, levels.size()){
