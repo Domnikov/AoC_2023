@@ -111,21 +111,76 @@ std::pair<LL,LL> Push(std::vector<std::pair<S,bool>>& mod) {
 }*/
 
 struct Node{
-    virtual void update(bool level, std::pair<LL,LL> cnt_pair) = 0;
+    virtual void update(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) = 0;
 
-    bool level = false;
+    std::vector<LL> levels;
 
     S name;
-    VECS Sins;
-    VECS Souts;
+
     std::vector<std::shared_ptr<Node>> ins;
     std::vector<std::shared_ptr<Node>> outs;
 };
 
-struct ffNode : Node{};
-struct cjNode : Node{};
-struct rxNode : Node{};
-struct bcNode : Node{};
+struct ffNode : Node{
+    void update(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
+        if(level) {
+            cnt_pair.first++;
+        } else {
+            cnt_pair.second++;
+        }
+        if(!level) {
+            levels[0] = !level;
+            for(auto& out:outs) {
+                out->update(!level, name, cnt_pair);
+            }
+        }
+    }
+};
+
+struct cjNode : Node{
+    void update(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
+        if(level) {
+            cnt_pair.first++;
+        } else {
+            cnt_pair.second++;
+        }
+        bool isAllHigh = true;
+        FOR(i, levels.size()){
+            if(ins[i]->name == in_name) {
+                levels[i] = level;
+            }
+            if(!levels[i]) {
+                isAllHigh = false;
+            }
+        }
+        for(auto& out:outs) {
+            out->update(!isAllHigh, name, cnt_pair);
+        }
+    }
+};
+struct rxNode : Node{
+    void update(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
+        P(name, level);
+        if(level) {
+            cnt_pair.first++;
+        } else {
+            cnt_pair.second++;
+        }
+    }
+};
+
+struct bcNode : Node{
+    void update(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
+        if(level) {
+            cnt_pair.first++;
+        } else {
+            cnt_pair.second++;
+        }
+        for(auto& out:outs) {
+            out->update(level, name, cnt_pair);
+        }
+    }
+};
 
 std::map<S, std::shared_ptr<Node>> nodes;
 
@@ -134,7 +189,7 @@ auto count1() {
     LL result = 0;
     std::pair<LL,LL> pair{0,0};
     FOR(i, 1LL) {
-        nodes["broadcaster"]->update(false, pair);
+        nodes["broadcaster"]->update(false, "broadcaster", pair);
     }
     result = pair.first*pair.second;
     return result;
@@ -198,8 +253,12 @@ int main(int argc, char** argv)
         auto outs = splitStr(v[1], ',');
         for(auto& o : outs){
             nodes[o]->ins.push_back(nodes[shortName]);
+            nodes[o]->levels.push_back(false);
             nodes[shortName]->outs.push_back(nodes[o]);
         }
+    }
+    for(auto& node : nodes){
+        node.second->name = node.first;
     }
 
     LL score = 0;
@@ -208,7 +267,9 @@ int main(int argc, char** argv)
     //========================================================
 
     for(auto& node : nodes){
-        node.second->level = false;
+        for(auto& l : node.second->levels) {
+            l = false;
+        }
     }
     score = count2();
     P_RR("Part2: %lld\n", score);
