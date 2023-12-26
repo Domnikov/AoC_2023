@@ -245,6 +245,15 @@ int main(int argc, char** argv)
             exit(1);
         }
     }
+    for(auto& node : nodes){
+        node.second->name = node.first;
+        P_RR("%s\n", node.first.c_str());
+        for(auto& l : node.second->outs) {
+            P_RR("\t%s\n", l->name.c_str());
+        }
+    }
+    P_LINE;
+
     for(const auto& l: in){
         auto v = splitStr(l, '>');
         auto name = splitStr(v[0], ' ')[0];
