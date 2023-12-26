@@ -112,6 +112,7 @@ std::pair<LL,LL> Push(std::vector<std::pair<S,bool>>& mod) {
 
 struct Node{
     virtual void update(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) = 0;
+    virtual void check(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) = 0;
 
     std::vector<LL> levels;
 
@@ -131,8 +132,15 @@ struct ffNode : Node{
         }
         if(!level) {
             levels[0] = !level;
+        }
+    }
+    void check(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
+        if(!level) {
             for(auto& out:outs) {
                 out->update(!level, name, cnt_pair);
+            }
+            for(auto& out:outs) {
+                out->check(!level, name, cnt_pair);
             }
         }
     }
@@ -146,17 +154,26 @@ struct cjNode : Node{
         } else {
             cnt_pair.second++;
         }
-        bool isAllHigh = true;
         FOR(i, levels.size()){
             if(ins[i]->name == in_name) {
                 levels[i] = level;
+                return;
             }
+        }
+    }
+    void check(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
+        bool isAllHigh = true;
+        FOR(i, levels.size()){
             if(!levels[i]) {
                 isAllHigh = false;
+                break;
             }
         }
         for(auto& out:outs) {
             out->update(!isAllHigh, name, cnt_pair);
+        }
+        for(auto& out:outs) {
+            out->check(!isAllHigh, name, cnt_pair);
         }
     }
 };
@@ -166,9 +183,10 @@ struct rxNode : Node{
         if(level) {
             cnt_pair.first++;
         } else {
-            // P(name, level);
             cnt_pair.second++;
         }
+    }
+    void check(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
     }
 };
 
@@ -180,8 +198,13 @@ struct bcNode : Node{
         } else {
             cnt_pair.second++;
         }
+    }
+    void check(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
         for(auto& out:outs) {
             out->update(level, name, cnt_pair);
+        }
+        for(auto& out:outs) {
+            out->check(level, name, cnt_pair);
         }
     }
 };
@@ -194,6 +217,7 @@ auto count1() {
     std::pair<LL,LL> pair{0,0};
     FOR(i, 4LL) {
         nodes["broadcaster"]->update(false, "broadcaster", pair);
+        nodes["broadcaster"]->check(false, "broadcaster", pair);
     }
     result = pair.first*pair.second;
     P(pair.first, pair.second, result);
