@@ -74,7 +74,6 @@ struct cjNode : Node{
         }
         if(!level && (name == "vg" || name == "kp" || name == "gc" || name == "tx" )) {
                 if(allCj.count (name ) == 0){
-                    P(counter, in_name, name, isAllHigh, level);
                     allCj[name] = counter;
                     if( allCj.size() == 4) {
                         P_RR("Part2 = %lld\n", allCj["vg"]*allCj["kp"]*allCj["gc"]*allCj["tx"]);
@@ -156,7 +155,6 @@ auto count2() {
         nodes["broadcaster"]->check(false, "broadcaster", pair);
         counter++;
         if(cnt<counter){
-            P(cnt);
             cnt*=10;
         }
     }
@@ -214,7 +212,6 @@ int main(int argc, char** argv)
     //========================================================
 
     for(auto& node : nodes){
-        P(node.second->name, node.second->levels);
         for(auto& l : node.second->levels) {
             l = false;
         }
