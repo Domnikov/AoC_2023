@@ -63,6 +63,7 @@ struct cjNode : Node{
                 if(level && counter > 0){
                     if(name == "vg" || name == "kp" || name == "gc" || name == "tx" ) {
                         if(allCj.count (name ) == 0){
+                            allCj[name] = counter;
                             P(counter, in_name, name);
                             if( allCj.size() == 4) {exit(0);}
                         }
