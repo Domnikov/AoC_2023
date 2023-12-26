@@ -53,10 +53,13 @@ struct cjNode : Node{
         } else {
             cnt_pair.second++;
         }
+        if(level){
+            P(counter, in_name, name);
+        }
         FOR(i, levels.size()){
             if(ins[i]->name == in_name) {
                 levels[i] = level;
-                // P_RR("%s -%s-> %s[%s]\n", in_name.c_str(), level ? "high":"low", name.c_str(), levels[i] ? "high":"low");
+                //P_RR("%s -%s-> %s[%s]\n", in_name.c_str(), level ? "high":"low", name.c_str(), levels[i] ? "high":"low");
                 return;
             }
         }
