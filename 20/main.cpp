@@ -53,7 +53,7 @@ struct cjNode : Node{
         } else {
             cnt_pair.second++;
         }
-        if(level){
+        if(level && counter > 0){
             auto key = std::make_pair(name, in_name);
             if(per.count(key) == 0){
                 P(counter, in_name, name);
@@ -137,6 +137,7 @@ auto count2() {
     LL result = 0;
     std::pair<LL,LL> pair{0,0};
     LL cnt = 1;
+    per.clear();
     for(;;) {
         nodes["broadcaster"]->update(false, "broadcaster", pair);
         nodes["broadcaster"]->check(false, "broadcaster", pair);
