@@ -124,7 +124,6 @@ struct Node{
 
 struct ffNode : Node{
     void update(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
-        P_RR("%s -%s-> %s\n", in_name.c_str(), level ? "high":"low", name.c_str());
         if(level) {
             cnt_pair.first++;
         } else {
@@ -133,6 +132,7 @@ struct ffNode : Node{
         if(!level) {
             levels[0] = !level;
         }
+        P_RR("%s -%s-> %s[%s]\n", in_name.c_str(), level ? "high":"low", name.c_str(), levels[0] ? "high":"low");
     }
     void check(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
         if(!level) {
@@ -157,6 +157,7 @@ struct cjNode : Node{
         FOR(i, levels.size()){
             if(ins[i]->name == in_name) {
                 levels[i] = level;
+                P_RR("%s -%s-> %s[%s]\n", in_name.c_str(), level ? "high":"low", name.c_str(), levels[i] ? "high":"low");
                 return;
             }
         }
