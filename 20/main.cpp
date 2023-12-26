@@ -195,6 +195,7 @@ auto count1() {
         nodes["broadcaster"]->update(false, "broadcaster", pair);
     }
     result = pair.first*pair.second;
+    P(pair.first, pair.second, result);
     return result;
 }
 
