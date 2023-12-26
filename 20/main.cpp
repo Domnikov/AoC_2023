@@ -45,7 +45,7 @@ struct ffNode : Node{
         }
     }
 };
-std::map<S, LL> per;
+std::map<std::pair<S, S>, LL> per;
 struct cjNode : Node{
     void update(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
         if(level) {
@@ -53,11 +53,12 @@ struct cjNode : Node{
         } else {
             cnt_pair.second++;
         }
-        if(level && name == "bq"){
-            if(per.count(in_name) == 0){
+        if(level){
+            auto key = std::make_pair(name, in_name);
+            if(per.count(key) == 0){
                 P(counter, in_name, name);
             }
-            per[in_name] = (counter);
+            per[key] = (counter);
         }
         FOR(i, levels.size()){
             if(ins[i]->name == in_name) {
