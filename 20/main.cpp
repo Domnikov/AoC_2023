@@ -75,9 +75,8 @@ struct cjNode : Node{
         if(!level && (name == "vg" || name == "kp" || name == "gc" || name == "tx" )) {
                 if(allCj.count (name ) == 0){
                     P(counter, in_name, name, isAllHigh, level);
-                    if(counter > 4029)exit(1);
-                    // allCj[name] = counter;
-                    // if( allCj.size() == 4) {exit(0);}
+                    allCj[name] = counter;
+                    if( allCj.size() == 4) {exit(0);}
                 }
             // }
             // auto key = std::make_pair(name, in_name);
