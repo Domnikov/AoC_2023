@@ -257,7 +257,7 @@ int main(int argc, char** argv)
         P(shortName, outs);
         for(const auto& o : outs){
             auto& node = nodes[o];
-            P(node->name);
+            P(o, node->name);
             nodes[o]->ins.push_back(nodes[shortName]);
             nodes[o]->levels.push_back(false);
             nodes[shortName]->outs.push_back(nodes[o]);
