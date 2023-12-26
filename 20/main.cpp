@@ -9,12 +9,15 @@
 
 auto in = getInput();
 LL counter = 0;
+std::set<S> allCj;
 
 struct Node{
     virtual void update(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) = 0;
     virtual void check(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) = 0;
 
     std::vector<LL> levels;
+    std::map<S, LL> cnt;
+    bool isCj = false;
 
     S name;
 
@@ -53,17 +56,19 @@ struct cjNode : Node{
         } else {
             cnt_pair.second++;
         }
-        if(level && counter > 0){
-            auto key = std::make_pair(name, in_name);
-            if(per.count(key) == 0){
-                P(counter, in_name, name);
-            }
-            per[key] = (counter);
-        }
         FOR(i, levels.size()){
             if(ins[i]->name == in_name) {
                 levels[i] = level;
                 //P_RR("%s -%s-> %s[%s]\n", in_name.c_str(), level ? "high":"low", name.c_str(), levels[i] ? "high":"low");
+                if(level && counter > 0){
+                    auto key = std::make_pair(name, in_name);
+                    if(per.count(key) == 0){
+                        P(counter, in_name, name);
+                    }
+                    per[key] = (counter);
+                    cnt[in_name] = counter;
+                    isCj = true;
+                }
                 return;
             }
         }
@@ -127,6 +132,13 @@ auto count1() {
     FOR(i, 1000LL) {
         nodes["broadcaster"]->update(false, "broadcaster", pair);
         nodes["broadcaster"]->check(false, "broadcaster", pair);
+
+        // for(auto& [name,node]:nodes){
+        //     if(node->isCj){
+        //         if(node->cnt.size() == node->outs.size()){
+        //         }
+        //     }
+        // }
     }
     result = pair.first*pair.second;
     P(pair.first, pair.second, result);
