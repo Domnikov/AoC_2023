@@ -245,6 +245,9 @@ int main(int argc, char** argv)
             exit(1);
         }
     }
+    for(auto& node : nodes){
+        P_RR("%s\n", node.first.c_str());
+    }
     for(const auto& l: in){
         auto v = splitStr(l, '>');
         auto name = splitStr(v[0], ' ')[0];
