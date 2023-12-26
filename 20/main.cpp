@@ -140,7 +140,7 @@ struct ffNode : Node{
 
 struct cjNode : Node{
     void update(bool level, const S& in_name, std::pair<LL,LL>& cnt_pair) override {
-        // P(name, level);
+        P_RR("%s -%s-> %s\n", in_name.c_str(), level ? "high":"low", name.c_str());
         if(level) {
             cnt_pair.first++;
         } else {
