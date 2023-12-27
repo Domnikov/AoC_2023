@@ -128,8 +128,8 @@ auto count2() {
     VECS neg = GetField(alt);
 
     P_RR("\n");
-    FOR(r, 30) {
-        FOR(c, 30) {
+    FOR(r, 120) {
+        FOR(c, 120) {
             LL row = r%(2*R);
             LL col = c%(2*C);
             VECS* ptr = ((row < R && col < C) || (row >= R && col >= C)) ? &pos : &neg;
