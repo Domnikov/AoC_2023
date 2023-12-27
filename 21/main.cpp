@@ -111,6 +111,7 @@ VECI Generate(Elf init){
             {LL nc = (org.col - 1); LL nr = (org.row); if(nc >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}}
             {LL nc = (org.col + 1); LL nr = (org.row); if(nc <  C) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}}
         }
+        P(cur.size(), cur);
         if(cur == preprev) {
             P(cur);
             P(prev);
