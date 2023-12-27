@@ -62,11 +62,7 @@ VECS GetField(std::set<Elf> elfs) {
 }
 
 std::ostream& operator<<(std::ostream& os, const std::set<Elf>& elfs) {
-    auto in2 = in;
-    for(const auto& e:elfs){
-        in2[e.row][e.col] = 'O';
-    }
-    P_VECV(in2);
+    P_VECV(GetField(elfs));
     return os;
 }
 
