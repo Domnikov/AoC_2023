@@ -139,7 +139,7 @@ auto count2() {
             VECS* ptr = ((row < R && col < C) || (row >= R && col >= C)) ? &pos : &neg;
             char symb = (*ptr)[r%R][c%C];
             if( r == NR && c == NC) {
-                symb = ' ';
+                symb = 'X';
             }
             P_RR("%c", symb);
         }
