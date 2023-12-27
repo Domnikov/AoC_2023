@@ -47,10 +47,10 @@ Elf GetFirst(){
 void step(std::set<Elf>& elfs){
     std::set<Elf> copy;
     for(auto& org:elfs){
-        if(in[org.row - 1][org.col    ] == '.') {copy.emplace(org.row - 1, org.col    );}
-        if(in[org.row + 1][org.col    ] == '.') {copy.emplace(org.row + 1, org.col    );}
-        if(in[org.row    ][org.col - 1] == '.') {copy.emplace(org.row    , org.col - 1);}
-        if(in[org.row    ][org.col + 1] == '.') {copy.emplace(org.row    , org.col + 1);}
+        if(in[org.row - 1][org.col    ] != '#') {copy.emplace(org.row - 1, org.col    );}
+        if(in[org.row + 1][org.col    ] != '#') {copy.emplace(org.row + 1, org.col    );}
+        if(in[org.row    ][org.col - 1] != '#') {copy.emplace(org.row    , org.col - 1);}
+        if(in[org.row    ][org.col + 1] != '#') {copy.emplace(org.row    , org.col + 1);}
     }
     elfs.swap(copy);
 }
@@ -59,7 +59,7 @@ auto count1() {
     LL result = 0;
     std::set<Elf> elfs{GetFirst()};
 
-    LL N = 1;
+    LL N = 2;
     FOR(i, N){
         step(elfs);
     }
