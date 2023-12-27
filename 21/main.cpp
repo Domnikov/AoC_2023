@@ -96,6 +96,7 @@ LL Do(std::set<Elf>& elfs, LL N){
             if(                      (org.col + 1) <  C && in[org.row    ][org.col + 1] != '#') {elfs.emplace(org.row    , org.col + 1);}
         }
         if(elfs == preprev) {
+            P_LINE;
             return i%2 ? elfs.size() : prev.size();
         }
     }
