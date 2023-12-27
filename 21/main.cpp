@@ -97,7 +97,7 @@ auto count1() {
 }
 
 struct Cache{
-    VECI next{9, -1};
+    VECI next{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
     VECI data;
 };
 
