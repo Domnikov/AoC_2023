@@ -141,7 +141,7 @@ LL GetElfs(LL step, const Cache& cache) {
     if(step < cache.data.size()){
         return cache.data[step];
     }
-    return cache.data[(step-cache.data.size())% 2 ? (cache.data.size() - 2) : (cache.data.size() - 1)];
+    return cache.data[(step-cache.data.size())% 2 ? (cache.data.size() - 1) : (cache.data.size() - 2)];
 }
 
 auto count2() {
@@ -163,15 +163,15 @@ auto count2() {
     src.emplace_back();
 
     std::vector<Elf> next = Generate(first, src[CT]);
-    Generate(next[LT], src[LT]);
-    Generate(next[RT], src[RT]);
-    Generate(next[DN], src[DN]);
-    Generate(next[UP], src[UP]);
-
-    Generate(Elf{  0,  0}, src[LU]);
-    Generate(Elf{R-1,  0}, src[LD]);
-    Generate(Elf{  0,  0}, src[RU]);
-    Generate(Elf{R-1,C-1}, src[RD]);
+    // Generate(next[LT], src[LT]);
+    // Generate(next[RT], src[RT]);
+    // Generate(next[DN], src[DN]);
+    // Generate(next[UP], src[UP]);
+    //
+    // Generate(Elf{  0,  0}, src[LU]);
+    // Generate(Elf{R-1,  0}, src[LD]);
+    // Generate(Elf{  0,  0}, src[RU]);
+    // Generate(Elf{R-1,C-1}, src[RD]);
 
 
     FOR(i, 300) {
