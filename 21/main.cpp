@@ -108,8 +108,8 @@ std::set<Elf> Do(std::set<Elf>& elfs){
             {LL nc = (org.col + 1); LL nr = (org.row); if(nc <  C) { if(in[nr][nc] != '#') {elfs.emplace(nr,nc);}}}
         }
         if(elfs == preprev) {
-            P(elfs);
-            P(prev);
+            // P(elfs);
+            // P(prev);
             return prev;
         }
     }
