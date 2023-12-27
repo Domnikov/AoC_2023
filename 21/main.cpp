@@ -11,8 +11,13 @@ auto in = getInput();
 
 class Elf {
   public:
-    static inline LL counter = 0;
-    LL id = counter++;
+    Elf(LL r, LL c) {
+        static LL counter = 0;
+        id= counter++;
+        row=r;
+        col=c;
+    }
+    LL id;
     LL row;
     LL col;
 };
@@ -34,10 +39,20 @@ auto count2() {
     return result;
 }
 
+Elf GetFirst(){
+    FOR(row, in.size()){
+        FOR(col, in[row].size()){
+            if(in[row][col] == 'S'){
+                return Elf{(LL)row, (LL)col};
+            }
+        }
+    }
+    exit(1);
+}
+
 int main(int argc, char** argv)
 {
-    Elf e;
-    P(e);
+    auto elf = GetFirst();
     LL score = 0;
     score = count1();
     P_RR("Part1: %lld\n", score);
