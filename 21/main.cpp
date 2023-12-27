@@ -36,6 +36,12 @@ bool operator<(const Elf& lhs, const Elf& rhs) {
     return s1 < s2;
 }
 
+bool operator==(const Elf& lhs, const Elf& rhs) {
+    LL s1 = lhs.row*1000+lhs.col;
+    LL s2 = rhs.row*1000+rhs.col;
+    return s1 == s2;
+}
+
 Elf GetFirst(){
     FOR(row, in.size()){
         FOR(col, in[row].size()){
