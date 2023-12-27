@@ -96,13 +96,16 @@ auto count1() {
     return result;
 }
 
+enum SIDES{LT, RT, UP, DN, LU, LD, RU, RD, CT, ND};
+
 struct Cache{
-    VECI next{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+    VECI next{-1,-1,-1,-1};
+    std::vector<SIDES> dir{ND, ND, ND, ND};
     VECI data;
 };
 
-enum SIDES{LT, RT, UP, DN, LU, LD, RU, RD, CT};
-std::vector<Elf> Generate(Elf init, Cache& result){
+std::vector<Elf> Generate(Elf init, Cache& result, std::vector<SIDES> dir){
+    result.dir = dir;
     std::vector<Elf> nxt;
     nxt.emplace_back(-1,-1);
     nxt.emplace_back(-1,-1);
@@ -115,10 +118,10 @@ std::vector<Elf> Generate(Elf init, Cache& result){
         result.data.push_back(cur.size());
         std::exchange(preprev, std::exchange(prev, std::exchange(cur, {})));
         for(auto& org:prev){
-            {LL nr = (org.row - 1); LL nc = (org.col); if(nr >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[DN].row == -1){result.next[DN] = i;nxt[DN].row =R-1; nxt[DN].col = nc;}}}
-            {LL nr = (org.row + 1); LL nc = (org.col); if(nr <  R) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[UP].row == -1){result.next[UP] = i;nxt[UP].row =  0; nxt[UP].col = nc;}}}
-            {LL nc = (org.col - 1); LL nr = (org.row); if(nc >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[RT].row == -1){result.next[RT] = i;nxt[RT].row = nr; nxt[RT].col =C-1;}}}
-            {LL nc = (org.col + 1); LL nr = (org.row); if(nc <  C) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[LT].row == -1){result.next[LT] = i;nxt[LT].row = nr; nxt[LT].col =  0;}}}
+            {LL nr = (org.row - 1); LL nc = (org.col); if(nr >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[dir[0]].row == -1){result.next[dir[0]] = i;nxt[dir[0]].row =R-1; nxt[dir[0]].col = nc;}}}
+            {LL nr = (org.row + 1); LL nc = (org.col); if(nr <  R) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[dir[1]].row == -1){result.next[dir[1]] = i;nxt[dir[1]].row =  0; nxt[dir[1]].col = nc;}}}
+            {LL nc = (org.col - 1); LL nr = (org.row); if(nc >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[dir[2]].row == -1){result.next[dir[2]] = i;nxt[dir[2]].row = nr; nxt[dir[2]].col =C-1;}}}
+            {LL nc = (org.col + 1); LL nr = (org.row); if(nc <  C) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[dir[3]].row == -1){result.next[dir[3]] = i;nxt[dir[3]].row = nr; nxt[dir[3]].col =  0;}}}
         }
         // P(cur);
         if(cur == preprev) {
@@ -160,16 +163,16 @@ auto count2() {
     src.emplace_back();
     src.emplace_back();
 
-    std::vector<Elf> next = Generate(first, src[CT]);
-    Generate(next[LT], src[LT]);
-    Generate(next[RT], src[RT]);
-    Generate(next[DN], src[DN]);
-    Generate(next[UP], src[UP]);
+    std::vector<Elf> next = Generate(first, src[CT], {DN, UP, RT, LT});
+    Generate(next[LT], src[LT], {ND, ND, ND, ND});
+    Generate(next[RT], src[RT], {ND, ND, ND, ND});
+    Generate(next[DN], src[DN], {ND, ND, ND, ND});
+    Generate(next[UP], src[UP], {ND, ND, ND, ND});
 
-    Generate(Elf{  0,  0}, src[LU]);
-    Generate(Elf{R-1,  0}, src[LD]);
-    Generate(Elf{  0,  0}, src[RU]);
-    Generate(Elf{R-1,C-1}, src[RD]);
+    Generate(Elf{  0,  0}, src[LU], {ND, ND, ND, ND});
+    Generate(Elf{R-1,  0}, src[LD], {ND, ND, ND, ND});
+    Generate(Elf{  0,  0}, src[RU], {ND, ND, ND, ND});
+    Generate(Elf{R-1,C-1}, src[RD], {ND, ND, ND, ND});
 
     LL N = 6;
     // LL N = 26501365;
@@ -177,6 +180,11 @@ auto count2() {
     q.emplace(src[CT], N);
 
     while(!q.empty()){
+        auto& e = q.front();
+        auto& cache = e.first;
+        LL stepsLeft = e.second;
+        q.pop();
+        result += GetElfs(stepsLeft, cache);
     }
 
     return result;
