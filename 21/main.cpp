@@ -9,6 +9,9 @@
 
 auto in = getInput();
 
+LL R = in.size();
+LL C = in[0].size();
+
 class Elf {
   public:
     Elf(LL r, LL c) {
@@ -47,10 +50,10 @@ Elf GetFirst(){
 void step(std::set<Elf>& elfs){
     std::set<Elf> copy;
     for(auto& org:elfs){
-        if(in[org.row - 1][org.col    ] != '#') {copy.emplace(org.row - 1, org.col    );}
-        if(in[org.row + 1][org.col    ] != '#') {copy.emplace(org.row + 1, org.col    );}
-        if(in[org.row    ][org.col - 1] != '#') {copy.emplace(org.row    , org.col - 1);}
-        if(in[org.row    ][org.col + 1] != '#') {copy.emplace(org.row    , org.col + 1);}
+        if((org.row - 1) >= 0                       && in[org.row - 1][org.col    ] != '#') {copy.emplace(org.row - 1, org.col    );}
+        if((org.row + 1) <  R                       && in[org.row + 1][org.col    ] != '#') {copy.emplace(org.row + 1, org.col    );}
+        if(                      (org.col - 1) >= 0 && in[org.row    ][org.col - 1] != '#') {copy.emplace(org.row    , org.col - 1);}
+        if(                      (org.col + 1) <  C && in[org.row    ][org.col + 1] != '#') {copy.emplace(org.row    , org.col + 1);}
     }
     elfs.swap(copy);
 }
