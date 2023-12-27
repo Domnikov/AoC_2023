@@ -95,10 +95,14 @@ auto count1() {
     // P(elfs);
     return result;
 }
-
-VECI Generate(Elf init){
+enum SIDES{LT, RT, UP, DN, LU, LD, RU, RD, CT};
+std::vector<Elf> Generate(Elf init, VECI& result){
     P(init);
-    VECI result;
+    std::vector<Elf> nxt;
+    nxt.emplace_back(-1,-1);
+    nxt.emplace_back(-1,-1);
+    nxt.emplace_back(-1,-1);
+    nxt.emplace_back(-1,-1);
     std::set<Elf> cur{init};
     std::set<Elf> prev;
     std::set<Elf> preprev;
@@ -106,16 +110,16 @@ VECI Generate(Elf init){
         result.push_back(cur.size());
         std::exchange(preprev, std::exchange(prev, std::exchange(cur, {})));
         for(auto& org:prev){
-            {LL nr = (org.row - 1); LL nc = (org.col); if(nr >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}}
-            {LL nr = (org.row + 1); LL nc = (org.col); if(nr <  R) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}}
-            {LL nc = (org.col - 1); LL nr = (org.row); if(nc >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}}
-            {LL nc = (org.col + 1); LL nr = (org.row); if(nc <  C) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}}
+            {LL nr = (org.row - 1); LL nc = (org.col); if(nr >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else if(nxt[DN].row != -1){nxt[DN].row =R-1; nxt[DN].col = nc;}}
+            {LL nr = (org.row + 1); LL nc = (org.col); if(nr <  R) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else if(nxt[UP].row != -1){nxt[UP].row =  0; nxt[UP].col = nc;}}
+            {LL nc = (org.col - 1); LL nr = (org.row); if(nc >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else if(nxt[RT].row != -1){nxt[RT].row = nr; nxt[RT].col =C-1;}}
+            {LL nc = (org.col + 1); LL nr = (org.row); if(nc <  C) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else if(nxt[LT].row != -1){nxt[LT].row = nr; nxt[LT].col =  0;}}
         }
         P(cur.size(), cur);
         if(cur == preprev) {
             P(cur);
             P(prev);
-            return result;
+            return nxt;
         }
     }
     exit(1);
@@ -134,7 +138,27 @@ auto count2() {
     // LL N = 26501365;
     auto first = GetFirst();
 
-    Generate(first);
+    VECII src;
+    src.emplace_back();
+    src.emplace_back();
+    src.emplace_back();
+    src.emplace_back();
+    src.emplace_back();
+    src.emplace_back();
+    src.emplace_back();
+    src.emplace_back();
+    src.emplace_back();
+
+    std::vector<Elf> next = Generate(first, src[CT]);
+    Generate(next[LT], src[LT]);
+    Generate(next[RT], src[RT]);
+    Generate(next[DN], src[DN]);
+    Generate(next[UP], src[UP]);
+
+    Generate(Elf{  0,  0}, src[LU]);
+    Generate(Elf{R-1,  0}, src[LD]);
+    Generate(Elf{  0,  0}, src[RU]);
+    Generate(Elf{R-1,C-1}, src[RD]);
 
 
     return result;
