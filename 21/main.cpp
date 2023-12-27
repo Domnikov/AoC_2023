@@ -134,7 +134,7 @@ auto count2() {
     // LL N = 26501365;
     auto first = GetFirst();
     Elf fake {first.row + (R/N)*R, first.col + (C/N)*C};
-    P(fake);
+    P(first, fake);
     std::set<Elf> elfs{first};
 
     FOR(n, N){
