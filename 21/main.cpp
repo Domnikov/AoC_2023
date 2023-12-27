@@ -176,6 +176,9 @@ auto count2() {
     std::queue<std::pair<Cache&, LL>> q;
     q.emplace(src[CT], N);
 
+    while(!q.empty()){
+    }
+
     return result;
 }
 
