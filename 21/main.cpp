@@ -123,7 +123,7 @@ std::vector<Elf> Generate(Elf init, Cache& result, std::vector<SIDES> dir){
             {LL nc = (org.col - 1); LL nr = (org.row); if(nc >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[dir[2]].row == -1){result.next[dir[2]] = i;nxt[dir[2]].row = nr; nxt[dir[2]].col =C-1;}}}
             {LL nc = (org.col + 1); LL nr = (org.row); if(nc <  C) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[dir[3]].row == -1){result.next[dir[3]] = i;nxt[dir[3]].row = nr; nxt[dir[3]].col =  0;}}}
         }
-        // P(cur);
+        P(cur);
         if(cur == preprev) {
             // P(init, result.next);
             // P(cur);
