@@ -156,6 +156,7 @@ auto count2() {
     src.emplace_back();
 
     std::vector<Elf> next = Generate(first, src[CT]);
+    return src[CT].data[64];
     Generate(next[LT], src[LT]);
     Generate(next[RT], src[RT]);
     Generate(next[DN], src[DN]);
