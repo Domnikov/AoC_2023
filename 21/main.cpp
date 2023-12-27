@@ -147,7 +147,7 @@ auto count2() {
             char symb = (*ptr)[r%R][c%C];
             if( r == NR && c == NC) {
                 symb = 'X';
-            } else if(symb == 'O' && less(N, NR, NC, r, c)) {
+            } else if(symb == 'O' && less(N-1, NR, NC, r, c)) {
                 result++;
             } else if(symb == 'O') {
                 symb = '.';
