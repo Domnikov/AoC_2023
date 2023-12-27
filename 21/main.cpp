@@ -90,7 +90,7 @@ auto count1() {
     FOR(i, N){
         step(elfs);
         if(i > counter){
-            P(counter);
+            // P(counter);
             counter *= 10;
         }
     }
@@ -140,8 +140,8 @@ auto count2() {
     VECS neg = GetField(alt);
 
     P_RR("\n");
-    LL RR = 20;
-    LL CC = 20;
+    LL RR = 60;
+    LL CC = 60;
     LL NR = R*(R/N) + first.row;
     LL NC = C*(C/N) + first.col;
     FOR(r, RR) {
