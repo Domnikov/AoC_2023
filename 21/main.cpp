@@ -108,7 +108,7 @@ LL Do(std::set<Elf>& elfs, LL N){
             P_LINE;
             return i%2 ? elfs.size() : prev.size();
         }
-        P(elfs);
+        // P(elfs);
     }
     return elfs.size();
 }
@@ -117,7 +117,7 @@ auto count2() {
     LL result = 0;
     std::set<Elf> elfs{GetFirst()};
 
-    LL N = 10;
+    LL N = 20;
     // LL N = 26501365;
     result = Do(elfs, N);
 
