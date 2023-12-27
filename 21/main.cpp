@@ -63,9 +63,11 @@ auto count1() {
     FOR(i, N){
         step(elfs);
     }
+    auto in2 = in;
     for(const auto& e:elfs) {
-        P(e);
+        in2[e.row][e.col] = 'O';
     }
+    P_VECV(in2);
 
     return result;
 }
