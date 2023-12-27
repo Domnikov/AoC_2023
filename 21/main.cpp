@@ -100,22 +100,24 @@ auto count1() {
     return result;
 }
 
-std::set<Elf> Do(std::set<Elf>& elfs){
-    LL result = 0;
+VECI Generate(Elf init){
+    VECI result;
+    std::set<Elf> cur;
     std::set<Elf> prev;
     std::set<Elf> preprev;
     for(;;){
-        std::exchange(preprev, std::exchange(prev, std::exchange(elfs, {})));
+        result.push_back(cur.size());
+        std::exchange(preprev, std::exchange(prev, std::exchange(cur, {})));
         for(auto& org:prev){
-            {LL nr = (org.row - 1); LL nc = (org.col); if(nr >= 0) { if(in[nr][nc] != '#') {elfs.emplace(nr,nc);}}}
-            {LL nr = (org.row + 1); LL nc = (org.col); if(nr <  R) { if(in[nr][nc] != '#') {elfs.emplace(nr,nc);}}}
-            {LL nc = (org.col - 1); LL nr = (org.row); if(nc >= 0) { if(in[nr][nc] != '#') {elfs.emplace(nr,nc);}}}
-            {LL nc = (org.col + 1); LL nr = (org.row); if(nc <  C) { if(in[nr][nc] != '#') {elfs.emplace(nr,nc);}}}
+            {LL nr = (org.row - 1); LL nc = (org.col); if(nr >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}}
+            {LL nr = (org.row + 1); LL nc = (org.col); if(nr <  R) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}}
+            {LL nc = (org.col - 1); LL nr = (org.row); if(nc >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}}
+            {LL nc = (org.col + 1); LL nr = (org.row); if(nc <  C) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}}
         }
-        if(elfs == preprev) {
-            // P(elfs);
-            // P(prev);
-            return prev;
+        if(cur == preprev) {
+            P(cur);
+            P(prev);
+            return result;
         }
     }
     exit(1);
@@ -133,13 +135,8 @@ auto count2() {
     LL N = 10;
     // LL N = 26501365;
     auto first = GetFirst();
-    Elf fake {first.row + (N/R)*R, first.col + (N/C)*C};
-    P(first, fake, R, C, N);
-    std::set<Elf> elfs{first};
 
-    FOR(n, N){
-        Do(elfs);
-    }
+    Generate(first);
 
 
     return result;
