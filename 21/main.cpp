@@ -85,6 +85,7 @@ auto count1() {
     LL counter = 1;
     FOR(i, N){
         step(elfs);
+        P(i, elfs);
         if(i > counter){
             // P(counter);
             counter *= 10;
@@ -164,8 +165,8 @@ auto count2() {
     src.emplace_back();
 
     std::vector<Elf> next = Generate(first, src[CT], {DN, UP, RT, LT});
-    Generate(next[LT], src[LT], {ND, ND, ND, ND});
-    Generate(next[RT], src[RT], {ND, ND, ND, ND});
+    Generate(next[LT], src[LT], {LD, LU, ND, LT});
+    Generate(next[RT], src[RT], {RD, RU, RT, ND});
     Generate(next[DN], src[DN], {ND, ND, ND, ND});
     Generate(next[UP], src[UP], {ND, ND, ND, ND});
 
