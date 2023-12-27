@@ -129,38 +129,18 @@ bool less(LL N, LL NR, LL NC, LL row, LL col) {
 
 auto count2() {
     LL result = 0;
-    auto first = GetFirst();
-    std::set<Elf> elfs{first};
 
     LL N = 10;
     // LL N = 26501365;
-    auto alt = Do(elfs);
+    auto first = GetFirst();
+    Elf fake {first.row + (R/N)*R, first.col + (C/N)*C};
+    P(fake);
+    std::set<Elf> elfs{first};
 
-    VECS pos = GetField(elfs);
-    VECS neg = GetField(alt);
-
-    P_RR("\n");
-    LL RR = 60;
-    LL CC = 60;
-    LL NR = R*(R/N) + first.row;
-    LL NC = C*(C/N) + first.col;
-    FOR(r, RR) {
-        FOR(c, CC) {
-            LL row = r%(2*R);
-            LL col = c%(2*C);
-            VECS* ptr = ((row < R && col < C) || (row >= R && col >= C)) ? &pos : &neg;
-            char symb = (*ptr)[r%R][c%C];
-            if( r == NR && c == NC) {
-                symb = 'X';
-            } else if(symb == 'O' && less(N-1, NR, NC, r, c)) {
-                result++;
-            } else if(symb == 'O') {
-                symb = '.';
-            }
-            P_RR("%c", symb);
-        }
-        P_RR("\n");
+    FOR(n, N){
+        Do(elfs);
     }
+
 
     return result;
 }
