@@ -137,6 +137,13 @@ bool less(LL N, LL NR, LL NC, LL row, LL col) {
     return N*N > ((r*r) + (c*c));
 }
 
+LL GetElfs(LL step, const Cache& cache) {
+    if(step < cache.data.size()){
+        return cache.data[step];
+    }
+    return cache.data[(step-cache.data.size())% 2 ? (cache.data.size() - 2) : (cache.data.size() - 1)];
+}
+
 auto count2() {
     LL result = 0;
 
@@ -156,7 +163,6 @@ auto count2() {
     src.emplace_back();
 
     std::vector<Elf> next = Generate(first, src[CT]);
-    return src[CT].data[64];
     Generate(next[LT], src[LT]);
     Generate(next[RT], src[RT]);
     Generate(next[DN], src[DN]);
@@ -167,6 +173,8 @@ auto count2() {
     Generate(Elf{  0,  0}, src[RU]);
     Generate(Elf{R-1,C-1}, src[RD]);
 
+
+    // FOR(
 
     return result;
 }
