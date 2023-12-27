@@ -116,6 +116,10 @@ std::set<Elf> Do(std::set<Elf>& elfs){
     exit(1);
 }
 
+bool less(LL N, LL NR, LL NC, LL row, LL col) {
+    return false;
+}
+
 auto count2() {
     LL result = 0;
     auto first = GetFirst();
@@ -141,6 +145,10 @@ auto count2() {
             char symb = (*ptr)[r%R][c%C];
             if( r == NR && c == NC) {
                 symb = 'X';
+            } else if(symb == 'O' && less(N, NR, NC, r, c)) {
+
+            } else if(symb == 'O') {
+                symb = '.';
             }
             P_RR("%c", symb);
         }
