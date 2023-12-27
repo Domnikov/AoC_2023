@@ -53,6 +53,15 @@ Elf GetFirst(){
     exit(1);
 }
 
+std::ostream& operator<<(std::ostream& os, const std::set<Elf>& elfs) {
+    auto in2 = in;
+    for(const auto& e:elfs){
+        in2[e.row][e.col] = 'O';
+    }
+    P_VECV(in2);
+    return os;
+}
+
 void step(std::set<Elf>& elfs){
     std::set<Elf> copy;
     for(auto& org:elfs){
@@ -74,6 +83,7 @@ auto count1() {
     }
     auto in2 = in;
     result = elfs.size();
+    P(elfs);
     return result;
 }
 
@@ -84,26 +94,25 @@ struct CachedField{
 
 std::map<std::set<Elf>, CachedField> cache;
 
-std::ostream& operator<<(std::ostream& os, const std::set<Elf>& elfs) {
-    auto in2 = in;
-    for(const auto& e:elfs){
-        in2[e.row][e.col] = 'O';
-    }
-    P_VECV(in2);
-    return os;
+Elf WrapXY(LL row, LL col) {
+    return Elf( (R+row) % R, (col+C)%C);
 }
 
 LL Do(std::set<Elf>& elfs, LL N){
     LL result = 0;
     std::set<Elf> prev;
     std::set<Elf> preprev;
+    std::set<Elf> Lt;
+    std::set<Elf> Rt;
+    std::set<Elf> Up;
+    std::set<Elf> Dw;
     for ( LL i = N; i > 0; --i) {
         std::exchange(preprev, std::exchange(prev, std::exchange(elfs, {})));
         for(auto& org:prev){
-            if((org.row - 1) >= 0                      ) { if(in[org.row - 1][org.col    ] != '#') {elfs.emplace(org.row - 1, org.col    );}}
-            if((org.row + 1) <  R                      ) { if(in[org.row + 1][org.col    ] != '#') {elfs.emplace(org.row + 1, org.col    );}}
-            if(                      (org.col - 1) >= 0) { if(in[org.row    ][org.col - 1] != '#') {elfs.emplace(org.row    , org.col - 1);}}
-            if(                      (org.col + 1) <  C) { if(in[org.row    ][org.col + 1] != '#') {elfs.emplace(org.row    , org.col + 1);}}
+            {LL nr = (org.row - 1); LL nc = (org.col); if(nr >= 0) { if(in[nr][nc] != '#') {elfs.emplace(nr,nc);}} else { Up.insert(WrapXY(nr,nc)); }}
+            {LL nr = (org.row + 1); LL nc = (org.col); if(nr <  R) { if(in[nr][nc] != '#') {elfs.emplace(nr,nc);}} else { Dw.insert(WrapXY(nr,nc)); }}
+            {LL nc = (org.col - 1); LL nr = (org.row); if(nc >= 0) { if(in[nr][nc] != '#') {elfs.emplace(nr,nc);}} else { Lt.insert(WrapXY(nr,nc)); }}
+            {LL nc = (org.col + 1); LL nr = (org.row); if(nc <  C) { if(in[nr][nc] != '#') {elfs.emplace(nr,nc);}} else { Rt.insert(WrapXY(nr,nc)); }}
         }
         if(elfs == preprev) {
             P_LINE;
@@ -120,7 +129,7 @@ auto count2() {
 
     LL N = 20;
     // LL N = 26501365;
-    result = Do(elfs, N);
+    // result = Do(elfs, N);
 
     return result;
 }
