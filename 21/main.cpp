@@ -17,7 +17,7 @@ class Elf {
     LL col;
 };
 
-std::ostream& operator<<(const Elf& me, std::ostream& os) {
+std::ostream& operator<<(std::ostream& os, const Elf& me) {
     os<<"Elf("<<me.id<<",["<<me.row<<","<<me.col<<"])";
     return os;
 }
