@@ -147,8 +147,6 @@ LL GetElfs(LL step, const Cache& cache) {
 auto count2() {
     LL result = 0;
 
-    LL N = 10;
-    // LL N = 26501365;
     auto first = GetFirst();
 
     std::vector<Cache> src;
@@ -163,20 +161,20 @@ auto count2() {
     src.emplace_back();
 
     std::vector<Elf> next = Generate(first, src[CT]);
-    // Generate(next[LT], src[LT]);
-    // Generate(next[RT], src[RT]);
-    // Generate(next[DN], src[DN]);
-    // Generate(next[UP], src[UP]);
-    //
-    // Generate(Elf{  0,  0}, src[LU]);
-    // Generate(Elf{R-1,  0}, src[LD]);
-    // Generate(Elf{  0,  0}, src[RU]);
-    // Generate(Elf{R-1,C-1}, src[RD]);
+    Generate(next[LT], src[LT]);
+    Generate(next[RT], src[RT]);
+    Generate(next[DN], src[DN]);
+    Generate(next[UP], src[UP]);
 
+    Generate(Elf{  0,  0}, src[LU]);
+    Generate(Elf{R-1,  0}, src[LD]);
+    Generate(Elf{  0,  0}, src[RU]);
+    Generate(Elf{R-1,C-1}, src[RD]);
 
-    FOR(i, 300) {
-        P(i, GetElfs(i, src[CT]))
-    }
+    LL N = 6;
+    // LL N = 26501365;
+    std::queue<std::pair<Cache&, LL>> q;
+    q.emplace(src[CT], N);
 
     return result;
 }
