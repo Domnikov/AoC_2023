@@ -120,7 +120,7 @@ std::vector<Elf> Generate(Elf init, Cache& result){
             {LL nc = (org.col - 1); LL nr = (org.row); if(nc >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[RT].row == -1){result.next[RT] = i;nxt[RT].row = nr; nxt[RT].col =C-1;P(nxt[RT]);}}}
             {LL nc = (org.col + 1); LL nr = (org.row); if(nc <  C) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[LT].row == -1){result.next[LT] = i;nxt[LT].row = nr; nxt[LT].col =  0;P(nxt[LT]);}}}
         }
-        // P(cur.size(), cur);
+        P(cur);
         if(cur == preprev) {
             P(init, result.next);
             // P(cur);
