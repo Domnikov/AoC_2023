@@ -99,7 +99,7 @@ auto count1() {
 VECI Generate(Elf init){
     P(init);
     VECI result;
-    std::set<Elf> cur;
+    std::set<Elf> cur{init};
     std::set<Elf> prev;
     std::set<Elf> preprev;
     for(;;){
