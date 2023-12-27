@@ -100,10 +100,10 @@ LL Do(std::set<Elf>& elfs, LL N){
     for ( LL i = N; i > 0; --i) {
         std::exchange(preprev, std::exchange(prev, std::exchange(elfs, {})));
         for(auto& org:prev){
-            if((org.row - 1) >= 0                       && in[org.row - 1][org.col    ] != '#') {elfs.emplace(org.row - 1, org.col    );}
-            if((org.row + 1) <  R                       && in[org.row + 1][org.col    ] != '#') {elfs.emplace(org.row + 1, org.col    );}
-            if(                      (org.col - 1) >= 0 && in[org.row    ][org.col - 1] != '#') {elfs.emplace(org.row    , org.col - 1);}
-            if(                      (org.col + 1) <  C && in[org.row    ][org.col + 1] != '#') {elfs.emplace(org.row    , org.col + 1);}
+            if((org.row - 1) >= 0                      ) { if(in[org.row - 1][org.col    ] != '#') {elfs.emplace(org.row - 1, org.col    );}}
+            if((org.row + 1) <  R                      ) { if(in[org.row + 1][org.col    ] != '#') {elfs.emplace(org.row + 1, org.col    );}}
+            if(                      (org.col - 1) >= 0) { if(in[org.row    ][org.col - 1] != '#') {elfs.emplace(org.row    , org.col - 1);}}
+            if(                      (org.col + 1) <  C) { if(in[org.row    ][org.col + 1] != '#') {elfs.emplace(org.row    , org.col + 1);}}
         }
         if(elfs == preprev) {
             P_LINE;
