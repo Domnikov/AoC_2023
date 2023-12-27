@@ -117,7 +117,9 @@ std::set<Elf> Do(std::set<Elf>& elfs){
 }
 
 bool less(LL N, LL NR, LL NC, LL row, LL col) {
-    return false;
+    LL r = llabs(NR - row);
+    LL c = llabs(NC - col);
+    return N*N > ((r*r) + (c*c));
 }
 
 auto count2() {
