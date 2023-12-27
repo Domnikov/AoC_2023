@@ -174,7 +174,9 @@ auto count2() {
     Generate(Elf{R-1,C-1}, src[RD]);
 
 
-    // FOR(
+    FOR(i, 300) {
+        P(GetElfs(i, src[CT]))
+    }
 
     return result;
 }
