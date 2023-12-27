@@ -183,13 +183,12 @@ auto count2() {
         auto& e = q.front();
         auto& cache = e.first;
         LL stp = e.second;
-        P(stp);
         q.pop();
         result += GetElfs(stp, cache);
         FOR(i, 4) {
             if(cache.dir[i] == ND) continue;
             if(stp > cache.next[i]) {
-                q.emplace(src[cache.dir[i]], stp - cache.next[i]);
+                // q.emplace(src[cache.dir[i]], stp - cache.next[i]);
             }
         }
     }
