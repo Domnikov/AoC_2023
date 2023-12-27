@@ -53,6 +53,14 @@ Elf GetFirst(){
     exit(1);
 }
 
+VECS GetField(std::set<Elf> elfs) {
+    auto in2 = in;
+    for(const auto& e:elfs){
+        in2[e.row][e.col] = 'O';
+    }
+    return in2;
+}
+
 std::ostream& operator<<(std::ostream& os, const std::set<Elf>& elfs) {
     auto in2 = in;
     for(const auto& e:elfs){
@@ -115,6 +123,20 @@ auto count2() {
     LL N = 20;
     // LL N = 26501365;
     auto alt = Do(elfs);
+
+    VECS pos = GetField(elfs);
+    VECS neg = GetField(elfs);
+
+    P_RR("\n");
+    FOR(r, 30) {
+        FOR(c, 30) {
+            LL row = r%(2*R);
+            LL col = c%(2*C);
+            VECS* ptr = ((row < R && col < C) || (row >= R && col >= C)) ? &pos : &neg;
+            P_RR("%c", (*ptr)[r%R][c%C]);
+        }
+        P_RR("\n");
+    }
 
     return result;
 }
