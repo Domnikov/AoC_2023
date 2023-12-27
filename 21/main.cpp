@@ -174,7 +174,7 @@ auto count2() {
     Generate(Elf{  0,  0}, src[RU], {ND, ND, ND, ND});
     Generate(Elf{R-1,C-1}, src[RD], {ND, ND, ND, ND});
 
-    LL N = 6;
+    LL N = 10;
     // LL N = 26501365;
     std::queue<std::pair<Cache&, LL>> q;
     q.emplace(src[CT], N);
