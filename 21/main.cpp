@@ -89,7 +89,7 @@ std::ostream& operator<<(std::ostream& os, const std::set<Elf>& elfs) {
     for(const auto& e:elfs){
         in2[e.row][e.col] = 'O';
     }
-    P_VECH(in2);
+    P_VECV(in2);
     return os;
 }
 
