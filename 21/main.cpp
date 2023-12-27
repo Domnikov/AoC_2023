@@ -175,7 +175,7 @@ auto count2() {
 
 
     FOR(i, 300) {
-        P(GetElfs(i, src[CT]))
+        P(i, GetElfs(i, src[CT]))
     }
 
     return result;
