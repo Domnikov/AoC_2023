@@ -110,10 +110,10 @@ std::vector<Elf> Generate(Elf init, VECI& result){
         result.push_back(cur.size());
         std::exchange(preprev, std::exchange(prev, std::exchange(cur, {})));
         for(auto& org:prev){
-            {LL nr = (org.row - 1); LL nc = (org.col); if(nr >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{P(R-1, "DN",  nc);if(nxt[DN].row != -1){nxt[DN].row =R-1; nxt[DN].col = nc;}}}
-            {LL nr = (org.row + 1); LL nc = (org.col); if(nr <  R) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{P(  0, "UP",  nc);if(nxt[UP].row != -1){nxt[UP].row =  0; nxt[UP].col = nc;}}}
-            {LL nc = (org.col - 1); LL nr = (org.row); if(nc >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{P( nr, "RT", C-1);if(nxt[RT].row != -1){nxt[RT].row = nr; nxt[RT].col =C-1;}}}
-            {LL nc = (org.col + 1); LL nr = (org.row); if(nc <  C) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{P( nr, "LT",   0);if(nxt[LT].row != -1){nxt[LT].row = nr; nxt[LT].col =  0;}}}
+            {LL nr = (org.row - 1); LL nc = (org.col); if(nr >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[DN].row == -1){nxt[DN].row =R-1; nxt[DN].col = nc;}}}
+            {LL nr = (org.row + 1); LL nc = (org.col); if(nr <  R) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[UP].row == -1){nxt[UP].row =  0; nxt[UP].col = nc;}}}
+            {LL nc = (org.col - 1); LL nr = (org.row); if(nc >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[RT].row == -1){nxt[RT].row = nr; nxt[RT].col =C-1;}}}
+            {LL nc = (org.col + 1); LL nr = (org.row); if(nc <  C) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[LT].row == -1){nxt[LT].row = nr; nxt[LT].col =  0;}}}
         }
         // P(cur.size(), cur);
         if(cur == preprev) {
