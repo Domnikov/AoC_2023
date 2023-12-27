@@ -125,7 +125,7 @@ auto count2() {
     auto alt = Do(elfs);
 
     VECS pos = GetField(elfs);
-    VECS neg = GetField(elfs);
+    VECS neg = GetField(alt);
 
     P_RR("\n");
     FOR(r, 30) {
