@@ -94,6 +94,7 @@ std::ostream& operator<<(std::ostream& os, const std::set<Elf>& elfs) {
 }
 
 LL Do(std::set<Elf>& elfs, LL N){
+    LL result = 0;
     std::set<Elf> prev;
     std::set<Elf> preprev;
     for ( LL i = N; i > 0; --i) {
@@ -106,11 +107,11 @@ LL Do(std::set<Elf>& elfs, LL N){
         }
         if(elfs == preprev) {
             P_LINE;
-            return i%2 ? elfs.size() : prev.size();
+            return result + (i%2 ? elfs.size() : prev.size());
         }
         // P(elfs);
     }
-    return elfs.size();
+    return result + elfs.size();
 }
 
 auto count2() {
