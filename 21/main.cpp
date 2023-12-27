@@ -95,8 +95,14 @@ auto count1() {
     // P(elfs);
     return result;
 }
+
+struct Cache{
+    VECI next{9, -1};
+    VECI data;
+};
+
 enum SIDES{LT, RT, UP, DN, LU, LD, RU, RD, CT};
-std::vector<Elf> Generate(Elf init, VECI& result){
+std::vector<Elf> Generate(Elf init, Cache& result){
     P(init);
     std::vector<Elf> nxt;
     nxt.emplace_back(-1,-1);
@@ -107,7 +113,7 @@ std::vector<Elf> Generate(Elf init, VECI& result){
     std::set<Elf> prev;
     std::set<Elf> preprev;
     for(;;){
-        result.push_back(cur.size());
+        result.data.push_back(cur.size());
         std::exchange(preprev, std::exchange(prev, std::exchange(cur, {})));
         for(auto& org:prev){
             {LL nr = (org.row - 1); LL nc = (org.col); if(nr >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[DN].row == -1){nxt[DN].row =R-1; nxt[DN].col = nc;}}}
@@ -138,7 +144,7 @@ auto count2() {
     // LL N = 26501365;
     auto first = GetFirst();
 
-    VECII src;
+    std::vector<Cache> src;
     src.emplace_back();
     src.emplace_back();
     src.emplace_back();
