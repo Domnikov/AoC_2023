@@ -118,7 +118,8 @@ std::set<Elf> Do(std::set<Elf>& elfs){
 
 auto count2() {
     LL result = 0;
-    std::set<Elf> elfs{GetFirst()};
+    auto first = GetFirst();
+    std::set<Elf> elfs{first};
 
     LL N = 10;
     // LL N = 26501365;
@@ -130,8 +131,8 @@ auto count2() {
     P_RR("\n");
     LL RR = 120;
     LL CC = 120;
-    LL NR = N+1;
-    LL NC = N+1;
+    LL NR = R*(R/N) + first.row;
+    LL NC = C*(C/N) + first.col;
     FOR(r, RR) {
         FOR(c, CC) {
             LL row = r%(2*R);
