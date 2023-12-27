@@ -85,7 +85,7 @@ auto count1() {
     LL result = 0;
     std::set<Elf> elfs{GetFirst()};
 
-    LL N = 6;
+    LL N = 10;
     FOR(i, N){
         step(elfs);
     }
@@ -127,7 +127,7 @@ auto count2() {
     auto first = GetFirst();
     std::set<Elf> elfs{first};
 
-    LL N = 6;
+    LL N = 10;
     // LL N = 26501365;
     auto alt = Do(elfs);
 
