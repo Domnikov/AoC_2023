@@ -71,16 +71,39 @@ auto count1() {
     return result;
 }
 
+struct CachedField{
+    bool even;
+    std::vector<std::pair<LL, std::set<Elf>>> childs;
+};
+
+std::map<std::set<Elf>, CachedField> cache;
+
+LL Do(std::set<Elf>& elfs, LL N){
+    std::set<Elf> prev;
+    std::set<Elf> preprev;
+    for ( LL i = N; i > 0; --i) {
+        std::exchange(preprev, std::exchange(prev, std::exchange(elfs, {})));
+        for(auto& org:prev){
+            if((org.row - 1) >= 0                       && in[org.row - 1][org.col    ] != '#') {elfs.emplace(org.row - 1, org.col    );}
+            if((org.row + 1) <  R                       && in[org.row + 1][org.col    ] != '#') {elfs.emplace(org.row + 1, org.col    );}
+            if(                      (org.col - 1) >= 0 && in[org.row    ][org.col - 1] != '#') {elfs.emplace(org.row    , org.col - 1);}
+            if(                      (org.col + 1) <  C && in[org.row    ][org.col + 1] != '#') {elfs.emplace(org.row    , org.col + 1);}
+        }
+        if(elfs == preprev) {
+            return i%2 ? elfs.size() : prev.size();
+        }
+    }
+    return elfs.size();
+}
+
 auto count2() {
     LL result = 0;
     std::set<Elf> elfs{GetFirst()};
 
-    LL N = 64;
-    FOR(i, N){
-        step(elfs);
-    }
-    auto in2 = in;
-    result = elfs.size();
+    LL N = 16;
+    // LL N = 26501365;
+    result = Do(elfs, N);
+
     return result;
 }
 
