@@ -135,8 +135,8 @@ auto count2() {
     VECS neg = GetField(alt);
 
     P_RR("\n");
-    LL RR = 20;
-    LL CC = 20;
+    LL RR = 30;
+    LL CC = 30;
     LL NR = R*(R/N) + first.row;
     LL NC = C*(C/N) + first.col;
     FOR(r, RR) {
