@@ -53,6 +53,7 @@ Elf GetFirst(){
 int main(int argc, char** argv)
 {
     auto elf = GetFirst();
+    P(elf);
     LL score = 0;
     score = count1();
     P_RR("Part1: %lld\n", score);
