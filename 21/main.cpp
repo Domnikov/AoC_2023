@@ -86,8 +86,13 @@ auto count1() {
     std::set<Elf> elfs{GetFirst()};
 
     LL N = 26501365;
+    LL counter = 1;
     FOR(i, N){
         step(elfs);
+        if(i > counter){
+            P(counter);
+            counter *= 10;
+        }
     }
     auto in2 = in;
     result = elfs.size();
