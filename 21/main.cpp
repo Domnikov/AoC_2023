@@ -103,7 +103,7 @@ struct Cache{
 
 enum SIDES{LT, RT, UP, DN, LU, LD, RU, RD, CT};
 std::vector<Elf> Generate(Elf init, Cache& result){
-    P(init);
+    P(init, result.next);
     std::vector<Elf> nxt;
     nxt.emplace_back(-1,-1);
     nxt.emplace_back(-1,-1);
