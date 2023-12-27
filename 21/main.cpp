@@ -64,17 +64,20 @@ auto count1() {
         step(elfs);
     }
     auto in2 = in;
-    // for(const auto& e:elfs) {
-    //     in2[e.row][e.col] = 'O';
-    // }
-    // P_VECV(in2);
     result = elfs.size();
     return result;
 }
 
 auto count2() {
     LL result = 0;
+    std::set<Elf> elfs{GetFirst()};
 
+    LL N = 64;
+    FOR(i, N){
+        step(elfs);
+    }
+    auto in2 = in;
+    result = elfs.size();
     return result;
 }
 
