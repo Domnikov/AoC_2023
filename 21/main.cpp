@@ -106,7 +106,7 @@ auto count2() {
     LL result = 0;
     std::set<Elf> elfs{GetFirst()};
 
-    LL N = 6;
+    LL N = 10;
     // LL N = 26501365;
     result = Do(elfs, N);
 
