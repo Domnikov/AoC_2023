@@ -84,6 +84,15 @@ struct CachedField{
 
 std::map<std::set<Elf>, CachedField> cache;
 
+std::ostream& operator<<(std::ostream& os, const std::set<Elf>& elfs) {
+    auto in2 = in;
+    for(const auto& e:elfs){
+        in2[e.row][e.col] = 'O';
+    }
+    P_VECH(in2);
+    return os;
+}
+
 LL Do(std::set<Elf>& elfs, LL N){
     std::set<Elf> prev;
     std::set<Elf> preprev;
@@ -99,6 +108,7 @@ LL Do(std::set<Elf>& elfs, LL N){
             P_LINE;
             return i%2 ? elfs.size() : prev.size();
         }
+        P(elfs);
     }
     return elfs.size();
 }
