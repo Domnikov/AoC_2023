@@ -115,10 +115,10 @@ std::vector<Elf> Generate(Elf init, VECI& result){
             {LL nc = (org.col - 1); LL nr = (org.row); if(nc >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else if(nxt[RT].row != -1){nxt[RT].row = nr; nxt[RT].col =C-1;}}
             {LL nc = (org.col + 1); LL nr = (org.row); if(nc <  C) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else if(nxt[LT].row != -1){nxt[LT].row = nr; nxt[LT].col =  0;}}
         }
-        P(cur.size(), cur);
+        // P(cur.size(), cur);
         if(cur == preprev) {
-            P(cur);
-            P(prev);
+            // P(cur);
+            // P(prev);
             return nxt;
         }
     }
