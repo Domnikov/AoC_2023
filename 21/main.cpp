@@ -183,6 +183,7 @@ auto count2() {
         auto& e = q.front();
         auto& cache = e.first;
         LL stp = e.second;
+        P(stp);
         q.pop();
         result += GetElfs(stp, cache);
         FOR(i, 4) {
