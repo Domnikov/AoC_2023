@@ -9,6 +9,19 @@
 
 auto in = getInput();
 
+class Elf {
+  public:
+    static inline LL counter = 0;
+    LL id = counter++;
+    LL row;
+    LL col;
+};
+
+std::ostream& operator<<(const Elf& me, std::ostream& os) {
+    os<<"Elf("<<me.id<<",["<<me.row<<","<<me.col<<"])";
+    return os;
+}
+
 auto count1() {
     LL result = 0;
 
@@ -23,6 +36,8 @@ auto count2() {
 
 int main(int argc, char** argv)
 {
+    Elf e;
+    P(e);
     LL score = 0;
     score = count1();
     P_RR("Part1: %lld\n", score);
