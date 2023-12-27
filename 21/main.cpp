@@ -188,7 +188,7 @@ auto count2() {
         FOR(i, 4) {
             if(cache.dir[i] == ND) continue;
             if(stp > cache.next[i]) {
-                // q.emplace(src[cache.dir[i]], stp - cache.next[i]);
+                q.emplace(src[cache.dir[i]], stp - cache.next[i]);
             }
         }
     }
