@@ -120,7 +120,7 @@ auto count2() {
     LL result = 0;
     std::set<Elf> elfs{GetFirst()};
 
-    LL N = 20;
+    LL N = 10;
     // LL N = 26501365;
     auto alt = Do(elfs);
 
@@ -128,12 +128,20 @@ auto count2() {
     VECS neg = GetField(alt);
 
     P_RR("\n");
-    FOR(r, 120) {
-        FOR(c, 120) {
+    LL RR = 120;
+    LL CC = 120;
+    LL NR = N+1;
+    LL NC = N+1;
+    FOR(r, RR) {
+        FOR(c, CC) {
             LL row = r%(2*R);
             LL col = c%(2*C);
             VECS* ptr = ((row < R && col < C) || (row >= R && col >= C)) ? &pos : &neg;
-            P_RR("%c", (*ptr)[r%R][c%C]);
+            char symb = (*ptr)[r%R][c%C];
+            if( r == NR && c == NC) {
+                symb = '*';
+            }
+            P_RR("%c", symb);
         }
         P_RR("\n");
     }
