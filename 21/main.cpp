@@ -41,6 +41,10 @@ bool operator==(const Elf& lhs, const Elf& rhs) {
     return s1 == s2;
 }
 
+Elf operator+(const Elf& lhs, const Elf& rhs) {
+    return Elf{lhs.row+rhs.row, lhs.col+rhs.col};
+}
+
 Elf GetFirst(){
     FOR(row, in.size()){
         FOR(col, in[row].size()){
@@ -142,52 +146,94 @@ LL GetElfs(LL step, const Cache& cache) {
 
 auto count2() {
     LL result = 0;
+    const int STEPS = 26501365;
+    // const int STEPS = 6;
 
-    auto first = GetFirst();
+    const int N = 131;
+    // std::vector<string> input;
+    // while(true) {
+    //     string s;
+    //     cin >> s;
+    //     if(!cin) break;
+    //     input.push_back(s);
+    // }
+    //
+    // int n = input.size();
+    // int m = input[0].size();
+    // if(n == N && m == N) {
+    //     P_LINE;
+    //     exit(1);
+    // }
+    //
+    // std::vector<std::vector<char>> g(3*N, std::vector<char>(3*N));
+    // for(int i = 0; i < N; i++) {
+    //     for(int j = 0; j < N; j++) {
+    //         for(int a = 0; a < 3; a++) {
+    //             for(int b = 0; b < 3; b++) {
+    //                 g[i+a*N][j+b*N] = (input[i][j] == 'S' && (a != 1 || b != 1)) ? '.' : input[i][j];
+    //             }
+    //         }
+    //     }
+    // }
+    //
+    // std::pair<LL,LL> start;
+    // for(int i = 0; i < 3*N; i++) {
+    //     for(int j = 0; j < 3*N; j++) {
+    //         if(g[i][j] == 'S') {
+    //             start = {i, j};
+    //         }
+    //     }
+    // }
+    auto start = GetFirst();
 
-    std::map<Elf, Cache> cache;
+    in = Expand(in, 3);
+    VECII dist(3*N, VECI(3*N));
 
-    cache[first] = Generate(first);
+    std::vector<std::vector<bool>> vis(3*N, std::vector<bool>(3*N));
+    std::queue<Elf> q;
+    q.push(start);
+    vis[start.row][start.col] = true;
 
-    LL N = 10;
-    // LL N = 26501365;
-    std::queue<std::tuple<Elf, LL, LL, LL>> q;
-    q.emplace(first, N, 0, 0);
-    std::set<std::pair<LL,LL>> used;
-    used.emplace(0,0);
+    auto inside = [&](Elf p) {
+        return 0 <= p.row && p.row < 3*N && 0 <= p.col && p.col < 3*N;
+    };
 
-    LL cnt = 0;
-    LL point = 1;
-    while(!q.empty()){
-        auto [elf, stp, X, Y] = q.front();
-        if(++cnt > point){P(point, stp, used.size(), q.size(), result);point *= 10;}
-        if(cache.count(elf) == 0) {
-            cache[elf] = Generate(elf);
-        }
-        auto& local = cache[elf];
-        P(stp, X, Y, GetElfs(stp, local));
+    Elf Mod[4] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+    while(!q.empty()) {
+        Elf u = q.front();
         q.pop();
-        result += GetElfs(stp, local);
-        FOR(i, 4) {
-            LL x = X, y = Y;
-            switch(i) {
-                case 0: ++y;break;
-                case 1: --y;break;
-                case 2: --x;break;
-                case 3: ++x;break;
-            }
-            if(used.count(std::make_pair(x, y)) == 0) {
-                used.emplace(x,y);
-                if(local.dir[i] == Elf{-1,-1}) continue;
-                if(stp > local.next[i]) {
-                    q.emplace(local.dir[i], stp - local.next[i] - 1, x, y);
-                }
-            } else {
+        for(int j = 0; j < 4; j++) {
+            auto d = Mod[j];
+            auto v = u + d;
+            if(inside(v) && in[v.row][v.col] != '#' && !vis[v.row][v.col]) {
+                vis[v.row][v.col] = true;
+                dist[v.row][v.col] = dist[u.row][u.col] + 1;
+                q.push(v);
             }
         }
     }
-    for(auto s:used){P(s);}
 
+    VECI dp(STEPS + 1000);
+    for(int i = STEPS; i >= 0; i--) {
+        dp[i] = (i % 2 == STEPS % 2) + 2 * dp[i+N] - dp[i+2*N];
+    }
+
+
+
+    for(int i = 0; i < 3*N; i++) {
+        for(int j = 0; j < 3*N; j++) {
+            if(!vis[i][j]) continue;
+            int dx = i - start.row;
+            int dy = j - start.col;
+            if(-N <= dx && dx < N && -N <= dy && dy < N) {
+                // if(dp[dist[i][j]] > 0) {
+                //     debug(i, j, dist[i][j], dp[dist[i][j]]);
+                // }
+                result += dp[dist[i][j]];
+            }
+        }
+    }
     return result;
 }
 
