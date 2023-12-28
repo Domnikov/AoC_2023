@@ -186,6 +186,7 @@ auto count2() {
             }
         }
     }
+    for(auto s:used){P(s);}
 
     return result;
 }
