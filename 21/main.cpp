@@ -167,13 +167,13 @@ auto count2() {
         result += GetElfs(stp, local);
         FOR(i, 4) {
             LL x = X, y = Y;
-            P(X, x, Y,y);
             switch(i) {
                 case 0: ++y;
                 case 1: --y;
                 case 2: --x;
                 case 3: ++x;
             }
+            P(X, x, Y,y);
             if(used.count(std::make_pair(x, y)) == 0) {
                 used.emplace(x,y);
                 if(local.dir[i] == Elf{-1,-1}) continue;
