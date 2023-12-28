@@ -165,7 +165,7 @@ auto count2() {
             cache[elf] = Generate(elf);
         }
         auto& local = cache[elf];
-        // P(stp, X, Y, GetElfs(stp, local));
+        P(stp, X, Y, GetElfs(stp, local));
         q.pop();
         result += GetElfs(stp, local);
         FOR(i, 4) {
