@@ -41,6 +41,16 @@ bool operator<(const Brik& br1, const Brik& br2){
     exit(1);
 }
 
+bool operator!=(const Brik& br1, const Brik& br2){
+    if(br1.z1 != br2.z1) return true;
+    if(br1.z2 != br2.z2) return true;
+    if(br1.x1 != br2.x1) return true;
+    if(br1.x2 != br2.x2) return true;
+    if(br1.y1 != br2.y1) return true;
+    if(br1.y2 != br2.y2) return true;
+    return false;
+}
+
 std::vector<Brik> GetAllBriks(){
     std::vector<Brik> briks;
     for(const auto& s:in){
