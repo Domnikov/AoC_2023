@@ -22,6 +22,7 @@ struct Brik {
 };
 
 std::ostream& operator<<(std::ostream& os, const Brik& br){
+    os<<"["<<br.x1<<","<<br.y1<<","<<br.z1<<","<<br.x2<<","<<br.y2<<","<<br.z2<<"]";
     return os;
 }
 
