@@ -162,13 +162,13 @@ auto count2() {
         }
         auto& local = cache[e.first];
         LL stp = e.second;
-        // P(stp, cache.data);
+        P(stp, local.data);
         q.pop();
         result += GetElfs(stp, local);
         FOR(i, 4) {
             if(local.dir[i] == Elf{-1,-1}) continue;
             if(stp > local.next[i]) {
-                // q.emplace(local.dir[i], stp - local.next[i] - 1);
+                q.emplace(local.dir[i], stp - local.next[i] - 1);
             }
         }
     }
