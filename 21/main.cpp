@@ -149,7 +149,6 @@ auto count2() {
     const int STEPS = 26501365;
     // const int STEPS = 6;
 
-    const int N = 131;P_LINE;
     // std::vector<string> input;
     // while(true) {
     //     string s;
@@ -184,18 +183,21 @@ auto count2() {
     //         }
     //     }
     // }
-    auto start = GetFirst();P_LINE;
+    auto start = GetFirst();
 
     in = Expand(in, 3);P_LINE;
-    VECII dist(3*N, VECI(3*N));P_LINE;
+    start.row += R;
+    start.col += C;
 
-    std::vector<std::vector<bool>> vis(3*N, std::vector<bool>(3*N));P_LINE;
+    VECII dist(3*R, VECI(3*C));P_LINE;
+
+    std::vector<std::vector<bool>> vis(3*R, std::vector<bool>(3*C));P_LINE;
     std::queue<Elf> q;
     q.push(start);P_LINE;
     vis[start.row][start.col] = true;
 P_LINE;
     auto inside = [&](Elf p) {
-        return 0 <= p.row && p.row < 3*N && 0 <= p.col && p.col < 3*N;
+        return 0 <= p.row && p.row < 3*R && 0 <= p.col && p.col < 3*C;
     };
 P_LINE;
     Elf Mod[4] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
@@ -216,17 +218,17 @@ P_LINE;
 P_LINE;
     VECI dp(STEPS + 1000);
     for(int i = STEPS; i >= 0; i--) {
-        dp[i] = (i % 2 == STEPS % 2) + 2 * dp[i+N] - dp[i+2*N];
+        dp[i] = (i % 2 == STEPS % 2) + 2 * dp[i+R] - dp[i+2*R];
     }
 
 
 P_LINE;
-    for(int i = 0; i < 3*N; i++) {
-        for(int j = 0; j < 3*N; j++) {
+    FOR(i, 3*R){
+        FOR(j, 3*C){
             if(!vis[i][j]) continue;
             int dx = i - start.row;
             int dy = j - start.col;
-            if(-N <= dx && dx < N && -N <= dy && dy < N) {
+            if(-R <= dx && dx < R && -C <= dy && dy < C) {
                 // if(dp[dist[i][j]] > 0) {
                 //     debug(i, j, dist[i][j], dp[dist[i][j]]);
                 // }
