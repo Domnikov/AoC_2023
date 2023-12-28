@@ -80,7 +80,7 @@ auto count1() {
     LL result = 0;
     std::set<Elf> elfs{GetFirst()};
 
-    LL N = 5000;
+    LL N = 64;
     LL counter = 1;
     FOR(i, N){
         step(elfs);
@@ -149,7 +149,7 @@ auto count2() {
 
     cache[first] = Generate(first);
 
-    LL N = 10;
+    LL N = 5000;
     // LL N = 26501365;
     std::queue<std::tuple<Elf, LL, LL, LL>> q;
     q.emplace(first, N, 0, 0);
