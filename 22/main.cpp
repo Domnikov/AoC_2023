@@ -56,7 +56,7 @@ std::vector<Brik> GetAllBriks(){
 auto count1() {
     LL result = 0;
     auto briks = GetAllBriks();
-    P(briks);
+    P_VECV(briks);
     return result;
 }
 
