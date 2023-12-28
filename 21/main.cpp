@@ -88,18 +88,15 @@ auto count1() {
     LL counter = 1;
     FOR(i, N){
         step(elfs);
-        // P(i, elfs);
         if(i > counter){
-            // P(counter);
             counter *= 10;
         }
     }
     auto in2 = input;
     result = elfs.size();
-    // P(elfs);
     return result;
 }
-
+/*
 struct Cache{
     VECI next{-1,-1,-1,-1};
     std::vector<Elf> dir{4, {-1, -1}};
@@ -120,11 +117,7 @@ Cache Generate(Elf init){
             {LL nc = (org.col - 1); LL nr = (org.row); if(nc >= 0) { if(input[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(result.dir[2].row == -1){result.next[2] = i;result.dir[2].row = nr; result.dir[2].col =C-1;}}}
             {LL nc = (org.col + 1); LL nr = (org.row); if(nc <  C) { if(input[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(result.dir[3].row == -1){result.next[3] = i;result.dir[3].row = nr; result.dir[3].col =  0;}}}
         }
-        // P(i, cur);
         if(cur == preprev) {
-            // P(init, result.next);
-            // P(cur);
-            // P(prev);
             return result;
         }
     }
@@ -143,7 +136,7 @@ LL GetElfs(LL step, const Cache& cache) {
     }
     return cache.data[(step-cache.data.size())% 2 ? (cache.data.size() - 1) : (cache.data.size() - 2)];
 }
-
+*/
 auto count2() {
     LL result = 0;
     const int N = 26501365;
