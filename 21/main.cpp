@@ -193,7 +193,8 @@ auto count2() {
     start.col += C;
     P_LINE;
     P(C);
-    VECI line(3*C, 0);
+    P_LINE;
+    VECI line(3*C, 1);
     P_LINE;
     VECII dist(3*R, VECI(3*C, 0));P_LINE;
     P_LINE;
