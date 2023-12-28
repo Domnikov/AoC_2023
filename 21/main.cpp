@@ -157,6 +157,9 @@ auto count2() {
 
     while(!q.empty()){
         auto& e = q.front();
+        if(cache.count(e.first) == 0) {
+            cache[e.first] = Generate(e.first);
+        }
         auto& local = cache[e.first];
         LL stp = e.second;
         // P(stp, cache.data);
