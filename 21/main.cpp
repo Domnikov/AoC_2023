@@ -7,10 +7,10 @@
 #include <queue>
 #include <list>
 
-auto in = getInput();
+auto input = getInput();
 
-LL R = in.size();
-LL C = in[0].size();
+LL R = input.size();
+LL C = input[0].size();
 
 class Elf {
   public:
@@ -46,9 +46,9 @@ Elf operator+(const Elf& lhs, const Elf& rhs) {
 }
 
 Elf GetFirst(){
-    FOR(row, in.size()){
-        FOR(col, in[row].size()){
-            if(in[row][col] == 'S'){
+    FOR(row, input.size()){
+        FOR(col, input[row].size()){
+            if(input[row][col] == 'S'){
                 return Elf{(LL)row, (LL)col};
             }
         }
@@ -57,7 +57,7 @@ Elf GetFirst(){
 }
 
 VECS GetField(std::set<Elf> elfs) {
-    auto in2 = in;
+    auto in2 = input;
     for(const auto& e:elfs){
         in2[e.row][e.col] = 'O';
     }
@@ -72,10 +72,10 @@ std::ostream& operator<<(std::ostream& os, const std::set<Elf>& elfs) {
 void step(std::set<Elf>& elfs){
     std::set<Elf> copy;
     for(auto& org:elfs){
-        if((org.row - 1) >= 0                       && in[org.row - 1][org.col    ] != '#') {copy.emplace(org.row - 1, org.col    );}
-        if((org.row + 1) <  R                       && in[org.row + 1][org.col    ] != '#') {copy.emplace(org.row + 1, org.col    );}
-        if(                      (org.col - 1) >= 0 && in[org.row    ][org.col - 1] != '#') {copy.emplace(org.row    , org.col - 1);}
-        if(                      (org.col + 1) <  C && in[org.row    ][org.col + 1] != '#') {copy.emplace(org.row    , org.col + 1);}
+        if((org.row - 1) >= 0                       && input[org.row - 1][org.col    ] != '#') {copy.emplace(org.row - 1, org.col    );}
+        if((org.row + 1) <  R                       && input[org.row + 1][org.col    ] != '#') {copy.emplace(org.row + 1, org.col    );}
+        if(                      (org.col - 1) >= 0 && input[org.row    ][org.col - 1] != '#') {copy.emplace(org.row    , org.col - 1);}
+        if(                      (org.col + 1) <  C && input[org.row    ][org.col + 1] != '#') {copy.emplace(org.row    , org.col + 1);}
     }
     elfs.swap(copy);
 }
@@ -94,7 +94,7 @@ auto count1() {
             counter *= 10;
         }
     }
-    auto in2 = in;
+    auto in2 = input;
     result = elfs.size();
     // P(elfs);
     return result;
@@ -115,10 +115,10 @@ Cache Generate(Elf init){
         result.data.push_back(cur.size());
         std::exchange(preprev, std::exchange(prev, std::exchange(cur, {})));
         for(auto& org:prev){
-            {LL nr = (org.row - 1); LL nc = (org.col); if(nr >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(result.dir[0].row == -1){result.next[0] = i;result.dir[0].row =R-1; result.dir[0].col = nc;}}}
-            {LL nr = (org.row + 1); LL nc = (org.col); if(nr <  R) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(result.dir[1].row == -1){result.next[1] = i;result.dir[1].row =  0; result.dir[1].col = nc;}}}
-            {LL nc = (org.col - 1); LL nr = (org.row); if(nc >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(result.dir[2].row == -1){result.next[2] = i;result.dir[2].row = nr; result.dir[2].col =C-1;}}}
-            {LL nc = (org.col + 1); LL nr = (org.row); if(nc <  C) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(result.dir[3].row == -1){result.next[3] = i;result.dir[3].row = nr; result.dir[3].col =  0;}}}
+            {LL nr = (org.row - 1); LL nc = (org.col); if(nr >= 0) { if(input[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(result.dir[0].row == -1){result.next[0] = i;result.dir[0].row =R-1; result.dir[0].col = nc;}}}
+            {LL nr = (org.row + 1); LL nc = (org.col); if(nr <  R) { if(input[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(result.dir[1].row == -1){result.next[1] = i;result.dir[1].row =  0; result.dir[1].col = nc;}}}
+            {LL nc = (org.col - 1); LL nr = (org.row); if(nc >= 0) { if(input[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(result.dir[2].row == -1){result.next[2] = i;result.dir[2].row = nr; result.dir[2].col =C-1;}}}
+            {LL nc = (org.col + 1); LL nr = (org.row); if(nc <  C) { if(input[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(result.dir[3].row == -1){result.next[3] = i;result.dir[3].row = nr; result.dir[3].col =  0;}}}
         }
         // P(i, cur);
         if(cur == preprev) {
@@ -186,7 +186,6 @@ auto count2() {
     auto start = GetFirst();
 
     P_LINE;
-    VECS in3 = Expand(in, 3);
     P_LINE;
     start.row += R;
     P_LINE;
@@ -202,6 +201,7 @@ auto count2() {
     VECII dist(3*R, VECI(3*C, 0));P_LINE;
     P_LINE;
 
+    VECS in3 = Expand(input, 3);
     std::vector<std::vector<bool>> vis(3*R, std::vector<bool>(3*C));P_LINE;
     std::queue<Elf> q;
     q.push(start);P_LINE;
@@ -219,7 +219,7 @@ P_LINE;
         for(int j = 0; j < 4; j++) {
             auto d = Mod[j];
             auto v = u + d;
-            if(inside(v) && in[v.row][v.col] != '#' && !vis[v.row][v.col]) {
+            if(inside(v) && in3[v.row][v.col] != '#' && !vis[v.row][v.col]) {
                 vis[v.row][v.col] = true;
                 dist[v.row][v.col] = dist[u.row][u.col] + 1;
                 q.push(v);
