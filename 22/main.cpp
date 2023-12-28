@@ -43,7 +43,6 @@ bool operator<(const Brik& br1, const Brik& br2){
 
 std::vector<Brik> GetAllBriks(){
     std::vector<Brik> briks;
-    std::sort(BE(briks));
     for(const auto& s:in){
         auto vecAll = splitStr(s, '~');
         auto vec1 = vecsToVeci(splitStr(vecAll[0], ','));
@@ -56,6 +55,7 @@ std::vector<Brik> GetAllBriks(){
 auto count1() {
     LL result = 0;
     auto briks = GetAllBriks();
+    std::sort(BE(briks));
     P_VECV(briks);
     return result;
 }
