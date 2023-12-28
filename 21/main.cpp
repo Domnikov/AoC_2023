@@ -196,6 +196,9 @@ auto count2() {
     P_LINE;
     VECI line;
     P_LINE;
+    line.resize(3*C);
+    for(auto& i: line)i=0;
+    P_LINE;
     VECII dist(3*R, VECI(3*C, 0));P_LINE;
     P_LINE;
 
