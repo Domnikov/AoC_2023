@@ -85,7 +85,7 @@ auto count1() {
     LL counter = 1;
     FOR(i, N){
         step(elfs);
-        P(i, elfs);
+        // P(i, elfs);
         if(i > counter){
             // P(counter);
             counter *= 10;
