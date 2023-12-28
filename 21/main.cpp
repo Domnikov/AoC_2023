@@ -185,22 +185,10 @@ auto count2() {
     // }
     auto start = GetFirst();
 
-    P_LINE;
-    P_LINE;
     start.row += R;
-    P_LINE;
     start.col += C;
-    P_LINE;
-    P(3*C);
-    P_LINE;
-    VECI line;
-    P_LINE;
-    line.resize(3*C);
-    for(auto& i: line)i=0;
-    P_LINE;
-    VECII dist(3*R, VECI(3*C, 0));P_LINE;
-    P_LINE;
-
+    VECII dist(3*R, VECI(3*C, 0));
+P_LINE;
     VECS in3 = Expand(input, 3);
     std::vector<std::vector<bool>> vis(3*R, std::vector<bool>(3*C));P_LINE;
     std::queue<Elf> q;
