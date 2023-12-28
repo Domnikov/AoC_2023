@@ -97,21 +97,14 @@ auto count1() {
     return result;
 }
 
-enum SIDES{LT, RT, UP, DN, LU, LD, RU, RD, CT, ND};
-
 struct Cache{
     VECI next{-1,-1,-1,-1};
-    std::vector<SIDES> dir{ND, ND, ND, ND};
+    std::vector<Elf> dir{4, {-1, -1}};
     VECI data;
 };
 
-std::vector<Elf> Generate(Elf init, Cache& result, std::vector<SIDES> dir){
-    result.dir = dir;
-    std::vector<Elf> nxt;
-    nxt.emplace_back(-1,-1);
-    nxt.emplace_back(-1,-1);
-    nxt.emplace_back(-1,-1);
-    nxt.emplace_back(-1,-1);
+Cache Generate(Elf init){
+    Cache result;
     std::set<Elf> cur{init};
     std::set<Elf> prev;
     std::set<Elf> preprev;
@@ -119,17 +112,17 @@ std::vector<Elf> Generate(Elf init, Cache& result, std::vector<SIDES> dir){
         result.data.push_back(cur.size());
         std::exchange(preprev, std::exchange(prev, std::exchange(cur, {})));
         for(auto& org:prev){
-            {LL nr = (org.row - 1); LL nc = (org.col); if(nr >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[dir[0]].row == -1){result.next[dir[0]] = i;nxt[dir[0]].row =R-1; nxt[dir[0]].col = nc;}}}
-            {LL nr = (org.row + 1); LL nc = (org.col); if(nr <  R) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[dir[1]].row == -1){result.next[dir[1]] = i;nxt[dir[1]].row =  0; nxt[dir[1]].col = nc;}}}
-            {LL nc = (org.col - 1); LL nr = (org.row); if(nc >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[dir[2]].row == -1){result.next[dir[2]] = i;nxt[dir[2]].row = nr; nxt[dir[2]].col =C-1;}}}
-            {LL nc = (org.col + 1); LL nr = (org.row); if(nc <  C) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(nxt[dir[3]].row == -1){result.next[dir[3]] = i;nxt[dir[3]].row = nr; nxt[dir[3]].col =  0;}}}
+            {LL nr = (org.row - 1); LL nc = (org.col); if(nr >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(result.dir[0].row == -1){result.next[0] = i;result.dir[0].row =R-1; result.dir[0].col = nc;}}}
+            {LL nr = (org.row + 1); LL nc = (org.col); if(nr <  R) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(result.dir[1].row == -1){result.next[1] = i;result.dir[1].row =  0; result.dir[1].col = nc;}}}
+            {LL nc = (org.col - 1); LL nr = (org.row); if(nc >= 0) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(result.dir[2].row == -1){result.next[2] = i;result.dir[2].row = nr; result.dir[2].col =C-1;}}}
+            {LL nc = (org.col + 1); LL nr = (org.row); if(nc <  C) { if(in[nr][nc] != '#') {cur.emplace(nr,nc);}}else{if(result.dir[3].row == -1){result.next[3] = i;result.dir[3].row = nr; result.dir[3].col =  0;}}}
         }
         // P(i, cur);
         if(cur == preprev) {
             // P(init, result.next);
             // P(cur);
             // P(prev);
-            return nxt;
+            return result;
         }
     }
     exit(1);
@@ -153,44 +146,26 @@ auto count2() {
 
     auto first = GetFirst();
 
-    std::vector<Cache> src;
-    src.emplace_back();
-    src.emplace_back();
-    src.emplace_back();
-    src.emplace_back();
-    src.emplace_back();
-    src.emplace_back();
-    src.emplace_back();
-    src.emplace_back();
-    src.emplace_back();
+    std::map<Elf, Cache> cache;
 
-    std::vector<Elf> next = Generate(first, src[CT], {DN, UP, RT, LT});
-    Generate(next[LT], src[LT], {LD, LU, ND, LT});
-    Generate(next[RT], src[RT], {RD, RU, RT, ND});
-    Generate(next[DN], src[DN], {ND, ND, ND, ND});
-    Generate(next[UP], src[UP], {ND, ND, ND, ND});
+    cache[first] = Generate(first);
 
-    Generate(Elf{  0,  0}, src[LU], {ND, ND, ND, ND});
-    Generate(Elf{R-1,  0}, src[LD], {ND, ND, ND, ND});
-    Generate(Elf{  0,  0}, src[RU], {ND, ND, ND, ND});
-    Generate(Elf{R-1,C-1}, src[RD], {ND, ND, ND, ND});
-
-    LL N = 50;
+    LL N = 6;
     // LL N = 26501365;
-    std::queue<std::pair<Cache&, LL>> q;
-    q.emplace(src[CT], N);
+    std::queue<std::pair<Elf, LL>> q;
+    q.emplace(first, N);
 
     while(!q.empty()){
         auto& e = q.front();
-        auto& cache = e.first;
+        auto& local = cache[e.first];
         LL stp = e.second;
         // P(stp, cache.data);
         q.pop();
-        result += GetElfs(stp, cache);
+        result += GetElfs(stp, local);
         FOR(i, 4) {
-            if(cache.dir[i] == ND) continue;
-            if(stp > cache.next[i]) {
-                q.emplace(src[cache.dir[i]], stp - cache.next[i] - 1);
+            if(local.dir[i] == Elf{-1,-1}) continue;
+            if(stp > local.next[i]) {
+                q.emplace(local.dir[i], stp - local.next[i] - 1);
             }
         }
     }
