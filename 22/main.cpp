@@ -113,12 +113,9 @@ auto count1() {
     FOR(i, briks.size()){
         std::vector<Brik> copy;
         std::copy_if(BE(briks), std::back_inserter(copy), [&b = briks[i]](const auto& c){ return b != c;});
-        // P_VECV(copy);
         auto copy2 = copy;
         MoveDownAll(copy2);
-        // P_VECV(copy2);
         result += (copy == copy2) ? 1 : 0;
-        // P(result);
     }
 
     return result;
@@ -126,6 +123,22 @@ auto count1() {
 
 auto count2() {
     LL result = 0;
+    auto briks = GetAllBriks();
+    std::sort(BE(briks));
+    MoveDownAll(briks);
+    std::sort(BE(briks));
+
+    FOR(i, briks.size()){
+        std::vector<Brik> copy;
+        std::copy_if(BE(briks), std::back_inserter(copy), [&b = briks[i]](const auto& c){ return b != c;});
+        auto copy2 = copy;
+        MoveDownAll(copy2);
+        FOR(j, copy.size()) {
+            if(copy[j] != copy2[j]){
+                ++result;
+            }
+        }
+    }
 
     return result;
 }
