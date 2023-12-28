@@ -168,10 +168,10 @@ auto count2() {
         FOR(i, 4) {
             LL x = X, y = Y;
             switch(i) {
-                case 0: ++y;
-                case 1: --y;
-                case 2: --x;
-                case 3: ++x;
+                case 0: ++y;break;
+                case 1: --y;break;
+                case 2: --x;break;
+                case 3: ++x;break;
             }
             P(X, x, Y,y);
             if(used.count(std::make_pair(x, y)) == 0) {
