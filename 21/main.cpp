@@ -162,7 +162,7 @@ auto count2() {
             cache[elf] = Generate(elf);
         }
         auto& local = cache[elf];
-        P(stp, X, Y, GetElfs(stp, local));
+        // P(stp, X, Y, GetElfs(stp, local));
         q.pop();
         result += GetElfs(stp, local);
         FOR(i, 4) {
@@ -173,7 +173,6 @@ auto count2() {
                 case 2: --x;break;
                 case 3: ++x;break;
             }
-            P(X, x, Y,y);
             if(used.count(std::make_pair(x, y)) == 0) {
                 used.emplace(x,y);
                 if(local.dir[i] == Elf{-1,-1}) continue;
