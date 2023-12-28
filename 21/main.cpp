@@ -175,7 +175,7 @@ auto count2() {
             if(used.count(std::make_pair(x, y)) == 0) {
                 if(local.dir[i] == Elf{-1,-1}) continue;
                 if(stp > local.next[i]) {
-                    q.emplace(local.dir[i], stp - local.next[i] - 1);
+                    q.emplace(local.dir[i], stp - local.next[i] - 1, x, y);
                 }
             }
         }
