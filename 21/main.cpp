@@ -194,7 +194,7 @@ auto count2() {
     P_LINE;
     P(C);
     P_LINE;
-    VECI line(3*C, 1);
+    VECI line(3*C);
     P_LINE;
     VECII dist(3*R, VECI(3*C, 0));P_LINE;
     P_LINE;
