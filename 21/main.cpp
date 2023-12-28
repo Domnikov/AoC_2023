@@ -185,13 +185,13 @@ auto count2() {
     // }
     auto start = GetFirst();
 
-    P_LINE;
     VECS in3 = Expand(in, 3);
-    P_LINE;
     start.row += R;
     start.col += C;
     P_LINE;
 
+    VECI line(3*C, 0);
+    P_LINE;
     VECII dist(3*R, VECI(3*C, 0));P_LINE;
     P_LINE;
 
