@@ -149,7 +149,7 @@ auto count2() {
     const int STEPS = 26501365;
     // const int STEPS = 6;
 
-    const int N = 131;
+    const int N = 131;P_LINE;
     // std::vector<string> input;
     // while(true) {
     //     string s;
@@ -184,22 +184,22 @@ auto count2() {
     //         }
     //     }
     // }
-    auto start = GetFirst();
+    auto start = GetFirst();P_LINE;
 
-    in = Expand(in, 3);
-    VECII dist(3*N, VECI(3*N));
+    in = Expand(in, 3);P_LINE;
+    VECII dist(3*N, VECI(3*N));P_LINE;
 
-    std::vector<std::vector<bool>> vis(3*N, std::vector<bool>(3*N));
+    std::vector<std::vector<bool>> vis(3*N, std::vector<bool>(3*N));P_LINE;
     std::queue<Elf> q;
-    q.push(start);
+    q.push(start);P_LINE;
     vis[start.row][start.col] = true;
-
+P_LINE;
     auto inside = [&](Elf p) {
         return 0 <= p.row && p.row < 3*N && 0 <= p.col && p.col < 3*N;
     };
-
+P_LINE;
     Elf Mod[4] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-
+P_LINE;
     while(!q.empty()) {
         Elf u = q.front();
         q.pop();
@@ -213,14 +213,14 @@ auto count2() {
             }
         }
     }
-
+P_LINE;
     VECI dp(STEPS + 1000);
     for(int i = STEPS; i >= 0; i--) {
         dp[i] = (i % 2 == STEPS % 2) + 2 * dp[i+N] - dp[i+2*N];
     }
 
 
-
+P_LINE;
     for(int i = 0; i < 3*N; i++) {
         for(int j = 0; j < 3*N; j++) {
             if(!vis[i][j]) continue;
@@ -233,7 +233,7 @@ auto count2() {
                 result += dp[dist[i][j]];
             }
         }
-    }
+    }P_LINE;
     return result;
 }
 
