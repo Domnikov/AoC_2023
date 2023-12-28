@@ -162,7 +162,7 @@ auto count2() {
         }
         auto& local = cache[e.first];
         LL stp = e.second;
-        P(stp, local.data);
+        P(stp, local.data, local.dir);
         q.pop();
         result += GetElfs(stp, local);
         FOR(i, 4) {
