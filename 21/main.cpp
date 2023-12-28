@@ -190,8 +190,9 @@ auto count2() {
     P_LINE;
     start.row += R;
     start.col += C;
+    P_LINE;
 
-    VECII dist(3*R, VECI(3*C));P_LINE;
+    VECII dist(3*R, VECI(3*C, 0));P_LINE;
     P_LINE;
 
     std::vector<std::vector<bool>> vis(3*R, std::vector<bool>(3*C));P_LINE;
