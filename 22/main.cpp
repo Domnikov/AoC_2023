@@ -30,11 +30,20 @@ std::ostream& operator<<(std::ostream& os, const Brik& br){
     return os;
 }
 
-// bool operator<(const Brik& br1, const Brik& br2){
-// }
+bool operator<(const Brik& br1, const Brik& br2){
+    if(br1.z1 != br2.z1) return br1.z1 < br2.z1;
+    if(br1.z2 != br2.z2) return br1.z2 < br2.z2;
+    if(br1.x1 != br2.x1) return br1.x1 < br2.x1;
+    if(br1.x2 != br2.x2) return br1.x2 < br2.x2;
+    if(br1.y1 != br2.y1) return br1.y1 < br2.y1;
+    if(br1.y2 != br2.y2) return br1.y2 < br2.y2;
+    P_LINE;
+    exit(1);
+}
 
 std::vector<Brik> GetAllBriks(){
     std::vector<Brik> briks;
+    std::sort(BE(briks));
     for(const auto& s:in){
         auto vecAll = splitStr(s, '~');
         auto vec1 = vecsToVeci(splitStr(vecAll[0], ','));
