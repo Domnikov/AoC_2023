@@ -73,7 +73,7 @@ bool MoveDownOne(std::set<LL>& used, Brik& brik){
     LL y2 = brik.y2;
     LL z1 = brik.z1-1;
     LL z2 = brik.z2-1;
-    if(z1 < 2) return false;
+    if(z1 < 1) return false;
     for(LL x = x1; x <= x2;x++)
         for(LL y = y1; y <= y2;y++)
             for(LL z = z1; z <= z2;z++){
