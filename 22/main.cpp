@@ -113,9 +113,12 @@ auto count1() {
     FOR(i, briks.size()){
         std::vector<Brik> copy;
         std::copy_if(BE(briks), std::back_inserter(copy), [&b = briks[i]](const auto& c){ return b != c;});
+        P_VECV(copy);
         auto copy2 = copy;
         MoveDownAll(copy2);
+        P_VECV(copy2);
         result += (copy == copy2) ? 0 : 1;
+        P(result);
     }
 
     return result;
