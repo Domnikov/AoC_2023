@@ -80,7 +80,7 @@ auto count1() {
     LL result = 0;
     std::set<Elf> elfs{GetFirst()};
 
-    LL N = 64;
+    LL N = 5000;
     LL counter = 1;
     FOR(i, N){
         step(elfs);
