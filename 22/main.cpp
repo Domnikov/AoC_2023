@@ -117,7 +117,7 @@ auto count1() {
         auto copy2 = copy;
         MoveDownAll(copy2);
         P_VECV(copy2);
-        result += (copy == copy2) ? 0 : 1;
+        result += (copy == copy2) ? 1 : 0;
         P(result);
     }
 
