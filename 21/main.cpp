@@ -159,8 +159,8 @@ auto count2() {
     LL cnt = 0;
     LL point = 1;
     while(!q.empty()){
-        if(++cnt > point){P(point);point *= 10;}
         auto [elf, stp, X, Y] = q.front();
+        if(++cnt > point){P(point, stp);point *= 10;}
         if(cache.count(elf) == 0) {
             cache[elf] = Generate(elf);
         }
