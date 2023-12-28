@@ -167,6 +167,7 @@ auto count2() {
         result += GetElfs(stp, local);
         FOR(i, 4) {
             LL x = X, y = Y;
+            P(X, x, Y,y);
             switch(i) {
                 case 0: ++y;
                 case 1: --y;
@@ -180,7 +181,6 @@ auto count2() {
                     q.emplace(local.dir[i], stp - local.next[i] - 1, x, y);
                 }
             } else {
-                P(x,y);
             }
         }
     }
