@@ -179,6 +179,8 @@ auto count2() {
                 if(stp > local.next[i]) {
                     q.emplace(local.dir[i], stp - local.next[i] - 1, x, y);
                 }
+            } else {
+                P(x,y);
             }
         }
     }
