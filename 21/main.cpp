@@ -192,7 +192,7 @@ auto count2() {
     P_LINE;
     start.col += C;
     P_LINE;
-    P(C);
+    P(3*C);
     P_LINE;
     VECI line;
     P_LINE;
