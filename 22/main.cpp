@@ -9,9 +9,40 @@
 
 auto in = getInput();
 
+struct Brik {
+    LL x1, y1, z1;
+    LL x2, y2, z2;
+
+    Brik(LL x1, LL y1, LL z1, LL x2, LL y2, LL z2)
+    :x1{x1},x2{x2}, y1{y1},y2{y2}, z1{z1},z2{z2} {
+    }
+    Brik(VECI one, VECI two)
+    :Brik(one[0], one[1], one[2], two[0], two[1], two[2]) {
+    }
+};
+
+std::ostream& operator<<(std::ostream& os, const Brik& br){
+    return os;
+}
+
+// bool operator<(const Brik& br1, const Brik& br2){
+// }
+
+std::vector<Brik> GetAllBriks(){
+    std::vector<Brik> briks;
+    for(const auto& s:in){
+        auto vecAll = splitStr(s, '~');
+        auto vec1 = vecsToVeci(splitStr(vecAll[0], ','));
+        auto vec2 = vecsToVeci(splitStr(vecAll[1], ','));
+        briks.emplace_back(vec1, vec2);
+    }
+    return briks;
+}
+
 auto count1() {
     LL result = 0;
-
+    auto briks = GetAllBriks();
+    P(briks);
     return result;
 }
 
