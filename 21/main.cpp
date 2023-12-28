@@ -168,7 +168,7 @@ auto count2() {
         FOR(i, 4) {
             if(local.dir[i] == Elf{-1,-1}) continue;
             if(stp > local.next[i]) {
-                q.emplace(local.dir[i], stp - local.next[i] - 1);
+                // q.emplace(local.dir[i], stp - local.next[i] - 1);
             }
         }
     }
