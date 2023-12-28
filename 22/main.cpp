@@ -93,10 +93,14 @@ auto count1() {
     LL result = 0;
     auto briks = GetAllBriks();
     std::sort(BE(briks));
-    P_VECV(briks);
     MoveDownAll(briks);
     std::sort(BE(briks));
-    P_VECV(briks);
+
+    FOR(i, briks.size()){
+        std::vector<Brik> copy;
+        std::copy_if(BE(briks), std::back_inserter(copy), [&b = briks[i]](const auto& c){ return b != c;});
+    }
+
     return result;
 }
 
