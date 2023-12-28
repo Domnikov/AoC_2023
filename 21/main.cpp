@@ -149,7 +149,7 @@ auto count2() {
 
     cache[first] = Generate(first);
 
-    LL N = 50;
+    LL N = 10;
     // LL N = 26501365;
     std::queue<std::tuple<Elf, LL, LL, LL>> q;
     q.emplace(first, N, 0, 0);
