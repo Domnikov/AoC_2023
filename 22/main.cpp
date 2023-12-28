@@ -95,6 +95,7 @@ auto count1() {
     std::sort(BE(briks));
     P_VECV(briks);
     MoveDownAll(briks);
+    std::sort(BE(briks));
     P_VECV(briks);
     return result;
 }
