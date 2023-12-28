@@ -146,61 +146,25 @@ LL GetElfs(LL step, const Cache& cache) {
 
 auto count2() {
     LL result = 0;
-    const int STEPS = 26501365;
-    // const int STEPS = 6;
-
-    // std::vector<string> input;
-    // while(true) {
-    //     string s;
-    //     cin >> s;
-    //     if(!cin) break;
-    //     input.push_back(s);
-    // }
-    //
-    // int n = input.size();
-    // int m = input[0].size();
-    // if(n == N && m == N) {
-    //     P_LINE;
-    //     exit(1);
-    // }
-    //
-    // std::vector<std::vector<char>> g(3*N, std::vector<char>(3*N));
-    // for(int i = 0; i < N; i++) {
-    //     for(int j = 0; j < N; j++) {
-    //         for(int a = 0; a < 3; a++) {
-    //             for(int b = 0; b < 3; b++) {
-    //                 g[i+a*N][j+b*N] = (input[i][j] == 'S' && (a != 1 || b != 1)) ? '.' : input[i][j];
-    //             }
-    //         }
-    //     }
-    // }
-    //
-    // std::pair<LL,LL> start;
-    // for(int i = 0; i < 3*N; i++) {
-    //     for(int j = 0; j < 3*N; j++) {
-    //         if(g[i][j] == 'S') {
-    //             start = {i, j};
-    //         }
-    //     }
-    // }
+    const int N = 26501365;
     auto start = GetFirst();
 
     start.row += R;
     start.col += C;
     VECII dist(3*R, VECI(3*C, 0));
-P_LINE;
+
     VECS in3 = Expand(input, 3);
-    std::vector<std::vector<bool>> vis(3*R, std::vector<bool>(3*C));P_LINE;
+    std::vector<std::vector<bool>> vis(3*R, std::vector<bool>(3*C));
     std::queue<Elf> q;
-    q.push(start);P_LINE;
+    q.push(start);
     vis[start.row][start.col] = true;
-P_LINE;
+
     auto inside = [&](Elf p) {
         return 0 <= p.row && p.row < 3*R && 0 <= p.col && p.col < 3*C;
     };
-P_LINE;
+
     Elf Mod[4] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-P_LINE;
+
     while(!q.empty()) {
         Elf u = q.front();
         q.pop();
@@ -214,27 +178,23 @@ P_LINE;
             }
         }
     }
-P_LINE;
-    VECI dp(STEPS + 1000);
-    for(int i = STEPS; i >= 0; i--) {
-        dp[i] = (i % 2 == STEPS % 2) + 2 * dp[i+R] - dp[i+2*R];
+
+    VECI dp(N + 1000);
+    for(int i = N; i >= 0; i--) {
+        dp[i] = (i % 2 == N % 2) + 2 * dp[i+R] - dp[i+2*R];
     }
 
 
-P_LINE;
     FOR(i, 3*R){
         FOR(j, 3*C){
             if(!vis[i][j]) continue;
             int dx = i - start.row;
             int dy = j - start.col;
             if(-R <= dx && dx < R && -C <= dy && dy < C) {
-                // if(dp[dist[i][j]] > 0) {
-                //     debug(i, j, dist[i][j], dp[dist[i][j]]);
-                // }
                 result += dp[dist[i][j]];
             }
         }
-    }P_LINE;
+    }
     return result;
 }
 
