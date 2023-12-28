@@ -151,23 +151,32 @@ auto count2() {
 
     LL N = 10;
     // LL N = 26501365;
-    std::queue<std::pair<Elf, LL>> q;
-    q.emplace(first, N);
+    std::queue<std::tuple<Elf, LL, LL, LL>> q;
+    q.emplace(first, N, 0, 0);
+    std::set<std::pair<LL,LL>> used;
 
     while(!q.empty()){
-        auto& e = q.front();
-        if(cache.count(e.first) == 0) {
-            cache[e.first] = Generate(e.first);
+        auto [elf, stp, X, Y] = q.front();
+        if(cache.count(elf) == 0) {
+            cache[elf] = Generate(elf);
         }
-        auto& local = cache[e.first];
-        LL stp = e.second;
+        auto& local = cache[elf];
         P(stp, local.data, local.dir);
         q.pop();
         result += GetElfs(stp, local);
         FOR(i, 4) {
-            if(local.dir[i] == Elf{-1,-1}) continue;
-            if(stp > local.next[i]) {
-                q.emplace(local.dir[i], stp - local.next[i] - 1);
+            LL x = X, y = Y;
+            switch(i) {
+                case 0: ++y;
+                case 1: --y;
+                case 2: --x;
+                case 3: ++x;
+            }
+            if(used.count(std::make_pair(x, y)) == 0) {
+                if(local.dir[i] == Elf{-1,-1}) continue;
+                if(stp > local.next[i]) {
+                    q.emplace(local.dir[i], stp - local.next[i] - 1);
+                }
             }
         }
     }
