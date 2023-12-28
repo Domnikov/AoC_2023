@@ -1,7 +1,7 @@
 #pragma once
 #include "../help_func.hpp"
 
-// #define ALT
+#define ALT
 
 inline auto getInput()
 {
