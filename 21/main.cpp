@@ -154,6 +154,7 @@ auto count2() {
     std::queue<std::tuple<Elf, LL, LL, LL>> q;
     q.emplace(first, N, 0, 0);
     std::set<std::pair<LL,LL>> used;
+    used.emplace(0,0);
 
     while(!q.empty()){
         auto [elf, stp, X, Y] = q.front();
@@ -173,6 +174,7 @@ auto count2() {
                 case 3: ++x;
             }
             if(used.count(std::make_pair(x, y)) == 0) {
+                used.emplace(x,y);
                 if(local.dir[i] == Elf{-1,-1}) continue;
                 if(stp > local.next[i]) {
                     q.emplace(local.dir[i], stp - local.next[i] - 1, x, y);
