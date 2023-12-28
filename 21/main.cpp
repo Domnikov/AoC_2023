@@ -185,8 +185,11 @@ auto count2() {
     // }
     auto start = GetFirst();
 
+    P_LINE;
     VECS in3 = Expand(in, 3);
+    P_LINE;
     start.row += R;
+    P_LINE;
     start.col += C;
     P_LINE;
 
