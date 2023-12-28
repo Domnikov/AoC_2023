@@ -60,9 +60,9 @@ bool MoveDownOne(std::set<LL>& used, Brik& brik){
     LL z1 = brik.z1-1;
     LL z2 = brik.z2-1;
     if(z1 < 2) return false;
-    for(LL x = brik.x1; x <= brik.x2;x++)
-        for(LL y = brik.y1; y <= brik.y2;y++)
-            for(LL z = brik.z1; z <= brik.z2;z++){
+    for(LL x = x1; x <= x2;x++)
+        for(LL y = y1; y <= y2;y++)
+            for(LL z = z1; z <= z2;z++){
                 if(used.count(x*1000000+y*1000+z)) {
                     return false;
                 }
