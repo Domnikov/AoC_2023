@@ -357,6 +357,21 @@ inline VECSS inToVecSS(char delim = ',', const char* fileName = "input")
     return input;
 }
 
+inline VECS Expand(const VECS& table, LL n) {
+    auto ROW = table.size();
+    auto COL = table[0].size();
+    VECS result(n*ROW,  S(n*COL, ' '));
+    for(LL row = 0; row < ROW; ++row) {
+        for(LL col = 0; col < COL; ++col) {
+            for(LL a = 0; a < n; a++) {
+                for(LL b = 0; b < n; b++) {
+                    result[row+a*ROW][col+b*COL] = table[row][col];
+                }
+            }
+        }
+    }
+    return result;
+}
 
 inline S replace(const S& s, const S& from, const S& to = "")
 {
