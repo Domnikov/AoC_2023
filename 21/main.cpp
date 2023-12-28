@@ -16,7 +16,6 @@ class Elf {
   public:
     Elf(LL r, LL c) {
         static LL counter = 0;
-        id= counter++;
         row=r;
         col=c;
     }
@@ -26,7 +25,7 @@ class Elf {
 };
 
 std::ostream& operator<<(std::ostream& os, const Elf& me) {
-    os<<"Elf("<<me.id<<",["<<me.row<<","<<me.col<<"])";
+    os<<"Elf("<<me.row<<","<<me.col<<")";
     return os;
 }
 
