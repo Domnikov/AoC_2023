@@ -194,7 +194,7 @@ auto count2() {
     P_MAPV(map[2]);
     for(const auto& m0:map[0]) {
         if(map[1].count(m0.first) && map[2].count(m0.first)){
-            P(m0.second);
+            P(m0.second, map[1][m0.first], map[2][m0.first]);
         }
     }
 #if 0
