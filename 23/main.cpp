@@ -19,7 +19,7 @@ struct Path{
         set.insert(cur);
     }
     Path(std::pair<LL,LL> pos, const Path& old){
-        auto tmp = prev;
+        auto tmp = cur;
         prev = cur;
         cur = pos;
         P(tmp, pos, prev, cur, old.cur, old.prev);
