@@ -69,9 +69,45 @@ auto count1() {
     return result-1;
 }
 
-void TillNextCrossRoad() {
-    LL ways_count = 0;
-
+bool TillNextCrossRoad(Path& path) {
+    bool running = true;
+    while(running) {
+        auto cur = path.cur;
+        auto prev = path.path[path.path.size()-2];
+        std::pair<LL,LL> valid_next;
+        LL ways_count = 0;
+        FOR(i, Mods.size()) {
+            const auto& m = Mods[i];
+            auto newPos = cur+m;
+            if(in[newPos.first][newPos.second] == '#') {
+                continue;
+            }
+            if(prev == newPos) {
+                continue;
+            }
+            if(std::find_if(BE(path.path), [newPos, ends = 0](const auto& p)mutable{
+                            if(p == std::make_pair(113, 125) || p == std::make_pair(137, 111)) {
+                                ends++;
+                            }
+                            return ends == 2 || p == newPos;
+                        }) != path.path.end()) {
+                continue;
+            }
+            ways_count++;
+            valid_next = newPos;
+        }
+        if(ways_count == 1){
+            path.path.push_back(valid_next);
+            path.cur = valid_next;
+        } else if(ways_count == 0) {
+            return false;
+        } else {
+            running = false;
+        }
+    }
+    return true;
+    // (113, 125)
+    //     (137,111)
 }
 
 auto count2() {
@@ -98,7 +134,11 @@ auto count2() {
             if(std::find(BE(p.path), newPos) != p.path.end()) {
                 continue;
             }
-            q.emplace(newPos, p);
+            // q.emplace(newPos, p);
+            Path newPath{newPos, p};
+            if(TillNextCrossRoad(newPath)){
+                q.push(newPath);
+            }
         }
     }
     while(!q.empty()){
