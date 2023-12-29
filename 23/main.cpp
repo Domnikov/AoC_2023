@@ -74,7 +74,7 @@ auto count2() {
     std::queue<Path> q;
     Path init(0,1);
     q.emplace(std::pair<LL,LL>{1,1}, init);
-    for(LL i = 0;i < 10000000000 && !q.empty();++i){
+    for(LL i = 0;!q.empty();++i){
         auto p = q.front();
         q.pop();
         if(p.cur.first == in.size()-1){
@@ -108,7 +108,7 @@ auto count2() {
 int main(int argc, char** argv)
 {
     LL score = 0;
-    // score = count1();
+    score = count1();
     P_RR("Part1: %lld\n", score);
     //========================================================
 
