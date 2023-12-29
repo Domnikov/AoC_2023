@@ -50,8 +50,8 @@ struct Line2d{
         auto [cx, cy] = GetCP(other);
         auto dx = cx-x;
         auto dxOther = cx-other.x;
-        bool result1 = ((dx/vx) >= -0.01);
-        bool result2 = ((dxOther/other.vx) >= -0.01);
+        bool result1 = ((dx/vx) >= -0.1);
+        bool result2 = ((dxOther/other.vx) >= -0.1);
         bool result = result1 && result2;
         if(!result) {
             P(cx, x, dx, vx, dxOther, other.x, other.vx, result1, result2);
@@ -95,7 +95,7 @@ auto count1() {
     for(const auto& pair : crossingLines) {
         auto [x,y] = pair.first.GetCP(pair.second);
         // P(x, y);
-        if( (L-0.01) <= x && x <= (H+0.01) && (L-0.01) <= y && y <= (H+0.01) ) {
+        if( (L-0.1) <= x && x <= (H+0.1) && (L-0.1) <= y && y <= (H+0.1) ) {
             result ++;
         }
     }
