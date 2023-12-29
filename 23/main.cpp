@@ -89,9 +89,9 @@ bool TillNextCrossRoad(Path& path) {
             //                 if(p == std::make_pair(113, 125) || p == std::make_pair(137, 111)) {
             //                     ends++;
             //                 }
-            //                 return ends == 2 || p == newPos;
-            //             }) != path.path.end()) {
-                return false;}) != path.path.end()){
+                            return ends == 2 || p == newPos;
+                        }) != path.path.end()) {
+                // return false;}) != path.path.end()){
                 continue;
             }
             ways_count++;
