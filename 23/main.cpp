@@ -120,6 +120,7 @@ auto count2() {
     std::queue<Path> q;
     Path init(0,1);
     q.emplace(std::pair<LL,LL>{1,1}, init);
+    LL point = 1;
     for(LL i = 0;!q.empty();++i){
         auto p = q.front();
         q.pop();
@@ -144,6 +145,10 @@ auto count2() {
             if(TillNextCrossRoad(newPath)){
                 q.push(newPath);
             }
+        }
+        if(i > point){
+            P(point, q.size());
+            point *= 10;
         }
     }
     while(!q.empty()){
