@@ -131,7 +131,7 @@ auto count2() {
         for(LL j = i+1; j < lines.size();++j) {
             LL c2 = lines[j].coord[n];
             LL v2 = lines[j].velos[n];
-            for(LL t = 2; t < 1000; ++t) {
+            for(LL t = 2; t < 7; ++t) {
                 LL V0 = (x1 - c2 - t*v2) / ( 1 - t);
                 LL C0 = x1 - V0;
                 bool found = true;
