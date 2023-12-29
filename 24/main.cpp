@@ -180,7 +180,7 @@ auto count2() {
                             found = false;
                             break;
                         }
-                        P(cp);
+                        P(cp, C0, V0, Ck, Vk, t);
                         vec.emplace_back(k, cp.second);
                     }
                     if(found) {
