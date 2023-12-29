@@ -79,7 +79,7 @@ auto count1() {
 
     FOR(i, lines.size()){
         for(LL j = i+1; j < lines.size();++j) {
-            if(lines[i].ISCrossInFuture(lines[j]) == false) {
+            if(lines[i].ISCrossInFuture(lines[j])) {
                 crossingLines.emplace_back(lines[i], lines[j]);
             }
         }
