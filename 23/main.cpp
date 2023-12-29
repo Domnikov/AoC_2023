@@ -123,7 +123,7 @@ bool TillNextCrossRoad(Path& path) {
             running = false;
         }
     }
-    P(path.path, !path.set.count(path.cur));
+    // P(path.path, !path.set.count(path.cur));
     return !path.set.count(path.cur);
     // (113, 125)
     //     (137,111)
