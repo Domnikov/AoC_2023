@@ -160,9 +160,9 @@ auto count2() {
                         }
                         P(l.coord, l.velos, lines[k].coord, lines[k].velos);
                         P_RR("\t");
-                        P(t, a, b, Ck, x1);
+                        P(t, a, b, x1);
                         P_RR("\t");
-                        P(C0, V0, Vk, locT);
+                        P(C0, V0, Ck, Vk, locT);
                     }
                 }
                 if(found) {
