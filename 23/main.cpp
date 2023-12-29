@@ -85,14 +85,15 @@ bool TillNextCrossRoad(Path& path) {
             if(prev == newPos) {
                 continue;
             }
-            // if(std::find_if(BE(path.path), [newPos, ends = 0](const auto& p)mutable{
+            if(std::find_if(BE(path.path), [newPos, ends = 0](const auto& p)mutable{
             //                 if(p == std::make_pair(113, 125) || p == std::make_pair(137, 111)) {
             //                     ends++;
             //                 }
             //                 return ends == 2 || p == newPos;
             //             }) != path.path.end()) {
-            //     continue;
-            // }
+                return false;}) != path.path.end()){
+                continue;
+            }
             ways_count++;
             valid_next = newPos;
         }
