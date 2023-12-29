@@ -24,11 +24,11 @@ struct Line2d{
         assert(vecp.size() == 3);
         assert(vecv.size() == 3);
 
-        double x=vecp[0];
-        double y=vecp[1];
+        x=vecp[0];
+        y=vecp[1];
 
-        double vx=vecv[0];
-        double vy=vecv[1];
+        vx=vecv[0];
+        vy=vecv[1];
 
         double x2=x+vx;
         double y2=y+vy;
