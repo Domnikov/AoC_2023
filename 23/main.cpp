@@ -18,6 +18,7 @@ struct Path{
         set.insert(cur);
     }
     Path(std::pair<LL,LL> pos, const Path& old){
+        P(pos, prev, cur);
         prev = cur;
         cur = pos;
         score=old.score+1;
