@@ -140,6 +140,7 @@ auto count2() {
             for(LL t = 2; t < 7; ++t) {
                 LL V0 = (x1 - c2 - t*v2) / ( 1 - t);
                 LL C0 = x1 - V0;
+                P(t, C0, V0);
                 bool found = true;
                 FOR(k, lines.size()){
                     if( k != i && k != j) {
