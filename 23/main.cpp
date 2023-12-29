@@ -13,21 +13,21 @@ struct Path{
     Path(LL r, LL c) {
         cur = {r, c};
         score = 1;
-        // path.emplace_back(cur);
+        path.emplace_back(cur);
         set.insert(cur);
     }
     Path(std::pair<LL,LL> pos, const Path& old){
         prev = old.cur;
         cur = pos;
         score=old.score+1;
-        // path = old.path;
-        // path.emplace_back(cur);
+        path = old.path;
+        path.emplace_back(cur);
         set.insert(cur);
     }
     std::pair<LL,LL> cur;
     std::pair<LL,LL> prev{-1, 1};
     LL score;
-    // VECPLL path;
+    VECPLL path;
     std::set<std::pair<LL,LL>> set;
 };
 
@@ -123,6 +123,7 @@ bool TillNextCrossRoad(Path& path) {
             running = false;
         }
     }
+    P(path.path, !path.set.count(path.cur));
     return !path.set.count(path.cur);
     // (113, 125)
     //     (137,111)
