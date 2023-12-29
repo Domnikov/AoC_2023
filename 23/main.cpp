@@ -156,7 +156,7 @@ auto count2() {
             if(TillNextCrossRoad(newPath)){
                 newPath.set.insert(newPath.cur);
                 // newPath.path.push_back(newPath.cur);
-                q.push(newPath);
+                // q.push(newPath);
             }
         }
         if(i > point){
