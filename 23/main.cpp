@@ -90,6 +90,7 @@ bool TillNextCrossRoad(Path& path) {
             if(prev == newPos) {
                 continue;
             }
+            P_LINE;
             // if(/*(path.set.count(endcr1) && path.set.count(endcr1)) ||*/ path.set.count(newPos)){
             // // if(std::find_if(BE(path.path), [newPos, ends = 0](const auto& p)mutable{
             // //                 if(p == std::make_pair(113LL, 125LL) || p == std::make_pair(137LL, 111LL)) {
