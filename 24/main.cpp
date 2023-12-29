@@ -124,20 +124,31 @@ auto count2() {
     LL result = 0;
     std::vector<Line4d> lines;
     std::transform(BE(in), std::back_inserter(lines), [](const auto& s){return Line4d(s);});
-
+    LL n = 0;
     FOR(i, lines.size()){
         auto& l = lines[i];
+        LL x1 = l.coord[n] + l.velos[n];
         for(LL j = i+1; j < lines.size();++j) {
+            LL c2 = lines[j].coord[n];
+            LL v2 = lines[j].velos[n];
             for(LL t = 2; t < 1000; ++t) {
+                LL V0 = (x1 - c2 - t*v2) / ( 1 - t);
+                bool found = true;
                 FOR(k, lines.size()){
                     if( k != i && k != j) {
-                        result++;
+                        LL locT = (lines[j].coord[n] - (x1-V0)) / (V0 - lines[j].velos[n]);
+                        if(locT < 1) {
+                            found = false;
+                            break;
+                        }
                     }
+                }
+                if(found) {
+                    P(x1-V0, V0);
                 }
             }
         }
         P(i);
-        // V0 = (x1 - C2 - T*V2) / ( 1 - T)
     }
 #if 0
 
@@ -156,19 +167,13 @@ T*V2 - T*V0 + V0 = x1 - C2
 
  ->   V0 = (x1 - C2 - T*V2) / ( 1 - T)
 
-V0 = (21 - 18 + 3) / (1-3) = 6 / -2
 
-V0 = (C2 - x1 + T*V2) / (T - 1)
+X0 = V0*T + C0
+Xj = Vj*T + Cj
 
-V0 = (18 - 21 - 3) / (-2) = 3
+V0*T + C0 = Vj*T + Cj
 
-1 = V0/V2 + (x1-V0)
-
-1 = v0/V2 + x1 - V0
-
-(1-x1) = V0((1-V2)/V2)
-
-V0 = (V2 * (1-x1))/(1-V1)
+T = (Cj - C0) / (V0 - Vj)
 
 #endif
 
