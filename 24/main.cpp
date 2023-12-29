@@ -1,7 +1,7 @@
 #ifdef TEST
 #include "in_test.hpp"
-doublet L = 7;
-doublet H = 21;
+double L = 7;
+double H = 21;
 #else
 #include "in.hpp"
 double L = 200000000000000;
