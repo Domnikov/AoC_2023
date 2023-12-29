@@ -15,7 +15,6 @@ long double H = 400000000000000;
 
 auto in = getInput();
 
-#if 0
 struct Line2d{
     Line2d(const S& str){
         auto vecs = splitStr(str, '@');
@@ -101,7 +100,6 @@ auto count1() {
 
     return result;
 }
-#endif
 
 struct Line4d {
     Line4d(const S& str){
@@ -208,7 +206,7 @@ t = 3;  a = 22; b = -1; Ck = 19;        x1 = 21;        C0 = 24;        V0 = -3;
 int main(int argc, char** argv)
 {
     LL score = 0;
-    // score = count1();
+    score = count1();
     P_RR("Part1: %lld\n", score);
     //========================================================
 
