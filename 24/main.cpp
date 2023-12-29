@@ -138,7 +138,7 @@ auto count2() {
                     if( k != i && k != j) {P_LINE;
                         LL Ck = lines[k].coord[n];P_LINE;
                         LL Vk = lines[k].velos[n];P_LINE;
-                        LL locT = (lines[k].coord[n] - (x1-V0)) / (V0 - lines[k].velos[n]);P_LINE;
+                        LL locT = (Ck - (x1-V0)) / (V0 - Vk);P_LINE;
                         if(locT < 1) {
                             found = false;P_LINE;
                             break;
