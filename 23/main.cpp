@@ -66,7 +66,7 @@ auto count1() {
         P(qq.cur, qq.score, qq.path);
     }
 
-    return result;
+    return result-1;
 }
 
 auto count2() {
