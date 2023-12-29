@@ -71,8 +71,42 @@ auto count1() {
 
 auto count2() {
     LL result = 0;
+    std::queue<Path> q;
+    Path init(0,1);
+    q.emplace(std::pair<LL,LL>{1,1}, init);
+    for(LL i = 0;i < 10000000000 && !q.empty();++i){
+        auto p = q.front();
+        q.pop();
+        if(p.cur.first == in.size()-1){
+            result = std::max(result, p.score);
+            continue;
+        }
+        auto cur = p.cur;
+        // P(cur, p.path);
+        FOR(i, Mods.size()) {
+            if(in[cur.first][cur.second] != '.') {
+                if(in[cur.first][cur.second] != Slopes[i]){
+                    // continue;
+                }
+            }
+            const auto& m = Mods[i];
+            auto newPos = cur+m;
+            if(in[newPos.first][newPos.second] == '#') {
+                continue;
+            }
+            if(p.path[p.path.size()-2] == newPos) {
+                continue;
+            }
+            q.emplace(newPos, p);
+        }
+    }
+    while(!q.empty()){
+        auto qq = q.front();
+        q.pop();
+        // P(qq.cur, qq.score, qq.path);
+    }
 
-    return result;
+    return result-1;
 }
 
 int main(int argc, char** argv)
