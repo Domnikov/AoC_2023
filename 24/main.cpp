@@ -4,11 +4,9 @@ double L = 7;
 double H = 21;
 #else
 #include "in.hpp"
-// double L = 200000000000000;
-// double H = 400000000000000;
+double L = 200000000000000;
+double H = 400000000000000;
 #endif
-double L = 7;
-double H = 21;
 
 #include <cassert>
 #include <queue>
@@ -97,7 +95,7 @@ auto count1() {
     for(const auto& pair : crossingLines) {
         auto [x,y] = pair.first.GetCP(pair.second);
         // P(x, y);
-        if( L <= x && x <= H && L <= y && y <= H ) {
+        if( (L-0.01) <= x && x <= (H+0.01) && (L-0.01) <= y && y <= (H+0.01) ) {
             result ++;
         }
     }
