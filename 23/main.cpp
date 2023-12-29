@@ -54,7 +54,7 @@ auto count1() {
             if(in[newPos.first][newPos.second] == '#') {
                 continue;
             }
-            if(p.path.back() == newPos) {
+            if(p.path[p.path.size()-2] == newPos) {
                 continue;
             }
             q.emplace(newPos, p);
