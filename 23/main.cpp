@@ -22,7 +22,7 @@ struct Path{
         score=old.score+1;
         path = old.path;
         path.emplace_back(cur);
-        // set.insert(cur);
+        set = old.set;
     }
     std::pair<LL,LL> cur;
     std::pair<LL,LL> prev{-1, 1};
