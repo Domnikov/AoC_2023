@@ -34,7 +34,7 @@ auto count1() {
     std::queue<Path> q;
     Path init(0,1);
     q.emplace(std::pair<LL,LL>{1,1}, init);
-    while(!q.empty()){
+    for(LL i = 0;i < 5 && !q.empty();++i){
         auto p = q.front();
         if(p.cur.first == in.size()-1){
             result = std::max(result, p.score);
@@ -59,7 +59,6 @@ auto count1() {
             }
             q.emplace(newPos, p);
         }
-        break;
     }
     while(!q.empty()){
         auto qq = q.front();
