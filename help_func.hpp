@@ -145,7 +145,21 @@ using VECPLL=std::vector<std::pair<LL,LL>>;
 namespace std{
 
     template<typename T>
-    inline ostream& operator<<( ostream& dest, vector<T> vec )
+    inline ostream& operator<<( ostream& dest, const set<T>& vec )
+    {
+        dest << "[";
+
+        if(!vec.empty())
+        {
+            std::copy (vec.begin(), vec.end(), std::ostream_iterator<T>(dest, ";"));
+        }
+
+        dest << "]";
+        return dest;
+    }
+
+    template<typename T>
+    inline ostream& operator<<( ostream& dest, const vector<T>& vec )
     {
         dest << "[";
 
@@ -385,4 +399,8 @@ inline S replace(const S& s, const S& from, const S& to = "")
         startPos = to.size();
     }
     return trunc(res);
+}
+
+inline std::pair<LL, LL> operator+(const std::pair<LL,LL>& lhs, const std::pair<LL,LL>& rhs) {
+    return {lhs.first+rhs.first, lhs.second+rhs.second};
 }
