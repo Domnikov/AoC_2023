@@ -177,6 +177,7 @@ auto count2() {
                         LL Vk = lines[k].velos[n];
                         if (Ck == C0 && Vk == V0) {
                             P(C0, V0, Ck, Vk, t, lines[k].coord);
+                            vec.emplace_back(k, 5);
                         } else {
                             auto cp = Line2d({(LL)C0, 0, 0}, {(LL)V0, 1, 0}).GetCP(Line2d{{Ck, 0, 0},{Vk, 1, 0}});
                             P(cp, C0, V0, Ck, Vk, t, lines[k].coord);
@@ -184,8 +185,8 @@ auto count2() {
                                 found = false;
                                 break;
                             }
+                            vec.emplace_back(k, cp.second);
                         }
-                        vec.emplace_back(k, cp.second);
                     }
                     if(found) {
                         // P(found, t, C0, V0);
