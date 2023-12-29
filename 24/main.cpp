@@ -134,8 +134,8 @@ auto count2() {
             for(LL t = 2; t < 1000; ++t) {
                 LL V0 = (x1 - c2 - t*v2) / ( 1 - t);P_LINE;
                 bool found = true;P_LINE;
-                FOR(k, lines.size()){
-                    if( k != i && k != j) {
+                FOR(k, lines.size()){P_LINE;
+                    if( k != i && k != j) {P_LINE;
                         LL locT = (lines[j].coord[n] - (x1-V0)) / (V0 - lines[j].velos[n]);P_LINE;
                         if(locT < 1) {
                             found = false;P_LINE;
