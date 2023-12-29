@@ -88,6 +88,7 @@ auto count1() {
         for(LL j = i+1; j < lines.size();++j) {
             if(lines[i].ISCrossInFuture(lines[j])) {
                 crossingLines.emplace_back(lines[i], lines[j]);
+            result ++;
             }
         }
     }
@@ -96,7 +97,6 @@ auto count1() {
         auto [x,y] = pair.first.GetCP(pair.second);
         // P(x, y);
         if( (L-0.01) <= x && x <= (H+0.01) && (L-0.01) <= y && y <= (H+0.01) ) {
-            result ++;
         }
     }
 
