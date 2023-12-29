@@ -84,18 +84,13 @@ auto count2() {
         auto cur = p.cur;
         // P(cur, p.path);
         FOR(i, Mods.size()) {
-            // if(in[cur.first][cur.second] != '.') {
-            //     if(in[cur.first][cur.second] != Slopes[i]){
-            //         continue;
-            //     }
-            // }
             const auto& m = Mods[i];
             auto newPos = cur+m;
             P(newPos, p.path);
             if(in[newPos.first][newPos.second] == '#') {
                 continue;
             }
-            if(p.path[p.path.size()-2] == newPos) {
+            if(std::find(BE(p.path), newPos) != p.path.end()) {
                 continue;
             }
             q.emplace(newPos, p);
