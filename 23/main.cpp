@@ -91,7 +91,7 @@ auto count2() {
             // }
             const auto& m = Mods[i];
             auto newPos = cur+m;
-            P(newPos);
+            P(newPos, p.path);
             if(in[newPos.first][newPos.second] == '#') {
                 continue;
             }
