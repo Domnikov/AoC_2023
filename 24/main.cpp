@@ -87,6 +87,7 @@ auto count1() {
 
     for(const auto& pair : crossingLines) {
         auto [x,y] = pair.first.GetCP(pair.second);
+        P(x, y);
         if( L <= x && x <= H && L <= y && y <= H ) {
             result ++;
         }
