@@ -157,6 +157,8 @@ auto count2() {
                             found = false;
                             break;
                         }
+                        P(l.coord, l.velos, lines[k].coord, lines[k].velos);
+                        P(t, a, b, Ck, x1, C0, V0, Vk, locT);
                     }
                 }
                 if(found) {
