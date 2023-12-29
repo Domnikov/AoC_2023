@@ -143,51 +143,53 @@ auto count2() {
     std::vector<Line4d> lines;
     std::transform(BE(in), std::back_inserter(lines), [](const auto& s){return Line4d(s);});
     std::map<std::vector<std::pair<LL,LL>>, std::pair<LL,LL>> map[3];
-    LL n = 0;
-    FOR(i, lines.size()){
-        auto& l = lines[i];
-        // P(l.coord, l.velos);
-        LL x1 = l.coord[n] + l.velos[n];
-        FOR(j, lines.size()) {
-            if(i == j) {
-                continue;
-            }
-            // P(lines[j].coord, lines[j].velos);
-            LL c2 = lines[j].coord[n];
-            LL v2 = lines[j].velos[n];
-            for(LL t = 2; t < 7; ++t) {
-                long double Vtmp1 = x1 - c2 - t*v2;
-                long double Vtmp2 = 1-t;
-                auto V0 = Vtmp1 / Vtmp2;
-                auto C0 = x1 - V0;
-                if((C0 - (LL)C0) > 0.01) {
+    FOR(n, 3) {
+        FOR(i, lines.size()){
+            auto& l = lines[i];
+            // P(l.coord, l.velos);
+            LL x1 = l.coord[n] + l.velos[n];
+            FOR(j, lines.size()) {
+                if(i == j) {
                     continue;
                 }
-                if((V0 - (LL)V0) > 0.01) {
-                    continue;
-                }
-                // P(t, C0, V0);
-                bool found = true;
-                std::vector<std::pair<LL,LL>> vec;
-                FOR(k, lines.size()){
-                    long double Ck = lines[k].coord[n];
-                    long double Vk = lines[k].velos[n];
-                    auto cp = Line2d({(LL)C0, 0, 0}, {(LL)V0, 1, 0}).GetCP(Line2d{{(LL)Ck, 0, 0},{(LL)Vk, 1, 0}});
-                    if(cp.second == std::numeric_limits<long double>::infinity() || cp.second < 1) {
-                        found = false;
-                        break;
+                // P(lines[j].coord, lines[j].velos);
+                LL c2 = lines[j].coord[n];
+                LL v2 = lines[j].velos[n];
+                for(LL t = 2; t < 7; ++t) {
+                    long double Vtmp1 = x1 - c2 - t*v2;
+                    long double Vtmp2 = 1-t;
+                    auto V0 = Vtmp1 / Vtmp2;
+                    auto C0 = x1 - V0;
+                    if((C0 - (LL)C0) > 0.01) {
+                        continue;
                     }
-                    vec.emplace_back(k, cp.second);
-                }
-                if(found) {
-                    // P(found, t, C0, V0);
-                    map[n][vec] = std::make_pair<LL,LL>(C0, V0);
+                    if((V0 - (LL)V0) > 0.01) {
+                        continue;
+                    }
+                    // P(t, C0, V0);
+                    bool found = true;
+                    std::vector<std::pair<LL,LL>> vec;
+                    FOR(k, lines.size()){
+                        long double Ck = lines[k].coord[n];
+                        long double Vk = lines[k].velos[n];
+                        auto cp = Line2d({(LL)C0, 0, 0}, {(LL)V0, 1, 0}).GetCP(Line2d{{(LL)Ck, 0, 0},{(LL)Vk, 1, 0}});
+                        if(cp.second == std::numeric_limits<long double>::infinity() || cp.second < 1) {
+                            found = false;
+                            break;
+                        }
+                        vec.emplace_back(k, cp.second);
+                    }
+                    if(found) {
+                        // P(found, t, C0, V0);
+                        map[n][vec] = std::make_pair<LL,LL>(C0, V0);
+                    }
                 }
             }
         }
-        P(i);
     }
     P_MAPV(map[0]);
+    P_MAPV(map[1]);
+    P_MAPV(map[2]);
 #if 0
 
 x1 = V1*1 + C1
