@@ -140,15 +140,22 @@ auto count2() {
     LL result = 0;
     std::queue<Path> q;
     Path init(0,1);
+P_LINE;
     q.emplace(std::pair<LL,LL>{1,1}, init);
+P_LINE;
     LL point = 1;
+P_LINE;
     for(LL i = 0;!q.empty();++i){
+P_LINE;
         auto p = q.front();
+P_LINE;
         q.pop();
+P_LINE;
         if(p.cur.first == in.size()-1){
             result = std::max(result, p.score);
             continue;
         }
+P_LINE;
         auto cur = p.cur;
         // P(cur, p.path);
         FOR(i, Mods.size()) {
@@ -159,8 +166,11 @@ auto count2() {
                 continue;
             }
             // q.emplace(newPos, p);
+P_LINE;
             Path newPath{newPos, p};
+P_LINE;
             if(TillNextCrossRoad(newPath)){
+P_LINE;
                 newPath.set.insert(newPath.cur);
                 // newPath.path.push_back(newPath.cur);
                 q.push(newPath);
