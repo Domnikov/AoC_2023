@@ -34,13 +34,13 @@ auto count1() {
     std::queue<Path> q;
     Path init(0,1);
     q.emplace(std::pair<LL,LL>{1,1}, init);
-    for(LL i = 0;i < 100 && !q.empty();++i){
+    for(LL i = 0;i < 10000000000 && !q.empty();++i){
         auto p = q.front();
+        q.pop();
         if(p.cur.first == in.size()-1){
             result = std::max(result, p.score);
             continue;
         }
-        q.pop();
         auto cur = p.cur;
         P(cur, p.path);
         FOR(i, Mods.size()) {
