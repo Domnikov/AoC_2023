@@ -76,13 +76,16 @@ bool TillNextCrossRoad(Path& path) {
     bool running = true;
     std::pair<LL,LL> endcr1{113, 125};
     std::pair<LL,LL> endcr2{137, 111};
-            P_LINE;
+    P_LINE;
     while(running) {
+    P_LINE;
         auto cur = path.cur;
         auto prev = path.path[path.path.size()-2];
         std::pair<LL,LL> valid_next;
         LL ways_count = 0;
+    P_LINE;
         FOR(i, Mods.size()) {
+    P_LINE;
             const auto& m = Mods[i];
             auto newPos = cur+m;
             if(in[newPos.first][newPos.second] == '#') {
