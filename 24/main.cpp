@@ -128,13 +128,13 @@ auto count2() {
     LL n = 0;
     FOR(i, lines.size()){
         auto& l = lines[i];
-        P(l.coord, l.velos);
+        // P(l.coord, l.velos);
         LL x1 = l.coord[n] + l.velos[n];
         FOR(j, lines.size()) {
             if(i == j) {
                 continue;
             }
-            P(lines[j].coord, lines[j].velos);
+            // P(lines[j].coord, lines[j].velos);
             LL c2 = lines[j].coord[n];
             LL v2 = lines[j].velos[n];
             for(LL t = 2; t < 7; ++t) {
@@ -142,7 +142,7 @@ auto count2() {
                 long double Vtmp2 = 1-t;
                 auto V0 = Vtmp1 / Vtmp2;
                 auto C0 = x1 - V0;
-                P(t, C0, V0);
+                // P(t, C0, V0);
                 bool found = true;
                 FOR(k, lines.size()){
                     if( k != i && k != j) {
@@ -151,8 +151,8 @@ auto count2() {
                         long double a = (Ck - C0);
                         long double b = V0 - Vk;
                         long double locT = a / b;
-                        P(lines[k].coord, lines[k].velos);
-                        P(t, a, b, Ck, x1, C0, V0, Vk, locT);
+                        // P(lines[k].coord, lines[k].velos);
+                        // P(t, a, b, Ck, x1, C0, V0, Vk, locT);
                         if(locT == std::numeric_limits<long double>::infinity() || locT < 1) {
                             found = false;
                             break;
