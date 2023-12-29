@@ -127,8 +127,10 @@ auto count2() {
     LL n = 0;
     FOR(i, lines.size()){
         auto& l = lines[i];
+        P(l.coord, l.velos);
         LL x1 = l.coord[n] + l.velos[n];
         for(LL j = i+1; j < lines.size();++j) {
+            P(lines[j].coord, lines[j].velos);
             LL c2 = lines[j].coord[n];
             LL v2 = lines[j].velos[n];
             for(LL t = 2; t < 7; ++t) {
@@ -142,11 +144,12 @@ auto count2() {
                         long double a = (Ck - V0);
                         long double b = V0 - Vk;
                         long double locT = a / b;
-                        P(a, b, Ck, x1, V0, Vk, locT);
                         if(locT < 1) {
                             found = false;
                             break;
                         }
+                        P(lines[k].coord, lines[k].velos);
+                        P(a, b, Ck, x1, V0, Vk, locT);
                     }
                 }
                 if(found) {
