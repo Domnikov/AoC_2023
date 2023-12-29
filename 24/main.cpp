@@ -134,7 +134,6 @@ auto count2() {
                         result++;
                     }
                 }
-                P(t);
             }
             P(j);
         }
