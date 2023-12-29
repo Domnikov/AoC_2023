@@ -32,7 +32,8 @@ S Slopes = "^v<>";
 auto count1() {
     LL result = 0;
     std::queue<Path> q;
-    q.emplace(0,1);
+    Path init(0,1);
+    q.emplace(1,1, init);
     while(!q.empty()){
         auto p = q.front();
         if(p.cur.first == in.size()-1){
@@ -51,6 +52,9 @@ auto count1() {
             const auto& m = Mods[i];
             auto newPos = cur+m;
             if(in[newPos.first][newPos.second] == '#') {
+                continue;
+            }
+            if(p.path.back() == newPos) {
                 continue;
             }
             q.emplace(newPos, p);
