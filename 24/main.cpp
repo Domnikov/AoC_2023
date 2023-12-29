@@ -140,7 +140,7 @@ auto count2() {
                         LL Vk = lines[k].velos[n];
                         long double a = (Ck - (x1 - V0));
                         long double b = V0 - Vk;
-                        P(a, b, Ck, x1, V0, Vk);
+                        // P(a, b, Ck, x1, V0, Vk);
                         long double locT = a / b;
                         if(locT < 1) {
                             found = false;
@@ -149,7 +149,7 @@ auto count2() {
                     }
                 }
                 if(found) {
-                    P(x1-V0, V0);
+                    P(t, x1-V0, V0);
                 }
             }
         }
