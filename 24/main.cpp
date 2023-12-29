@@ -134,8 +134,11 @@ auto count2() {
                         result++;
                     }
                 }
+                P(t);
             }
+            P(j);
         }
+        P(i);
         // V0 = (x1 - C2 - T*V2) / ( 1 - T)
     }
 #if 0
