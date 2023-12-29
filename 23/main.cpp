@@ -96,7 +96,6 @@ bool TillNextCrossRoad(Path& path) {
             ways_count++;
             valid_next = newPos;
             if(newPos.first == in.size()-1) {
-            P(newPos, in[newPos.first][newPos.second], ways_count);
                 running = false;
                 break;
             }
@@ -104,6 +103,7 @@ bool TillNextCrossRoad(Path& path) {
         if(ways_count == 1){
             path.path.push_back(valid_next);
             path.cur = valid_next;
+            path.score++;
         } else if(ways_count == 0) {
             return false;
         } else {
