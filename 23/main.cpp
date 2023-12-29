@@ -11,6 +11,7 @@ auto in = getInput();
 
 struct Path{
     Path(LL r, LL c) {
+        P(r, c);
         cur = {r, c};
         // prev = {r-1, c};
         score = 1;
