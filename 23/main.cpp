@@ -12,6 +12,7 @@ auto in = getInput();
 struct Path{
     Path(LL r, LL c) {
         cur = {r, c};
+        prev = {r-1, c};
         score = 1;
         // path.emplace_back(cur);
         set.insert(cur);
