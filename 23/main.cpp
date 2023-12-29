@@ -12,7 +12,7 @@ auto in = getInput();
 struct Path{
     Path(LL r, LL c) {
         cur = {r, c};
-        prev = {r-1, c};
+        // prev = {r-1, c};
         score = 1;
         // path.emplace_back(cur);
         set.insert(cur);
@@ -26,7 +26,7 @@ struct Path{
         set.insert(cur);
     }
     std::pair<LL,LL> cur;
-    std::pair<LL,LL> prev;
+    std::pair<LL,LL> prev{-1, 1};
     LL score;
     // VECPLL path;
     std::set<std::pair<LL,LL>> set;
