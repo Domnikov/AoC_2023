@@ -155,7 +155,6 @@ auto count2() {
             LL c2 = lines[j].coord[n];
             LL v2 = lines[j].velos[n];
             for(LL t = 2; t < 7; ++t) {
-                 P_RR("------------------------------------------\n");
                 long double Vtmp1 = x1 - c2 - t*v2;
                 long double Vtmp2 = 1-t;
                 auto V0 = Vtmp1 / Vtmp2;
@@ -176,25 +175,6 @@ auto count2() {
                         found = false;
                         break;
                     }
-                    // if( k != i && k != j)
-                    // {
-                    //     long double Ck = lines[k].coord[n];
-                    //     long double Vk = lines[k].velos[n];
-                    //     long double a = (Ck - C0);
-                    //     long double b = V0 - Vk;
-                    //     long double locT = a / b;
-                    //     // P(lines[k].coord, lines[k].velos);
-                    //     // P(t, a, b, Ck, x1, C0, V0, Vk, locT);
-                    //     if(locT == std::numeric_limits<long double>::infinity() || locT < 1) {
-                    //         found = false;
-                    //         break;
-                    //     }
-                    //     P(l.coord, l.velos, lines[k].coord, lines[k].velos);
-                    //     P_RR("\t");
-                    //     P(t, a, b, x1);
-                    //     P_RR("\t");
-                    //     P(C0, V0, Ck, Vk, locT);
-                    // }
                 }
                 if(found) {
                     P(found, t, C0, V0);
