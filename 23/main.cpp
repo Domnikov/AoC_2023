@@ -42,7 +42,7 @@ auto count1() {
         }
         q.pop();
         auto cur = p.cur;
-        P(cur);
+        P(cur, p.path);
         FOR(i, Mods.size()) {
             if(in[cur.first][cur.second] != '.') {
                 if(in[cur.first][cur.second] != Slopes[i]){
