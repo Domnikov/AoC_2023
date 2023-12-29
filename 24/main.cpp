@@ -148,7 +148,7 @@ auto count2() {
                         long double a = (Ck - V0);
                         long double b = V0 - Vk;
                         long double locT = a / b;
-                        if(locT != std::numeric_limuts<long double>::inf && locT < 1) {
+                        if(locT != std::numeric_limits<long double>::infinity() && locT < 1) {
                             found = false;
                             break;
                         }
