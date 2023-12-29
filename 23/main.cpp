@@ -175,7 +175,7 @@ auto count2() {
         if(i%10000 == 0) {
             LL groth = p.set.size() - prev_set_size;
             prev_set_size = p.set.size();
-            P(i, point, q.size(), p.set.size(), result);
+            P(i, point, q.size(), p.set.size(), groth, result);
             // point *= 10;
         }
     }
