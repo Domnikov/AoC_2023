@@ -97,6 +97,7 @@ bool TillNextCrossRoad(Path& path) {
             valid_next = newPos;
             if(newPos.first == in.size()-1) {
             P(newPos, in[newPos.first][newPos.second], ways_count);
+                running = false;
                 break;
             }
         }
