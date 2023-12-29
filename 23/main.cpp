@@ -135,6 +135,14 @@ auto count2() {
     Path init(0,1);
     q.emplace(std::pair<LL,LL>{1,1}, init);
     LL point = 1;
+    LL prev_set_size = 0;
+#ifdef TEST
+    std::pair<LL,LL> endcr1{19, 13};
+    std::pair<LL,LL> endcr2{11, 21};
+#else
+    std::pair<LL,LL> endcr1{113, 125};
+    std::pair<LL,LL> endcr2{137, 111};
+#endif
     for(LL i = 0;!q.empty();++i){
         auto p = q.front();
         q.pop();
@@ -156,11 +164,15 @@ auto count2() {
             if(TillNextCrossRoad(newPath)){
                 newPath.set.insert(newPath.cur);
                 // newPath.path.push_back(newPath.cur);
-                q.push(newPath);
+                if(newPath.cur.first == in.size()-1 || !(newPath.set.count(endcr1) && newPath.set.count(endcr2))) {
+                    q.push(newPath);
+                }
             }
         }
         // if(i > point){
         if(i%10000 == 0) {
+            LL groth = p.set.size() - prev_set_size;
+            prev_set_size = p.set.size();
             P(i, point, q.size(), p.set.size(), result);
             // point *= 10;
         }
