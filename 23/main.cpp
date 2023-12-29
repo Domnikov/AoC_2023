@@ -167,7 +167,7 @@ auto count2() {
     while(!q.empty()){
         auto qq = q.front();
         q.pop();
-        P(qq.cur, qq.score, qq.set);
+        P(qq.cur, qq.score, qq.set, qq.set.size());
     }
 
     return result-1;
