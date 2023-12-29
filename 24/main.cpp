@@ -50,8 +50,11 @@ struct Line2d{
         auto [cx, cy] = GetCP(other);
         auto dx = cx-x;
         auto dxOther = cx-other.x;
-        // P(cx, x, dx, vx, dxOther, other.x, other.vx);
-        return ((dxOther/other.vx) > 0) && ((dx/vx) > 0);
+        bool result = ((dxOther/other.vx) > 0) && ((dx/vx) > 0);
+        if(!result) {
+            P(cx, x, dx, vx, dxOther, other.x, other.vx);
+        }
+        return result;
     }
 
     std::pair<double,double> GetCP(const Line2d& other) const {
