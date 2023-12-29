@@ -32,11 +32,11 @@ struct Line2d{
 
     }
 
-    bool IsParal(const Line2d& other) {
+    bool IsParal(const Line2d& other) const {
         return ((a / other.a) == (b / other.b));
     }
 
-    std::pair<double,double> intersect(const Line2d& other) {
+    std::pair<double,double> GetCP(const Line2d& other) const {
         double x, y;
         double det = a * other.b - other.a * b;
         x = (b * other.c - other.b * c) / det;
@@ -63,6 +63,11 @@ auto count1() {
                 crossingLines.emplace_back(lines[i], lines[j]);
             }
         }
+    }
+
+    for(const auto& pair : crossingLines) {
+        auto CP = pair.first.GetCP(pair.second);
+        P(CP);
     }
 
     return result = crossingLines.size();
