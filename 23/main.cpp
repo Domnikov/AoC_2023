@@ -86,7 +86,7 @@ auto count2() {
         FOR(i, Mods.size()) {
             const auto& m = Mods[i];
             auto newPos = cur+m;
-            P(newPos, p.path);
+            // P(newPos, p.path);
             if(in[newPos.first][newPos.second] == '#') {
                 continue;
             }
