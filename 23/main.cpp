@@ -86,7 +86,7 @@ auto count2() {
         FOR(i, Mods.size()) {
             if(in[cur.first][cur.second] != '.') {
                 if(in[cur.first][cur.second] != Slopes[i]){
-                    continue;
+                    // continue;
                 }
             }
             const auto& m = Mods[i];
