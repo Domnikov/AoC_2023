@@ -139,9 +139,11 @@ auto count2() {
 #ifdef TEST
     std::pair<LL,LL> endcr1{19, 13};
     std::pair<LL,LL> endcr2{11, 21};
+    std::pair<LL,LL> endcr2{19, 19};
 #else
     std::pair<LL,LL> endcr1{113, 125};
     std::pair<LL,LL> endcr2{137, 111};
+    std::pair<LL,LL> endcr3{137, 135};
 #endif
     for(LL i = 0;!q.empty();++i){
         auto p = q.front();
@@ -164,7 +166,7 @@ auto count2() {
             if(TillNextCrossRoad(newPath)){
                 newPath.set.insert(newPath.cur);
                 // newPath.path.push_back(newPath.cur);
-                if(newPath.cur.first == in.size()-1 || !(newPath.set.count(endcr1) && newPath.set.count(endcr2))) {
+                if(newPath.cur.first == in.size()-1 || newPath.cur == endcr3 || !(newPath.set.count(endcr1) && newPath.set.count(endcr2))) {
                     q.push(newPath);
                 }
             }
