@@ -151,12 +151,12 @@ auto count2() {
                         long double a = (Ck - V0);
                         long double b = V0 - Vk;
                         long double locT = a / b;
+                        P(lines[k].coord, lines[k].velos);
+                        P(t, a, b, Ck, x1, C0, V0, Vk, locT);
                         if(locT == std::numeric_limits<long double>::infinity() || locT < 1) {
                             found = false;
                             break;
                         }
-                        P(lines[k].coord, lines[k].velos);
-                        P(t, a, b, Ck, x1, C0, V0, Vk, locT);
                     }
                 }
                 if(found) {
