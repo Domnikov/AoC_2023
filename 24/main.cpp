@@ -13,12 +13,12 @@ auto in = getInput();
 struct Line2d{
     Line2d(const S& str){
         auto vecs = splitStr(str, '@');
-        assert(vecs.size() != 2);
+        assert(vecs.size() == 2);
         auto vecp = vecsToVeci(splitStr(vecs[0], ','));
         auto vecv = vecsToVeci(splitStr(vecs[1], ','));
 
-        assert(vecp.size() != 3);
-        assert(vecv.size() != 3);
+        assert(vecp.size() == 3);
+        assert(vecv.size() == 3);
 
 
     }
