@@ -4,9 +4,11 @@ double L = 7;
 double H = 21;
 #else
 #include "in.hpp"
-double L = 200000000000000;
-double H = 400000000000000;
+// double L = 200000000000000;
+// double H = 400000000000000;
 #endif
+double L = 7;
+double H = 21;
 
 #include <cassert>
 #include <queue>
