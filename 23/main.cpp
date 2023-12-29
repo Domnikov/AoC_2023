@@ -13,18 +13,20 @@ struct Path{
     Path(LL r, LL c) {
         row=r;
         col=c;
+        score = 1;
+        path.emplace_back(r,c);
     }
     Path(LL r, LL c, const Path& old){
         row=r;
         col=c;
         score=old.score+1;
         path = old.path;
-        path.emplace_back(r*1000+c);
+        path.emplace_back(r,c);
     }
     LL row;
     LL col;
     LL score;
-    VECI path;
+    VECPLL path;
 };
 
 auto count1() {
