@@ -79,7 +79,6 @@ bool TillNextCrossRoad(Path& path) {
         FOR(i, Mods.size()) {
             const auto& m = Mods[i];
             auto newPos = cur+m;
-            P(newPos);
             if(in[newPos.first][newPos.second] == '#') {
                 continue;
             }
@@ -96,6 +95,9 @@ bool TillNextCrossRoad(Path& path) {
             }
             ways_count++;
             valid_next = newPos;
+            if(newPos.first == in.size()-1) {
+                break;
+            }
         }
         if(ways_count == 1){
             path.path.push_back(valid_next);
