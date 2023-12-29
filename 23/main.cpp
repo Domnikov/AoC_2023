@@ -79,13 +79,13 @@ bool TillNextCrossRoad(Path& path) {
         FOR(i, Mods.size()) {
             const auto& m = Mods[i];
             auto newPos = cur+m;
+            P(newPos);
             if(in[newPos.first][newPos.second] == '#') {
                 continue;
             }
             if(prev == newPos) {
                 continue;
             }
-            P_LINE;
             if(std::find_if(BE(path.path), [newPos, ends = 0](const auto& p)mutable{
                             if(p == std::make_pair(113LL, 125LL) || p == std::make_pair(137LL, 111LL)) {
                                 ends++;
