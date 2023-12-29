@@ -69,6 +69,11 @@ auto count1() {
     return result-1;
 }
 
+void TillNextCrossRoad() {
+    LL ways_count = 0;
+
+}
+
 auto count2() {
     LL result = 0;
     std::queue<Path> q;
