@@ -127,6 +127,13 @@ auto count2() {
 
     FOR(i, lines.size()){
         auto& l = lines[i];
+        for(LL j = i+1; j < lines.size();++j) {
+            for(LL t = 2; t < 1000; ++t) {
+
+                result++;
+            }
+        }
+        // V0 = (x1 - C2 - T*V2) / ( 1 - T)
     }
 #if 0
 
