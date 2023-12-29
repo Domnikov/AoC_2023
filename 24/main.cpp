@@ -187,9 +187,9 @@ auto count2() {
             }
         }
     }
-    // P_MAPV(map[0]);
-    // P_MAPV(map[1]);
-    // P_MAPV(map[2]);
+    P_MAPV(map[0]);
+    P_MAPV(map[1]);
+    P_MAPV(map[2]);
     for(const auto& m0:map[0]) {
         if(map[1].count(m0.first) && map[2].count(m0.first)){
             P(m0.second);
