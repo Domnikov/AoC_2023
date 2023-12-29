@@ -92,6 +92,8 @@ bool TillNextCrossRoad(Path& path) {
             if(prev == newPos) {
                 continue;
             }
+    P_LINE;
+    P(newPos);
             if(in[newPos.first][newPos.second] == '#') {
                 continue;
             }
