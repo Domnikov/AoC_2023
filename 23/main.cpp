@@ -9,8 +9,32 @@
 
 auto in = getInput();
 
+struct Path{
+    Path(LL r, LL c) {
+        row=r;
+        col=c;
+    }
+    Path(LL r, LL c, const Path& old){
+        row=r;
+        col=c;
+        score=old.score+1;
+        path = old.path;
+        path.emplace_back(r*1000+c);
+    }
+    LL row;
+    LL col;
+    LL score;
+    VECI path;
+};
+
 auto count1() {
     LL result = 0;
+    std::queue<Path> q;
+    q.emplace(0,1);
+    while(!q.empty()){
+        auto p = q.front();
+        q.pop();
+    }
 
     return result;
 }
