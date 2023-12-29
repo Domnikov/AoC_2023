@@ -194,11 +194,11 @@ P_LINE;
 int main(int argc, char** argv)
 {
     LL score = 0;
-    // score = count1();
+    score = count1();
     P_RR("Part1: %lld\n", score);
     //========================================================
 
-    score = count2();
+    // score = count2();
     P_RR("Part2: %lld\n", score);
     return 0;
 }
