@@ -14,6 +14,7 @@ long double H = 400000000000000;
 
 auto in = getInput();
 
+#if 0
 struct Line2d{
     Line2d(const S& str){
         auto vecs = splitStr(str, '@');
@@ -99,9 +100,30 @@ auto count1() {
 
     return result;
 }
+#endif
+
+struct Line3d {
+    Line3d(const S& str){
+        auto vecs = splitStr(str, '@');
+        assert(vecs.size() == 2);
+        auto vecp = vecsToVeci(splitStr(vecs[0], ','));
+        auto vecv = vecsToVeci(splitStr(vecs[1], ','));
+
+        assert(vecp.size() == 3);
+        assert(vecv.size() == 3);
+
+        coord = vecp;
+        velos = vecv;
+    }
+
+    VECI coord;
+    VECI velos;
+};
 
 auto count2() {
     LL result = 0;
+    std::vector<Line3d> lines;
+    std::transform(BE(in), std::back_inserter(lines), [](const auto& s){return Line3d(s);});
 
     return result;
 }
@@ -109,7 +131,7 @@ auto count2() {
 int main(int argc, char** argv)
 {
     LL score = 0;
-    score = count1();
+    // score = count1();
     P_RR("Part1: %lld\n", score);
     //========================================================
 
