@@ -90,15 +90,15 @@ bool TillNextCrossRoad(Path& path) {
             if(prev == newPos) {
                 continue;
             }
-            if(/*(path.set.count(endcr1) && path.set.count(endcr1)) ||*/ path.set.count(newPos)){
-            // if(std::find_if(BE(path.path), [newPos, ends = 0](const auto& p)mutable{
-            //                 if(p == std::make_pair(113LL, 125LL) || p == std::make_pair(137LL, 111LL)) {
-            //                     ends++;
-            //                 }
-            //                 return ends == 2 || p == newPos;
-            //             }) != path.path.end()) {
-                continue;
-            }
+            // if(/*(path.set.count(endcr1) && path.set.count(endcr1)) ||*/ path.set.count(newPos)){
+            // // if(std::find_if(BE(path.path), [newPos, ends = 0](const auto& p)mutable{
+            // //                 if(p == std::make_pair(113LL, 125LL) || p == std::make_pair(137LL, 111LL)) {
+            // //                     ends++;
+            // //                 }
+            // //                 return ends == 2 || p == newPos;
+            // //             }) != path.path.end()) {
+            //     continue;
+            // }
             ways_count++;
             valid_next = newPos;
             if(newPos.first == in.size()-1) {
@@ -108,7 +108,6 @@ bool TillNextCrossRoad(Path& path) {
         }
         if(ways_count == 1){
             path.path.push_back(valid_next);
-            path.set.insert(valid_next);
             path.cur = valid_next;
             path.score++;
         } else if(ways_count == 0) {
@@ -117,7 +116,7 @@ bool TillNextCrossRoad(Path& path) {
             running = false;
         }
     }
-    return true;
+    return path.set.count(path.cur);
     // (113, 125)
     //     (137,111)
 }
@@ -144,12 +143,10 @@ auto count2() {
             if(in[newPos.first][newPos.second] == '#') {
                 continue;
             }
-            if(std::find(BE(p.path), newPos) != p.path.end()) {
-                continue;
-            }
             // q.emplace(newPos, p);
             Path newPath{newPos, p};
             if(TillNextCrossRoad(newPath)){
+                newPath.set.insert(newPath.cur);
                 q.push(newPath);
             }
         }
