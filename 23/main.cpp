@@ -166,9 +166,11 @@ auto count2() {
             if(TillNextCrossRoad(newPath)){
                 newPath.set.insert(newPath.cur);
                 // newPath.path.push_back(newPath.cur);
-                if(newPath.cur.first == in.size()-1 || newPath.cur == endcr3 || !(newPath.set.count(endcr1) && newPath.set.count(endcr2))) {
-                    q.push(newPath);
+                if(newPath.cur.first != in.size()-1 && newPath.cur != endcr3 && newPath.set.count(endcr1) && newPath.set.count(endcr2)) {
+                    continue;
                 }
+                q.push(newPath);
+
             }
         }
         // if(i > point){
