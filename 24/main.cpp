@@ -133,12 +133,13 @@ auto count2() {
             LL v2 = lines[j].velos[n];
             for(LL t = 2; t < 1000; ++t) {
                 LL V0 = (x1 - c2 - t*v2) / ( 1 - t);
+                LL C0 = x1 - V0;
                 bool found = true;
                 FOR(k, lines.size()){
                     if( k != i && k != j) {
                         LL Ck = lines[k].coord[n];
                         LL Vk = lines[k].velos[n];
-                        long double a = (Ck - (x1 - V0));
+                        long double a = (Ck - V0);
                         long double b = V0 - Vk;
                         // P(a, b, Ck, x1, V0, Vk);
                         long double locT = a / b;
