@@ -174,7 +174,7 @@ auto count2() {
                         LL Ck = lines[k].coord[n];
                         LL Vk = lines[k].velos[n];
                         auto cp = Line2d({(LL)C0, 0, 0}, {(LL)V0, 1, 0}).GetCP(Line2d{{Ck, 0, 0},{Vk, 1, 0}});
-                        if(isnan(cp.second) || cp.second == std::numeric_limits<long double>::infinity() || cp.second < 1) {
+                        if(std::isnan(cp.second) || cp.second == std::numeric_limits<long double>::infinity() || cp.second < 1) {
                             found = false;
                             break;
                         }
