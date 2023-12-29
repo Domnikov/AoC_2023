@@ -165,7 +165,7 @@ auto count2() {
                     }
                 }
                 if(found) {
-                    P(t, x1-V0, V0);
+                    P(found, t, x1-V0, V0);
                 }
             }
         }
