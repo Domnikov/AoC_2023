@@ -88,6 +88,7 @@ bool TillNextCrossRoad(Path& path) {
     while(running) {
         auto cur = path.cur;
         auto prev = path.prev;
+        P(__LINE__, cur, prev);
         std::pair<LL,LL> valid_next;
         LL ways_count = 0;
         FOR(i, Mods.size()) {
