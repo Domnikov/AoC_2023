@@ -13,15 +13,15 @@ struct Path{
     Path(LL r, LL c) {
         cur = {r, c};
         score = 1;
-        path.emplace_back(cur);
+        // path.emplace_back(cur);
         set.insert(cur);
     }
     Path(std::pair<LL,LL> pos, const Path& old){
         prev = old.cur;
         cur = pos;
         score=old.score+1;
-        path = old.path;
-        path.emplace_back(cur);
+        // path = old.path;
+        // path.emplace_back(cur);
         set = old.set;
     }
     std::pair<LL,LL> cur;
