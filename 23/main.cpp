@@ -12,7 +12,6 @@ auto in = getInput();
 struct Path{
     Path(LL r, LL c) {
         cur = {r, c};
-        // prev = {r-1, c};
         score = 1;
         // path.emplace_back(cur);
         set.insert(cur);
@@ -49,7 +48,6 @@ auto count1() {
         }
         auto cur = p.cur;
         auto prev = p.prev;
-        // P(cur, p.path);
         FOR(i, Mods.size()) {
             if(in[cur.first][cur.second] != '.') {
                 if(in[cur.first][cur.second] != Slopes[i]){
@@ -73,7 +71,6 @@ auto count1() {
     while(!q.empty()){
         auto qq = q.front();
         q.pop();
-        // P(qq.cur, qq.score, qq.path);
     }
 
     return result-1;
