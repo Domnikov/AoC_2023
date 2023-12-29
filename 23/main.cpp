@@ -119,10 +119,11 @@ bool TillNextCrossRoad(Path& path) {
         }
         P(cur, prev,valid_next, ways_count);
         if(ways_count == 1){
+            path = Path(valid_next, path);
             // path.path.push_back(valid_next);
-            path.prev = path.cur;
-            path.cur = valid_next;
-            path.score++;
+            // path.prev = path.cur;
+            // path.cur = valid_next;
+            // path.score++;
         } else if(ways_count == 0) {
             return false;
         } else {
