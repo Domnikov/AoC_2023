@@ -50,9 +50,11 @@ struct Line2d{
         auto [cx, cy] = GetCP(other);
         auto dx = cx-x;
         auto dxOther = cx-other.x;
+        bool result1 = ((dxOther/other.vx) > 0);
+        bool result2 = ((dx/vx) > 0);
         bool result = ((dxOther/other.vx) > 0) && ((dx/vx) > 0);
         if(!result) {
-            P(cx, x, dx, vx, dxOther, other.x, other.vx);
+            P(cx, x, dx, vx, dxOther, other.x, other.vx, result1, result2);
         }
         return result;
     }
