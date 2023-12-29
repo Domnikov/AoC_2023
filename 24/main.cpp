@@ -178,7 +178,6 @@ auto count2() {
                             found = false;
                             break;
                         }
-                        P(cp);
                         vec.emplace_back(k, cp.second);
                     }
                     if(found) {
