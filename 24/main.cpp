@@ -163,6 +163,10 @@ auto count2() {
                 // P(t, C0, V0);
                 bool found = true;
                 FOR(k, lines.size()){
+                    long double Ck = lines[k].coord[n];
+                    long double Vk = lines[k].velos[n];
+                    auto cp = Line2d({(LL)C0, 0, 0}, {(LL)V0, 1, 0}).GetCP(Line2d{{(LL)Ck, 0, 0},{(LL)Vk, 1, 0}});
+                    P(cp);
                     // if( k != i && k != j)
                     // {
                     //     long double Ck = lines[k].coord[n];
