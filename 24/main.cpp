@@ -158,7 +158,6 @@ auto count2() {
                             found = false;
                             break;
                         }
-                        P_RR("\t");
                         P(l.coord, l.velos, lines[k].coord, lines[k].velos);
                         P_RR("\t");
                         P(t, a, b, Ck, x1);
