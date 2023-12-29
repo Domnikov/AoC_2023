@@ -136,6 +136,8 @@ auto count2() {
                 bool found = true;P_LINE;
                 FOR(k, lines.size()){P_LINE;
                     if( k != i && k != j) {P_LINE;
+                        LL Ck = lines[k].coord[n];P_LINE;
+                        LL Vk = lines[k].velos[n];P_LINE;
                         LL locT = (lines[k].coord[n] - (x1-V0)) / (V0 - lines[k].velos[n]);P_LINE;
                         if(locT < 1) {
                             found = false;P_LINE;
