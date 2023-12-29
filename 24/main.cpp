@@ -166,7 +166,10 @@ auto count2() {
                     long double Ck = lines[k].coord[n];
                     long double Vk = lines[k].velos[n];
                     auto cp = Line2d({(LL)C0, 0, 0}, {(LL)V0, 1, 0}).GetCP(Line2d{{(LL)Ck, 0, 0},{(LL)Vk, 1, 0}});
-                    P(cp);
+                    if(cp.second == std::numeric_limits<long double>::infinity() || cp.second < 1) {
+                        found = false;
+                        break;
+                    }
                     // if( k != i && k != j)
                     // {
                     //     long double Ck = lines[k].coord[n];
