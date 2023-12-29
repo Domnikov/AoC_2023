@@ -20,7 +20,7 @@ struct Path{
     }
     Path(std::pair<LL,LL> pos, const Path& old){
         auto tmp = cur;
-        prev = cur;
+        prev = old.cur;
         cur = pos;
         P(tmp, pos, prev, cur, old.cur, old.prev);
         score=old.score+1;
