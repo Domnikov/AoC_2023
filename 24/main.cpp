@@ -1,7 +1,11 @@
 #ifdef TEST
 #include "in_test.hpp"
+doublet L = 7;
+doublet H = 21;
 #else
 #include "in.hpp"
+double L = 200000000000000;
+double H = 400000000000000;
 #endif
 
 #include <cassert>
@@ -66,11 +70,13 @@ auto count1() {
     }
 
     for(const auto& pair : crossingLines) {
-        auto CP = pair.first.GetCP(pair.second);
-        P(CP);
+        auto [x,y] = pair.first.GetCP(pair.second);
+        if( L <= x && x <= H && L <= y && y <= H ) {
+            result ++;
+        }
     }
 
-    return result = crossingLines.size();
+    return result;
 }
 
 auto count2() {
