@@ -33,7 +33,7 @@ auto count1() {
     LL result = 0;
     std::queue<Path> q;
     Path init(0,1);
-    q.emplace(1,1, init);
+    q.emplace(std::pair<LL,LL>{1,1}, init);
     while(!q.empty()){
         auto p = q.front();
         if(p.cur.first == in.size()-1){
