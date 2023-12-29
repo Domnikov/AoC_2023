@@ -152,7 +152,7 @@ auto count2() {
                             break;
                         }
                         P(lines[k].coord, lines[k].velos);
-                        P(a, b, Ck, x1, V0, Vk, locT);
+                        P(a, b, Ck, x1, C0, V0, Vk, locT);
                     }
                 }
                 if(found) {
