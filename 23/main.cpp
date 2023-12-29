@@ -135,7 +135,7 @@ auto count2() {
     Path init(0,1);
     q.emplace(std::pair<LL,LL>{1,1}, init);
     LL point = 1;
-    for(LL i = 0;!q.empty();++i){
+    for(LL i = 0;i<5&&!q.empty();++i){
         auto p = q.front();
         q.pop();
         if(p.cur.first == in.size()-1){
@@ -163,7 +163,6 @@ auto count2() {
             P(point, q.size(), result);
             point *= 10;
         }
-        break;
     }
     while(!q.empty()){
         auto qq = q.front();
