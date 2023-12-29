@@ -158,10 +158,12 @@ auto count2() {
                             break;
                         }
                         P(l.coord, l.velos, lines[k].coord, lines[k].velos);
+                        P_RR("\t");
                         P(t, a, b, Ck, x1, C0, V0, Vk, locT);
                     }
                 }
                 if(found) {
+                        P_RR("\t");
                     P(t, x1-V0, V0);
                 }
             }
