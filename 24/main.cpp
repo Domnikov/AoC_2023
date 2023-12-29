@@ -186,7 +186,7 @@ auto count2() {
             }
         }
     }
-    P_MAPV(map);
+    P_MAPV(map[0]);
 #if 0
 
 x1 = V1*1 + C1
