@@ -11,6 +11,7 @@ long double H = 400000000000000;
 #include <cassert>
 #include <queue>
 #include <list>
+#include <limits>
 
 auto in = getInput();
 
@@ -147,7 +148,7 @@ auto count2() {
                         long double a = (Ck - V0);
                         long double b = V0 - Vk;
                         long double locT = a / b;
-                        if(locT < 1) {
+                        if(locT != std::numeric_limuts<long double>::inf && locT < 1) {
                             found = false;
                             break;
                         }
