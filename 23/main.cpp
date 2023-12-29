@@ -84,11 +84,11 @@ auto count2() {
         auto cur = p.cur;
         P(cur, p.path);
         FOR(i, Mods.size()) {
-            // if(in[cur.first][cur.second] != '.') {
-            //     if(in[cur.first][cur.second] != Slopes[i]){
-            //         continue;
-            //     }
-            // }
+            if(in[cur.first][cur.second] != '.') {
+                if(in[cur.first][cur.second] != Slopes[i]){
+                    continue;
+                }
+            }
             const auto& m = Mods[i];
             auto newPos = cur+m;
             if(in[newPos.first][newPos.second] == '#') {
