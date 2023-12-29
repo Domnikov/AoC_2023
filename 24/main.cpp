@@ -160,6 +160,12 @@ auto count2() {
                 long double Vtmp2 = 1-t;
                 auto V0 = Vtmp1 / Vtmp2;
                 auto C0 = x1 - V0;
+                if((C0 - (LL)C0) > 0.01) {
+                    continue;
+                }
+                if((V0 - (LL)V0) > 0.01) {
+                    continue;
+                }
                 // P(t, C0, V0);
                 bool found = true;
                 FOR(k, lines.size()){
@@ -191,7 +197,7 @@ auto count2() {
                     // }
                 }
                 if(found) {
-                    P(found, t, x1-V0, V0);
+                    P(found, t, C0, V0);
                 }
             }
         }
