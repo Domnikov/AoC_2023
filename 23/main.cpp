@@ -89,13 +89,13 @@ bool TillNextCrossRoad(Path& path) {
             const auto& m = Mods[i];
             auto newPos = cur+m;
     P_LINE;
+            if(prev == newPos) {
+                continue;
+            }
             if(in[newPos.first][newPos.second] == '#') {
                 continue;
             }
     P_LINE;
-            if(prev == newPos) {
-                continue;
-            }
     P_LINE;
             // if(/*(path.set.count(endcr1) && path.set.count(endcr1)) ||*/ path.set.count(newPos)){
             // // if(std::find_if(BE(path.path), [newPos, ends = 0](const auto& p)mutable{
