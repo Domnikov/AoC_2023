@@ -159,8 +159,9 @@ auto count2() {
                 q.push(newPath);
             }
         }
-        if(i > point){
-            P(point, q.size(), result);
+        // if(i > point){
+        if(i%10000 == 0) {
+            P(i, point, q.size(), p.set.size(), result);
             point *= 10;
         }
     }
