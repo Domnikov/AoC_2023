@@ -148,7 +148,7 @@ auto count2() {
                     if( k != i && k != j) {
                         LL Ck = lines[k].coord[n];
                         LL Vk = lines[k].velos[n];
-                        long double a = (Ck - V0);
+                        long double a = (Ck - C0);
                         long double b = V0 - Vk;
                         long double locT = a / b;
                         P(lines[k].coord, lines[k].velos);
@@ -190,6 +190,8 @@ Xj = Vj*T + Cj
 V0*T + C0 = Vj*T + Cj
 
 T = (Cj - C0) / (V0 - Vj)
+T = (19 - 24) / (-3 - -2) = -5 / (-3 + 2)
+t = 3;  a = 22; b = -1; Ck = 19;        x1 = 21;        C0 = 24;        V0 = -3;        Vk = -2;        locT = -22
 
 #endif
 
