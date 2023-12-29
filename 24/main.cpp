@@ -1,11 +1,11 @@
 #ifdef TEST
 #include "in_test.hpp"
-double L = 7;
-double H = 21;
+long double L = 7;
+long double H = 21;
 #else
 #include "in.hpp"
-double L = 200000000000000;
-double H = 400000000000000;
+long double L = 200000000000000;
+long double H = 400000000000000;
 #endif
 
 #include <cassert>
@@ -30,8 +30,8 @@ struct Line2d{
         vx=vecv[0];
         vy=vecv[1];
 
-        double x2=x+vx;
-        double y2=y+vy;
+        long double x2=x+vx;
+        long double y2=y+vy;
 
         a = y - y2;
         b = x2 - x;
@@ -59,22 +59,22 @@ struct Line2d{
         return result;
     }
 
-    std::pair<double,double> GetCP(const Line2d& other) const {
-        double x, y;
-        double det = a * other.b - other.a * b;
+    std::pair<long double,long double> GetCP(const Line2d& other) const {
+        long double x, y;
+        long double det = a * other.b - other.a * b;
         x = (b * other.c - other.b * c) / det;
         y = (other.a * c - a * other.c) / det;
 
         return {x,y};
     }
 
-    double a;
-    double b;
-    double c;
-    double x;
-    double y;
-    double vx;
-    double vy;
+    long double a;
+    long double b;
+    long double c;
+    long double x;
+    long double y;
+    long double vx;
+    long double vy;
 };
 
 auto count1() {
