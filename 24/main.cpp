@@ -129,8 +129,11 @@ auto count2() {
         auto& l = lines[i];
         for(LL j = i+1; j < lines.size();++j) {
             for(LL t = 2; t < 1000; ++t) {
-
-                result++;
+                FOR(k, lines.size()){
+                    if( k != i && k != j) {
+                        result++;
+                    }
+                }
             }
         }
         // V0 = (x1 - C2 - T*V2) / ( 1 - T)
