@@ -126,23 +126,23 @@ auto count2() {
     std::transform(BE(in), std::back_inserter(lines), [](const auto& s){return Line4d(s);});
     LL n = 0;
     FOR(i, lines.size()){
-        auto& l = lines[i];
-        LL x1 = l.coord[n] + l.velos[n];
+        auto& l = lines[i];P_LINE;
+        LL x1 = l.coord[n] + l.velos[n];P_LINE;
         for(LL j = i+1; j < lines.size();++j) {
-            LL c2 = lines[j].coord[n];
-            LL v2 = lines[j].velos[n];
+            LL c2 = lines[j].coord[n];P_LINE;
+            LL v2 = lines[j].velos[n];P_LINE;
             for(LL t = 2; t < 1000; ++t) {
-                LL V0 = (x1 - c2 - t*v2) / ( 1 - t);
-                bool found = true;
+                LL V0 = (x1 - c2 - t*v2) / ( 1 - t);P_LINE;
+                bool found = true;P_LINE;
                 FOR(k, lines.size()){
                     if( k != i && k != j) {
-                        LL locT = (lines[j].coord[n] - (x1-V0)) / (V0 - lines[j].velos[n]);
+                        LL locT = (lines[j].coord[n] - (x1-V0)) / (V0 - lines[j].velos[n]);P_LINE;
                         if(locT < 1) {
-                            found = false;
+                            found = false;P_LINE;
                             break;
                         }
                     }
-                }
+                }P_LINE;
                 if(found) {
                     P(x1-V0, V0);
                 }
