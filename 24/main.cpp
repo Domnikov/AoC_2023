@@ -48,7 +48,7 @@ struct Line2d{
             return false;
         }
         auto [cx, cy] = GetCP(other);
-        auto dx = x-cx;
+        auto dx = cx-x;
         return (dx/vx) > 0;
     }
 
