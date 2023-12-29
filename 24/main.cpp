@@ -102,8 +102,8 @@ auto count1() {
 }
 #endif
 
-struct Line3d {
-    Line3d(const S& str){
+struct Line4d {
+    Line4d(const S& str){
         auto vecs = splitStr(str, '@');
         assert(vecs.size() == 2);
         auto vecp = vecsToVeci(splitStr(vecs[0], ','));
@@ -122,8 +122,44 @@ struct Line3d {
 
 auto count2() {
     LL result = 0;
-    std::vector<Line3d> lines;
-    std::transform(BE(in), std::back_inserter(lines), [](const auto& s){return Line3d(s);});
+    std::vector<Line4d> lines;
+    std::transform(BE(in), std::back_inserter(lines), [](const auto& s){return Line4d(s);});
+
+    FOR(i, lines.size()){
+        auto& l = lines[i];
+    }
+#if 0
+
+x1 = V1*1 + C1
+
+x0 = V0*T + (x1-V0)
+x2 = V2*T + C2
+
+0 = T(V0-V2) + x1 - V0 - C2
+
+T(V2 - V0) + V0 = x1 - C2
+
+T*V2 - T*V0 + V0 = x1 - C2
+
+(1-T)*V0 = (x1 - C2 - T*V2)
+
+ ->   V0 = (x1 - C2 - T*V2) / ( 1 - T)
+
+V0 = (21 - 18 + 3) / (1-3) = 6 / -2
+
+V0 = (C2 - x1 + T*V2) / (T - 1)
+
+V0 = (18 - 21 - 3) / (-2) = 3
+
+1 = V0/V2 + (x1-V0)
+
+1 = v0/V2 + x1 - V0
+
+(1-x1) = V0((1-V2)/V2)
+
+V0 = (V2 * (1-x1))/(1-V1)
+
+#endif
 
     return result;
 }
