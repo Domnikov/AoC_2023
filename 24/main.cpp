@@ -24,20 +24,32 @@ struct Line2d{
         assert(vecp.size() == 3);
         assert(vecv.size() == 3);
 
-        double x1=vecp[0];
-        double y1=vecp[1];
+        double x=vecp[0];
+        double y=vecp[1];
 
-        double x2=x1+vecv[0];
-        double y2=y1+vecv[1];
+        double vx=vecv[0];
+        double vy=vecv[1];
 
-        a = y1 - y2;
-        b = x2 - x1;
-        c = x1*y2 - x2*y1;
+        double x2=x+vx;
+        double y2=y+vy;
+
+        a = y - y2;
+        b = x2 - x;
+        c = x*y2 - x2*y;
 
     }
 
     bool IsParal(const Line2d& other) const {
         return ((a / other.a) == (b / other.b));
+    }
+
+    bool ISCrossInFuture(const Line2d& other) const {
+        if(IsParal(other)){
+            return false;
+        }
+        auto [cx, cy] = GetCP(other);
+        auto dx = x-cx;
+        return (dx/vx) > 0;
     }
 
     std::pair<double,double> GetCP(const Line2d& other) const {
@@ -52,6 +64,10 @@ struct Line2d{
     double a;
     double b;
     double c;
+    double x;
+    double y;
+    double vx;
+    double vy;
 };
 
 auto count1() {
@@ -63,7 +79,7 @@ auto count1() {
 
     FOR(i, lines.size()){
         for(LL j = i+1; j < lines.size();++j) {
-            if(lines[i].IsParal(lines[j]) == false) {
+            if(lines[i].ISCrossInFuture(lines[j]) == false) {
                 crossingLines.emplace_back(lines[i], lines[j]);
             }
         }
