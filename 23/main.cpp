@@ -114,6 +114,7 @@ bool TillNextCrossRoad(Path& path) {
                 break;
             }
         }
+        P(valid_next, ways_count);
         if(ways_count == 1){
             // path.path.push_back(valid_next);
             path.prev = path.cur;
