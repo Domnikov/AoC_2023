@@ -40,6 +40,25 @@ struct Line2d{
 
     }
 
+    Line2d(const VECI& vecp, const VECI& vecv){
+        assert(vecp.size() == 3);
+        assert(vecv.size() == 3);
+
+        x=vecp[0];
+        y=vecp[1];
+
+        vx=vecv[0];
+        vy=vecv[1];
+
+        long double x2=x+vx;
+        long double y2=y+vy;
+
+        a = y - y2;
+        b = x2 - x;
+        c = x*y2 - x2*y;
+
+    }
+
     bool IsParal(const Line2d& other) const {
         return ((a / other.a) == (b / other.b));
     }
@@ -145,24 +164,24 @@ auto count2() {
                 bool found = true;
                 FOR(k, lines.size()){
                     // if( k != i && k != j)
-                    {
-                        long double Ck = lines[k].coord[n];
-                        long double Vk = lines[k].velos[n];
-                        long double a = (Ck - C0);
-                        long double b = V0 - Vk;
-                        long double locT = a / b;
-                        // P(lines[k].coord, lines[k].velos);
-                        // P(t, a, b, Ck, x1, C0, V0, Vk, locT);
-                        if(locT == std::numeric_limits<long double>::infinity() || locT < 1) {
-                            found = false;
-                            break;
-                        }
-                        P(l.coord, l.velos, lines[k].coord, lines[k].velos);
-                        P_RR("\t");
-                        P(t, a, b, x1);
-                        P_RR("\t");
-                        P(C0, V0, Ck, Vk, locT);
-                    }
+                    // {
+                    //     long double Ck = lines[k].coord[n];
+                    //     long double Vk = lines[k].velos[n];
+                    //     long double a = (Ck - C0);
+                    //     long double b = V0 - Vk;
+                    //     long double locT = a / b;
+                    //     // P(lines[k].coord, lines[k].velos);
+                    //     // P(t, a, b, Ck, x1, C0, V0, Vk, locT);
+                    //     if(locT == std::numeric_limits<long double>::infinity() || locT < 1) {
+                    //         found = false;
+                    //         break;
+                    //     }
+                    //     P(l.coord, l.velos, lines[k].coord, lines[k].velos);
+                    //     P_RR("\t");
+                    //     P(t, a, b, x1);
+                    //     P_RR("\t");
+                    //     P(C0, V0, Ck, Vk, locT);
+                    // }
                 }
                 if(found) {
                     P(found, t, x1-V0, V0);
