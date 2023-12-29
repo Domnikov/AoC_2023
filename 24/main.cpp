@@ -141,8 +141,8 @@ auto count2() {
                         LL Vk = lines[k].velos[n];
                         long double a = (Ck - V0);
                         long double b = V0 - Vk;
-                        // P(a, b, Ck, x1, V0, Vk);
                         long double locT = a / b;
+                        P(a, b, Ck, x1, V0, Vk, locT);
                         if(locT < 1) {
                             found = false;
                             break;
