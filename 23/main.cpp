@@ -17,6 +17,7 @@ struct Path{
         set.insert(cur);
     }
     Path(std::pair<LL,LL> pos, const Path& old){
+        prev = cur;
         cur = pos;
         score=old.score+1;
         path = old.path;
@@ -24,6 +25,7 @@ struct Path{
         set.insert(cur);
     }
     std::pair<LL,LL> cur;
+    std::pair<LL,LL> prev;
     LL score;
     VECPLL path;
     std::set<std::pair<LL,LL>> set;
@@ -45,6 +47,7 @@ auto count1() {
             continue;
         }
         auto cur = p.cur;
+        auto prev = p.prev;
         // P(cur, p.path);
         FOR(i, Mods.size()) {
             if(in[cur.first][cur.second] != '.') {
@@ -57,7 +60,7 @@ auto count1() {
             if(in[newPos.first][newPos.second] == '#') {
                 continue;
             }
-            if(p.path[p.path.size()-2] == newPos) {
+            if(prev == newPos) {
                 continue;
             }
             q.emplace(newPos, p);
@@ -78,7 +81,7 @@ bool TillNextCrossRoad(Path& path) {
     std::pair<LL,LL> endcr2{137, 111};
     while(running) {
         auto cur = path.cur;
-        auto prev = path.path[path.path.size()-2];
+        auto prev = path.prev;
         std::pair<LL,LL> valid_next;
         LL ways_count = 0;
         FOR(i, Mods.size()) {
@@ -108,7 +111,8 @@ bool TillNextCrossRoad(Path& path) {
             }
         }
         if(ways_count == 1){
-            path.path.push_back(valid_next);
+            // path.path.push_back(valid_next);
+            path.prev = path.cur;
             path.cur = valid_next;
             path.score++;
         } else if(ways_count == 0) {
@@ -117,7 +121,7 @@ bool TillNextCrossRoad(Path& path) {
             running = false;
         }
     }
-        P(path.cur, path.path);
+        P(path.cur, path.prev);
     return !path.set.count(path.cur);
     // (113, 125)
     //     (137,111)
@@ -149,6 +153,7 @@ auto count2() {
             Path newPath{newPos, p};
             if(TillNextCrossRoad(newPath)){
                 newPath.set.insert(newPath.cur);
+                newPath.path.push_back(newPath.cur);
                 q.push(newPath);
             }
         }
