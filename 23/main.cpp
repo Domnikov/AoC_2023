@@ -128,6 +128,7 @@ auto count2() {
     Path init(0,1);
     q.emplace(std::pair<LL,LL>{1,1}, init);
     LL point = 1;
+    P_LINE;
     for(LL i = 0;!q.empty();++i){
         auto p = q.front();
         q.pop();
