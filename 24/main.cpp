@@ -147,8 +147,8 @@ auto count2() {
                 bool found = true;
                 FOR(k, lines.size()){
                     if( k != i && k != j) {
-                        LL Ck = lines[k].coord[n];
-                        LL Vk = lines[k].velos[n];
+                        long double Ck = lines[k].coord[n];
+                        long double Vk = lines[k].velos[n];
                         long double a = (Ck - C0);
                         long double b = V0 - Vk;
                         long double locT = a / b;
