@@ -138,6 +138,7 @@ auto count2() {
             LL c2 = lines[j].coord[n];
             LL v2 = lines[j].velos[n];
             for(LL t = 2; t < 7; ++t) {
+                 P_RR("------------------------------------------\n");
                 long double Vtmp1 = x1 - c2 - t*v2;
                 long double Vtmp2 = 1-t;
                 auto V0 = Vtmp1 / Vtmp2;
@@ -157,13 +158,13 @@ auto count2() {
                             found = false;
                             break;
                         }
+                        P_RR("\t");
                         P(l.coord, l.velos, lines[k].coord, lines[k].velos);
                         P_RR("\t");
                         P(t, a, b, Ck, x1, C0, V0, Vk, locT);
                     }
                 }
                 if(found) {
-                        P_RR("\t");
                     P(t, x1-V0, V0);
                 }
             }
