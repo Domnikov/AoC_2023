@@ -57,6 +57,9 @@ auto count1() {
             }
             const auto& m = Mods[i];
             auto newPos = cur+m;
+            if(newPos.first < 0) {
+                continue;
+            }
             if(in[newPos.first][newPos.second] == '#') {
                 continue;
             }
