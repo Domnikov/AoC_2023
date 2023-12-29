@@ -185,6 +185,7 @@ auto count2() {
                 }
             }
         }
+        P(i);
     }
     P_MAPV(map[0]);
 #if 0
