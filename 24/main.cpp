@@ -180,7 +180,7 @@ auto count2() {
                             vec.emplace_back(k, 5);
                         } else {
                             auto cp = Line2d({(LL)C0, 0, 0}, {(LL)V0, 1, 0}).GetCP(Line2d{{Ck, 0, 0},{Vk, 1, 0}});
-                            P(cp, C0, V0, Ck, Vk, t, lines[k].coord);
+                            // P(cp, C0, V0, Ck, Vk, t, lines[k].coord);
                             if(std::isnan(cp.second) || cp.second == std::numeric_limits<long double>::infinity() || cp.second < 1) {
                                 found = false;
                                 break;
@@ -196,9 +196,9 @@ auto count2() {
             }
         }
     }
-    P_MAPV(map[0]);
-    P_MAPV(map[1]);
-    P_MAPV(map[2]);
+    // P_MAPV(map[0]);
+    // P_MAPV(map[1]);
+    // P_MAPV(map[2]);
     for(const auto& m0:map[0]) {
         if(map[1].count(m0.first) && map[2].count(m0.first)){
             P(m0.second, map[1][m0.first], map[2][m0.first]);
