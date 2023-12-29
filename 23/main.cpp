@@ -153,7 +153,7 @@ auto count2() {
             Path newPath{newPos, p};
             if(TillNextCrossRoad(newPath)){
                 newPath.set.insert(newPath.cur);
-                newPath.path.push_back(newPath.cur);
+                // newPath.path.push_back(newPath.cur);
                 q.push(newPath);
             }
         }
