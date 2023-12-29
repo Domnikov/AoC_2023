@@ -129,7 +129,10 @@ auto count2() {
         auto& l = lines[i];
         P(l.coord, l.velos);
         LL x1 = l.coord[n] + l.velos[n];
-        for(LL j = i+1; j < lines.size();++j) {
+        FOR(j, lines.size()) {
+            if(i == j) {
+                continue;
+            }
             P(lines[j].coord, lines[j].velos);
             LL c2 = lines[j].coord[n];
             LL v2 = lines[j].velos[n];
