@@ -142,6 +142,7 @@ auto count2() {
     LL result = 0;
     std::vector<Line4d> lines;
     std::transform(BE(in), std::back_inserter(lines), [](const auto& s){return Line4d(s);});
+    std::map<std::vector<std::pair<LL,LL>>, std::pair<LL,LL>> map[3];
     LL n = 0;
     FOR(i, lines.size()){
         auto& l = lines[i];
@@ -167,6 +168,7 @@ auto count2() {
                 }
                 // P(t, C0, V0);
                 bool found = true;
+                std::vector<std::pair<LL,LL>> vec;
                 FOR(k, lines.size()){
                     long double Ck = lines[k].coord[n];
                     long double Vk = lines[k].velos[n];
@@ -175,13 +177,14 @@ auto count2() {
                         found = false;
                         break;
                     }
+                    vec.emplace_back(k, cp.second);
                 }
                 if(found) {
-                    P(found, t, C0, V0);
+                    // P(found, t, C0, V0);
+                    map[n][vec] = std::make_pair<LL,LL>(C0, V0);
                 }
             }
         }
-        P(i);
     }
 #if 0
 
