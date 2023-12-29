@@ -83,7 +83,6 @@ bool TillNextCrossRoad(Path& path) {
     while(running) {
         auto cur = path.cur;
         auto prev = path.prev;
-        P(__LINE__, cur, prev);
         std::pair<LL,LL> valid_next;
         LL ways_count = 0;
         FOR(i, Mods.size()) {
@@ -112,7 +111,6 @@ bool TillNextCrossRoad(Path& path) {
                 break;
             }
         }
-        P(cur, prev,valid_next, ways_count);
         if(ways_count == 1){
             path = Path(valid_next, path);
             // path.path.push_back(valid_next);
@@ -125,7 +123,6 @@ bool TillNextCrossRoad(Path& path) {
             running = false;
         }
     }
-        P(path.cur, path.prev);
     return !path.set.count(path.cur);
     // (113, 125)
     //     (137,111)
@@ -135,22 +132,15 @@ auto count2() {
     LL result = 0;
     std::queue<Path> q;
     Path init(0,1);
-P_LINE;
     q.emplace(std::pair<LL,LL>{1,1}, init);
-P_LINE;
     LL point = 1;
-P_LINE;
     for(LL i = 0;!q.empty();++i){
-P_LINE;
         auto p = q.front();
-P_LINE;
         q.pop();
-P_LINE;
         if(p.cur.first == in.size()-1){
             result = std::max(result, p.score);
             continue;
         }
-P_LINE;
         auto cur = p.cur;
         // P(cur, p.path);
         FOR(i, Mods.size()) {
@@ -161,11 +151,8 @@ P_LINE;
                 continue;
             }
             // q.emplace(newPos, p);
-P_LINE;
             Path newPath{newPos, p};
-P_LINE;
             if(TillNextCrossRoad(newPath)){
-P_LINE;
                 newPath.set.insert(newPath.cur);
                 // newPath.path.push_back(newPath.cur);
                 q.push(newPath);
