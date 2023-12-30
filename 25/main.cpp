@@ -9,9 +9,9 @@
 
 auto in = getInput();
 
-LL countConnected(const std::vector<std::pair<S,S>>& map, LL i = -1, LL j = -1, LL k = -1){
-    std::queue<S> q;
-    std::set<S> set;
+LL countConnected(const std::vector<std::pair<LL,LL>>& map, LL i = -1, LL j = -1, LL k = -1){
+    std::queue<LL> q;
+    std::set<LL> set;
     for(LL idx = 0;q.empty();++idx){
         if(idx == i || idx == j || idx == k){
             continue;
@@ -20,21 +20,21 @@ LL countConnected(const std::vector<std::pair<S,S>>& map, LL i = -1, LL j = -1, 
     }
     set.insert(q.front());
     while(!q.empty()){
-        S name = q.front();
+        LL name = q.front();
         q.pop();
         for(LL idx = 0;idx < map.size();++idx){
             if(idx == i || idx == j || idx == k){
                 continue;
             }
             auto& s = map[idx];
-            S other;
+            LL other = -1;
             if(s.first == name){
                 other = s.second;
             }
             if(s.second == name){
                 other = s.first;
             }
-            if(other.empty()){
+            if(other == -1){
                 continue;
             }
             if(set.count(other) == 0){
@@ -49,7 +49,7 @@ LL countConnected(const std::vector<std::pair<S,S>>& map, LL i = -1, LL j = -1, 
 auto count1() {
     LL result = 0;
 
-    std::set<std::pair<S, S>> map;
+    std::set<std::pair<LL, LL>> map;
 
     for(const auto& s:in) {
         auto vec = splitStr(s, ':');
@@ -57,10 +57,12 @@ auto count1() {
         for(const auto& v:vec1){
             S s1 = vec[0] < v ? vec[0] : v;
             S s2 = s1 == v ? vec[0] : v;
-            map.emplace(s1, s2);
+            LL i1 = s1[0] * 1000000+s1[1]*1000+s1[2];
+            LL i2 = s2[0] * 1000000+s2[1]*1000+s2[2];
+            map.emplace(i1, i2);
         }
     }
-    std::vector<std::pair<S,S>> vec(map.begin(), map.end());
+    std::vector<std::pair<LL,LL>> vec(map.begin(), map.end());
     LL total = countConnected(vec);
     result = total;
     FOR(i, vec.size()){
