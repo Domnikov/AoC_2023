@@ -35,6 +35,7 @@ LL countConnected(const std::vector<std::pair<LL,LL>>& map, const std::map<LL,VE
             if(set.count(m) == 0){
                 q.push(m);
                 set.insert(m);
+                if(i != -1 && set.size() > 750) return 2000;
             }
         }
         // for(LL idx = 0;idx < map.size();++idx){
