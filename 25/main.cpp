@@ -70,7 +70,7 @@ auto count1() {
             for(LL k = j+1; k < vec.size(); ++k){
                 result = std::min(result, countConnected(vec, i, j, k));
                 P(i,j,k,result, total);
-                if(result < (vec.size()/2) && result > 0) return result * (total - result);
+                if(result < (total/2) && result > 0) return result * (total - result);
             }
         }
         P(i, result);
