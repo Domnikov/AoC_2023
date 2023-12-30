@@ -100,6 +100,8 @@ auto count1() {
                         result = local;
                         return;
                     }
+                    std::lock_guard<std::mutex> lock{mut};
+                    P(i,j,k, result);
                 }
             }
         });
