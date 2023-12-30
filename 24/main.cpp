@@ -158,7 +158,7 @@ auto count2() {
                 // P(lines[j].coord, lines[j].velos);
                 LL c2 = lines[j].coord[n];
                 LL v2 = lines[j].velos[n];
-                for(LL t = 2; t < 70000; ++t) {
+                for(LL t = 2; t < 7; ++t) {
                     long double Vtmp1 = x1 - c2 - t*v2;
                     long double Vtmp2 = 1-t;
                     auto V0f = Vtmp1 / Vtmp2;
@@ -198,9 +198,9 @@ auto count2() {
             }
         }
     }
-    // P_MAPV(map[0]);
-    // P_MAPV(map[1]);
-    // P_MAPV(map[2]);
+    P_MAPV(map[0]);
+    P_MAPV(map[1]);
+    P_MAPV(map[2]);
     for(const auto& m0:map[0]) {
         if(map[1].count(m0.first) && map[2].count(m0.first)){
             P(m0.second, map[1][m0.first], map[2][m0.first]);
