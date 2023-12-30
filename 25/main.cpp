@@ -87,10 +87,13 @@ auto count1() {
     std::vector<std::pair<LL,LL>> vec(map.begin(), map.end());
     LL total = countConnected(vec, searchMap);
     result = total;
-    std::thread ths[2000];
+    std::thread ths[40];
     bool finished = false;
     FOR(i, vec.size()){
-        ths[i] = std::thread([&result, &vec, &searchMap, total, i]{
+        if(ths[i%40].joinable()){
+            ths[i%40].join();
+        }
+        ths[i%40] = std::thread([&result, &vec, &searchMap, total, i]{
             static std::mutex mut;
             for(LL j = i+1; j < vec.size(); ++j){
                 for(LL k = j+1; k < vec.size(); ++k){
@@ -109,7 +112,7 @@ auto count1() {
         // ths[i].join();
     }
 
-    FOR(i, vec.size()){
+    FOR(i, 40){
         if(ths[i].joinable()){
             ths[i].join();
         }
