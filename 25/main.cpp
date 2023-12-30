@@ -89,9 +89,9 @@ auto count1() {
     result = total;
     std::thread ths[2000];
     bool finished = false;
-    std::mutex mut;
     FOR(i, vec.size()){
-        ths[i] = std::thread([&result, vec, searchMap, total, i, &mut]{
+        ths[i] = std::thread([&result, vec, searchMap, total, i]{
+            static std::mutex mut;
             for(LL j = i+1; j < vec.size(); ++j){
                 for(LL k = j+1; k < vec.size(); ++k){
                     LL local = countConnected(vec, searchMap, i, j, k);
