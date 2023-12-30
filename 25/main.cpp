@@ -105,7 +105,7 @@ auto count1() {
                 }
             }
         });
-        ths[i].join();
+        // ths[i].join();
     }
 
     FOR(i, vec.size()){
