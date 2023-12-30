@@ -9,7 +9,7 @@
 
 auto in = getInput();
 
-LL countConnected(const std::set<std::pair<S,S>>& map){
+LL countConnected(const std::vector<std::pair<S,S>>& map){
     std::queue<S> q;
     std::set<S> set;
     q.push(map.begin()->first);
@@ -51,9 +51,19 @@ auto count1() {
             map.emplace(s1, s2);
         }
     }
-    P(map);
-
-    P(map.size(), countConnected(map));
+    std::vector<std::pair<S,S>> vec(map.begin(), map.end());
+    result = countConnected(vec);
+    FOR(i, vec.size()){
+        for(LL j = i+1; j < vec.size(); ++j){
+            for(LL k = j+1; k < vec.size(); ++k){
+                auto modified = vec;
+                modified.erase(modified.begin() + k);
+                modified.erase(modified.begin() + j);
+                modified.erase(modified.begin() + i);
+                result = std::min(result, countConnected(modified));
+            }
+        }
+    }
 
     return result;
 }
