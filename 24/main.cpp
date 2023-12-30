@@ -192,7 +192,7 @@ auto count2() {
                     }
                     if(found) {
                         // P(found, t, C0, V0);
-                        map[n][vec] = std::make_pair<LL,LL>(C0, V0);
+                        map[n][vec] = std::make_pair(C0, V0);
                     }
                 }
             }
