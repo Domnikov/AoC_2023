@@ -12,6 +12,7 @@ auto in = getInput();
 LL countConnected(const std::vector<std::pair<LL,LL>>& map, const std::unordered_map<LL,VECI>& searchMap, LL i = -1, LL j = -1, LL k = -1){
     std::queue<LL> q;
     std::unordered_set<LL> set;
+    set.reserve(2000);
     for(LL idx = 0;q.empty();++idx){
         if(idx == i || idx == j || idx == k){
             continue;
