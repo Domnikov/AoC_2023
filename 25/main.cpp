@@ -22,7 +22,7 @@ LL countConnected(const std::vector<std::pair<S,S>>& map, LL i = -1, LL j = -1, 
     while(!q.empty()){
         S name = q.front();
         q.pop();
-        for(LL idx = 0;q.empty();++idx){
+        for(LL idx = 0;idx < map.size();++idx){
             if(idx == i || idx == j || idx == k){
                 continue;
             }
