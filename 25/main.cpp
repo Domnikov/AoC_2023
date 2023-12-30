@@ -24,13 +24,13 @@ LL countConnected(const std::vector<std::pair<LL,LL>>& map, const std::map<LL,VE
         q.pop();
         for(const auto& m:searchMap.at(name)){
             P(m, name, q.size(), set.size(), map[i], map[j], map[k]);
-            if(i >= 0 && name == map[i].first || m == map[i].second){
+            if(i >= 0 && name == map[i].first && m == map[i].second){
                 continue;
             }
-            if(j >= 0 && name == map[j].first || m == map[j].second){
+            if(j >= 0 && name == map[j].first && m == map[j].second){
                 continue;
             }
-            if(k >= 0 && name == map[k].first || m == map[k].second){
+            if(k >= 0 && name == map[k].first && m == map[k].second){
                 continue;
             }
             if(set.count(m) == 0){
