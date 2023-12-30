@@ -9,18 +9,28 @@
 
 auto in = getInput();
 
-LL countConnected(const std::map<S,VECS>& map){
+LL countConnected(const std::set<std::pair<S,S>>& map){
     std::queue<S> q;
     std::set<S> set;
     q.push(map.begin()->first);
-    set.insert(map.begin()->first);
+    set.insert(q.front());
     while(!q.empty()){
         S name = q.front();
         q.pop();
-        for(const auto& s:map.at(name)){
-            if(set.count(s) == 0){
-                q.push(s);
-                set.insert(s);
+        for(const auto& s:map){
+            S other;
+            if(s.first == name){
+                other = s.second;
+            }
+            if(s.second == name){
+                other = s.first;
+            }
+            if(other.empty()){
+                continue;
+            }
+            if(set.count(other) == 0){
+                q.push(other);
+                set.insert(other);
             }
         }
     }
@@ -41,9 +51,8 @@ auto count1() {
             map.emplace(s1, s2);
         }
     }
-    P(map);
 
-    // P(map.size(), countConnected(map));
+    P(map.size(), countConnected(map));
 
     return result;
 }
