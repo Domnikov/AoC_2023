@@ -98,12 +98,12 @@ auto count1() {
             for(LL j = i+1; j < vec.size(); ++j){
                 for(LL k = j+1; k < vec.size(); ++k){
                     local = std::min( local, countConnected(vec, searchMap, i, j, k));
-                    // if(local < (total/2)) {
-                    //     std::lock_guard<std::mutex> lock{mut};
-                    //     result = local;
-                    //     P(i,j,k, result, total);
-                    //     return;
-                    // }
+                    if(local < (total/2)) {
+                        std::lock_guard<std::mutex> lock{mut};
+                        result = local;
+                        P(i,j,k, result, total);
+                        return;
+                    }
                 }
             }
             std::lock_guard<std::mutex> lock{mut};
