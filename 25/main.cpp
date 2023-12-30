@@ -90,7 +90,7 @@ auto count1() {
     std::thread ths[2000];
     bool finished = false;
     FOR(i, vec.size()){
-        ths[i] = std::thread([&result, vec, searchMap, total, i]{
+        ths[i] = std::thread([&result, &vec, &searchMap, total, i]{
             static std::mutex mut;
             for(LL j = i+1; j < vec.size(); ++j){
                 for(LL k = j+1; k < vec.size(); ++k){
