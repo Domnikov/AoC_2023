@@ -52,7 +52,8 @@ auto count1() {
         }
     }
     std::vector<std::pair<S,S>> vec(map.begin(), map.end());
-    result = countConnected(vec);
+    LL total = countConnected(vec);
+    result = total;
     FOR(i, vec.size()){
         for(LL j = i+1; j < vec.size(); ++j){
             for(LL k = j+1; k < vec.size(); ++k){
@@ -65,7 +66,7 @@ auto count1() {
         }
     }
 
-    return result;
+    return result * (total - result);
 }
 
 auto count2() {
