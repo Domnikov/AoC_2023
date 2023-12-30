@@ -9,7 +9,7 @@
 
 auto in = getInput();
 
-LL countConnected(const std::vector<std::pair<LL,LL>>& map, LL i = -1, LL j = -1, LL k = -1){
+LL countConnected(const std::vector<std::pair<LL,LL>>& map, const std::map<LL,VECI>& searchMap, LL i = -1, LL j = -1, LL k = -1){
     std::queue<LL> q;
     std::set<LL> set;
     for(LL idx = 0;q.empty();++idx){
@@ -22,25 +22,39 @@ LL countConnected(const std::vector<std::pair<LL,LL>>& map, LL i = -1, LL j = -1
     while(!q.empty()){
         LL name = q.front();
         q.pop();
-        for(LL idx = 0;idx < map.size();++idx){
-            if(idx == i || idx == j || idx == k){
+        for(const auto& m:searchMap.at(name)){
+            if(i >= 0 && name == map[i].first || m == map[i].second){
                 continue;
             }
-            auto& s = map[idx];
-            LL other = -1;
-            if(s.first == name){
-                other = s.second;
-            }
-            if(s.second == name){
-                other = s.first;
-            }
-            if(other == -1){
+            if(j >= 0 && name == map[j].first || m == map[j].second){
                 continue;
             }
-            if(set.count(other) == 0){
-                q.push(other);
-                set.insert(other);
+            if(k >= 0 && name == map[k].first || m == map[k].second){
+                continue;
             }
+            if(set.count(m) == 0){
+                q.push(m);
+                set.insert(m);
+            }
+        // for(LL idx = 0;idx < map.size();++idx){
+        //     if(idx == i || idx == j || idx == k){
+        //         continue;
+        //     }
+        //     auto& s = map[idx];
+        //     LL other = -1;
+        //     if(s.first == name){
+        //         other = s.second;
+        //     }
+        //     if(s.second == name){
+        //         other = s.first;
+        //     }
+        //     if(other == -1){
+        //         continue;
+        //     }
+        //     if(set.count(other) == 0){
+        //         q.push(other);
+        //         set.insert(other);
+        //     }
         }
     }
     return set.size();
@@ -50,6 +64,7 @@ auto count1() {
     LL result = 0;
 
     std::set<std::pair<LL, LL>> map;
+    std::map<LL,VECI>searchMap;
 
     for(const auto& s:in) {
         auto vec = splitStr(s, ':');
@@ -60,15 +75,17 @@ auto count1() {
             LL i1 = s1[0] * 1000000+s1[1]*1000+s1[2];
             LL i2 = s2[0] * 1000000+s2[1]*1000+s2[2];
             map.emplace(i1, i2);
+            searchMap[i1].push_back(i2);
+            searchMap[i2].push_back(i1);
         }
     }
     std::vector<std::pair<LL,LL>> vec(map.begin(), map.end());
-    LL total = countConnected(vec);
+    LL total = countConnected(vec, searchMap);
     result = total;
     FOR(i, vec.size()){
         for(LL j = i+1; j < vec.size(); ++j){
             for(LL k = j+1; k < vec.size(); ++k){
-                result = std::min(result, countConnected(vec, i, j, k));
+                result = std::min(result, countConnected(vec, searchMap, i, j, k));
                 if(result < (total/2) && result > 0) return result * (total - result);
             }
             P(i,j,result, total);
