@@ -9,9 +9,9 @@
 
 auto in = getInput();
 
-LL countConnected(const std::vector<std::pair<LL,LL>>& map, const std::map<LL,VECI>& searchMap, LL i = -1, LL j = -1, LL k = -1){
+LL countConnected(const std::vector<std::pair<LL,LL>>& map, const std::unordered_map<LL,VECI>& searchMap, LL i = -1, LL j = -1, LL k = -1){
     std::queue<LL> q;
-    std::set<LL> set;
+    std::unordered_set<LL> set;
     for(LL idx = 0;q.empty();++idx){
         if(idx == i || idx == j || idx == k){
             continue;
@@ -66,7 +66,7 @@ auto count1() {
     LL result = 0;
 
     std::set<std::pair<LL, LL>> map;
-    std::map<LL,VECI>searchMap;
+    std::unordered_map<LL,VECI>searchMap;
 
     for(const auto& s:in) {
         auto vec = splitStr(s, ':');
