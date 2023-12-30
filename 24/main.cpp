@@ -158,7 +158,7 @@ auto count2() {
                 // P(lines[j].coord, lines[j].velos);
                 LL c2 = lines[j].coord[n];
                 LL v2 = lines[j].velos[n];
-                for(LL t = 2; t < 7; ++t) {
+                for(LL t = 2; t < 700; ++t) {
                     long double Vtmp1 = x1 - c2 - t*v2;
                     long double Vtmp2 = 1-t;
                     auto V0f = Vtmp1 / Vtmp2;
