@@ -23,6 +23,7 @@ LL countConnected(const std::vector<std::pair<LL,LL>>& map, const std::map<LL,VE
         LL name = q.front();
         q.pop();
         for(const auto& m:searchMap.at(name)){
+            P(m, name, q.size(), set.size());
             if(i >= 0 && name == map[i].first || m == map[i].second){
                 continue;
             }
@@ -32,7 +33,6 @@ LL countConnected(const std::vector<std::pair<LL,LL>>& map, const std::map<LL,VE
             if(k >= 0 && name == map[k].first || m == map[k].second){
                 continue;
             }
-            P(m, name, q.size(), set.size());
             if(set.count(m) == 0){
                 q.push(m);
                 set.insert(m);
