@@ -64,6 +64,7 @@ auto count1() {
                 result = std::min(result, countConnected(modified));
             }
         }
+        P(i);
     }
 
     return result * (total - result);
