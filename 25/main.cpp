@@ -68,6 +68,7 @@ auto count1() {
             for(LL k = j+1; k < vec.size(); ++k){
                 result = std::min(result, countConnected(vec, i, j, k));
             }
+            P(j);
         }
         P(i);
     }
