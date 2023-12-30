@@ -98,10 +98,10 @@ auto count1() {
                     if(local < (total/2) && result > 0) {
                         std::lock_guard<std::mutex> lock{mut};
                         result = local;
+                    P(i,j,k, result);
                         return;
                     }
-                    std::lock_guard<std::mutex> lock{mut};
-                    P(i,j,k, result);
+                    // std::lock_guard<std::mutex> lock{mut};
                 }
             }
         });
