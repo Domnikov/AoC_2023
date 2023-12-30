@@ -4,6 +4,7 @@
 #include "in.hpp"
 #endif
 
+#include <thread>
 #include <queue>
 #include <list>
 
@@ -85,14 +86,18 @@ auto count1() {
     std::vector<std::pair<LL,LL>> vec(map.begin(), map.end());
     LL total = countConnected(vec, searchMap);
     result = total;
+    std::thread ths[2000];
+    bool finished = false;
     FOR(i, vec.size()){
-        for(LL j = i+1; j < vec.size(); ++j){
-            for(LL k = j+1; k < vec.size(); ++k){
-                result = std::min(result, countConnected(vec, searchMap, i, j, k));
-                if(result < (total/2) && result > 0) return result * (total - result);
+        ths[i] = std::thread([&]{
+            for(LL j = i+1; j < vec.size(); ++j){
+                for(LL k = j+1; k < vec.size(); ++k){
+                    result = std::min(result, countConnected(vec, searchMap, i, j, k));
+                    if(result < (total/2) && result > 0) return result * (total - result);
+                }
+                P(i,j,result, total);
             }
-            P(i,j,result, total);
-        }
+        });
         P(i, result);
     }
 
