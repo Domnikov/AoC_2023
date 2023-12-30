@@ -38,7 +38,6 @@ LL countConnected(const std::vector<std::pair<LL,LL>>& map, const std::unordered
             if(set.count(m) == 0){
                 q.push(m);
                 set.insert(m);
-                if(i != -1 && set.size() > 750) return 2000;
             }
         }
         // for(LL idx = 0;idx < map.size();++idx){
@@ -94,10 +93,11 @@ auto count1() {
             ths[i%40].join();
         }
         ths[i%40] = std::thread([&result, vec, searchMap, total, i]{
+            LL local = total;
             static std::mutex mut;
             for(LL j = i+1; j < vec.size(); ++j){
                 for(LL k = j+1; k < vec.size(); ++k){
-                    LL local = countConnected(vec, searchMap, i, j, k);
+                    local = std::min( local, countConnected(vec, searchMap, i, j, k));
                     if(local < (total/2)) {
                         std::lock_guard<std::mutex> lock{mut};
                         result = local;
@@ -105,9 +105,10 @@ auto count1() {
                         return;
                     }
                 }
-                std::lock_guard<std::mutex> lock{mut};
             }
-            P(i, result, total);
+            std::lock_guard<std::mutex> lock{mut};
+            result = std::min(result, local);
+            P(i, local, result, total);
         });
         // ths[i].join();
     }
