@@ -95,7 +95,6 @@ auto count1() {
                     result = std::min(result, countConnected(vec, searchMap, i, j, k));
                     if(result < (total/2) && result > 0) return result * (total - result);
                 }
-                P(i,j,result, total);
             }
         });
         P(i, result);
