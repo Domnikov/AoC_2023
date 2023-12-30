@@ -101,18 +101,18 @@ auto count1() {
                         P(i,j,k, result, total);
                         return;
                     }
-                    // std::lock_guard<std::mutex> lock{mut};
                 }
+                std::lock_guard<std::mutex> lock{mut};
+                P(i,j, result, total);
             }
         });
         // ths[i].join();
     }
 
     FOR(i, vec.size()){
-        if(ths[vec.size() - 1 - i].joinable()){
-            ths[vec.size() - 1 - i].join();
+        if(ths[i].joinable()){
+            ths[i].join();
         }
-        P(i);
     }
 
     return result * (total - result);
