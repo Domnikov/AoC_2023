@@ -105,10 +105,13 @@ auto count1() {
                 }
             }
         });
+        ths[i].join();
     }
 
     FOR(i, vec.size()){
-        ths[i].join();
+        if(ths[i].joinable()){
+            ths[i].join();
+        }
     }
 
     return result * (total - result);
