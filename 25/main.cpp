@@ -106,8 +106,8 @@ auto count1() {
                     }
                 }
                 std::lock_guard<std::mutex> lock{mut};
-                P(i,j, result, total);
             }
+            P(i, result, total);
         });
         // ths[i].join();
     }
