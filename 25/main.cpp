@@ -87,6 +87,7 @@ auto count1() {
             for(LL k = j+1; k < vec.size(); ++k){
                 result = std::min(result, countConnected(vec, searchMap, i, j, k));
                 if(result < (total/2) && result > 0) return result * (total - result);
+                P(i,j,k,result, total);
             }
             P(i,j,result, total);
         }
