@@ -109,9 +109,10 @@ auto count1() {
     }
 
     FOR(i, vec.size()){
-        if(ths[i].joinable()){
-            ths[i].join();
+        if(ths[vec.size() - 1 - i].joinable()){
+            ths[vec.size() - 1 - i].join();
         }
+        P(i);
     }
 
     return result * (total - result);
