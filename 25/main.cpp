@@ -100,6 +100,10 @@ auto count1() {
         P(i, result);
     }
 
+    FOR(i, vec.size()){
+        ths[i].join();
+    }
+
     return result * (total - result);
 }
 
