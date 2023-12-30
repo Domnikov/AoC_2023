@@ -12,6 +12,18 @@ auto in = getInput();
 auto count1() {
     LL result = 0;
 
+    std::map<S, VECS> map;
+
+    for(const auto& s:in) {
+        auto vec = splitStr(s, ':');
+        auto vec1 = splitStr(vec[1], ' ');
+        map[vec[0]].insert(map[vec[0]].end(), BE(vec1));
+        for(const auto& v:vec1){
+            map[v].push_back(vec[0]);
+        }
+    }
+    P_MAPV(map);
+
     return result;
 }
 
