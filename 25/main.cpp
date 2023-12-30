@@ -51,6 +51,7 @@ auto count1() {
             map.emplace(s1, s2);
         }
     }
+    P(map);
 
     P(map.size(), countConnected(map));
 
