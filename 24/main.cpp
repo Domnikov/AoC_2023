@@ -161,12 +161,14 @@ auto count2() {
                 for(LL t = 2; t < 7; ++t) {
                     long double Vtmp1 = x1 - c2 - t*v2;
                     long double Vtmp2 = 1-t;
-                    auto V0 = Vtmp1 / Vtmp2;
-                    auto C0 = x1 - V0;
-                    if((C0 - (LL)C0) > 0.01) {
+                    auto V0f = Vtmp1 / Vtmp2;
+                    auto C0f = x1 - V0f;
+                    LL V0 = V0f;
+                    LL C0 = C0f;
+                    if((C0f - C0) > 0.01) {
                         continue;
                     }
-                    if((V0 - (LL)V0) > 0.01) {
+                    if((V0f - V0) > 0.01) {
                         continue;
                     }
                     // P(t, C0, V0);
@@ -179,7 +181,7 @@ auto count2() {
                             P(C0, V0, Ck, Vk, t, lines[k].coord);
                             vec.emplace_back(k, 5);
                         } else {
-                            auto cp = Line2d({(LL)C0, 0, 0}, {(LL)V0, 1, 0}).GetCP(Line2d{{Ck, 0, 0},{Vk, 1, 0}});
+                            auto cp = Line2d({C0, 0, 0}, {V0, 1, 0}).GetCP(Line2d{{Ck, 0, 0},{Vk, 1, 0}});
                             // P(cp, C0, V0, Ck, Vk, t, lines[k].coord);
                             if(std::isnan(cp.second) || cp.second == std::numeric_limits<long double>::infinity() || cp.second < 1) {
                                 found = false;
