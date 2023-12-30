@@ -93,7 +93,7 @@ auto count1() {
         if(ths[i%40].joinable()){
             ths[i%40].join();
         }
-        ths[i%40] = std::thread([&result, &vec, &searchMap, total, i]{
+        ths[i%40] = std::thread([&result, vec, searchMap, total, i]{
             static std::mutex mut;
             for(LL j = i+1; j < vec.size(); ++j){
                 for(LL k = j+1; k < vec.size(); ++k){
