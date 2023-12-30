@@ -95,7 +95,7 @@ auto count1() {
             for(LL j = i+1; j < vec.size(); ++j){
                 for(LL k = j+1; k < vec.size(); ++k){
                     LL local = countConnected(vec, searchMap, i, j, k);
-                    if(local < (total/2) && result > 0) {
+                    if(local < (total/2)) {
                         std::lock_guard<std::mutex> lock{mut};
                         result = local;
                     P(i,j,k, result, total);
