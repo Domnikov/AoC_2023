@@ -4,6 +4,7 @@
 #include "in.hpp"
 #endif
 
+#include <mutex>
 #include <thread>
 #include <queue>
 #include <list>
@@ -88,12 +89,17 @@ auto count1() {
     result = total;
     std::thread ths[2000];
     bool finished = false;
+    std::mutex mut;
     FOR(i, vec.size()){
         ths[i] = std::thread([&]{
             for(LL j = i+1; j < vec.size(); ++j){
                 for(LL k = j+1; k < vec.size(); ++k){
-                    result = std::min(result, countConnected(vec, searchMap, i, j, k));
-                    if(result < (total/2) && result > 0) return;
+                    LL local = countConnected(vec, searchMap, i, j, k);
+                    if(local < (total/2) && result > 0) {
+                        std::lock_guard<std::mutex> lock{mut};
+                        result = local;
+                        return;
+                    }
                 }
             }
         });
