@@ -105,6 +105,10 @@ auto count1() {
                         return;
                     }
                 }
+                if(j%100 == 0){
+                    std::lock_guard<std::mutex> lock{mut};
+                    P(i, j, local, result, total);
+                }
             }
             std::lock_guard<std::mutex> lock{mut};
             result = std::min(result, local);
