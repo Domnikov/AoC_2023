@@ -32,7 +32,7 @@ LL countConnected(const std::vector<std::pair<LL,LL>>& map, const std::map<LL,VE
             if(k >= 0 && name == map[k].first || m == map[k].second){
                 continue;
             }
-            P(m, name);
+            P(m, name, q.size(), set.size());
             if(set.count(m) == 0){
                 q.push(m);
                 set.insert(m);
