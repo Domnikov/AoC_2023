@@ -107,7 +107,7 @@ void FillSet(std::set<S>& set, const std::map<S, VECS>& map, LL shift, LL depth)
     set.insert(std::next(map.begin(), shift)->first);
     FOR(i, depth) {
         std::queue<S> q;
-        std::copy(BE(set), std::back_inserter(q));
+        std::for_each(BE(set), [&q](auto s){q.push(s);});
         while(!q.empty()){
             S key = q.front();
             q.pop();
