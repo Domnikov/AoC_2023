@@ -69,8 +69,7 @@ VECI getPath(const std::vector<std::pair<LL,LL>>& map, const std::unordered_map<
     return path;
 }
 #endif
-LL getBatch(const std::vector<std::pair<S,S>>& map, const std::unordered_map<S,VECS>& searchMap, S one, S two){
-    std::set<S> set = {one, two};
+LL getBatch(const std::vector<std::pair<S,S>>& map, const std::unordered_map<S,VECS>& searchMap, std::set<S> set){
     P(set);
     bool added = true;
     while(added) {
@@ -124,9 +123,10 @@ auto count1() {
         }
     }
     std::vector<std::pair<S,S>> vec(map.begin(), map.end());
-    S one = std::next(searchMap.begin(), 9)->first;
-    S two = std::next(searchMap.begin(), 9)->second[0];
-    return getBatch(vec, searchMap, one, two);
+    std::set<S> set;
+    set.insert(std::next(searchMap.begin(), 9)->first);
+    set.insert(std::next(searchMap.begin(), 9)->second[0]);
+    return getBatch(vec, searchMap, set);
 #if 0
     LL total = countConnected(vec, searchMap);
     result = total;
