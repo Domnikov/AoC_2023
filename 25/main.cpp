@@ -141,8 +141,8 @@ auto count1() {
     std::vector<std::pair<S,S>> vec(map.begin(), map.end());
     std::set<S> set;
     FillSet(set, searchMap, 2, 4);
-    P(set);
-    return getBatch(vec, searchMap, set);
+    result = getBatch(vec, searchMap, set);
+    P(result, searchMap.size()-result);
 #if 0
     LL total = countConnected(vec, searchMap);
     result = total;
