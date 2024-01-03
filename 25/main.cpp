@@ -79,7 +79,7 @@ LL getBatch(const std::vector<std::pair<S,S>>& map, const std::unordered_map<S,V
             for(auto cur:map){
                 if(set.count(cur)) continue;
                 LL count = 0;
-                const VECS& adjmap = searchMap.at(base);
+                const VECS& adjmap = searchMap.at(cur);
                 for(auto s:adjmap){
                     if(s!=base && set.count(s)){
                         ++count;
