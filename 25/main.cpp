@@ -40,28 +40,33 @@ LL countConnected(const std::vector<std::pair<LL,LL>>& map, const std::unordered
                 set.insert(m);
             }
         }
-        // for(LL idx = 0;idx < map.size();++idx){
-        //     if(idx == i || idx == j || idx == k){
-        //         continue;
-        //     }
-        //     auto& s = map[idx];
-        //     LL other = -1;
-        //     if(s.first == name){
-        //         other = s.second;
-        //     }
-        //     if(s.second == name){
-        //         other = s.first;
-        //     }
-        //     if(other == -1){
-        //         continue;
-        //     }
-        //     if(set.count(other) == 0){
-        //         q.push(other);
-        //         set.insert(other);
-        //     }
-        // }
     }
     return set.size();
+}
+
+VECI getPath(const std::vector<std::pair<LL,LL>>& map, const std::unordered_map<LL,VECI>& searchMap, LL from, LL to){
+    std::queue<VECI> q;
+    std::unordered_set<LL> set;
+    set.reserve(2000);
+    q.push(VECI{from});
+    set.insert(from);
+    VECI path;
+    path.push_back(from);
+    while(!q.empty()){
+        VECI tmp_path = q.front();
+        LL name = tmp_path.back();
+        q.pop();
+        for(const auto& m:searchMap.at(name)){
+            if(set.count(m) == 0){
+                VECI copy = tmp_path;
+                copy.push_back(m);
+                if(m == to){return copy;}
+                q.push(copy);
+                set.insert(m);
+            }
+        }
+    }
+    return path;
 }
 
 auto count1() {
@@ -84,6 +89,14 @@ auto count1() {
         }
     }
     std::vector<std::pair<LL,LL>> vec(map.begin(), map.end());
+    for(auto it1 = searchMap.begin(); it1 != searchMap.end(); ++it1) {
+        for(auto it2 = std::next(it1, 1); it1 != searchMap.end(); ++it2) {
+            LL from = it1->first;
+            LL to = it2->first;
+            result = std::max(result, (LL)getPath(vec, searchMap, from, to).size());
+        }
+    }
+#if 0
     LL total = countConnected(vec, searchMap);
     result = total;
     std::thread ths[40];
@@ -122,8 +135,8 @@ auto count1() {
             ths[i].join();
         }
     }
-
     return result * (total - result);
+#endif
 }
 
 auto count2() {
