@@ -123,7 +123,9 @@ auto count1() {
         }
     }
     std::vector<std::pair<S,S>> vec(map.begin(), map.end());
-    return getBatch(vec, searchMap, searchMap.begin()->first, std::next(searchMap.begin(),3)->first);
+    S one = std::next(searchMap.begin(), 1)->first;
+    S two = std::next(searchMap.begin(), 2)->first;
+    return getBatch(vec, searchMap, one, two);
 #if 0
     LL total = countConnected(vec, searchMap);
     result = total;
