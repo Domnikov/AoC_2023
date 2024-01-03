@@ -87,7 +87,7 @@ LL getBatch(const std::vector<std::pair<S,S>>& map, const std::unordered_map<S,V
                     }
                 }
 
-                if(count >= 2) {
+                if(count >= 1) {
                     P(base, cur, count, set.size());
                     set.insert(cur);
                     added = true;
