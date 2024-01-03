@@ -127,6 +127,7 @@ auto count1() {
     set.insert(std::next(searchMap.begin(), 9)->first);
     set.insert(std::next(searchMap.begin(), 9)->second[0]);
     set.insert(std::next(searchMap.begin(), 9)->second[1]);
+    set.insert(std::next(searchMap.begin(), 9)->second[2]);
     return getBatch(vec, searchMap, set);
 #if 0
     LL total = countConnected(vec, searchMap);
