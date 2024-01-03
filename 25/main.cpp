@@ -69,7 +69,7 @@ VECI getPath(const std::vector<std::pair<LL,LL>>& map, const std::unordered_map<
     return path;
 }
 #endif
-LL getBatch(const std::vector<std::pair<S,S>>& map, const std::unordered_map<S,VECS>& searchMap, std::set<S> set){
+LL getBatch(const std::vector<std::pair<S,S>>& map, const std::map<S,VECS>& searchMap, std::set<S> set){
     P(set);
     bool added = true;
     while(added) {
@@ -107,7 +107,7 @@ auto count1() {
     LL result = 0;
 
     std::set<std::pair<S, S>> map;
-    std::unordered_map<S,VECS>searchMap;
+    std::map<S,VECS>searchMap;
 
     for(const auto& s:in) {
         auto vec = splitStr(s, ':');
@@ -124,6 +124,7 @@ auto count1() {
     }
     std::vector<std::pair<S,S>> vec(map.begin(), map.end());
     std::set<S> set;
+    P_MAPV(searchMap);
     set.insert(std::next(searchMap.begin(), 9)->first);
     set.insert(std::next(searchMap.begin(), 9)->second[0]);
     set.insert(std::next(searchMap.begin(), 9)->second[1]);
