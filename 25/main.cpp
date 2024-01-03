@@ -83,9 +83,9 @@ LL getBatch(const std::vector<std::pair<LL,LL>>& map, const std::unordered_map<L
                     break;
                 }
             }
-        }
-        if(added == true){
-            break;
+            if(added == true){
+                break;
+            }
         }
     }
     P(set);
