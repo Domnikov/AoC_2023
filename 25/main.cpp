@@ -84,6 +84,7 @@ LL getBatch(const std::vector<std::pair<S,S>>& map, const std::unordered_map<S,V
                 for(auto s:adjmap){
                     if(s!=base && set.count(s)){
                         ++count;
+                        P(base, cur, count, s);
                     }
                 }
 
