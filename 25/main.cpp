@@ -103,6 +103,22 @@ LL getBatch(const std::vector<std::pair<S,S>>& map, const std::map<S,VECS>& sear
     return set.size();
 }
 
+void FillSet(std::set<S>& set, const std::map<S, VECS>& map, LL shift, LL depth){
+    set.insert(std::next(map.begin(), shift)->first);
+    FOR(i, depth) {
+        std::queue<S> q;
+        std::copy(BE(set), std::back_inserter(q));
+        while(!q.empty()){
+            S key = q.front();
+            q.pop();
+            set.insert(key);
+            for(auto s:map.at(key)){
+                set.insert(s);
+            }
+        }
+    }
+}
+
 auto count1() {
     LL result = 0;
 
@@ -124,27 +140,7 @@ auto count1() {
     }
     std::vector<std::pair<S,S>> vec(map.begin(), map.end());
     std::set<S> set;
-    // P_MAPV(searchMap);
-    set.insert(std::next(searchMap.begin(), 3)->first);
-    set.insert(std::next(searchMap.begin(), 3)->second[0]);
-    set.insert(std::next(searchMap.begin(), 3)->second[1]);
-    set.insert(std::next(searchMap.begin(), 3)->second[2]);
-    set.insert(std::next(searchMap.begin(), 4)->first);
-    set.insert(std::next(searchMap.begin(), 4)->second[0]);
-    set.insert(std::next(searchMap.begin(), 4)->second[1]);
-    set.insert(std::next(searchMap.begin(), 4)->second[2]);
-    set.insert(std::next(searchMap.begin(), 5)->first);
-    set.insert(std::next(searchMap.begin(), 5)->second[0]);
-    set.insert(std::next(searchMap.begin(), 5)->second[1]);
-    set.insert(std::next(searchMap.begin(), 5)->second[2]);
-    set.insert(std::next(searchMap.begin(), 6)->first);
-    set.insert(std::next(searchMap.begin(), 6)->second[0]);
-    set.insert(std::next(searchMap.begin(), 6)->second[1]);
-    set.insert(std::next(searchMap.begin(), 6)->second[2]);
-    set.insert(std::next(searchMap.begin(), 9)->first);
-    set.insert(std::next(searchMap.begin(), 9)->second[0]);
-    set.insert(std::next(searchMap.begin(), 9)->second[1]);
-    set.insert(std::next(searchMap.begin(), 9)->second[2]);
+    FillSet(set, searchMap, 0, 1);
     return getBatch(vec, searchMap, set);
 #if 0
     LL total = countConnected(vec, searchMap);
