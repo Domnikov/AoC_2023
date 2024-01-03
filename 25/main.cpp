@@ -140,7 +140,7 @@ auto count1() {
     }
     std::vector<std::pair<S,S>> vec(map.begin(), map.end());
     std::set<S> set;
-    FillSet(set, searchMap, 2, 3);
+    FillSet(set, searchMap, 2, 4);
     result = getBatch(vec, searchMap, set);
     P(result, searchMap.size()-result);
     return result * (searchMap.size()-result);
