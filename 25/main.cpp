@@ -89,7 +89,8 @@ auto count1() {
         }
     }
     std::vector<std::pair<LL,LL>> vec(map.begin(), map.end());
-    for(auto it1 = searchMap.begin(); it1 != searchMap.end(); ++it1) {
+    auto preend = std::next(searchMap.begin(), searchMap.size()-2);
+    for(auto it1 = searchMap.begin(); it1 != preend; ++it1) {
         for(auto it2 = std::next(it1, 1); it1 != searchMap.end(); ++it2) {
             LL from = it1->first;
             LL to = it2->first;
