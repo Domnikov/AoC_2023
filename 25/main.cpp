@@ -77,8 +77,8 @@ LL getBatch(const std::vector<std::pair<S,S>>& map, const std::unordered_map<S,V
         for(auto base:set){
             const VECS& map = searchMap.at(base);
             for(auto cur:map){
-                P(base, cur, set.count(cur), set.size());
                 if(set.count(cur) == 0) {
+                    P(base, cur, set.count(cur), set.size());
                     set.insert(cur);
                     added = true;
                     break;
