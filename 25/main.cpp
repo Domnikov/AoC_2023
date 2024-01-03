@@ -69,6 +69,27 @@ VECI getPath(const std::vector<std::pair<LL,LL>>& map, const std::unordered_map<
     return path;
 }
 
+LL getBatch(const std::vector<std::pair<LL,LL>>& map, const std::unordered_map<LL,VECI>& searchMap, LL one, LL two){
+    std::unordered_set<LL> set = {one, two};
+    bool added = true;
+    while(true) {
+        added = false;
+        for(auto base:set){
+            for(auto cur:searchMap.at(base)){
+                if(set.count(cur) == 0) {
+                    set.insert(cur);
+                    added = true;
+                    break;
+                }
+            }
+        }
+        if(added == true){
+            break;
+        }
+    }
+    return set.size();
+}
+
 auto count1() {
     LL result = 0;
 
@@ -89,21 +110,7 @@ auto count1() {
         }
     }
     std::vector<std::pair<LL,LL>> vec(map.begin(), map.end());
-    auto preend = std::next(searchMap.begin(), searchMap.size()-2);
-    LL count = 0;
-    LL cp = 1;
-    for(auto it1 = searchMap.begin(); it1 != preend; ++it1) {
-        for(auto it2 = std::next(it1, 1); it2 != searchMap.end(); ++it2) {
-            LL from = it1->first;
-            LL to = it2->first;
-            result = std::max(result, (LL)getPath(vec, searchMap, from, to).size());
-        }
-        if(++count > cp){
-            P(result, cp);
-            cp*=10;
-        }
-    }
-    return result;
+    return getBatch(vec, searchMap, searchMap.begin()->first, std::next(searchMap.begin(),1)->first);
 #if 0
     LL total = countConnected(vec, searchMap);
     result = total;
