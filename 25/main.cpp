@@ -96,6 +96,7 @@ auto count1() {
             result = std::max(result, (LL)getPath(vec, searchMap, from, to).size());
         }
     }
+    return result;
 #if 0
     LL total = countConnected(vec, searchMap);
     result = total;
