@@ -72,9 +72,8 @@ VECI getPath(const std::vector<std::pair<LL,LL>>& map, const std::unordered_map<
 LL getBatch(const std::vector<std::pair<S,S>>& map, const std::unordered_map<S,VECS>& searchMap, S one, S two){
     std::set<S> set = {one, two};
     bool added = true;
-    while(true) {
+    while(added) {
         added = false;
-        P_LINE;
         for(auto base:set){
             const VECS& map = searchMap.at(base);
             for(auto cur:map){
