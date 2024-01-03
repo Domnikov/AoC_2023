@@ -10,7 +10,7 @@
 #include <list>
 
 auto in = getInput();
-
+#if 0
 LL countConnected(const std::vector<std::pair<LL,LL>>& map, const std::unordered_map<LL,VECI>& searchMap, LL i = -1, LL j = -1, LL k = -1){
     std::queue<LL> q;
     std::unordered_set<LL> set;
@@ -68,14 +68,14 @@ VECI getPath(const std::vector<std::pair<LL,LL>>& map, const std::unordered_map<
     }
     return path;
 }
-
-LL getBatch(const std::vector<std::pair<LL,LL>>& map, const std::unordered_map<LL,VECI>& searchMap, LL one, LL two){
-    std::set<LL> set = {one, two};
+#endif
+LL getBatch(const std::vector<std::pair<S,S>>& map, const std::unordered_map<S,VECS>& searchMap, S one, S two){
+    std::set<S> set = {one, two};
     bool added = true;
     while(true) {
         added = false;
         for(auto base:set){
-            const VECI& map = searchMap.at(base);
+            const VECS& map = searchMap.at(base);
             for(auto cur:map){
                 P(base, cur, set.count(cur), set.size());
                 if(set.count(cur) == 0) {
@@ -96,8 +96,8 @@ LL getBatch(const std::vector<std::pair<LL,LL>>& map, const std::unordered_map<L
 auto count1() {
     LL result = 0;
 
-    std::set<std::pair<LL, LL>> map;
-    std::unordered_map<LL,VECI>searchMap;
+    std::set<std::pair<S, S>> map;
+    std::unordered_map<S,VECS>searchMap;
 
     for(const auto& s:in) {
         auto vec = splitStr(s, ':');
@@ -105,14 +105,14 @@ auto count1() {
         for(const auto& v:vec1){
             S s1 = vec[0] < v ? vec[0] : v;
             S s2 = s1 == v ? vec[0] : v;
-            LL i1 = s1[0] * 1000000+s1[1]*1000+s1[2];
-            LL i2 = s2[0] * 1000000+s2[1]*1000+s2[2];
-            map.emplace(i1, i2);
-            searchMap[i1].push_back(i2);
-            searchMap[i2].push_back(i1);
+            // LL i1 = s1[0] * 1000000+s1[1]*1000+s1[2];
+            // LL i2 = s2[0] * 1000000+s2[1]*1000+s2[2];
+            map.emplace(s1, s2);
+            searchMap[s1].push_back(s2);
+            searchMap[s2].push_back(s1);
         }
     }
-    std::vector<std::pair<LL,LL>> vec(map.begin(), map.end());
+    std::vector<std::pair<S,S>> vec(map.begin(), map.end());
     return getBatch(vec, searchMap, searchMap.begin()->first, std::next(searchMap.begin(),1)->first);
 #if 0
     LL total = countConnected(vec, searchMap);
