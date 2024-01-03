@@ -129,6 +129,10 @@ auto count1() {
     set.insert(std::next(searchMap.begin(), 5)->second[0]);
     set.insert(std::next(searchMap.begin(), 5)->second[1]);
     set.insert(std::next(searchMap.begin(), 5)->second[2]);
+    set.insert(std::next(searchMap.begin(), 6)->first);
+    set.insert(std::next(searchMap.begin(), 6)->second[0]);
+    set.insert(std::next(searchMap.begin(), 6)->second[1]);
+    set.insert(std::next(searchMap.begin(), 6)->second[2]);
     set.insert(std::next(searchMap.begin(), 9)->first);
     set.insert(std::next(searchMap.begin(), 9)->second[0]);
     set.insert(std::next(searchMap.begin(), 9)->second[1]);
