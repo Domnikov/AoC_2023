@@ -70,7 +70,7 @@ VECI getPath(const std::vector<std::pair<LL,LL>>& map, const std::unordered_map<
 }
 
 LL getBatch(const std::vector<std::pair<LL,LL>>& map, const std::unordered_map<LL,VECI>& searchMap, LL one, LL two){
-    std::unordered_set<LL> set = {one, two};
+    std::set<LL> set = {one, two};
     bool added = true;
     while(true) {
         added = false;
@@ -87,6 +87,7 @@ LL getBatch(const std::vector<std::pair<LL,LL>>& map, const std::unordered_map<L
             break;
         }
     }
+    P(set);
     return set.size();
 }
 
