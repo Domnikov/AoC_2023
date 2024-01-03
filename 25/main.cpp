@@ -125,6 +125,14 @@ auto count1() {
     std::vector<std::pair<S,S>> vec(map.begin(), map.end());
     std::set<S> set;
     // P_MAPV(searchMap);
+    set.insert(std::next(searchMap.begin(), 3)->first);
+    set.insert(std::next(searchMap.begin(), 3)->second[0]);
+    set.insert(std::next(searchMap.begin(), 3)->second[1]);
+    set.insert(std::next(searchMap.begin(), 3)->second[2]);
+    set.insert(std::next(searchMap.begin(), 4)->first);
+    set.insert(std::next(searchMap.begin(), 4)->second[0]);
+    set.insert(std::next(searchMap.begin(), 4)->second[1]);
+    set.insert(std::next(searchMap.begin(), 4)->second[2]);
     set.insert(std::next(searchMap.begin(), 5)->first);
     set.insert(std::next(searchMap.begin(), 5)->second[0]);
     set.insert(std::next(searchMap.begin(), 5)->second[1]);
