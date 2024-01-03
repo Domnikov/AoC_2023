@@ -87,7 +87,7 @@ LL getBatch(const std::vector<std::pair<S,S>>& map, const std::unordered_map<S,V
                     }
                 }
 
-                if(count >= 1) {
+                if(count >= 2) {
                     P(base, cur, count, set.size());
                     set.insert(cur);
                     added = true;
@@ -126,6 +126,7 @@ auto count1() {
     std::set<S> set;
     set.insert(std::next(searchMap.begin(), 9)->first);
     set.insert(std::next(searchMap.begin(), 9)->second[0]);
+    set.insert(std::next(searchMap.begin(), 9)->second[1]);
     return getBatch(vec, searchMap, set);
 #if 0
     LL total = countConnected(vec, searchMap);
