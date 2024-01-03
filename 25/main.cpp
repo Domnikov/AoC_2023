@@ -12,7 +12,7 @@
 auto in = getInput();
 
 LL getBatch(const std::vector<std::pair<S,S>>& map, const std::map<S,VECS>& searchMap, std::set<S> set){
-    P(set);
+
     bool added = true;
     while(added) {
         added = false;
@@ -39,7 +39,6 @@ LL getBatch(const std::vector<std::pair<S,S>>& map, const std::map<S,VECS>& sear
             }
         }
     }
-    P(set);
     return set.size();
 }
 
